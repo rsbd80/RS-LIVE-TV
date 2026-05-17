@@ -1,4 +1,4 @@
-her<!doctype html>
+<!doctype html>
 <html lang="bn">
 <head>
     <meta charset="utf-8">
@@ -22,7 +22,6 @@ her<!doctype html>
     <title>RS Live TV</title>
 
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/mD1VCt2C/RS-Live.png">
-    <!-- মনে রাখবেন: bootstrap.min.css এবং style.css ফাইল দুটি যেন একই ফোল্ডারে থাকে -->
     <link href="bootstrap.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
 
@@ -35,34 +34,18 @@ her<!doctype html>
             font-family: Arial, sans-serif;
         }
 
-        .tv-area {
-            margin-top: 15px;
-        }
-
-        /* বুটস্ট্র্যাপের বাইরে আইফ্রেমের রেসপন্সিভনেস নিশ্চিত করার জন্য */
-        .embed-responsive-16by9 {
-            position: relative;
-            display: block;
-            width: 100%;
-            padding: 0;
-            overflow: hidden;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
-        }
-
-        .embed-responsive-16by9 .embed-responsive-item {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
-        .tv-view .embed-responsive-16by9 {
+        .tv-view .embed-responsive {
             border: 1px solid #222;
             border-radius: 8px;
             background: #000;
+            overflow: hidden;
+        }
+
+        iframe {
+            border: 0 !important;
+            display: block;
+            width: 100%;
+            height: 100%;
         }
 
         .marquee-container {
@@ -73,7 +56,6 @@ her<!doctype html>
             align-items: center;
             border-top: 1px solid #333;
             border-bottom: 1px solid #333;
-            margin-top: 15px;
         }
 
         .notice-label {
@@ -283,9 +265,8 @@ her<!doctype html>
     <div class="container tv-area">
         <div class="row">
 
-            <!-- col-xs-12 পরিবর্তন করে col-12 করা হয়েছে -->
-            <div class="col-12 col-md-10 tv-view">
-                <div class="embed-responsive-16by9">
+            <div class="col-xs-12 col-md-10 tv-view">
+                <div class="embed-responsive embed-responsive-16by9">
                     <iframe name="player"
                         class="embed-responsive-item"
                         allowfullscreen
@@ -293,7 +274,7 @@ her<!doctype html>
                 </div>
             </div>
 
-            <div class="col-12 col-md-2 channel-list">
+            <div class="col-xs-12 col-md-2 channel-list">
                 <ul class="thumbnail-slider" id="channel-container"></ul>
             </div>
 
@@ -306,50 +287,77 @@ her<!doctype html>
         <marquee scrollamount="6"
             onmouseover="this.stop()"
             onmouseout="this.start()">
+
             ⚠️ বর্তমানে আমাদের ওয়েব সাইট আপডেট চলছে, আপডেট চলাকালীন সময় কিছু চ্যানেল ডাউন হতে পারে।
             <span style="color: yellow; font-weight: bold;">
                 টিভি চ্যানেল প্লে হতে ৫ থেকে ১০ সেকেন্ড টাইম নিতে পারে
             </span>
-            তবে সেটা সার্ভার ও আপনার ইন্টারнеটের উপর নির্ভর করবে।
+            তবে সেটা সার্ভার ও আপনার ইন্টারনেটের উপর নির্ভর করবে।
             ⛔ আপনার মতামত জানাতে আমাদের টেলিগ্রাম গ্রুপে জয়েন করুন,
             এবং কোনো চ্যানেল প্লে না হলে সেটাও বলুন, ধন্যবাদ !
+
         </marquee>
     </div>
 
     <footer class="footer-premium">
+
         <div class="container">
 
             <div class="tio-style-banner-fixed">
+
                 <div class="banner-overlay"></div>
+
                 <div class="content-wrapper">
+
                     <div class="brand-logo-fixed">
                         <span class="rs-live">RS Live</span>
                         <span class="tv-text">TV</span>
                     </div>
+
                     <div class="text-section-fixed">
+
                         <div class="main-tags">
                             <span class="tag-cricket">CRICKET 🏏</span>
                             <span class="tag-football">FOOTBALL ⚽</span>
                             <span class="tag-tv">TV SHOWS 📺</span>
                         </div>
-                        <p class="sub-text">সব পাবেন একদম ফ্রিতে!</p>
+
+                        <p class="sub-text">
+                            সব পাবেন একদম ফ্রিতে!
+                        </p>
+
                     </div>
+
                     <div class="live-circle">
                         <span class="pulse"></span>LIVE
                     </div>
+
                 </div>
             </div>
 
             <div class="tg-card">
-                <h5 style="color:#fff; margin-bottom:5px; font-size:16px;">সাপোর্ট প্রয়োজন?</h5>
+
+                <h5 style="color:#fff; margin-bottom:5px; font-size:16px;">
+                    সাপোর্ট প্রয়োজন?
+                </h5>
+
                 <p style="color:#777; font-size:11px; margin-bottom:5px;">
                     আপডেট ও চ্যানেল রিকোয়েস্টের জন্য আমাদের টেলিগ্রাম গ্রুপে যোগ দিন।
                 </p>
-                <a href="https://t.me/rslivetv" target="_blank" class="telegram-btn">JOIN TELEGRAM</a>
+
+                <a href="https://t.me/rslivetv"
+                    target="_blank"
+                    class="telegram-btn">
+
+                    JOIN TELEGRAM
+
+                </a>
+
             </div>
 
             <!-- Adsterra Banner -->
             <div class="ad-box">
+
                 <script type="text/javascript">
                     atOptions = {
                         'key' : '774c0e371455f6476668178b5faae5ab',
@@ -359,21 +367,28 @@ her<!doctype html>
                         'params' : {}
                     };
                 </script>
-                <script type="text/javascript" src="//www.highperformanceformat.com/774c0e371455f6476668178b5faae5ab/invoke.js"></script>
+
+                <script type="text/javascript"
+                    src="//www.highperformanceformat.com/774c0e371455f6476668178b5faae5ab/invoke.js">
+                </script>
+
             </div>
 
             <!-- Google AdSense Ad -->
             <div style="margin-top:15px;">
+
                 <ins class="adsbygoogle"
                     style="display:block"
                     data-ad-client="ca-pub-2938711937593078"
-                    data-ad-slot="1234567890" <!-- আপনার আসল স্লট আইডি বসান -->
+                    data-ad-slot="1234567890"
                     data-ad-format="auto"
                     data-full-width-responsive="true">
                 </ins>
+
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
+
             </div>
 
             <div class="copyright">
@@ -381,17 +396,18 @@ her<!doctype html>
             </div>
 
         </div>
+
     </footer>
 
     <script src="script.js"></script>
 
     <script>
-        // রাইট ক্লিক বন্ধ করার ফাংশন
         function disableClick() {
             document.oncontextmenu = function () {
                 return false;
             };
         }
     </script>
+
 </body>
 </html>
