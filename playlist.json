@@ -1,5 +1,20 @@
 [
   {
+    "name": "BAN vs PAK",
+    "image": "https://assets-prod.services.toffeelive.com/w_480,q_75,f_webp/ljE2lZ0BNnOkwJLW9lrg/posters/b4bee75a-b8a3-4594-b562-6e3910d71625.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen7.aynaott.com/tsports-hd/index.m3u8"
+  },
+  {
+    "name": "Star Sports 1",
+    "image": "https://i.postimg.cc/SNSpfbQr/Star-Sports-1-HD.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen7.aynaott.com/sspts1/index.m3u8"
+  },
+  {
+    "name": "IPL 2026",
+    "image": "https://i.postimg.cc/rwn28tr8/20250403-193100.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen5.aynaott.com/willowhd/index.m3u8"
+  },
+  {
     "name": "T SPORTS HD",
     "image": "https://tvassets.roarzone.net/images/t-sports-hd.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://edge2.roarzone.net:8447/roarzone/edge5/t-sports-hd/index.m3u8?token=d02a1e18cd6f2e69e70494d6f8e0ec68b2e02d56-df31458ed0245a67514b01803787417c-1779212123-1779201323"
