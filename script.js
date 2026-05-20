@@ -7,8 +7,10 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             data.forEach(channel => {
                 const li = document.createElement('li');
+                
+                // এখানে সরাসরি প্লেয়ারে লোড না করে, আমাদের তৈরি করা watchChannelWithAd ফাংশনটি কল করা হয়েছে
                 li.innerHTML = `
-                    <a href="javascript:void(0);" onclick="player.location.href='${channel.url}'">
+                    <a href="javascript:void(0);" onclick="watchChannelWithAd('${channel.url}')">
                         <img src="${channel.image}" alt="${channel.name}">
                     </a>
                 `;
@@ -21,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 });
 
-// রাইট ক্লিক বন্ধ করার ফাংশন (ঐচ্ছিক)
+// রাইট ক্লিক বন্ধ করার ফাংশন
 function disableClick() {
     document.oncontextmenu = function() { return false; };
 }
