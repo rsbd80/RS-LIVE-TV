@@ -5,29 +5,19 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen7.aynaott.com/tsports-hd/index.m3u8"
   },
   {
+    "name": "T SPORTS HD",
+    "image": "https://tvassets.roarzone.net/images/t-sports-hd.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen7.aynaott.com/tsports-hd/index.m3u8"
+  },
+  {
     "name": "Star Sports 1",
     "image": "https://i.postimg.cc/SNSpfbQr/Star-Sports-1-HD.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen7.aynaott.com/sspts1/index.m3u8"
   },
   {
-    "name": "IPL 2026",
-    "image": "https://i.postimg.cc/rwn28tr8/20250403-193100.png",
+    "name": "WILLOW TV",
+    "image": "https://tvassets.roarzone.net/images/willow-tv.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen5.aynaott.com/willowhd/index.m3u8"
-  },
-  {
-    "name": "T Sports",
-    "image": "https://i.postimg.cc/nzbd170h/T-sports.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen7.aynaott.com/tsports-hd/index.m3u8"
-  },
-  {
-    "name": "SONY ESPN",
-    "image": "https://tvassets.roarzone.net/images/espn.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://edge2.roarzone.net:8447/roarzone/edge5/espn/index.m3u8?token=5a3945915d145eb0b8576b1e83682c4a00ada654-ccf5ef304032ce6d24eb796991fd6115-1779392135-1779381335"
-  },
-  {
-    "name": "BFL | LIVE 1",
-    "image": "https://tvassets.roarzone.net/images/bfl_1.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://edge2.roarzone.net:8447/roarzone/edge3/bfl_1/index.m3u8?token=38b60aa5c9c747f86050359cc334d99f01f3a962-4ec2b51d63df69456b621edb4b7290b1-1779392134-1779381334"
   },
   {
     "name": "SONY TEN SPORTS 1 HD",
@@ -50,6 +40,16 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://edge2.roarzone.net:8447/roarzone/edge3/ten_cricket/index.m3u8?token=e7d764a26d2ef815b3cb52c1108a3f2187ef4bd9-80709dfea4d0658b614aebc530e317b6-1779392133-1779381333"
   },
   {
+    "name": "SONY ESPN",
+    "image": "https://tvassets.roarzone.net/images/espn.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://edge2.roarzone.net:8447/roarzone/edge5/espn/index.m3u8?token=5a3945915d145eb0b8576b1e83682c4a00ada654-ccf5ef304032ce6d24eb796991fd6115-1779392135-1779381335"
+  },
+  {
+    "name": "BFL | LIVE 1",
+    "image": "https://tvassets.roarzone.net/images/bfl_1.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://edge2.roarzone.net:8447/roarzone/edge3/bfl_1/index.m3u8?token=38b60aa5c9c747f86050359cc334d99f01f3a962-4ec2b51d63df69456b621edb4b7290b1-1779392134-1779381334"
+  },
+  {
     "name": "NFL NETWORK",
     "image": "https://tvassets.roarzone.net/images/nfl-network.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://edge2.roarzone.net:8447/roarzone/edge5/nfl-network/index.m3u8?token=cf6ba8e39dc17bb2522cd6c308083da5de405942-809afbd40af6eda282d69183d48b33c9-1779392134-1779381334"
@@ -68,16 +68,6 @@
     "name": "TSN 1",
     "image": "https://tvassets.roarzone.net/images/tsn-1.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://edge2.roarzone.net:8447/roarzone/edge5/tsn-1/index.m3u8?token=0bc48ee90cbc1ea0213d098a596e2ab64c95a605-fc7b26febb2e87d11c95edf8f825185a-1779392134-1779381334"
-  },
-  {
-    "name": "T SPORTS HD",
-    "image": "https://tvassets.roarzone.net/images/t-sports-hd.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://edge2.roarzone.net:8447/roarzone/edge5/t-sports-hd/index.m3u8?token=dcff157d575590979324a672cc4a58dc21c13d36-b55fc09ca7b84f32ca888251c0965128-1779392134-1779381334"
-  },
-  {
-    "name": "WILLOW TV",
-    "image": "https://tvassets.roarzone.net/images/willow-tv.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://edge2.roarzone.net:8447/roarzone/edge5/willow-tv/index.m3u8?token=bebbfeef77880dc2ee11f6f7e64bce41b66f7bb4-948b5c29088972bceedcbc0c8f486b0d-1779392137-1779381337"
   },
   {
     "name": "XTREM SPORTS",
