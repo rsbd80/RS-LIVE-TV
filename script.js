@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+Document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('channel-container');
 
     // গিটহাবের র (Raw) লাইভ M3U প্লেলিস্ট লিঙ্ক
@@ -37,6 +37,10 @@ document.addEventListener('DOMContentLoaded', function() {
             channels.forEach((channel, index) => {
                 const li = document.createElement('li');
                 
+                // আপনার ভিডিও প্লেয়ার ফাইলের নাম যদি 'player.html' হয়, তবে নিচের অংশটি পরিবর্তন করবেন।
+                // এখানে ধরা হয়েছে প্লেয়ার ফাইলটির নাম 'player.html' বা আপনার সেই কোড ওয়ালা পেজ।
+                // আপনি যদি চান প্রথম চ্যানেলটি স্বয়ংক্রিয়ভাবে লোড হোক, তবে তাও সম্ভব।
+                
                 li.innerHTML = `
                     <a href="javascript:void(0);" onclick="changeChannel('${channel.url}')">
                         <img src="${channel.image}" alt="${channel.name}">
@@ -44,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 `;
                 container.appendChild(li);
 
-                // প্রথম চ্যানেলটি স্বয়ংক্রিয়ভাবে ডিফল্ট প্লেয়ারে চালু করার জন্য
+                // প্রথম চ্যানেলটি স্বয়ংক্রিয়ভাবে ডিফল্ট প্লেয়ারে চালু করার জন্য (ঐচ্ছিক)
                 if (index === 0) {
                     changeChannel(channel.url);
                 }
@@ -54,21 +58,19 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error loading live playlist:', error);
             container.innerHTML = '<p style="color:red; font-size:10px;">Error!</p>';
         });
-        
-    // রাইট ক্লিক বন্ধ করার ফাংশনটি চালু করার জন্য
-    disableClick();
 });
 
-// চ্যানেল পরিবর্তন করার নতুন ফাংশন (অনলাইন প্লেয়ারের জন্য)
+// চ্যানেল পরিবর্তন করার মূল ফাংশন
 function changeChannel(streamUrl) {
-    // আপনার পছন্দের নেটলিফাই প্লেয়ারের লিংক
-    const netlifyPlayerUrl = 'https://jwplwr.netlify.app/'; 
+    // আপনার ভিডিও প্লেয়ার ফাইলটির নাম (যেমন: video-player.html বা jw-player.html) অনুযায়ী নিচের নামটি বদলে দিন।
+    // এখানে ধরে নেওয়া হয়েছে আপনার ওই প্লেয়ার ফাইলের নাম 'player.html'
+    const playerFileName = 'JW-Player.html'; 
     
-    // আইফ্রেমের 'player' এলিমেন্ট ধরা
+    // আইফ্রেমের 'window' বা 'src' পরিবর্তন করা
     const iframe = document.getElementsByName('player')[0];
     if (iframe) {
-        // প্লেয়ার ফাইলের সাথে কুয়েরি প্যারামিটার হিসেবে ?file= দিয়ে m3u8 লিঙ্কটি পাস করা হচ্ছে
-        iframe.src = `${netlifyPlayerUrl}?file=${encodeURIComponent(streamUrl)}`;
+        // প্লেয়ার ফাইলের সাথে কুয়েরি প্যারামিটার হিসেবে m3u8 লিঙ্কটি পাস করা হচ্ছে
+        iframe.src = `${playerFileName}?url=${encodeURIComponent(streamUrl)}`;
     }
 }
 
