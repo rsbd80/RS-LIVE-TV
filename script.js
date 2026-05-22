@@ -37,10 +37,6 @@ document.addEventListener('DOMContentLoaded', function() {
             channels.forEach((channel, index) => {
                 const li = document.createElement('li');
                 
-                // আপনার ভিডিও প্লেয়ার ফাইলের নাম যদি 'player.html' হয়, তবে নিচের অংশটি পরিবর্তন করবেন।
-                // এখানে ধরা হয়েছে প্লেয়ার ফাইলটির নাম 'player.html' বা আপনার সেই কোড ওয়ালা পেজ।
-                // আপনি যদি চান প্রথম চ্যানেলটি স্বয়ংক্রিয়ভাবে লোড হোক, তবে তাও সম্ভব।
-                
                 li.innerHTML = `
                     <a href="javascript:void(0);" onclick="changeChannel('${channel.url}')">
                         <img src="${channel.image}" alt="${channel.name}">
@@ -48,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 `;
                 container.appendChild(li);
 
-                // প্রথম চ্যানেলটি স্বয়ংক্রিয়ভাবে ডিফল্ট প্লেয়ারে চালু করার জন্য (ঐচ্ছিক)
+                // প্রথম চ্যানেলটি স্বয়ংক্রিয়ভাবে ডিফল্ট প্লেয়ারে চালু করার জন্য
                 if (index === 0) {
                     changeChannel(channel.url);
                 }
@@ -58,15 +54,17 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error loading live playlist:', error);
             container.innerHTML = '<p style="color:red; font-size:10px;">Error!</p>';
         });
+        
+    // রাইট ক্লিক বন্ধ করার ফাংশনটি স্বয়ংক্রিয়ভাবে চালু করার জন্য (ঐচ্ছিক)
+    disableClick();
 });
 
 // চ্যানেল পরিবর্তন করার মূল ফাংশন
 function changeChannel(streamUrl) {
-    // আপনার ভিডিও প্লেয়ার ফাইলটির নাম (যেমন: video-player.html বা jw-player.html) অনুযায়ী নিচের নামটি বদলে দিন।
-    // এখানে ধরে নেওয়া হয়েছে আপনার ওই প্লেয়ার ফাইলের নাম 'player.html'
-    const playerFileName = 'JW.html'; 
+    // আপনার ভিডিও প্লেয়ার ফাইলের নাম অনুযায়ী এই নাম মিলিয়ে রাখবেন (যেমন: JW.html বা JW-Player.html)
+    const playerFileName = 'JW-Player.html'; 
     
-    // আইফ্রেমের 'window' বা 'src' পরিবর্তন করা
+    // আইফ্রেমের 'src' পরিবর্তন করা
     const iframe = document.getElementsByName('player')[0];
     if (iframe) {
         // প্লেয়ার ফাইলের সাথে কুয়েরি প্যারামিটার হিসেবে m3u8 লিঙ্কটি পাস করা হচ্ছে
@@ -77,4 +75,4 @@ function changeChannel(streamUrl) {
 // রাইট ক্লিক বন্ধ করার ফাংশন
 function disableClick() {
     document.oncontextmenu = function() { return false; };
-        }
+}
