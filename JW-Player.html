@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-    <!-- JW Player Library -->
     <script src="https://content.jwplatform.com/libraries/IDzF9Zmk.js"></script>
     <script>jwplayer.key="Khpp2dHxlBJHC8MCmLnBuV2jK/DwDnJMniwF6EO9HC/riJ712ZmbHg==";</script>
 
@@ -50,25 +49,41 @@
         const urlParams = new URLSearchParams(window.location.search);
         const channelUrl = urlParams.get('url');
 
+        let finalUrl = "";
+
+        if (channelUrl) {
+            // যদি লিঙ্কটি অলরেডি কোনো প্রক্সি বা গিটহাবের ফ্রি সোর্স হয়, তবে সরাসরি চলবে
+            // আর যদি স্পোর্টস চ্যানেলের মূল সার্ভার হয়, তবে তাকে CORS Proxy দিয়ে বাইপাস করা হবে
+            if (channelUrl.includes("gpcdn.net") || channelUrl.includes("corsproxy")) {
+                finalUrl = channelUrl;
+            } else {
+                // এখানে একটি ফ্রি ও ফাস্ট CORS প্রক্সি যোগ করা হলো যা Error 232011 ফিক্স করবে
+                finalUrl = "https://corsproxy.io/?" + encodeURIComponent(channelUrl);
+            }
+        } else {
+            // কোনো লিঙ্ক না থাকলে আপনার সেই ডিফল্ট লিঙ্কটি চলবে
+            finalUrl = "https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8";
+        }
+
         // প্লেয়ার সেটআপ
         const player = jwplayer("myElement").setup({
-            file: channelUrl || "https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8",
+            file: finalUrl,
             type: "hls",
             autostart: true,
-            stretching: "fill", // বর্ডারহীন ফুল স্ক্রিন ফিক্স
+            stretching: "fill", 
             width: "100%",
             height: "100%",
             primary: "html5",
             displaytitle: false
         });
 
-        // সাউন্ড এবং ভলিউম অটো ফিক্স
+        // সাউন্ড এবং ভলিউম অটো ফিক্স (মিউট যেন না থাকে)
         player.on("ready", function() {
             player.setMute(false);
             player.setVolume(100);
         });
 
-        // ফুল স্ক্রিন মোডেও ভলিউম ঠিক রাখা
+        // ফুল স্ক্রিন মোডেও ভলিউম এবং সাইজ ঠিক রাখা
         player.on("fullscreen", function() {
             player.setVolume(100);
         });
