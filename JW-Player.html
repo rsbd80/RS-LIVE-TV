@@ -2,7 +2,7 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <title>RUBEL LIVETV - Pro Player</title>
+    <title>RUBEL LIVETV</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
@@ -10,28 +10,30 @@
     <script>jwplayer.key="Khpp2dHxlBJHC8MCmLnBuV2jK/DwDnJMniwF6EO9HC/riJ712ZmbHg==";</script>
 
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { 
-            font-family: 'Poppins', sans-serif; 
-            background: #000; 
-            margin: 0; padding: 0; 
-            width: 100%; height: 100%; 
-            overflow: hidden; 
-            position: fixed; 
+        html, body {
+            font-family: 'Poppins', sans-serif;
+            background: #000;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: fixed; /* ফুল স্ক্রিন ফিক্স */
         }
         #myElement {
-            width: 100% !important; 
-            height: 100% !important; 
-            position: absolute; 
-            top: 0; left: 0;
+            width: 100% !important;
+            height: 100% !important;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
-        /* ভিডিও ফুল স্ক্রিন বর্ডারহীন রাখার সিএসএস */
+        /* ফুল স্ক্রিন করলে পুরো স্ক্রিন জুড়ে ভিডিও দেখানোর ফিক্স */
         .jw-video.jw-reset { 
             object-fit: fill !important; 
-            width: 100% !important; 
-            height: 100% !important; 
+            width: 100% !important;
+            height: 100% !important;
         }
-        /* কাস্টম প্লে বাটন ডিজাইন */
+        /* Custom Icon Styles (Optional) */
         .jw-state-paused .jw-svg-icon-play {
             background-image: url(https://cdn.jsdelivr.net/gh/Hadi0609/JioTvAssets@v1.0/assets/jwp/play.svg);
             background-size: contain;
@@ -45,47 +47,40 @@
     <div id="myElement"></div>
 
     <script type="text/javascript">
-        // ইউআরএল থেকে লিঙ্ক ধরার লজিক
+        // ১. index.html থেকে আসা আনলিমিটেড চ্যানেলের লিঙ্ক ধরার লজিক
         const urlParams = new URLSearchParams(window.location.search);
-        const channelUrl = urlParams.get('url');
+        const incomingUrl = urlParams.get('url');
 
-        let finalUrl = "";
+        let finalStreamUrl = "";
 
-        if (channelUrl) {
-            // যদি লিঙ্কটি অলরেডি কোনো প্রক্সি বা গিটহাবের ফ্রি সোর্স হয়, তবে সরাসরি চলবে
-            // আর যদি স্পোর্টস চ্যানেলের মূল সার্ভার হয়, তবে তাকে CORS Proxy দিয়ে বাইপাস করা হবে
-            if (channelUrl.includes("gpcdn.net") || channelUrl.includes("corsproxy")) {
-                finalUrl = channelUrl;
-            } else {
-                // এখানে একটি ফ্রি ও ফাস্ট CORS প্রক্সি যোগ করা হলো যা Error 232011 ফিক্স করবে
-                finalUrl = "https://corsproxy.io/?" + encodeURIComponent(channelUrl);
-            }
+        if (incomingUrl) {
+            // গিটহাবের স্পোর্টস চ্যানেলগুলোর 'Error 232011' বা ব্লকিং সমস্যা দূর করার জন্য CORS Proxy ব্যবহার
+            finalStreamUrl = "https://corsproxy.io/?" + encodeURIComponent(incomingUrl);
         } else {
-            // কোনো লিঙ্ক না থাকলে আপনার সেই ডিফল্ট লিঙ্কটি চলবে
-            finalUrl = "https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8";
+            // যদি কোনো চ্যানেল সিলেক্ট করা না থাকে, তবে আপনার দেওয়া ডিফল্ট লিঙ্কটি চলবে
+            finalStreamUrl = "https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8";
         }
 
-        // প্লেয়ার সেটআপ
-        const player = jwplayer("myElement").setup({
-            file: finalUrl,
+        // ২. JW Player সেটআপ
+        jwplayer("myElement").setup({
+            file: finalStreamUrl,
             type: "hls",
             autostart: true,
-            stretching: "fill", 
+            stretching: "fill", // ফুল স্ক্রিন পুরো জায়গা জুড়ে দেখার জন্য 'fill'
             width: "100%",
             height: "100%",
-            primary: "html5",
-            displaytitle: false
+            primary: "html5"
         });
 
-        // সাউন্ড এবং ভলিউম অটো ফিক্স (মিউট যেন না থাকে)
-        player.on("ready", function() {
-            player.setMute(false);
-            player.setVolume(100);
+        // ৩. চ্যানেল ওপেন হওয়ার সাথে সাথে সাউন্ড জোরে (Unmute) আসার সমাধান
+        jwplayer().on("ready", () => {
+            jwplayer().setMute(false);
+            jwplayer().setVolume(100);
         });
 
-        // ফুল স্ক্রিন মোডেও ভলিউম এবং সাইজ ঠিক রাখা
-        player.on("fullscreen", function() {
-            player.setVolume(100);
+        // ফুল স্ক্রিন করলেও যেন ভলিউম কম না হয়
+        jwplayer().on("fullscreen", () => {
+            jwplayer().setVolume(100);
         });
     </script>
 </body>
