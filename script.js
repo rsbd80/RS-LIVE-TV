@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('channel-container');
 
     // গিটহাবের র (Raw) লাইভ M3U প্লেলিস্ট লিঙ্ক
-    const m3uUrl = 'https://raw.githubusercontent.com/abusaeeidx/BDxTV/refs/heads/main/roar-zone-playlist.m3u';
+    const m3uUrl = 'https://raw.githubusercontent.com/tv-bd1/LiveSteermRS/refs/heads/main/Royarzone.m3u';
 
     // সরাসরি লাইভ M3U ফাইল থেকে ডেটা ফেচ করা
     fetch(m3uUrl, { cache: "no-store" }) // যাতে প্রতিবার একদম নতুন টোকেন আসে, ব্রাউজারে ক্যাশ না হয়
