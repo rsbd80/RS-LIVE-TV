@@ -2,28 +2,37 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <title>RUBEL LIVETV</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>RUBEL LIVETV - Pro Player</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
+    <!-- JW Player Library -->
     <script src="https://content.jwplatform.com/libraries/IDzF9Zmk.js"></script>
     <script>jwplayer.key="Khpp2dHxlBJHC8MCmLnBuV2jK/DwDnJMniwF6EO9HC/riJ712ZmbHg==";</script>
 
     <style>
-        html, body {
-            font-family: 'Poppins', sans-serif;
-            background: #000;
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { 
+            font-family: 'Poppins', sans-serif; 
+            background: #000; 
+            margin: 0; padding: 0; 
+            width: 100%; height: 100%; 
+            overflow: hidden; 
+            position: fixed; 
         }
         #myElement {
-            width: 100% !important;
-            height: 100% !important;
+            width: 100% !important; 
+            height: 100% !important; 
+            position: absolute; 
+            top: 0; left: 0;
         }
-        /* Custom Icon Styles (Optional) */
+        /* ভিডিও ফুল স্ক্রিন বর্ডারহীন রাখার সিএসএস */
+        .jw-video.jw-reset { 
+            object-fit: fill !important; 
+            width: 100% !important; 
+            height: 100% !important; 
+        }
+        /* কাস্টম প্লে বাটন ডিজাইন */
         .jw-state-paused .jw-svg-icon-play {
             background-image: url(https://cdn.jsdelivr.net/gh/Hadi0609/JioTvAssets@v1.0/assets/jwp/play.svg);
             background-size: contain;
@@ -37,13 +46,31 @@
     <div id="myElement"></div>
 
     <script type="text/javascript">
-        jwplayer("myElement").setup({
-            file: "https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8",
+        // ইউআরএল থেকে লিঙ্ক ধরার লজিক
+        const urlParams = new URLSearchParams(window.location.search);
+        const channelUrl = urlParams.get('url');
+
+        // প্লেয়ার সেটআপ
+        const player = jwplayer("myElement").setup({
+            file: channelUrl || "https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8",
             type: "hls",
             autostart: true,
-            aspectratio: "16:9",
+            stretching: "fill", // বর্ডারহীন ফুল স্ক্রিন ফিক্স
             width: "100%",
-            primary: "html5"
+            height: "100%",
+            primary: "html5",
+            displaytitle: false
+        });
+
+        // সাউন্ড এবং ভলিউম অটো ফিক্স
+        player.on("ready", function() {
+            player.setMute(false);
+            player.setVolume(100);
+        });
+
+        // ফুল স্ক্রিন মোডেও ভলিউম ঠিক রাখা
+        player.on("fullscreen", function() {
+            player.setVolume(100);
         });
     </script>
 </body>
