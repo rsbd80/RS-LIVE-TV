@@ -1,141 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
+    <title>RUBEL LIVETV</title>
+    <!-- ফুল স্ক্রিনে ভিডিও রেশিও ঠিক রাখার জন্য ভিউপোর্ট আপডেট করা হয়েছে -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-    <title>RS Player Pro - Compact Loader</title>
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
     <script src="https://content.jwplatform.com/libraries/IDzF9Zmk.js"></script>
-    <script>
-        jwplayer.key="Khpp2dHxlBJHC8MCmLnBuV2jK/DwDnJMniwF6EO9HC/riJ712ZmbHg==";
-    </script>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>jwplayer.key="Khpp2dHxlBJHC8MCmLnBuV2jK/DwDnJMniwF6EO9HC/riJ712ZmbHg==";</script>
 
     <style>
-        * { margin:0; padding:0; box-sizing:border-box; }
-        html, body { width:100%; height:100%; background:#000; overflow:hidden; font-family: 'Segoe UI', sans-serif; position: fixed; }
-        
-        #player-wrapper { position: relative; width: 100%; height: 100%; overflow: hidden; }
-        #player { width:100% !important; height:100% !important; position: absolute; top:0; left:0; }
-
-        /* --- ভিডিও ফুল স্ক্রিন ফিক্স --- */
-        .jw-video {
+        html, body {
+            font-family: 'Poppins', sans-serif;
+            background: #000;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: fixed; /* ফুল স্ক্রিন ফিক্স */
+        }
+        #myElement {
             width: 100% !important;
             height: 100% !important;
-            object-fit: fill !important; /* ভিডিও টেনে পুরো স্ক্রিন পূর্ণ করবে */
+            position: absolute;
+            top: 0;
+            left: 0;
         }
-        
-        /* --- কন্ট্রোলার কাস্টমাইজেশন --- */
-        .jw-skin-glow .jw-display-icon-container { 
-            background: rgba(255, 255, 255, 0.1) !important; 
-            border: 1px solid rgba(255, 255, 255, 0.2); 
-            backdrop-filter: none !important; 
+        /* ফুল স্ক্রিন করলে যেন ভিডিওর দুই সাইড কেটে না যায় বা বর্ডার না থাকে */
+        .jw-video.jw-reset { 
+            object-fit: fill !important; 
         }
-        .jw-skin-glow .jw-button-color { color: #ffffff !important; }
-        .jw-skin-glow .jw-controlbar { 
-            background: transparent !important; 
-            backdrop-filter: none !important; 
+        /* আপনার কাস্টম প্লে বাটন ডিজাইন */
+        .jw-state-paused .jw-svg-icon-play {
+            background-image: url(https://cdn.jsdelivr.net/gh/Hadi0609/JioTvAssets@v1.0/assets/jwp/play.svg);
+            background-size: contain;
+            background-repeat: no-repeat;
         }
-
-        /* --- লোডার ডিজাইন --- */
-        #loader {
-            position: absolute; top:0; left:0; width:100%; height:100%;
-            background: #000; display:flex; justify-content:center; align-items:center;
-            z-index:99; flex-direction: column; transition: opacity 0.4s ease;
-        }
-
-        .loader-container {
-            position: relative; 
-            width: 100px; 
-            height: 100px; 
-            display: flex; justify-content: center; align-items: center;
-        }
-
-        .loader-brand { text-align: center; z-index: 10; }
-        .tv-icon { font-size: 24px; color: #00c3ff; text-shadow: 0 0 10px #00c3ff; } 
-        .brand-name { font-size: 10px; font-weight: 700; color: #fff; text-transform: uppercase; margin-top: 5px; letter-spacing: 1px; }
-        .brand-name span { color: #00c3ff; }
-
-        .neon-ring {
-            position: absolute; width: 100%; height: 100%;
-            border-radius: 50%; border: 2px solid transparent;
-            animation: rotate-vortex 1.5s linear infinite;
-        }
-        .neon-ring:nth-child(1) { border-top: 2px solid #00c3ff; border-right: 2px solid #00c3ff; box-shadow: 0 0 10px #00c3ff; }
-        .neon-ring:nth-child(2) { border-bottom: 2px solid #ff007f; border-left: 2px solid #ff007f; animation-direction: reverse; animation-duration: 2s; box-shadow: 0 0 10px #ff007f; }
-
-        @keyframes rotate-vortex { 100% { transform: rotate(360deg); } }
-
-        .loading-text { color: rgba(255, 255, 255, 0.6); font-size: 10px; margin-top: 15px; letter-spacing: 2px; text-transform: uppercase; }
-        
-        .hide-now { opacity: 0 !important; visibility: hidden !important; }
-
-        .error-content { text-align: center; color: #fff; z-index: 100; }
-        .error-content i { font-size: 40px; color: #ff4d4d; margin-bottom: 15px; }
+        .jw-state-paused .jw-svg-icon-play path { display: none; }
     </style>
 </head>
 <body>
 
-<div id="player-wrapper">
-    <div id="loader">
-        <div class="loader-container">
-            <div class="neon-ring"></div>
-            <div class="neon-ring"></div>
-            <div class="loader-brand">
-                <i class="fas fa-tv tv-icon"></i>
-                <div class="brand-name">RS LIVE <span>TV</span></div>
-            </div>
-        </div>
-        <div class="loading-text">BUFFERING...</div>
-    </div>
-    <div id="player"></div>
-</div>
+    <div id="myElement"></div>
 
-<script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const streamSource = urlParams.get('url');
+    <script type="text/javascript">
+        // ১. URL থেকে ডাইনামিক লিঙ্ক ধরার লজিক (যা script.js থেকে পাঠানো হচ্ছে)
+        const urlParams = new URLSearchParams(window.location.search);
+        let streamSource = urlParams.get('url');
 
-    if (streamSource) {
-        const player = jwplayer("player").setup({
-            playlist: [{ file: streamSource, type: "hls" }],
+        // যদি বাইরে থেকে কোনো লিঙ্ক না আসে, তবে আপনার ডিফল্ট লিঙ্কটি চলবে
+        if (!streamSource) {
+            streamSource = "https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8";
+        }
+
+        // ২. ডাইনামিক লিঙ্ক দিয়ে প্লেয়ার সেটআপ
+        jwplayer("myElement").setup({
+            playlist: [{
+                file: streamSource, // এখানে গিটহাবের টোকেনসহ লাইভ লিঙ্কটি বসে যাবে
+                type: "hls"
+            }],
+            autostart: true,
+            stretching: "fill", // ফুল স্ক্রিন পুরো জায়গা জুড়ে চলার জন্য
             width: "100%",
             height: "100%",
-            autostart: true,
-            stretching: "fill", // এখানে 'exactfit' এর বদলে 'fill' দেওয়া হয়েছে
-            skin: { name: "glow" },
+            primary: "html5",
             displaytitle: false
         });
 
-        player.on("ready", () => {
-            player.setMute(false);
-            player.setVolume(100);
+        // ৩. প্লেয়ার রেডি হলে সাউন্ড অটো-ফিক্স
+        jwplayer().on("ready", () => {
+            jwplayer().setMute(false);
+            jwplayer().setVolume(100);
         });
-
-        player.on("play", () => {
-            document.getElementById("loader").classList.add("hide-now");
-        });
-
-        player.on("buffer", () => {
-            document.getElementById("loader").classList.remove("hide-now");
-        });
-
-        player.on("error", () => {
-            const loader = document.getElementById("loader");
-            loader.classList.remove("hide-now"); 
-            loader.innerHTML = `
-                <div class="error-content">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <p>Stream Offline!</p>
-                    <div class="brand-name">RS LIVE <span>TV</span></div>
-                </div>
-            `;
-        });
-
-    } else {
-        document.getElementById("loader").innerHTML = '<div class="brand-name">No Stream URL Found</div>';
-    }
-</script>
-    
+    </script>
 </body>
 </html>
