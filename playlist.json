@@ -2,7 +2,7 @@
   {
     "name": "SONY ESPN",
     "image": "https://tvassets.roarzone.net/images/espn.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://edge2.roarzone.net:8447/roarzone/edge5/espn/index.m3u8?token=c898b1e2ec05a64efcd2777ac4be071f5e14c340-8afe382a21da6ea9e396eb650447663f-1779438920-1779428120"
+    "url": "https://edge2.roarzone.net:8447/roarzone/edge5/espn/index.m3u8?token=c898b1e2ec05a64efcd2777ac4be071f5e14c340-8afe382a21da6ea9e396eb650447663f-1779438920-1779428120"
   },
   {
     "name": "T SPORTS",
