@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function changeChannel(streamUrl) {
     // আপনার ভিডিও প্লেয়ার ফাইলটির নাম (যেমন: video-player.html বা jw-player.html) অনুযায়ী নিচের নামটি বদলে দিন।
     // এখানে ধরে নেওয়া হয়েছে আপনার ওই প্লেয়ার ফাইলের নাম 'player.html'
-    const playerFileName = 'Jw-Player.html'; 
+    const playerFileName = 'JW.html'; 
     
     // আইফ্রেমের 'window' বা 'src' পরিবর্তন করা
     const iframe = document.getElementsByName('player')[0];
