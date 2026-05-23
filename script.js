@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // গিটহাবের র (Raw) লাইভ M3U প্লেলিস্ট লিঙ্ক
 
-    const m3uUrl = 'https://github.com/abusaeeidx/BDxTV/raw/refs/heads/main/roar-zone-playlist.m3u';
+    const m3uUrl = 'https://raw.githubusercontent.com/tv-bd1/LiveSteermRS/refs/heads/main/Royarzone.m3u';
 
 
 
@@ -108,4 +108,4 @@ function disableClick() {
 
     document.oncontextmenu = function() { return false; };
 
-}
+            }
