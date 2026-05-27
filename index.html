@@ -19,9 +19,6 @@
     <link href="bootstrap.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
 
-    <!-- FontAwesome Icons for Remote Container -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
         body {
             background: #000;
@@ -213,7 +210,7 @@
         }
 
         /* ==========================================
-           FIFA COUNTDOWN BANNER STYLES
+           FIFA COUNTDOWN BANNER (FIXED REMOVED)
         ========================================== */
         .fifa-banner {
             background: linear-gradient(135deg, #0f0f11, #1e1e24);
@@ -225,6 +222,8 @@
             padding: 10px 12px;
             border-radius: 14px;
             border: 1px solid #292933;
+            
+            /* ফিক্সড পজিশন বাদ দিয়ে লেআউটের ভেতরে আনা হয়েছে */
             width: 320px;
             margin: 15px auto;
             box-sizing: border-box;
@@ -309,149 +308,6 @@
             font-weight: bold;
             box-shadow: 0 2px 6px rgba(0,0,0,0.4);
         }
-
-        /* ==========================================
-           PREMIUM TV REMOTE BUTTON STYLE (ADDED)
-        ========================================== */
-        .remote-btn-container {
-            margin: 20px auto 10px auto;
-            width: 320px;
-        }
-        .remote-open-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #00d2ff, #0066ff);
-            color: #fff !important;
-            text-transform: uppercase;
-            font-size: 12px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            padding: 12px 30px;
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            text-decoration: none !important;
-            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.4);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        .remote-open-btn:hover {
-            transform: scale(1.03);
-            box-shadow: 0 6px 20px rgba(0, 210, 255, 0.6);
-        }
-
-        /* TV REMOTE MODAL POPUP */
-        .remote-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 9999999;
-            backdrop-filter: blur(4px);
-        }
-        .remote-body {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #151518;
-            width: 160px;
-            padding: 20px 15px;
-            border-radius: 35px;
-            border: 2px solid #333;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 0 10px rgba(255,255,255,0.05);
-            text-align: center;
-        }
-        .remote-header {
-            color: #666;
-            font-size: 9px;
-            font-weight: bold;
-            letter-spacing: 1.5px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-        .remote-row {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 15px;
-            align-items: center;
-        }
-        .remote-circle-joystick {
-            width: 100px;
-            height: 100px;
-            background: #202025;
-            border-radius: 50%;
-            margin: 10px auto;
-            position: relative;
-            border: 1px solid #333;
-        }
-        .joy-btn {
-            position: absolute;
-            background: none;
-            border: none;
-            color: #888;
-            font-size: 16px;
-            cursor: pointer;
-            padding: 5px;
-            transition: color 0.2s;
-        }
-        .joy-btn:active { color: #00d2ff; }
-        .joy-up { top: 2px; left: 50%; transform: translateX(-50%); }
-        .joy-down { bottom: 2px; left: 50%; transform: translateX(-50%); }
-        .joy-ok {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 40px;
-            height: 40px;
-            background: #111;
-            border-radius: 50%;
-            color: #fff;
-            font-size: 11px;
-            font-weight: bold;
-            border: 1px solid #333;
-        }
-        .joy-ok:active { background: #00d2ff; color: #000; }
-        .r-btn {
-            width: 38px;
-            height: 38px;
-            background: #202025;
-            border: 1px solid #333;
-            border-radius: 50%;
-            color: #aaa;
-            font-size: 13px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-        }
-        .r-btn:active {
-            background: #fff;
-            color: #000;
-        }
-        .r-btn-power {
-            background: #3a080f;
-            border-color: #ff1744;
-            color: #ff1744;
-        }
-        .r-btn-power:active {
-            background: #ff1744;
-            color: #fff;
-        }
-        .remote-brand {
-            font-size: 10px;
-            font-weight: bold;
-            color: #444;
-            margin-top: 5px;
-            letter-spacing: 1px;
-        }
     </style>
 </head>
 
@@ -461,7 +317,7 @@
         <div class="row">
             <div class="col-xs-12 col-md-10 tv-view">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe name="player" id="tvPlayer" class="embed-responsive-item" allowfullscreen src="channel.html"></iframe>
+                    <iframe name="player" class="embed-responsive-item" allowfullscreen src="channel.html"></iframe>
                 </div>
             </div>
             <div class="col-xs-12 col-md-2 channel-list">
@@ -509,7 +365,7 @@
                 <a href="https://t.me/rslivetv" target="_blank" class="telegram-btn">JOIN TELEGRAM</a>
             </div>
 
-            <!-- ফিফা ব্যানার -->
+            <!-- ফিফা ব্যানার (টেলিগ্রামের নিচে এবং অ্যাডের উপরে সেট করা হয়েছে যাতে অ্যাড ঢাকা না পড়ে) -->
             <div class="fifa-banner" id="fifaBanner">
                 <button class="close-btn" onclick="document.getElementById('fifaBanner').style.display='none'">×</button>
                 <div class="fifa-logo-area">
@@ -553,86 +409,16 @@
                 <script type="text/javascript" src="//www.highperformanceformat.com/774c0e371455f6476668178b5faae5ab/invoke.js"></script>
             </div>
 
-            <!-- রিমোট কন্ট্রোলার ওপেন করার বাটন -->
-            <div class="remote-btn-container">
-                <button onclick="toggleRemote(true)" class="remote-open-btn">
-                    <i class="fa-solid fa-gamepad"></i> OPEN TV REMOTE
-                </button>
-            </div>
-
             <div class="copyright">
                 © 2026 RS LIVE TV | All Rights Reserved
             </div>
         </div>
     </footer>
 
-    <!-- TV REMOTE POPUP MODAL HTML -->
-    <div class="remote-overlay" id="remoteOverlay" onclick="toggleRemote(false)">
-        <div class="remote-body" onclick="event.stopPropagation()">
-            <div class="remote-header">RS REMOTE</div>
-            
-            <!-- প্রথম রো: পাওয়ার এবং ক্লোজ বাটন -->
-            <div class="remote-row">
-                <button class="r-btn r-btn-power" onclick="location.reload();" title="Reload Player"><i class="fa-solid fa-power-off"></i></button>
-                <button class="r-btn" onclick="toggleRemote(false);" title="Close Remote" style="border-color: #555;"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-
-            <!-- দ্বিতীয় রো: জয়স্টিক (চ্যানেল স্ক্রল এবং সিলেক্ট আপ/ডাউন) -->
-            <div class="remote-circle-joystick">
-                <button class="joy-btn joy-up" onclick="scrollChannels(-100);" title="Scroll Up"><i class="fa-solid fa-caret-up"></i></button>
-                <button class="joy-btn joy-down" onclick="scrollChannels(100);" title="Scroll Down"><i class="fa-solid fa-caret-down"></i></button>
-                <button class="joy-btn joy-ok" onclick="clickActiveChannel();">OK</button>
-            </div>
-
-            <!-- তৃতীয় রো: ফুলস্ক্রিন এবং মিউট কন্ট্রোল -->
-            <div class="remote-row" style="margin-top: 15px;">
-                <button class="r-btn" onclick="remoteFullscreen();" title="Maximize"><i class="fa-solid fa-expand"></i></button>
-                <button class="r-btn" onclick="alert('বিজ্ঞাপন ছাড়া দেখতে প্লেয়ারের ফুলস্ক্রিন বাটন ব্যবহার করুন।');" title="Info"><i class="fa-solid fa-info"></i></button>
-            </div>
-
-            <div class="remote-brand">RS LIVE</div>
-        </div>
-    </div>
-
     <script src="script.js"></script>
     <script>
         // রাইট ক্লিক বন্ধ রাখার স্ক্রিপ্ট
         document.addEventListener('contextmenu', event => event.preventDefault());
-
-        // রিমোট কন্ট্রোল প্যানেল অন/অফ লজিক
-        function toggleRemote(show) {
-            document.getElementById('remoteOverlay').style.display = show ? 'block' : 'none';
-        }
-
-        // রিমোট দিয়ে চ্যানেল লিস্ট স্ক্রল করার ফাংশন
-        function scrollChannels(direction) {
-            const container = document.getElementById('channel-container');
-            if (container) {
-                container.scrollBy({ top: direction, behavior: 'smooth' });
-            }
-        }
-
-        // রিমোটের OK বাটনে প্রেস করলে প্রথম বা একটি চ্যানেল প্লে করার লজিক
-        function clickActiveChannel() {
-            const container = document.getElementById('channel-container');
-            if (container) {
-                const firstChannel = container.querySelector('li, a, img');
-                if (firstChannel) {
-                    firstChannel.click();
-                    toggleRemote(false); // চ্যানেল প্লে হলে রিমোট বন্ধ হবে
-                }
-            }
-        }
-
-        // রিমোট দিয়ে ভিডিও প্লেয়ার ফুলস্ক্রিন করার ফাংশন
-        function remoteFullscreen() {
-            const player = document.getElementById('tvPlayer');
-            if (player) {
-                if (player.requestFullscreen) { player.requestFullscreen(); }
-                else if (player.webkitRequestFullscreen) { player.webkitRequestFullscreen(); }
-                else if (player.msRequestFullscreen) { player.msRequestFullscreen(); }
-            }
-        }
     </script>
     
     <!-- ইউজার চ্যানেল পরিবর্তন করার ১৫ সেকেন্ড পর অ্যাড শো করার স্ক্রিপ্ট -->
