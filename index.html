@@ -210,7 +210,7 @@
         }
 
         /* ==========================================
-           FIFA COUNTDOWN FLOATING POPUP STYLES
+           FIFA COUNTDOWN BANNER (FIXED REMOVED)
         ========================================== */
         .fifa-banner {
             background: linear-gradient(135deg, #0f0f11, #1e1e24);
@@ -223,17 +223,11 @@
             border-radius: 14px;
             border: 1px solid #292933;
             
-            /* স্ক্রিনের নিচে ফিক্সড রাখার জন্য রেসপন্সিভ পজিশন */
-            position: fixed;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: calc(100% - 30px);
-            max-width: 360px; /* মোবাইল ও ডেস্কটপ উভয় জায়গাতেই পারফেক্ট সাইজ */
-            
-            box-shadow: 0 -5px 25px rgba(0,0,0,0.8);
-            z-index: 999999;
+            /* ফিক্সড পজিশন বাদ দিয়ে লেআউটের ভেতরে আনা হয়েছে */
+            width: 320px;
+            margin: 15px auto;
             box-sizing: border-box;
+            position: relative;
         }
         .fifa-logo-area {
             display: flex;
@@ -364,10 +358,41 @@
                 </div>
             </div>
 
+            <!-- টেলিগ্রাম কার্ড -->
             <div class="tg-card">
                 <h5 style="color:#fff; margin-bottom:5px; font-size:16px;">সাপোর্ট প্রয়োজন?</h5>
                 <p style="color:#777; font-size:11px; margin-bottom:5px;">আপডেট ও চ্যানেল রিকোয়েস্টের জন্য আমাদের টেলিগ্রাম গ্রুপে যোগ দিন।</p>
                 <a href="https://t.me/rslivetv" target="_blank" class="telegram-btn">JOIN TELEGRAM</a>
+            </div>
+
+            <!-- ফিফা ব্যানার (টেলিগ্রামের নিচে এবং অ্যাডের উপরে সেট করা হয়েছে যাতে অ্যাড ঢাকা না পড়ে) -->
+            <div class="fifa-banner" id="fifaBanner">
+                <button class="close-btn" onclick="document.getElementById('fifaBanner').style.display='none'">×</button>
+                <div class="fifa-logo-area">
+                    <img src="https://i.postimg.cc/Cx1jDDXt/20260527-235121.jpg" alt="FIFA Logo">
+                </div>
+                <div class="fifa-content">
+                    <h3 class="fifa-title">FIFA World Cup 2026</h3>
+                    <p class="fifa-date">June 11 - July 19</p>
+                    <div class="countdown-container">
+                        <div class="time-box days-box">
+                            <span class="time-num" id="days">00</span>
+                            <span class="time-label">Days</span>
+                        </div>
+                        <div class="time-box">
+                            <span class="time-num" id="hours">00</span>
+                            <span class="time-label">Hrs</span>
+                        </div>
+                        <div class="time-box">
+                            <span class="time-num" id="mins">00</span>
+                            <span class="time-label">Min</span>
+                        </div>
+                        <div class="time-box">
+                            <span class="time-num" id="secs">00</span>
+                            <span class="time-label">Sec</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Adsterra Banner -->
@@ -389,36 +414,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- FIFA FLOATING POPUP HTML -->
-    <div class="fifa-banner" id="fifaBanner">
-        <button class="close-btn" onclick="document.getElementById('fifaBanner').style.display='none'">×</button>
-        <div class="fifa-logo-area">
-            <img src="https://i.postimg.cc/Cx1jDDXt/20260527-235121.jpg" alt="FIFA Logo">
-        </div>
-        <div class="fifa-content">
-            <h3 class="fifa-title">FIFA World Cup 2026</h3>
-            <p class="fifa-date">June 11 - July 19</p>
-            <div class="countdown-container">
-                <div class="time-box days-box">
-                    <span class="time-num" id="days">00</span>
-                    <span class="time-label">Days</span>
-                </div>
-                <div class="time-box">
-                    <span class="time-num" id="hours">00</span>
-                    <span class="time-label">Hrs</span>
-                </div>
-                <div class="time-box">
-                    <span class="time-num" id="mins">00</span>
-                    <span class="time-label">Min</span>
-                </div>
-                <div class="time-box">
-                    <span class="time-num" id="secs">00</span>
-                    <span class="time-label">Sec</span>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <script src="script.js"></script>
     <script>
