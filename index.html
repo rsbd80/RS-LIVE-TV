@@ -39,65 +39,25 @@
             width: 100%;
             height: 100%;
         }
-        
-        /* ৪ নম্বর সাজেশন: আধুনিক নিয়ন নোটিশ বার ডিজাইন */
-        .modern-notice-bar {
-            background: #0d0d0d;
-            border-top: 1px solid #1a1a1a;
-            border-bottom: 1px solid #1a1a1a;
+        .marquee-container {
+            background: #121212;
+            color: #ffffff;
+            padding: 8px 0;
             display: flex;
             align-items: center;
-            height: 40px;
-            overflow: hidden;
-            position: relative;
-            font-family: 'Segoe UI', Roboto, sans-serif;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
         }
-        .notice-badge {
-            background: linear-gradient(45deg, #ff0055, #ff5500);
+        .notice-label {
+            background: #ff4444;
             color: #fff;
-            padding: 0 15px;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            font-weight: 900;
+            padding: 2px 10px;
+            margin-left: 10px;
+            border-radius: 4px;
+            font-weight: bold;
             font-size: 11px;
-            letter-spacing: 1px;
-            z-index: 5;
-            box-shadow: 5px 0 15px rgba(0,0,0,0.5);
-            text-transform: uppercase;
+            flex-shrink: 0;
         }
-        .notice-scroll-text {
-            display: flex;
-            white-space: nowrap;
-            padding-left: 100%;
-            animation: premium-marquee 25s linear infinite;
-        }
-        .modern-notice-bar:hover .notice-scroll-text {
-            animation-play-state: paused;
-        }
-        .notice-item {
-            color: #b3b3b3;
-            font-size: 12.5px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            padding-right: 50px;
-        }
-        .text-neon-aqua {
-            color: #00f3ff;
-            text-shadow: 0 0 8px rgba(0,243,255,0.6);
-            font-weight: bold;
-        }
-        .text-neon-green {
-            color: #00ff66;
-            text-shadow: 0 0 8px rgba(0,255,102,0.6);
-            font-weight: bold;
-        }
-        @keyframes premium-marquee {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-100%, 0, 0); }
-        }
-
         .footer-premium {
             background: #0a0a0a;
             padding: 20px 0 30px 0;
@@ -266,14 +226,14 @@
         </div>
     </div>
 
-    <!-- আপডেট করা ৪ নম্বর সাজেশনের আধুনিক নিয়ন নোটিশ বার -->
-    <div class="modern-notice-bar">
-        <div class="notice-badge">NOTICE</div>
-        <div class="notice-scroll-text">
-            <span class="notice-item">⚠️ বর্তমানে আমাদের ওয়েবসাইট আপডেট চলছে, আপডেট চলাকালীন কিছু চ্যানেল সাময়িক ডাউন থাকতে পারে।</span>
-            <span class="notice-item">⚡ টিভি চ্যানেল সম্পূর্ণ লোড হতে <span class="text-neon-aqua">৫ থেকে ১০ সেকেন্ড</span> সময় নিতে পারে, দয়া করে অপেক্ষা করুন।</span>
-            <span class="notice-item">💡 বিরক্তিকর বিজ্ঞাপন ছাড়া লাইভ ম্যাচ দেখতে ভিডিও প্লেয়ারের নিচে ডান কোণায় ক্লিক করে <span class="text-neon-green">"Full Screen"</span> মুডে দেখুন! ধন্যবাদ ⛔</span>
-        </div>
+    <div class="marquee-container">
+        <div class="notice-label">NOTICE</div>
+        <marquee scrollamount="6" onmouseover="this.stop()" onmouseout="this.start()">
+            ⚠️ বর্তমানে আমাদের ওয়েব সাইট আপডেট চলছে, আপডেট চলাকালীন সময় কিছু চ্যানেল ডাউন হতে পারে। 
+            <span style="color: aqua; font-weight: bold;">টিভি চ্যানেল প্লে হতে ৫ থেকে ১০ সেকেন্ড টাইম নিতে পারে।</span> 
+            💡 বিরক্তিকর বিজ্ঞাপন ছাড়া টিভি দেখতে ভিডিও প্লেয়ারের নিচে ডান কোণায় ক্লিক করে 
+            <span style="color: #00FF00; font-weight: bold;">"Full Screen" মুডে ভিডিও দেখুন</span>, তাহলে কোনো অ্যাড আপনার সামনে আসবে না! ধন্যবাদ ⛔
+        </marquee>
     </div>
 
     <footer class="footer-premium">
@@ -303,7 +263,7 @@
                 <a href="https://t.me/rslivetv" target="_blank" class="telegram-btn">JOIN TELEGRAM</a>
             </div>
 
-            <!-- Adsterra Banner (Static 320x50) -->
+            <!-- Adsterra Banner -->
             <div class="ad-box">
                 <script type="text/javascript">
                     atOptions = {
@@ -329,24 +289,7 @@
         document.addEventListener('contextmenu', event => event.preventDefault());
     </script>
     
-    <!-- অপ্টিমাইজড Adsterra Social Bar: ১০ সেকেন্ড ডিলে এবং প্রতি সেশনে লিমিটেড শো এফেক্ট -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // চেক করা হচ্ছে এই সেশনে অলরেডি পপআপ লোড হয়েছে কি না
-            if (!sessionStorage.getItem('ad_shown_this_session')) {
-                
-                // ইউজার পেজে আসার ঠিক ১০ সেকেন্ড (১০০০০ মিলিসেকেন্ড) পর স্ক্রিপ্ট কাজ করবে
-                setTimeout(function() {
-                    var adScript = document.createElement('script');
-                    adScript.src = "https://pl26377172.effectivecpmnetwork.com/d7/8b/93/d78b9343b29d8ff89244b094b359e591.js";
-                    adScript.async = true;
-                    document.body.appendChild(adScript);
-                    
-                    // সেশন ফ্ল্যাগ সেট করা হলো যাতে প্রতি ক্লিকের পর বার বার পপআপ না আসে
-                    sessionStorage.setItem('ad_shown_this_session', 'true');
-                }, 10000); 
-            }
-        });
-    </script>
+    <!-- Adsterra Social Bar -->
+    <script src="https://pl26377172.effectivecpmnetwork.com/d7/8b/93/d78b9343b29d8ff89244b094b359e591.js"></script>
 </body>
 </html>
