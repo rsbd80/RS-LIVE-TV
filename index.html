@@ -19,6 +19,9 @@
     <link href="bootstrap.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
 
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         body {
             background: #000;
@@ -210,7 +213,7 @@
         }
 
         /* ==========================================
-           FIFA COUNTDOWN BANNER (FIXED REMOVED)
+           FIFA COUNTDOWN BANNER STYLES
         ========================================== */
         .fifa-banner {
             background: linear-gradient(135deg, #0f0f11, #1e1e24);
@@ -222,8 +225,6 @@
             padding: 10px 12px;
             border-radius: 14px;
             border: 1px solid #292933;
-            
-            /* ফিক্সড পজিশন বাদ দিয়ে লেআউটের ভেতরে আনা হয়েছে */
             width: 320px;
             margin: 15px auto;
             box-sizing: border-box;
@@ -308,6 +309,109 @@
             font-weight: bold;
             box-shadow: 0 2px 6px rgba(0,0,0,0.4);
         }
+
+        /* ==========================================
+           NEW FLOATING REMOTE STYLES (NO FULLSCREEN BLUR)
+        ========================================== */
+        .remote-btn-container {
+            margin: 20px auto 10px auto;
+            width: 320px;
+        }
+        .remote-open-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #00d2ff, #0066ff);
+            color: #fff !important;
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            padding: 12px 30px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-decoration: none !important;
+            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* রিমোট কন্টেইনার - এটিকে স্ক্রিনের ডানদিকের নিচে ফিক্সড ছোট প্যানেল করা হলো */
+        .remote-body-floating {
+            display: none;
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: rgba(24, 24, 28, 0.95);
+            width: 110px;
+            padding: 15px 10px;
+            border-radius: 25px;
+            border: 2px solid #3a3a44;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+            text-align: center;
+            z-index: 999999;
+            box-sizing: border-box;
+        }
+        .remote-header {
+            color: #00d2ff;
+            font-size: 9px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+        .remote-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            gap: 8px;
+        }
+        .r-btn {
+            flex: 1;
+            height: 38px;
+            background: #25252b;
+            border: 1px solid #3a3a44;
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1px;
+        }
+        .r-btn span {
+            font-size: 7px;
+            text-transform: uppercase;
+            display: block;
+            color: #aaa;
+        }
+        .r-btn:active {
+            background: #00d2ff;
+            color: #000;
+        }
+        .r-btn:active span {
+            color: #000;
+        }
+        .r-btn-power {
+            background: #4a121a;
+            border-color: #ff1744;
+            color: #ff1744;
+        }
+        .r-btn-power:active {
+            background: #ff1744;
+            color: #fff;
+        }
+        .r-btn-close {
+            background: #2c2c35;
+            border-color: #555;
+            color: #fff;
+        }
     </style>
 </head>
 
@@ -317,7 +421,7 @@
         <div class="row">
             <div class="col-xs-12 col-md-10 tv-view">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe name="player" class="embed-responsive-item" allowfullscreen src="channel.html"></iframe>
+                    <iframe name="player" id="tvPlayer" class="embed-responsive-item" allowfullscreen src="channel.html"></iframe>
                 </div>
             </div>
             <div class="col-xs-12 col-md-2 channel-list">
@@ -326,7 +430,7 @@
         </div>
     </div>
 
-    <!-- অরিজিনাল ডিজাইনের নোটিশ বার -->
+    <!-- নোটিশ বার -->
     <div class="marquee-container">
         <div class="notice-label">NOTICE</div>
         <marquee scrollamount="6" onmouseover="this.stop()" onmouseout="this.start()">
@@ -365,7 +469,7 @@
                 <a href="https://t.me/rslivetv" target="_blank" class="telegram-btn">JOIN TELEGRAM</a>
             </div>
 
-            <!-- ফিফা ব্যানার (টেলিগ্রামের নিচে এবং অ্যাডের উপরে সেট করা হয়েছে যাতে অ্যাড ঢাকা না পড়ে) -->
+            <!-- ফিفا ব্যানার -->
             <div class="fifa-banner" id="fifaBanner">
                 <button class="close-btn" onclick="document.getElementById('fifaBanner').style.display='none'">×</button>
                 <div class="fifa-logo-area">
@@ -409,16 +513,87 @@
                 <script type="text/javascript" src="//www.highperformanceformat.com/774c0e371455f6476668178b5faae5ab/invoke.js"></script>
             </div>
 
+            <!-- রিমোট কন্ট্রোলার ওপেন করার বাটন -->
+            <div class="remote-btn-container">
+                <button onclick="toggleRemote(true)" class="remote-open-btn">
+                    <i class="fa-solid fa-tv"></i> OPEN TV REMOTE
+                </button>
+            </div>
+
             <div class="copyright">
                 © 2026 RS LIVE TV | All Rights Reserved
             </div>
         </div>
     </footer>
 
+    <!-- ফ্লোটিং মিনি রিমোট প্যানেল (যা ভিডিও বা চ্যানেল লিস্টকে ঢেকে রাখবে না) -->
+    <div class="remote-body-floating" id="remotePanel">
+        <div class="remote-header">RS REMOTE</div>
+        
+        <!-- রো ১: রিলোড এবং ক্লোজ -->
+        <div class="remote-row">
+            <button class="r-btn r-btn-power" onclick="reloadActiveChannel();" title="Reload"><i class="fa-solid fa-power-off"></i><span>Reset</span></button>
+            <button class="r-btn r-btn-close" onclick="toggleRemote(false);" title="Hide"><i class="fa-solid fa-xmark"></i><span>Hide</span></button>
+        </div>
+
+        <!-- রো ২: চ্যানেল চেঞ্জার (CH+ / CH-) -->
+        <div class="remote-row">
+            <button class="r-btn" onclick="switchChannel(1);" title="Next Channel"><i class="fa-solid fa-chevron-up"></i><span>CH +</span></button>
+            <button class="r-btn" onclick="switchChannel(-1);" title="Prev Channel"><i class="fa-solid fa-chevron-down"></i><span>CH -</span></button>
+        </div>
+
+        <!-- রো ৩: ফুলস্ক্রিন বাটন -->
+        <div class="remote-row" style="margin-bottom: 0;">
+            <button class="r-btn" onclick="remoteFullscreen();" style="flex: 1;" title="Fullscreen"><i class="fa-solid fa-expand"></i><span>Fullscreen</span></button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
     <script>
-        // রাইট ক্লিক বন্ধ রাখার স্ক্রিপ্ট
         document.addEventListener('contextmenu', event => event.preventDefault());
+
+        let currentChannelIndex = 0;
+
+        // রিমোট অন/অফ লজিক (এখন শুধু প্যানেলটি শো/হাইড হবে, কোনো ব্যাকগ্রাউন্ড আসবে না)
+        function toggleRemote(show) {
+            document.getElementById('remotePanel').style.display = show ? 'block' : 'none';
+        }
+
+        // চ্যানেল চেঞ্জ ফাংশন
+        function switchChannel(direction) {
+            const container = document.getElementById('channel-container');
+            if (!container) return;
+
+            const channels = container.querySelectorAll('li, a, .channel-item');
+            if (channels.length === 0) return;
+
+            currentChannelIndex += direction;
+
+            if (currentChannelIndex >= channels.length) currentChannelIndex = 0;
+            if (currentChannelIndex < 0) currentChannelIndex = channels.length - 1;
+
+            channels[currentChannelIndex].click();
+        }
+
+        // রিলোড ফাংশন
+        function reloadActiveChannel() {
+            const player = document.getElementById('tvPlayer');
+            if (player) {
+                const currentSrc = player.src;
+                player.src = '';
+                player.src = currentSrc;
+            }
+        }
+
+        // ফুলস্ক্রিন ফাংশন
+        function remoteFullscreen() {
+            const player = document.getElementById('tvPlayer');
+            if (player) {
+                if (player.requestFullscreen) { player.requestFullscreen(); }
+                else if (player.webkitRequestFullscreen) { player.webkitRequestFullscreen(); }
+                else if (player.msRequestFullscreen) { player.msRequestFullscreen(); }
+            }
+        }
     </script>
     
     <!-- ইউজার চ্যানেল পরিবর্তন করার ১৫ সেকেন্ড পর অ্যাড শো করার স্ক্রিপ্ট -->
