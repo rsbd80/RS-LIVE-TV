@@ -19,9 +19,6 @@
     <link href="bootstrap.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
 
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
         body {
             background: #000;
@@ -30,11 +27,13 @@
             padding: 0;
             font-family: Arial, sans-serif;
         }
+        
         .tv-view .embed-responsive {
             border: 1px solid #222;
             border-radius: 8px;
             background: #000;
             overflow: hidden;
+            margin-bottom: 15px;
         }
         iframe {
             border: 0 !important;
@@ -42,6 +41,87 @@
             width: 100%;
             height: 100%;
         }
+
+        /* ==========================================
+           🌟 আল্ট্রা-বোল্ড HTML ফটিক সাইড অ্যারো বাটন
+        ========================================== */
+        .channel-list-wrapper {
+            position: relative;
+            padding: 0 42px; /* বাটনগুলোর জন্য পারফেক্ট সাইড গ্যাপ */
+            margin-top: 5px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* মোটা এবং প্রিমিয়াম সাইড বাটন স্টাইল */
+        .side-arrow-btn {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 36px;
+            background: rgba(20, 20, 25, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            
+            /* হালকা নিয়ন বর্ডার */
+            border: 1px solid rgba(0, 210, 255, 0.2);
+            
+            /* মোটা HTML ফটিক টেক্সট কালার */
+            color: #00d2ff;
+            font-size: 18px; /* ফন্ট সাইজ বাড়িয়ে আরও মোটা করা হয়েছে */
+            font-weight: 900; /* সর্বোচ্চ বোল্ডনেস */
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            user-select: none;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* বামের বাটনের পজিশন ও রেডিয়াস */
+        .side-arrow-btn.left-arrow {
+            left: 0;
+            border-radius: 8px 0 0 8px;
+            border-right: none;
+        }
+        
+        /* ডানের বাটনের পজিশন ও রেডিয়াস */
+        .side-arrow-btn.right-arrow {
+            right: 0;
+            border-radius: 0 8px 8px 0;
+            border-left: none;
+        }
+
+        /* মাউস হোভার ইফেক্ট (ডেস্কটপ) */
+        @media (min-width: 768px) {
+            .side-arrow-btn:hover {
+                color: #ffffff;
+                background: rgba(0, 210, 255, 0.3);
+                border-color: #00d2ff;
+                box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+                text-shadow: 0 0 5px #ffffff;
+            }
+        }
+
+        /* প্রফেশনাল ৩ডি ক্লিক/টাচ ইফেক্ট */
+        .side-arrow-btn:active {
+            background: #00d2ff !important;
+            color: #000000 !important;
+            border-color: #00d2ff !important;
+            box-shadow: 0 0 25px rgba(0, 210, 255, 0.9) !important;
+            transform: scale(0.92); /* বোতাম টিপলে ভেতরের দিকে যাবে */
+            text-shadow: none;
+        }
+
+        /* মেইন কন্টেইনার স্লাইডার */
+        .channel-list {
+            padding: 0 !important;
+            margin: 0 !important;
+            width: 100%;
+        }
+
         .marquee-container {
             background: #121212;
             color: #ffffff;
@@ -240,6 +320,7 @@
             width: auto;
             object-fit: contain;
             border-radius: 6px;
+            window-shadow: none;
         }
         .fifa-content {
             flex-grow: 1;
@@ -311,14 +392,11 @@
         }
 
         /* ==========================================
-           🌟 নতুন চ্যানেল হাইলাইট স্টাইল (DYNAMIC CLASS)
+           🌟 হাইলাইট স্টাইল (PLAYING)
         ========================================== */
-        /* আপনার স্ক্রিপ্ট জেনারেট করা লি বা আইটেমগুলোর জন্য নিয়ন বর্ডার ও গ্লো */
         .active-tv-channel {
             border: 2px solid #00d2ff !important;
             box-shadow: 0 0 15px rgba(0, 210, 255, 0.8) !important;
-            transform: scale(1.02);
-            transition: all 0.3s ease;
             position: relative;
         }
         .active-tv-channel::before {
@@ -328,122 +406,18 @@
             left: 2px;
             background: #00d2ff;
             color: #000;
-            font-size: 8px;
+            font-size: 7.5px;
             font-weight: bold;
             padding: 1px 4px;
             border-radius: 3px;
             z-index: 10;
         }
-
-        /* ==========================================
-           FLOATING REMOTE STYLES WITH VOLUME BUTTONS
-        ========================================== */
-        .remote-btn-container {
-            margin: 20px auto 10px auto;
-            width: 320px;
-        }
-        .remote-open-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #00d2ff, #0066ff);
-            color: #fff !important;
-            text-transform: uppercase;
-            font-size: 12px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            padding: 12px 30px;
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            text-decoration: none !important;
-            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.4);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        /* রিমোট কন্টেইনার - সাইজ একটু বাড়িয়ে বাটন বিন্যাস নিখুঁত করা হয়েছে */
-        .remote-body-floating {
-            display: none;
-            position: fixed;
-            bottom: 85px;
-            right: 20px;
-            background: rgba(20, 20, 24, 0.96);
-            width: 130px;
-            padding: 18px 12px;
-            border-radius: 30px;
-            border: 2px solid #3a3a44;
-            box-shadow: 0 10px 35px rgba(0,0,0,0.8);
-            text-align: center;
-            z-index: 999999;
-            box-sizing: border-box;
-        }
-        .remote-header {
-            color: #00d2ff;
-            font-size: 10px;
-            font-weight: bold;
-            letter-spacing: 1.5px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-        .remote-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 12px;
-            gap: 8px;
-        }
-        .r-btn {
-            flex: 1;
-            height: 40px;
-            background: #25252b;
-            border: 1px solid #3a3a44;
-            border-radius: 12px;
-            color: #ffffff;
-            font-size: 13px;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 1px;
-            transition: all 0.2s ease;
-        }
-        .r-btn span {
-            font-size: 7px;
-            text-transform: uppercase;
-            display: block;
-            color: #aaa;
-        }
-        .r-btn:active {
-            background: #00d2ff;
-            color: #000;
-        }
-        .r-btn:active span {
-            color: #000;
-        }
-        .r-btn-power {
-            background: #4a121a;
-            border-color: #ff1744;
-            color: #ff1744;
-        }
-        .r-btn-power:active {
-            background: #ff1744;
-            color: #fff;
-        }
-        .r-btn-close {
-            background: #2c2c35;
-            border-color: #555;
-            color: #fff;
-        }
         
-        /* ওএসডি অ্যালার্ট স্টাইল */
+        /* ওএসডি অ্যালার্ট */
         .tv-osd {
             display: none;
             position: fixed;
-            top: 40px;
+            top: 70px;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 210, 255, 0.9);
@@ -461,18 +435,38 @@
 
 <body>
 
-    <!-- টিভি স্ক্রিন ওএসডি নোটিফিকেশন -->
     <div id="tvOsd" class="tv-osd"></div>
 
-    <div class="container tv-area">
+    <div class="container tv-area" style="margin-top: 15px;">
+        
+        <!-- টিভি ফ্রেম লেআউট -->
         <div class="row">
             <div class="col-xs-12 col-md-10 tv-view">
                 <div class="embed-responsive embed-responsive-16by9">
                     <iframe name="player" id="tvPlayer" class="embed-responsive-item" allowfullscreen src="channel.html"></iframe>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-2 channel-list">
-                <ul class="thumbnail-slider" id="channel-container"></ul>
+            
+            <!-- চ্যানেল কার্ড এবং এইচটিএমএল ফটিক এরো বাটন -->
+            <div class="col-xs-12 col-md-2">
+                <div class="channel-list-wrapper">
+                    
+                    <!-- মোটা বামের এরো (❮) -->
+                    <button class="side-arrow-btn left-arrow" onclick="switchChannel(-1);" title="Previous Channel">
+                        &#10094;
+                    </button>
+                    
+                    <!-- চ্যানেল কন্টেইনার -->
+                    <div class="channel-list">
+                        <ul class="thumbnail-slider" id="channel-container"></ul>
+                    </div>
+                    
+                    <!-- মোটা ডানের এরো (❯) -->
+                    <button class="side-arrow-btn right-arrow" onclick="switchChannel(1);" title="Next Channel">
+                        &#10095;
+                    </button>
+                    
+                </div>
             </div>
         </div>
     </div>
@@ -560,62 +554,18 @@
                 <script type="text/javascript" src="//www.highperformanceformat.com/774c0e371455f6476668178b5faae5ab/invoke.js"></script>
             </div>
 
-            <!-- রিমোট কন্ট্রোলার ওপেন করার বাটন -->
-            <div class="remote-btn-container">
-                <button onclick="toggleRemote(true)" class="remote-open-btn">
-                    <i class="fa-solid fa-tv"></i> OPEN TV REMOTE
-                </button>
-            </div>
-
             <div class="copyright">
                 © 2026 RS LIVE TV | All Rights Reserved
             </div>
         </div>
     </footer>
 
-    <!-- ফ্লোটিং আপগ্রেডেড রিমোট প্যানেল -->
-    <div class="remote-body-floating" id="remotePanel">
-        <div class="remote-header">RS SMART</div>
-        
-        <!-- রো ১: রিলোড এবং ক্লোজ -->
-        <div class="remote-row">
-            <button class="r-btn r-btn-power" onclick="reloadActiveChannel();" title="Reset Channel"><i class="fa-solid fa-power-off"></i><span>Reset</span></button>
-            <button class="r-btn r-btn-close" onclick="toggleRemote(false);" title="Hide Remote"><i class="fa-solid fa-xmark"></i><span>Hide</span></button>
-        </div>
-
-        <!-- রো ২: চ্যানেল চেঞ্জার (CH+ / CH-) -->
-        <div class="remote-row">
-            <button class="r-btn" onclick="switchChannel(1);" title="Next Channel"><i class="fa-solid fa-chevron-up"></i><span>CH +</span></button>
-            <button class="r-btn" onclick="switchChannel(-1);" title="Prev Channel"><i class="fa-solid fa-chevron-down"></i><span>CH -</span></button>
-        </div>
-
-        <!-- রো ৩: ভলিউম আপ এবং ডাউন বাটন -->
-        <div class="remote-row">
-            <button class="r-btn" onclick="controlVolume('UP');" title="Volume Up"><i class="fa-solid fa-volume-high"></i><span>VOL +</span></button>
-            <button class="r-btn" onclick="controlVolume('DOWN');" title="Volume Down"><i class="fa-solid fa-volume-low"></i><span>VOL -</span></button>
-        </div>
-
-        <!-- রো ৪: ফুলস্ক্রিন এবং মিউট বাটন -->
-        <div class="remote-row" style="margin-bottom: 0;">
-            <button class="r-btn" onclick="controlVolume('MUTE');" title="Mute"><i class="fa-solid fa-volume-xmark"></i><span>Mute</span></button>
-            <button class="r-btn" onclick="remoteFullscreen();" title="Fullscreen"><i class="fa-solid fa-expand"></i><span>Zoom</span></button>
-        </div>
-    </div>
-
     <script src="script.js"></script>
     <script>
         document.addEventListener('contextmenu', event => event.preventDefault());
 
-        let currentChannelIndex = 0;
-        let currentVolume = 80;
-        let isMuted = false;
+        let activePlayingIndex = 0;   
 
-        function toggleRemote(show) {
-            document.getElementById('remotePanel').style.display = show ? 'block' : 'none';
-            if(show) { highlightCurrentChannelOnList(); } // রিমোট ওপেন হওয়ামাত্রই একটিভটা হাইলাইট হবে
-        }
-
-        // স্মার্ট চ্যানেল চেঞ্জার এবং হাইলাইটার স্ক্রিপ্ট
         function switchChannel(direction) {
             const container = document.getElementById('channel-container');
             if (!container) return;
@@ -623,38 +573,21 @@
             const channels = container.querySelectorAll('li, a, .channel-item');
             if (channels.length === 0) return;
 
-            currentChannelIndex += direction;
+            activePlayingIndex += direction;
 
-            if (currentChannelIndex >= channels.length) currentChannelIndex = 0;
-            if (currentChannelIndex < 0) currentChannelIndex = channels.length - 1;
+            if (activePlayingIndex >= channels.length) activePlayingIndex = 0;
+            if (activePlayingIndex < 0) activePlayingIndex = channels.length - 1;
 
-            // চ্যানেলটি ক্লিক করানো হলো
-            channels[currentChannelIndex].click();
-
-            // সাইডবারে হাইলাইট ক্লাস যুক্ত করার ফাংশন কল
-            highlightCurrentChannelOnList();
-        }
-
-        // অ্যাক্টিভ চ্যানেল হাইলাইট করার মেইন লজিক
-        function highlightCurrentChannelOnList() {
-            const container = document.getElementById('channel-container');
-            if (!container) return;
-
-            const channels = container.querySelectorAll('li, a, .channel-item');
-            
-            // পূর্বের সব হাইলাইট রিমুভ করা
             channels.forEach(ch => ch.classList.remove('active-tv-channel'));
 
-            // বর্তমান প্লে হওয়া চ্যানেলে নিয়ন বর্ডার অ্যাড করা
-            if (channels[currentChannelIndex]) {
-                channels[currentChannelIndex].classList.add('active-tv-channel');
-                
-                // স্ক্রল করে সেই চ্যানেলটিকে চোখের সামনে ফোকাস করা
-                channels[currentChannelIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            if (channels[activePlayingIndex]) {
+                channels[activePlayingIndex].click();
+                channels[activePlayingIndex].classList.add('active-tv-channel');
+                channels[activePlayingIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                showOSD("📺 SWITCHING CHANNEL...");
             }
         }
 
-        // সাইডবারের চ্যানেলে সরাসরি ম্যানুয়ালি ক্লিক করলেও যেন ইনডেক্স ঠিক থাকে
         document.addEventListener('DOMContentLoaded', function() {
             const container = document.getElementById('channel-container');
             if (container) {
@@ -662,15 +595,19 @@
                     const channels = container.querySelectorAll('li, a, .channel-item');
                     channels.forEach((ch, idx) => {
                         if (ch.contains(e.target) || ch === e.target) {
-                            currentChannelIndex = idx;
-                            setTimeout(highlightCurrentChannelOnList, 100);
+                            activePlayingIndex = idx;
+                            setTimeout(() => {
+                                channels.forEach(c => c.classList.remove('active-tv-channel'));
+                                if(channels[activePlayingIndex]) {
+                                    channels[activePlayingIndex].classList.add('active-tv-channel');
+                                }
+                            }, 150);
                         }
                     });
                 });
             }
         });
 
-        // ওএসডি অ্যানিমেশন শো করার ফাংশন
         function showOSD(text) {
             const osd = document.getElementById('tvOsd');
             osd.innerText = text;
@@ -681,47 +618,9 @@
                 osd.style.display = 'none';
             }, 1500);
         }
-
-        // ভলিউম কন্ট্রোল ও গাইডলাইন (Smart OSD Feedback)
-        function controlVolume(action) {
-            if (action === 'UP') {
-                if (isMuted) isMuted = false;
-                currentVolume = Math.min(100, currentVolume + 10);
-                showOSD("🔊 VOLUME: " + currentVolume + "%");
-            } else if (action === 'DOWN') {
-                if (isMuted) isMuted = false;
-                currentVolume = Math.max(0, currentVolume - 10);
-                showOSD("🔉 VOLUME: " + currentVolume + "%");
-            } else if (action === 'MUTE') {
-                isMuted = !isMuted;
-                showOSD(isMuted ? "🔇 MUTED" : "🔊 UNMUTED");
-            }
-            
-            // প্লেয়ার সিকিউরিটি মেসেজ অ্যালার্ট (ঐচ্ছিক ব্যাকআপ গাইড)
-            console.log("Volume updated via Remote Controller Interface");
-        }
-
-        function reloadActiveChannel() {
-            const player = document.getElementById('tvPlayer');
-            if (player) {
-                const currentSrc = player.src;
-                player.src = '';
-                player.src = currentSrc;
-                showOSD("🔄 RECONNECTING CHANNEL...");
-            }
-        }
-
-        function remoteFullscreen() {
-            const player = document.getElementById('tvPlayer');
-            if (player) {
-                if (player.requestFullscreen) { player.requestFullscreen(); }
-                else if (player.webkitRequestFullscreen) { player.webkitRequestFullscreen(); }
-                else if (player.msRequestFullscreen) { player.msRequestFullscreen(); }
-            }
-        }
     </script>
     
-    <!-- অ্যাড জেনারেটর স্ক্রিপ্ট -->
+    <!-- বিজ্ঞাপনের অতিরিক্ত অংশ -->
     <script>
         (function() {
             var adTimer = null;
@@ -776,4 +675,4 @@
         }, 1000);
     </script>
 </body>
-</html>
+                </html>
