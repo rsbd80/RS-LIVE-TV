@@ -186,27 +186,27 @@
   },
   {
     "name": "Sananda Tv",
-    "image": "https://i.postimg.cc/xT1s9pyz/20241029-135129.png",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTylaokf1TCdYunrrVZdAbn9A1lolFbzxMEmLAOGipEbT9xQaqF4-eo27nn&s=10",
     "url": "https://rs-player.netlify.app/jw-player?url=https://live.sanandatelevision.in/sananda/index.m3u8"
   },
   {
     "name": "ZEE Bangla",
-    "image": "https://i.postimg.cc/ZRjjSzFd/20250403-190441.png",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHaGZHO2NHNUIQ3_x869NBDZAQYp12FZJWXv1JP4B9bg&s=10",
     "url": "https://rs-player.netlify.app/jw-player?url=https://ottbanglaplatform.com/tv/toffee/live.php?id=zee_bangla&e=.m3u8"
   },
   {
     "name": "Star Jalsha",
-    "image": "https://i.postimg.cc/V6t2fM4G/starjalsha.png",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsviGlplOGH6F8oIH2eCF8GjmaOTwsb5eC9KY8xr6cwHzdmWiSAKc83f3G&s=10",
     "url": "https://rs-player.netlify.app/jw-player?url=https://yupptvcatchupire.yuppcdn.net/preview/starjalsha/1800.m3u8"
   },
   {
     "name": "Enterr10",
-    "image": "https://i.postimg.cc/fypczz3J/enter10bangla.png",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf2JmpKSQHMmoq70-Wl9fjWNaGbk0XtCp4BWhF7jtdWg&s",
     "url": "https://rs-player.netlify.app/jw-player?url=https://live-bangla.akamaized.net/liveabr/playlist.m3u8"
   },
   {
     "name": "Bangla Plus",
-    "image": "https://i.postimg.cc/4y7TM4dJ/Bangla-Plus.png",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqXKWAk7HXhVSs3Ewv62AN6lHbIYa6aJ7yQ-0SpATAKWFr6KwVmItCyV_8&s=10",
     "url": "https://rs-player.netlify.app/jw-player?url=https://live-stream.utkalbongo.com/hls/livebanglatvstream.m3u8"
   },
   {
