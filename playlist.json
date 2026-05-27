@@ -185,19 +185,29 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://streams2.sofast.tv/v1/master/611d79b11b77e2f571934fd80ca1413453772ac7/eea68b79-bfe2-451e-a227-d637a5b9548a/manifest.m3u8"
   },
   {
-    "name": "Sony Sports Ten 5  (1080p)",
-    "image": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_SONY_SPORTS_TEN_5/images/LOGO_HD/image.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=http://103.122.249.134:8000/play/a03d"
+    "name": "Sananda Tv",
+    "image": "https://i.postimg.cc/xT1s9pyz/20241029-135129.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://live.sanandatelevision.in/sananda/index.m3u8"
   },
   {
-    "name": "Star Sports 3 (576p)",
-    "image": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_STAR_SPORTS_3/images/LOGO_HD/image.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=http://103.122.249.134:8000/play/a04u"
+    "name": "ZEE Bangla",
+    "image": "https://i.postimg.cc/ZRjjSzFd/20250403-190441.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://ottbanglaplatform.com/tv/toffee/live.php?id=zee_bangla&e=.m3u8"
   },
   {
-    "name": "T Sports (720p)",
-    "image": "https://i.imgur.com/2JzlorD.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen7.aynaott.com/tsportshd/index.m3u8"
+    "name": "Star Jalsha",
+    "image": "https://i.postimg.cc/V6t2fM4G/starjalsha.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://yupptvcatchupire.yuppcdn.net/preview/starjalsha/1800.m3u8"
+  },
+  {
+    "name": "Enterr10",
+    "image": "https://i.postimg.cc/fypczz3J/enter10bangla.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://live-bangla.akamaized.net/liveabr/playlist.m3u8"
+  },
+  {
+    "name": "Bangla Plus",
+    "image": "https://i.postimg.cc/4y7TM4dJ/Bangla-Plus.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://live-stream.utkalbongo.com/hls/livebanglatvstream.m3u8"
   },
   {
     "name": "Channel I",
