@@ -210,26 +210,29 @@
         }
 
         /* ==========================================
-           FIFA COUNTDOWN BANNER STYLES (ADDED)
+           FIFA COUNTDOWN FLOATING POPUP STYLES
         ========================================== */
         .fifa-banner {
-            background: linear-gradient(135deg, #111, #222);
+            background: linear-gradient(135deg, #0f0f11, #1e1e24);
             color: #fff;
             font-family: 'Arial', sans-serif;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 12px 15px;
-            border-radius: 16px;
+            padding: 10px 12px;
+            border-radius: 14px;
+            border: 1px solid #292933;
             
-            /* স্ক্রিনের নিচে ফিক্সড রাখার জন্য */
+            /* স্ক্রিনের নিচে ফিক্সড রাখার জন্য রেসপন্সিভ পজিশন */
             position: fixed;
             bottom: 15px;
-            left: 15px;
-            right: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 30px);
+            max-width: 360px; /* মোবাইল ও ডেস্কটপ উভয় জায়গাতেই পারফেক্ট সাইজ */
             
-            box-shadow: 0 -4px 20px rgba(0,0,0,0.6);
-            z-index: 99999;
+            box-shadow: 0 -5px 25px rgba(0,0,0,0.8);
+            z-index: 999999;
             box-sizing: border-box;
         }
         .fifa-logo-area {
@@ -238,39 +241,39 @@
             flex-shrink: 0;
         }
         .fifa-logo-area img {
-            height: 55px;
+            height: 50px;
             width: auto;
             object-fit: contain;
-            border-radius: 4px;
+            border-radius: 6px;
         }
         .fifa-content {
             flex-grow: 1;
             text-align: center;
-            padding: 0 10px;
+            padding: 0 8px;
         }
         .fifa-title {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: bold;
-            margin: 0 0 2px 0;
+            margin: 0 0 1px 0;
             letter-spacing: 0.3px;
         }
         .fifa-date {
-            font-size: 10px;
-            color: #ccc;
-            margin: 0 0 8px 0;
+            font-size: 9px;
+            color: #bbb;
+            margin: 0 0 6px 0;
         }
         .countdown-container {
             display: flex;
             justify-content: center;
-            gap: 6px;
+            gap: 5px;
         }
         .time-box {
-            background: #fff;
-            color: #000;
-            border-radius: 6px;
-            padding: 4px 0;
+            background: #ffffff;
+            color: #000000;
+            border-radius: 5px;
+            padding: 3px 0;
             flex: 1;
-            max-width: 45px;
+            max-width: 42px;
             text-align: center;
         }
         .time-box.days-box {
@@ -278,15 +281,16 @@
             color: #fff;
         }
         .time-num {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: bold;
             display: block;
+            line-height: 1.2;
         }
         .time-label {
-            font-size: 8px;
+            font-size: 7.5px;
             text-transform: uppercase;
             font-weight: bold;
-            color: #666;
+            color: #555;
             display: block;
         }
         .time-box.days-box .time-label {
@@ -308,7 +312,7 @@
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
         }
     </style>
 </head>
@@ -386,9 +390,7 @@
         </div>
     </footer>
 
-    <!-- ==========================================
-       FIFA COUNTDOWN BANNER HTML (ADDED HERE)
-    ========================================== */ -->
+    <!-- FIFA FLOATING POPUP HTML -->
     <div class="fifa-banner" id="fifaBanner">
         <button class="close-btn" onclick="document.getElementById('fifaBanner').style.display='none'">×</button>
         <div class="fifa-logo-area">
@@ -454,9 +456,7 @@
         })();
     </script>
 
-    <!-- ==========================================
-       FIFA COUNTDOWN JAVASCRIPT (ADDED HERE)
-    ========================================== */ -->
+    <!-- FIFA COUNTDOWN JAVASCRIPT -->
     <script>
         const targetDate = new Date("June 11, 2026 00:00:00").getTime();
 
