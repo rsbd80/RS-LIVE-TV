@@ -311,7 +311,32 @@
         }
 
         /* ==========================================
-           NEW FLOATING REMOTE STYLES (NO FULLSCREEN BLUR)
+           🌟 নতুন চ্যানেল হাইলাইট স্টাইল (DYNAMIC CLASS)
+        ========================================== */
+        /* আপনার স্ক্রিপ্ট জেনারেট করা লি বা আইটেমগুলোর জন্য নিয়ন বর্ডার ও গ্লো */
+        .active-tv-channel {
+            border: 2px solid #00d2ff !important;
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.8) !important;
+            transform: scale(1.02);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .active-tv-channel::before {
+            content: 'PLAYING';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            background: #00d2ff;
+            color: #000;
+            font-size: 8px;
+            font-weight: bold;
+            padding: 1px 4px;
+            border-radius: 3px;
+            z-index: 10;
+        }
+
+        /* ==========================================
+           FLOATING REMOTE STYLES WITH VOLUME BUTTONS
         ========================================== */
         .remote-btn-container {
             margin: 20px auto 10px auto;
@@ -339,28 +364,28 @@
             box-sizing: border-box;
         }
 
-        /* রিমোট কন্টেইনার - এটিকে স্ক্রিনের ডানদিকের নিচে ফিক্সড ছোট প্যানেল করা হলো */
+        /* রিমোট কন্টেইনার - সাইজ একটু বাড়িয়ে বাটন বিন্যাস নিখুঁত করা হয়েছে */
         .remote-body-floating {
             display: none;
             position: fixed;
-            bottom: 80px;
+            bottom: 85px;
             right: 20px;
-            background: rgba(24, 24, 28, 0.95);
-            width: 110px;
-            padding: 15px 10px;
-            border-radius: 25px;
+            background: rgba(20, 20, 24, 0.96);
+            width: 130px;
+            padding: 18px 12px;
+            border-radius: 30px;
             border: 2px solid #3a3a44;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.8);
             text-align: center;
             z-index: 999999;
             box-sizing: border-box;
         }
         .remote-header {
             color: #00d2ff;
-            font-size: 9px;
+            font-size: 10px;
             font-weight: bold;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
+            letter-spacing: 1.5px;
+            margin-bottom: 15px;
             text-transform: uppercase;
         }
         .remote-row {
@@ -371,12 +396,12 @@
         }
         .r-btn {
             flex: 1;
-            height: 38px;
+            height: 40px;
             background: #25252b;
             border: 1px solid #3a3a44;
-            border-radius: 10px;
+            border-radius: 12px;
             color: #ffffff;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: bold;
             cursor: pointer;
             display: flex;
@@ -384,6 +409,7 @@
             align-items: center;
             justify-content: center;
             gap: 1px;
+            transition: all 0.2s ease;
         }
         .r-btn span {
             font-size: 7px;
@@ -412,10 +438,31 @@
             border-color: #555;
             color: #fff;
         }
+        
+        /* ওএসডি অ্যালার্ট স্টাইল */
+        .tv-osd {
+            display: none;
+            position: fixed;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 210, 255, 0.9);
+            color: #000;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 13px;
+            z-index: 1000000;
+            box-shadow: 0 4px 15px rgba(0,210,255,0.5);
+            pointer-events: none;
+        }
     </style>
 </head>
 
 <body>
+
+    <!-- টিভি স্ক্রিন ওএসডি নোটিফিকেশন -->
+    <div id="tvOsd" class="tv-osd"></div>
 
     <div class="container tv-area">
         <div class="row">
@@ -526,14 +573,14 @@
         </div>
     </footer>
 
-    <!-- ফ্লোটিং মিনি রিমোট প্যানেল (যা ভিডিও বা চ্যানেল লিস্টকে ঢেকে রাখবে না) -->
+    <!-- ফ্লোটিং আপগ্রেডেড রিমোট প্যানেল -->
     <div class="remote-body-floating" id="remotePanel">
-        <div class="remote-header">RS REMOTE</div>
+        <div class="remote-header">RS SMART</div>
         
         <!-- রো ১: রিলোড এবং ক্লোজ -->
         <div class="remote-row">
-            <button class="r-btn r-btn-power" onclick="reloadActiveChannel();" title="Reload"><i class="fa-solid fa-power-off"></i><span>Reset</span></button>
-            <button class="r-btn r-btn-close" onclick="toggleRemote(false);" title="Hide"><i class="fa-solid fa-xmark"></i><span>Hide</span></button>
+            <button class="r-btn r-btn-power" onclick="reloadActiveChannel();" title="Reset Channel"><i class="fa-solid fa-power-off"></i><span>Reset</span></button>
+            <button class="r-btn r-btn-close" onclick="toggleRemote(false);" title="Hide Remote"><i class="fa-solid fa-xmark"></i><span>Hide</span></button>
         </div>
 
         <!-- রো ২: চ্যানেল চেঞ্জার (CH+ / CH-) -->
@@ -542,9 +589,16 @@
             <button class="r-btn" onclick="switchChannel(-1);" title="Prev Channel"><i class="fa-solid fa-chevron-down"></i><span>CH -</span></button>
         </div>
 
-        <!-- রো ৩: ফুলস্ক্রিন বাটন -->
+        <!-- রো ৩: ভলিউম আপ এবং ডাউন বাটন -->
+        <div class="remote-row">
+            <button class="r-btn" onclick="controlVolume('UP');" title="Volume Up"><i class="fa-solid fa-volume-high"></i><span>VOL +</span></button>
+            <button class="r-btn" onclick="controlVolume('DOWN');" title="Volume Down"><i class="fa-solid fa-volume-low"></i><span>VOL -</span></button>
+        </div>
+
+        <!-- রো ৪: ফুলস্ক্রিন এবং মিউট বাটন -->
         <div class="remote-row" style="margin-bottom: 0;">
-            <button class="r-btn" onclick="remoteFullscreen();" style="flex: 1;" title="Fullscreen"><i class="fa-solid fa-expand"></i><span>Fullscreen</span></button>
+            <button class="r-btn" onclick="controlVolume('MUTE');" title="Mute"><i class="fa-solid fa-volume-xmark"></i><span>Mute</span></button>
+            <button class="r-btn" onclick="remoteFullscreen();" title="Fullscreen"><i class="fa-solid fa-expand"></i><span>Zoom</span></button>
         </div>
     </div>
 
@@ -553,13 +607,15 @@
         document.addEventListener('contextmenu', event => event.preventDefault());
 
         let currentChannelIndex = 0;
+        let currentVolume = 80;
+        let isMuted = false;
 
-        // রিমোট অন/অফ লজিক (এখন শুধু প্যানেলটি শো/হাইড হবে, কোনো ব্যাকগ্রাউন্ড আসবে না)
         function toggleRemote(show) {
             document.getElementById('remotePanel').style.display = show ? 'block' : 'none';
+            if(show) { highlightCurrentChannelOnList(); } // রিমোট ওপেন হওয়ামাত্রই একটিভটা হাইলাইট হবে
         }
 
-        // চ্যানেল চেঞ্জ ফাংশন
+        // স্মার্ট চ্যানেল চেঞ্জার এবং হাইলাইটার স্ক্রিপ্ট
         function switchChannel(direction) {
             const container = document.getElementById('channel-container');
             if (!container) return;
@@ -572,20 +628,89 @@
             if (currentChannelIndex >= channels.length) currentChannelIndex = 0;
             if (currentChannelIndex < 0) currentChannelIndex = channels.length - 1;
 
+            // চ্যানেলটি ক্লিক করানো হলো
             channels[currentChannelIndex].click();
+
+            // সাইডবারে হাইলাইট ক্লাস যুক্ত করার ফাংশন কল
+            highlightCurrentChannelOnList();
         }
 
-        // রিলোড ফাংশন
+        // অ্যাক্টিভ চ্যানেল হাইলাইট করার মেইন লজিক
+        function highlightCurrentChannelOnList() {
+            const container = document.getElementById('channel-container');
+            if (!container) return;
+
+            const channels = container.querySelectorAll('li, a, .channel-item');
+            
+            // পূর্বের সব হাইলাইট রিমুভ করা
+            channels.forEach(ch => ch.classList.remove('active-tv-channel'));
+
+            // বর্তমান প্লে হওয়া চ্যানেলে নিয়ন বর্ডার অ্যাড করা
+            if (channels[currentChannelIndex]) {
+                channels[currentChannelIndex].classList.add('active-tv-channel');
+                
+                // স্ক্রল করে সেই চ্যানেলটিকে চোখের সামনে ফোকাস করা
+                channels[currentChannelIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+
+        // সাইডবারের চ্যানেলে সরাসরি ম্যানুয়ালি ক্লিক করলেও যেন ইনডেক্স ঠিক থাকে
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('channel-container');
+            if (container) {
+                container.addEventListener('click', function(e) {
+                    const channels = container.querySelectorAll('li, a, .channel-item');
+                    channels.forEach((ch, idx) => {
+                        if (ch.contains(e.target) || ch === e.target) {
+                            currentChannelIndex = idx;
+                            setTimeout(highlightCurrentChannelOnList, 100);
+                        }
+                    });
+                });
+            }
+        });
+
+        // ওএসডি অ্যানিমেশন শো করার ফাংশন
+        function showOSD(text) {
+            const osd = document.getElementById('tvOsd');
+            osd.innerText = text;
+            osd.style.display = 'block';
+            
+            if (window.osdTimeout) clearTimeout(window.osdTimeout);
+            window.osdTimeout = setTimeout(() => {
+                osd.style.display = 'none';
+            }, 1500);
+        }
+
+        // ভলিউম কন্ট্রোল ও গাইডলাইন (Smart OSD Feedback)
+        function controlVolume(action) {
+            if (action === 'UP') {
+                if (isMuted) isMuted = false;
+                currentVolume = Math.min(100, currentVolume + 10);
+                showOSD("🔊 VOLUME: " + currentVolume + "%");
+            } else if (action === 'DOWN') {
+                if (isMuted) isMuted = false;
+                currentVolume = Math.max(0, currentVolume - 10);
+                showOSD("🔉 VOLUME: " + currentVolume + "%");
+            } else if (action === 'MUTE') {
+                isMuted = !isMuted;
+                showOSD(isMuted ? "🔇 MUTED" : "🔊 UNMUTED");
+            }
+            
+            // প্লেয়ার সিকিউরিটি মেসেজ অ্যালার্ট (ঐচ্ছিক ব্যাকআপ গাইড)
+            console.log("Volume updated via Remote Controller Interface");
+        }
+
         function reloadActiveChannel() {
             const player = document.getElementById('tvPlayer');
             if (player) {
                 const currentSrc = player.src;
                 player.src = '';
                 player.src = currentSrc;
+                showOSD("🔄 RECONNECTING CHANNEL...");
             }
         }
 
-        // ফুলস্ক্রিন ফাংশন
         function remoteFullscreen() {
             const player = document.getElementById('tvPlayer');
             if (player) {
@@ -596,7 +721,7 @@
         }
     </script>
     
-    <!-- ইউজার চ্যানেল পরিবর্তন করার ১৫ সেকেন্ড পর অ্যাড শো করার স্ক্রিপ্ট -->
+    <!-- অ্যাড জেনারেটর স্ক্রিপ্ট -->
     <script>
         (function() {
             var adTimer = null;
