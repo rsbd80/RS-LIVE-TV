@@ -208,6 +208,108 @@
             font-size: 11px;
             margin-top: 15px;
         }
+
+        /* ==========================================
+           FIFA COUNTDOWN BANNER STYLES (ADDED)
+        ========================================== */
+        .fifa-banner {
+            background: linear-gradient(135deg, #111, #222);
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 15px;
+            border-radius: 16px;
+            
+            /* স্ক্রিনের নিচে ফিক্সড রাখার জন্য */
+            position: fixed;
+            bottom: 15px;
+            left: 15px;
+            right: 15px;
+            
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.6);
+            z-index: 99999;
+            box-sizing: border-box;
+        }
+        .fifa-logo-area {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .fifa-logo-area img {
+            height: 55px;
+            width: auto;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+        .fifa-content {
+            flex-grow: 1;
+            text-align: center;
+            padding: 0 10px;
+        }
+        .fifa-title {
+            font-size: 15px;
+            font-weight: bold;
+            margin: 0 0 2px 0;
+            letter-spacing: 0.3px;
+        }
+        .fifa-date {
+            font-size: 10px;
+            color: #ccc;
+            margin: 0 0 8px 0;
+        }
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+        }
+        .time-box {
+            background: #fff;
+            color: #000;
+            border-radius: 6px;
+            padding: 4px 0;
+            flex: 1;
+            max-width: 45px;
+            text-align: center;
+        }
+        .time-box.days-box {
+            background: #ff1744;
+            color: #fff;
+        }
+        .time-num {
+            font-size: 14px;
+            font-weight: bold;
+            display: block;
+        }
+        .time-label {
+            font-size: 8px;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: #666;
+            display: block;
+        }
+        .time-box.days-box .time-label {
+            color: #fff;
+        }
+        .close-btn {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff1744;
+            color: #fff;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
     </style>
 </head>
 
@@ -226,7 +328,7 @@
         </div>
     </div>
 
-    <!-- অরিজিনাল ডিজাইনের নোটিশ বার (শুধু ভেতরের টেক্সট আপডেট করা হয়েছে) -->
+    <!-- অরিজিনাল ডিজাইনের নোটিশ বার -->
     <div class="marquee-container">
         <div class="notice-label">NOTICE</div>
         <marquee scrollamount="6" onmouseover="this.stop()" onmouseout="this.start()">
@@ -284,6 +386,38 @@
         </div>
     </footer>
 
+    <!-- ==========================================
+       FIFA COUNTDOWN BANNER HTML (ADDED HERE)
+    ========================================== */ -->
+    <div class="fifa-banner" id="fifaBanner">
+        <button class="close-btn" onclick="document.getElementById('fifaBanner').style.display='none'">×</button>
+        <div class="fifa-logo-area">
+            <img src="https://i.postimg.cc/Cx1jDDXt/20260527-235121.jpg" alt="FIFA Logo">
+        </div>
+        <div class="fifa-content">
+            <h3 class="fifa-title">FIFA World Cup 2026</h3>
+            <p class="fifa-date">June 11 - July 19</p>
+            <div class="countdown-container">
+                <div class="time-box days-box">
+                    <span class="time-num" id="days">00</span>
+                    <span class="time-label">Days</span>
+                </div>
+                <div class="time-box">
+                    <span class="time-num" id="hours">00</span>
+                    <span class="time-label">Hrs</span>
+                </div>
+                <div class="time-box">
+                    <span class="time-num" id="mins">00</span>
+                    <span class="time-label">Min</span>
+                </div>
+                <div class="time-box">
+                    <span class="time-num" id="secs">00</span>
+                    <span class="time-label">Sec</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
     <script>
         // রাইট ক্লিক বন্ধ রাখার স্ক্রিপ্ট
@@ -297,10 +431,7 @@
             var isScriptInjected = false;
 
             function triggerSocialBarAd() {
-                // নতুন কোনো চ্যানেল ক্লিক হলে আগের টাইমার রিসেট হবে
                 if (adTimer) clearTimeout(adTimer);
-
-                // ঠিক ১৫ সেকেন্ড (১৫০০০ মিলিসেকেন্ড) পর অ্যাড রান করবে
                 adTimer = setTimeout(function() {
                     if (!isScriptInjected) {
                         var adScript = document.createElement('script');
@@ -312,7 +443,6 @@
                 }, 15000); 
             }
 
-            // চ্যানেল লিস্টে ক্লিক ইভেন্ট লিসেনার সেটআপ
             document.addEventListener("DOMContentLoaded", function() {
                 var channelContainer = document.getElementById('channel-container');
                 if (channelContainer) {
@@ -322,6 +452,33 @@
                 }
             });
         })();
+    </script>
+
+    <!-- ==========================================
+       FIFA COUNTDOWN JAVASCRIPT (ADDED HERE)
+    ========================================== */ -->
+    <script>
+        const targetDate = new Date("June 11, 2026 00:00:00").getTime();
+
+        const updateCountdown = setInterval(function() {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("mins").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("secs").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+            if (difference < 0) {
+                clearInterval(updateCountdown);
+                document.querySelector(".countdown-container").innerHTML = "<h4 style='margin:0; color:#ff1744;'>Tournament Started!</h4>";
+            }
+        }, 1000);
     </script>
 </body>
 </html>
