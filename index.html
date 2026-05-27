@@ -226,11 +226,12 @@
         </div>
     </div>
 
+    <!-- অরিজিনাল ডিজাইনের নোটিশ বার (শুধু ভেতরের টেক্সট আপডেট করা হয়েছে) -->
     <div class="marquee-container">
         <div class="notice-label">NOTICE</div>
         <marquee scrollamount="6" onmouseover="this.stop()" onmouseout="this.start()">
-            ⚠️ বর্তমানে আমাদের ওয়েব সাইট আপডেট চলছে, আপডেট চলাকালীন সময় কিছু চ্যানেল ডাউন হতে পারে। 
-            <span style="color: aqua; font-weight: bold;">টিভি চ্যানেল প্লে হতে ৫ থেকে ১০ সেকেন্ড টাইম নিতে পারে।</span> 
+            ⚠️ বর্তমানে আমাদের ওয়েবসাইট আপডেট চলছে, আপডেট চলাকালীন সময় কিছু চ্যানেল ডাউন হতে পারে। 
+            <span style="color: aqua; font-weight: bold;">টিভি চ্যানেল সম্পূর্ণ প্লে হতে ৫ থেকে ১০ সেকেন্ড টাইম নিতে পারে।</span> 
             💡 বিরক্তিকর বিজ্ঞাপন ছাড়া টিভি দেখতে ভিডিও প্লেয়ারের নিচে ডান কোণায় ক্লিক করে 
             <span style="color: #00FF00; font-weight: bold;">"Full Screen" মুডে ভিডিও দেখুন</span>, তাহলে কোনো অ্যাড আপনার সামনে আসবে না! ধন্যবাদ ⛔
         </marquee>
@@ -289,7 +290,38 @@
         document.addEventListener('contextmenu', event => event.preventDefault());
     </script>
     
-    <!-- Adsterra Social Bar -->
-    <script src="https://pl26377172.effectivecpmnetwork.com/d7/8b/93/d78b9343b29d8ff89244b094b359e591.js"></script>
+    <!-- ইউজার চ্যানেল পরিবর্তন করার ১৫ সেকেন্ড পর অ্যাড শো করার স্ক্রিপ্ট -->
+    <script>
+        (function() {
+            var adTimer = null;
+            var isScriptInjected = false;
+
+            function triggerSocialBarAd() {
+                // নতুন কোনো চ্যানেল ক্লিক হলে আগের টাইমার রিসেট হবে
+                if (adTimer) clearTimeout(adTimer);
+
+                // ঠিক ১৫ সেকেন্ড (১৫০০০ মিলিসেকেন্ড) পর অ্যাড রান করবে
+                adTimer = setTimeout(function() {
+                    if (!isScriptInjected) {
+                        var adScript = document.createElement('script');
+                        adScript.src = "https://pl26377172.effectivecpmnetwork.com/d7/8b/93/d78b9343b29d8ff89244b094b359e591.js";
+                        adScript.async = true;
+                        document.body.appendChild(adScript);
+                        isScriptInjected = true;
+                    }
+                }, 15000); 
+            }
+
+            // চ্যানেল লিস্টে ক্লিক ইভেন্ট লিসেনার সেটআপ
+            document.addEventListener("DOMContentLoaded", function() {
+                var channelContainer = document.getElementById('channel-container');
+                if (channelContainer) {
+                    channelContainer.addEventListener('click', function() {
+                        triggerSocialBarAd();
+                    });
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
