@@ -19,9 +19,6 @@
     <link href="bootstrap.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
 
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
         body {
             background: #000;
@@ -30,13 +27,11 @@
             padding: 0;
             font-family: Arial, sans-serif;
         }
-        
         .tv-view .embed-responsive {
             border: 1px solid #222;
             border-radius: 8px;
             background: #000;
             overflow: hidden;
-            margin-bottom: 15px;
         }
         iframe {
             border: 0 !important;
@@ -44,82 +39,6 @@
             width: 100%;
             height: 100%;
         }
-
-        /* ==========================================
-           🌟 প্রিমিয়াম গ্লাস-মরফিজম সাইড অ্যারো বাটন লেআউট
-        ========================================== */
-        .channel-list-wrapper {
-            position: relative;
-            padding: 0 40px; /* বাটনের জন্য ব্যালেন্সড স্পেস */
-            margin-top: 5px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-
-        /* আল্ট্রা-প্রফেশনাল সাইড বাটন স্টাইল */
-        .side-arrow-btn {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 34px;
-            /* গ্লাস ব্যাকগ্রাউন্ড ও ব্লার ইফেক্ট */
-            background: rgba(25, 25, 30, 0.65);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 15px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 100;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        /* বামের বাটনের প্রিমিয়াম বর্ডার ও পজিশন */
-        .side-arrow-btn.left-arrow {
-            left: 0;
-            border-radius: 8px 0 0 8px;
-            border-right: none;
-        }
-        
-        /* ডানের বাটনের প্রিমিয়াম বর্ডার ও পজিশন */
-        .side-arrow-btn.right-arrow {
-            right: 0;
-            border-radius: 0 8px 8px 0;
-            border-left: none;
-        }
-
-        /* হোভার ইফেক্ট (ডেস্কটপের জন্য) */
-        @media (min-width: 768px) {
-            .side-arrow-btn:hover {
-                color: #00d2ff;
-                background: rgba(0, 210, 255, 0.15);
-                border-color: rgba(0, 210, 255, 0.4);
-                text-shadow: 0 0 8px rgba(0, 210, 255, 0.8);
-                box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
-            }
-        }
-
-        /* একটিভ বা টাচ ইফেক্ট (মোবাইল ও ইনস্ট্যান্ট ক্লিকের জন্য) */
-        .side-arrow-btn:active {
-            color: #000 !important;
-            background: #00d2ff !important;
-            border-color: #00d2ff !important;
-            box-shadow: 0 0 20px rgba(0, 210, 255, 0.8) !important;
-            transform: scale(0.95);
-        }
-
-        /* মেইন কন্টেইনার স্লাইডার */
-        .channel-list {
-            padding: 0 !important;
-            margin: 0 !important;
-            width: 100%;
-        }
-
         .marquee-container {
             background: #121212;
             color: #ffffff;
@@ -291,7 +210,7 @@
         }
 
         /* ==========================================
-           FIFA COUNTDOWN BANNER STYLES
+           FIFA COUNTDOWN BANNER (FIXED REMOVED)
         ========================================== */
         .fifa-banner {
             background: linear-gradient(135deg, #0f0f11, #1e1e24);
@@ -303,6 +222,8 @@
             padding: 10px 12px;
             border-radius: 14px;
             border: 1px solid #292933;
+            
+            /* ফিক্সড পজিশন বাদ দিয়ে লেআউটের ভেতরে আনা হয়েছে */
             width: 320px;
             margin: 15px auto;
             box-sizing: border-box;
@@ -387,88 +308,25 @@
             font-weight: bold;
             box-shadow: 0 2px 6px rgba(0,0,0,0.4);
         }
-
-        /* ==========================================
-           🌟 হাইলাইট স্টাইল (PLAYING)
-        ========================================== */
-        .active-tv-channel {
-            border: 2px solid #00d2ff !important;
-            box-shadow: 0 0 15px rgba(0, 210, 255, 0.8) !important;
-            position: relative;
-        }
-        .active-tv-channel::before {
-            content: 'PLAYING';
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            background: #00d2ff;
-            color: #000;
-            font-size: 7.5px;
-            font-weight: bold;
-            padding: 1px 4px;
-            border-radius: 3px;
-            z-index: 10;
-        }
-        
-        /* ওএসডি অ্যালার্ট */
-        .tv-osd {
-            display: none;
-            position: fixed;
-            top: 70px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 210, 255, 0.9);
-            color: #000;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 13px;
-            z-index: 1000000;
-            box-shadow: 0 4px 15px rgba(0,210,255,0.5);
-            pointer-events: none;
-        }
     </style>
 </head>
 
 <body>
 
-    <div id="tvOsd" class="tv-osd"></div>
-
-    <div class="container tv-area" style="margin-top: 15px;">
-        
-        <!-- টিভি ফ্রেম লেআউট -->
+    <div class="container tv-area">
         <div class="row">
             <div class="col-xs-12 col-md-10 tv-view">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe name="player" id="tvPlayer" class="embed-responsive-item" allowfullscreen src="channel.html"></iframe>
+                    <iframe name="player" class="embed-responsive-item" allowfullscreen src="channel.html"></iframe>
                 </div>
             </div>
-            
-            <!-- চ্যানেল কার্ড এরিয়া -->
-            <div class="col-xs-12 col-md-2">
-                <div class="channel-list-wrapper">
-                    
-                    <!-- গ্লাসি লেফট অ্যারো বাটন -->
-                    <button class="side-arrow-btn left-arrow" onclick="switchChannel(-1);" title="Previous Channel">
-                        <i class="fa-solid fa-chevron-left"></i>
-                    </button>
-                    
-                    <!-- চ্যানেল থাম্বনেইল কন্টেইনার -->
-                    <div class="channel-list">
-                        <ul class="thumbnail-slider" id="channel-container"></ul>
-                    </div>
-                    
-                    <!-- গ্লাসি রাইট অ্যারো বাটন -->
-                    <button class="side-arrow-btn right-arrow" onclick="switchChannel(1);" title="Next Channel">
-                        <i class="fa-solid fa-chevron-right"></i>
-                    </button>
-                    
-                </div>
+            <div class="col-xs-12 col-md-2 channel-list">
+                <ul class="thumbnail-slider" id="channel-container"></ul>
             </div>
         </div>
     </div>
 
-    <!-- নোটিশ বার -->
+    <!-- অরিজিনাল ডিজাইনের নোটিশ বার -->
     <div class="marquee-container">
         <div class="notice-label">NOTICE</div>
         <marquee scrollamount="6" onmouseover="this.stop()" onmouseout="this.start()">
@@ -507,7 +365,7 @@
                 <a href="https://t.me/rslivetv" target="_blank" class="telegram-btn">JOIN TELEGRAM</a>
             </div>
 
-            <!-- ফিفا ব্যানার -->
+            <!-- ফিফা ব্যানার (টেলিগ্রামের নিচে এবং অ্যাডের উপরে সেট করা হয়েছে যাতে অ্যাড ঢাকা না পড়ে) -->
             <div class="fifa-banner" id="fifaBanner">
                 <button class="close-btn" onclick="document.getElementById('fifaBanner').style.display='none'">×</button>
                 <div class="fifa-logo-area">
@@ -559,65 +417,11 @@
 
     <script src="script.js"></script>
     <script>
+        // রাইট ক্লিক বন্ধ রাখার স্ক্রিপ্ট
         document.addEventListener('contextmenu', event => event.preventDefault());
-
-        let activePlayingIndex = 0;   
-
-        function switchChannel(direction) {
-            const container = document.getElementById('channel-container');
-            if (!container) return;
-
-            const channels = container.querySelectorAll('li, a, .channel-item');
-            if (channels.length === 0) return;
-
-            activePlayingIndex += direction;
-
-            if (activePlayingIndex >= channels.length) activePlayingIndex = 0;
-            if (activePlayingIndex < 0) activePlayingIndex = channels.length - 1;
-
-            channels.forEach(ch => ch.classList.remove('active-tv-channel'));
-
-            if (channels[activePlayingIndex]) {
-                channels[activePlayingIndex].click();
-                channels[activePlayingIndex].classList.add('active-tv-channel');
-                channels[activePlayingIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                showOSD("📺 SWITCHING CHANNEL...");
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const container = document.getElementById('channel-container');
-            if (container) {
-                container.addEventListener('click', function(e) {
-                    const channels = container.querySelectorAll('li, a, .channel-item');
-                    channels.forEach((ch, idx) => {
-                        if (ch.contains(e.target) || ch === e.target) {
-                            activePlayingIndex = idx;
-                            setTimeout(() => {
-                                channels.forEach(c => c.classList.remove('active-tv-channel'));
-                                if(channels[activePlayingIndex]) {
-                                    channels[activePlayingIndex].classList.add('active-tv-channel');
-                                }
-                            }, 150);
-                        }
-                    });
-                });
-            }
-        });
-
-        function showOSD(text) {
-            const osd = document.getElementById('tvOsd');
-            osd.innerText = text;
-            osd.style.display = 'block';
-            
-            if (window.osdTimeout) clearTimeout(window.osdTimeout);
-            window.osdTimeout = setTimeout(() => {
-                osd.style.display = 'none';
-            }, 1500);
-        }
     </script>
     
-    <!-- বিজ্ঞাপনের অতিরিক্ত অংশ -->
+    <!-- ইউজার চ্যানেল পরিবর্তন করার ১৫ সেকেন্ড পর অ্যাড শো করার স্ক্রিপ্ট -->
     <script>
         (function() {
             var adTimer = null;
