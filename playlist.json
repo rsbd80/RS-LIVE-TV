@@ -70,16 +70,6 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen7.aynaott.com/foxsports2/index.m3u8?e=1779508653&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=ad82254447f88c61a2373694f2d24a56"
   },
   {
-    "name": "Bein Sports",
-    "image": "https://s3.aynaott.com/storage/04a56bc13c4c486ad4a4d82a1e00fd73",
-    "url": "৳https://rs-player.netlify.app/jw-player?url=http://fl1.moveonjoy.com/BEIN_SPORTS/index.m3u8"
-  },
-  {
-    "name": "BT Sports 2",
-    "image": "https://s3.aynaott.com/storage/0b6e5ad3267e5a5897abbe8f3be7b78a",
-    "url": "#https://rs-player.netlify.app/jw-player?url=https://tvsen6.aynaott.com/btSport2/index.m3u8?e=1779508653&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=88288da542048a54e29fca9c05fd4159"
-  },
-  {
     "name": "Espn",
     "image": "https://s3.aynaott.com/storage/b46df1959322aa48d270a6b163234c76",
     "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen5.aynaott.com/espn/index.m3u8?e=1779508653&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=7260d466a341e2fc65fd9e53ae860e74"
