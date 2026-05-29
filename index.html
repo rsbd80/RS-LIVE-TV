@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DRBZH98TKH"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -19,7 +18,6 @@
     <link href="bootstrap.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
 
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -34,7 +32,7 @@
             margin-top: 15px;
         }
         
-        /* 🌟 ওপেন রিমোট বাটন - ডার্ক মোড লুক */
+        /* ওপেন রিমোট বাটন */
         .remote-btn-container {
             margin: 0 auto 10px auto;
             width: 100%;
@@ -66,22 +64,197 @@
             color: #fff !important;
             border-color: #333;
         }
-        .remote-open-btn:active {
-            transform: scale(0.98);
-        }
 
         .tv-view .embed-responsive {
             border: 1px solid #222;
             border-radius: 8px;
             background: #000;
             overflow: hidden;
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
         }
-        iframe {
-            border: 0 !important;
-            display: block;
+        .tv-view .embed-responsive iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
+            border: 0;
         }
+
+        /* ওয়ান-লাইন লেআউট */
+        .channel-list {
+            padding: 5px 10px !important;
+            overflow: visible !important;
+        }
+        
+        #channel-container {
+            list-style: none;
+            margin: 0;
+            display: flex;
+            gap: 10px;
+            padding: 12px 8px !important; 
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        /* স্ক্রলবার হাইড */
+        #channel-container::-webkit-scrollbar {
+            display: none;
+        }
+        #channel-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        #channel-container li {
+            position: relative;
+            display: inline-block;
+            flex-shrink: 0;
+            border: 2.5px solid transparent;
+            border-radius: 50% !important; 
+            overflow: visible !important; 
+            transition: all 0.15s ease-out;
+            cursor: pointer;
+            width: 65px;  
+            height: 65px;
+            padding: 2px;
+            box-sizing: border-box;
+        }
+        
+        #channel-container li img, 
+        #channel-container li a {
+            border-radius: 50% !important;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* পিসি বা বড় স্ক্রিনের জন্য রেসপন্সিভ লেআউট */
+        @media (min-width: 992px) {
+            #channel-container {
+                flex-direction: column;
+                overflow-x: hidden;
+                overflow-y: auto;
+                max-height: 450px;
+                padding: 10px 12px !important;
+            }
+            #channel-container li {
+                margin: 0 auto;
+            }
+        }
+
+        /* নিয়ন গ্লো বর্ডার স্টাইল */
+        .selected-tv-channel {
+            border-color: #00f0ff !important;
+            box-shadow: 0 0 18px #00f0ff, inset 0 0 6px rgba(0, 240, 255, 0.4) !important;
+            transform: scale(1.05);
+            background: rgba(0, 240, 255, 0.08) !important;
+            z-index: 5;
+        }
+
+        .active-tv-channel {
+            border-color: #ff0055 !important;
+            box-shadow: 0 0 20px #ff0055, inset 0 0 8px rgba(255, 0, 85, 0.5) !important;
+            background: rgba(255, 0, 85, 0.1) !important;
+            transform: scale(1.03);
+            animation: hyperGlowPulse 1.4s infinite ease-in-out;
+            z-index: 4;
+        }
+        @keyframes hyperGlowPulse {
+            0% { box-shadow: 0 0 12px #ff0055, inset 0 0 6px rgba(255, 0, 85, 0.3); border-color: #ff0055; }
+            50% { box-shadow: 0 0 22px #ff00ff, inset 0 0 10px rgba(255, 0, 255, 0.5); border-color: #ff00ff; }
+            100% { box-shadow: 0 0 12px #ff0055, inset 0 0 6px rgba(255, 0, 85, 0.3); border-color: #ff0055; }
+        }
+
+        /* টিভি রিমোট প্যানেল */
+        .remote-body-floating {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 25px;
+            background: #0a0a0c;
+            width: 105px;
+            padding: 15px 8px;
+            border-radius: 25px;
+            border: 1px solid #1f1f24;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.95);
+            text-align: center;
+            z-index: 999999;
+            box-sizing: border-box;
+        }
+        .remote-header {
+            color: #444;
+            font-size: 8px;
+            font-weight: 900;
+            letter-spacing: 1.2px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+        .remote-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            gap: 6px;
+        }
+        .r-btn {
+            flex: 1;
+            height: 36px;
+            background: #16161a;
+            border: 1px solid #26262b;
+            border-radius: 10px;
+            color: #b5b5bd;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.1s ease;
+        }
+        .r-btn span {
+            font-size: 5.5px;
+            text-transform: uppercase;
+            display: block;
+            color: #555;
+            margin-top: 1px;
+            font-weight: bold;
+        }
+        .r-btn:active {
+            background: #22222a;
+            color: #00d2ff;
+            border-color: #33333f;
+        }
+        
+        .r-btn-ok {
+            background: #111114;
+            border: 1px solid #282830;
+            color: #ffffff !important;
+            height: 48px;
+            width: 48px;
+            max-width: 48px;
+            border-radius: 50%;
+            font-size: 11px !important;
+            font-weight: bold !important;
+            margin: 4px auto;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .r-btn-power {
+            background: #1a080a;
+            border-color: #3d1218;
+            color: #cc2944;
+        }
+        .r-btn-close {
+            background: #141417;
+            border-color: #24242b;
+            color: #666;
+        }
+
         .marquee-container {
             background: #121212;
             color: #ffffff;
@@ -118,28 +291,6 @@
             display: flex;
             align-items: center;
             margin: 10px auto;
-        }
-        .tio-style-banner-fixed::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -150%;
-            width: 60%;
-            height: 100%;
-            background: linear-gradient(
-                to right,
-                rgba(255,255,255,0) 0%,
-                rgba(255,255,255,0.2) 50%,
-                rgba(255,255,255,0) 100%
-            );
-            transform: skewX(-25deg);
-            animation: smoke-shine 4s infinite;
-            z-index: 3;
-        }
-        @keyframes smoke-shine {
-            0% { left: -150%; }
-            40% { left: 150%; }
-            100% { left: 150%; }
         }
         .banner-overlay {
             position: absolute;
@@ -252,7 +403,7 @@
             margin-top: 15px;
         }
 
-        /* FIFA COUNTDOWN BANNER STYLES */
+        /* FIFA COUNTDOWN BANNER STYLES FIXED */
         .fifa-banner {
             background: linear-gradient(135deg, #0f0f11, #1e1e24);
             color: #fff;
@@ -260,13 +411,25 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 10px 12px;
+            padding: 15px 12px 10px 12px;
             border-radius: 14px;
             border: 1px solid #292933;
             width: 320px;
             margin: 15px auto;
             box-sizing: border-box;
             position: relative;
+        }
+        .fifa-banner .close-btn {
+            position: absolute;
+            top: 2px;
+            right: 8px;
+            background: none;
+            border: none;
+            color: #ff1744;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10;
         }
         .fifa-logo-area {
             display: flex;
@@ -326,148 +489,7 @@
             color: #555;
             display: block;
         }
-        .time-box.days-box .time-label {
-            color: #fff;
-        }
-        .close-btn {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: #ff1744;
-            color: #fff;
-            border: 2px solid #fff;
-            border-radius: 50%;
-            width: 22px;
-            height: 22px;
-            font-size: 12px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
-        }
-
-        /* 🌟 আল্ট্রা-কালারফুল এবং নিয়ন গ্লোয়িং সিলেকশন স্টাইল */
-        .selected-tv-channel {
-            border: 2.5px solid #00f0ff !important;
-            box-shadow: 0 0 25px #00f0ff, inset 0 0 10px rgba(0, 240, 255, 0.3) !important;
-            transform: scale(1.04);
-            transition: all 0.15s ease-out;
-            background: rgba(0, 240, 255, 0.1) !important;
-            z-index: 5;
-        }
-
-        .active-tv-channel {
-            border: 2.5px solid #ff0055 !important;
-            box-shadow: 0 0 30px #ff0055, inset 0 0 12px rgba(255, 0, 85, 0.4) !important;
-            background: rgba(255, 0, 85, 0.12) !important;
-            transform: scale(1.02);
-            animation: hyperGlowPulse 1.4s infinite ease-in-out;
-            z-index: 4;
-        }
-        @keyframes hyperGlowPulse {
-            0% { box-shadow: 0 0 15px #ff0055, inset 0 0 8px rgba(255, 0, 85, 0.3); border-color: #ff0055; }
-            50% { box-shadow: 0 0 35px #ff00ff, inset 0 0 15px rgba(255, 0, 255, 0.5); border-color: #ff00ff; }
-            100% { box-shadow: 0 0 15px #ff0055, inset 0 0 8px rgba(255, 0, 85, 0.3); border-color: #ff0055; }
-        }
-
-        /* 🌟 পিওর ডার্ক মোড স্লিম টিভি রিমোট প্যানেল */
-        .remote-body-floating {
-            display: none;
-            position: fixed;
-            bottom: 30px;
-            right: 25px;
-            background: #0a0a0c;
-            width: 105px;
-            padding: 15px 8px;
-            border-radius: 25px;
-            border: 1px solid #1f1f24;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.95);
-            text-align: center;
-            z-index: 999999;
-            box-sizing: border-box;
-        }
-        .remote-header {
-            color: #444;
-            font-size: 8px;
-            font-weight: 900;
-            letter-spacing: 1.2px;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-        }
-        .remote-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            gap: 6px;
-        }
-        .r-btn {
-            flex: 1;
-            height: 36px;
-            background: #16161a;
-            border: 1px solid #26262b;
-            border-radius: 10px;
-            color: #b5b5bd;
-            font-size: 12px;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.1s ease;
-        }
-        .r-btn span {
-            font-size: 5.5px;
-            text-transform: uppercase;
-            display: block;
-            color: #555;
-            margin-top: 1px;
-            font-weight: bold;
-        }
-        .r-btn:active {
-            background: #22222a;
-            color: #00d2ff;
-            border-color: #33333f;
-        }
         
-        /* পিওর ওয়ান-টোন ডার্ক OK বাটন */
-        .r-btn-ok {
-            background: #111114;
-            border: 1px solid #282830;
-            color: #ffffff !important;
-            height: 48px;
-            width: 48px;
-            max-width: 48px;
-            border-radius: 50%;
-            font-size: 11px !important;
-            font-weight: bold !important;
-            margin: 4px auto;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
-        }
-        .r-btn-ok:active {
-            background: #000000;
-            border-color: #00d2ff;
-            color: #00d2ff !important;
-            box-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
-        }
-
-        .r-btn-power {
-            background: #1a080a;
-            border-color: #3d1218;
-            color: #cc2944;
-        }
-        .r-btn-power:active {
-            background: #cc2944;
-            color: #fff;
-        }
-        .r-btn-close {
-            background: #141417;
-            border-color: #24242b;
-            color: #666;
-        }
-        
-        /* ওএসডি অ্যালার্ট */
         .tv-osd {
             display: none;
             position: fixed;
@@ -495,26 +517,23 @@
 
     <div class="container tv-area">
         <div class="row">
-            <div class="col-xs-12 col-md-10 tv-view">
-                
-                <!-- ওপেন রিমোট কন্ট্রোল বাটন -->
+            <div class="col-12 col-lg-10 tv-view">
                 <div class="remote-btn-container">
                     <button onclick="toggleRemote(true)" class="remote-open-btn">
                         <i class="fa-solid fa-tv"></i> OPEN TV REMOTE CONTROL PANEL
                     </button>
                 </div>
-
-                <div class="embed-responsive embed-responsive-16by9">
-                    <iframe name="player" id="tvPlayer" class="embed-responsive-item" allowfullscreen src="channel.html"></iframe>
+                <div class="embed-responsive">
+                    <iframe name="player" id="tvPlayer" allowfullscreen src="channel.html"></iframe>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-2 channel-list">
+            
+            <div class="col-12 col-lg-2 channel-list">
                 <ul class="thumbnail-slider" id="channel-container"></ul>
             </div>
         </div>
     </div>
 
-    <!-- নোটিশ বার -->
     <div class="marquee-container">
         <div class="notice-label">NOTICE</div>
         <marquee scrollamount="6" onmouseover="this.stop()" onmouseout="this.start()">
@@ -546,14 +565,12 @@
                 </div>
             </div>
 
-            <!-- টেলিগ্রাম কার্ড -->
             <div class="tg-card">
                 <h5 style="color:#fff; margin-bottom:5px; font-size:16px;">সাপোর্ট প্রয়োজন?</h5>
                 <p style="color:#777; font-size:11px; margin-bottom:5px;">আপডেট ও চ্যানেল রিকোয়েস্টের জন্য আমাদের টেলিগ্রাম গ্রুপে যোগ দিন।</p>
                 <a href="https://t.me/rslivetv" target="_blank" class="telegram-btn">JOIN TELEGRAM</a>
             </div>
 
-            <!-- ফিফা ব্যানার -->
             <div class="fifa-banner" id="fifaBanner">
                 <button class="close-btn" onclick="document.getElementById('fifaBanner').style.display='none'">×</button>
                 <div class="fifa-logo-area">
@@ -583,7 +600,6 @@
                 </div>
             </div>
 
-            <!-- Adsterra Banner -->
             <div class="ad-box">
                 <script type="text/javascript">
                     atOptions = {
@@ -603,7 +619,6 @@
         </div>
     </footer>
 
-    <!-- 🌟 পিওর ডার্ক স্লিম রিমোট -->
     <div class="remote-body-floating" id="remotePanel">
         <div class="remote-header">RS REMOTE</div>
         
@@ -641,7 +656,6 @@
             if(show) { updateSelectionHighlight(); }
         }
 
-        // 🛠️ ১ ক্লিকে ইনস্ট্যান্ট সিলেকশন হ্যান্ডলিং মেথড
         function moveSelection(direction) {
             const container = document.getElementById('channel-container');
             if (!container) return;
@@ -649,28 +663,22 @@
             const channels = container.querySelectorAll('li'); 
             if (channels.length === 0) return;
 
-            // আগের সিলেক্টেড ক্লাস রিমুভ
             if (channels[selectedChannelIndex]) {
                 channels[selectedChannelIndex].classList.remove('selected-tv-channel');
             }
 
-            // ইনডেক্স আপডেট
             selectedChannelIndex += direction;
 
-            // লুপ লজিক (লিস্টের শেষ থেকে প্রথমে বা প্রথম থেকে শেষে যাওয়া)
             if (selectedChannelIndex >= channels.length) selectedChannelIndex = 0;
             if (selectedChannelIndex < 0) selectedChannelIndex = channels.length - 1;
 
-            // নতুন সিলেক্টেড এলিমেন্টে ক্লাস যোগ করা
             const targetElement = channels[selectedChannelIndex];
             
-            // যদি চ্যানেলটি অলরেডি একটিভ প্লেয়িং না থাকে, তবেই সিলেকশন ক্লাস পাবে
             if (selectedChannelIndex !== activePlayingIndex) {
                 targetElement.classList.add('selected-tv-channel');
             }
             
-            // ইনস্ট্যান্ট স্ক্রোল রেসপন্স
-            targetElement.scrollIntoView({ behavior: 'auto', block: 'nearest' });
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         }
 
         function updateSelectionHighlight() {
@@ -687,7 +695,6 @@
             });
         }
 
-        // 🛠️ ১০০% নিখুঁত চ্যানেল প্লে ট্রিগার স্ক্রিপ্ট
         function selectAndPlayChannel() {
             const container = document.getElementById('channel-container');
             if (!container) return;
@@ -695,53 +702,54 @@
             const channels = container.querySelectorAll('li');
             if (channels.length === 0 || !channels[selectedChannelIndex]) return;
 
-            // আগের সমস্ত গ্লো হাইলাইট ক্লিয়ার করা হচ্ছে
-            channels.forEach(ch => {
-                ch.classList.remove('active-tv-channel');
-                ch.classList.remove('selected-tv-channel');
-            });
-
             activePlayingIndex = selectedChannelIndex;
             const targetEl = channels[activePlayingIndex];
             
             if (targetEl) {
-                // সরাসরি ক্লিক অ্যাকশন ও বাবলিং ইভেন্ট ট্রিগার
-                targetEl.click();
+                channels.forEach(ch => {
+                    ch.classList.remove('active-tv-channel');
+                    ch.classList.remove('selected-tv-channel');
+                });
                 
-                const clickEvt = new MouseEvent('click', { bubbles: true, cancelable: true, view: window });
-                targetEl.dispatchEvent(clickEvt);
-                
-                const anchor = targetEl.tagName === 'A' ? targetEl : targetEl.querySelector('a');
-                if (anchor) anchor.click();
-
-                // নিয়ন মেজেন্টা গ্লো অ্যানিমেশন যুক্ত করা
                 targetEl.classList.add('active-tv-channel');
+                
+                // আইফ্রেম সোর্স চেঞ্জ বা অ্যাঙ্কর ক্লিক হ্যান্ডলিং
+                const anchor = targetEl.querySelector('a');
+                if (anchor) {
+                    const player = document.getElementById('tvPlayer');
+                    if(anchor.getAttribute('href') && anchor.getAttribute('target') === 'player') {
+                        player.src = anchor.getAttribute('href');
+                    } else {
+                        anchor.click();
+                    }
+                } else {
+                    targetEl.click();
+                }
             }
 
             showOSD("📡 LOADING...");
         }
 
-        // সাইডবার লিস্টের ম্যানুয়াল ক্লিকের সাথে রিমোট ইনডেক্স সিঙ্ক
         document.addEventListener('DOMContentLoaded', function() {
             const container = document.getElementById('channel-container');
             if (container) {
                 container.addEventListener('click', function(e) {
-                    const channels = container.querySelectorAll('li');
-                    channels.forEach((ch, idx) => {
-                        if (ch.contains(e.target) || ch === e.target) {
-                            selectedChannelIndex = idx;
-                            activePlayingIndex = idx;
-                            setTimeout(() => {
-                                channels.forEach(c => {
-                                    c.classList.remove('selected-tv-channel');
-                                    c.classList.remove('active-tv-channel');
-                                });
-                                if(channels[activePlayingIndex]) {
-                                    channels[activePlayingIndex].classList.add('active-tv-channel');
-                                }
-                            }, 100);
-                        }
-                    });
+                    const targetLi = e.target.closest('li');
+                    if (!targetLi) return;
+                    
+                    const channels = Array.from(container.querySelectorAll('li'));
+                    const idx = channels.indexOf(targetLi);
+                    
+                    if (idx !== -1) {
+                        selectedChannelIndex = idx;
+                        activePlayingIndex = idx;
+                        
+                        channels.forEach(c => {
+                            c.classList.remove('selected-tv-channel');
+                            c.classList.remove('active-tv-channel');
+                        });
+                        targetLi.classList.add('active-tv-channel');
+                    }
                 });
             }
         });
@@ -774,7 +782,6 @@
         }
     </script>
     
-    <!-- অ্যাড স্ক্রিপ্ট -->
     <script>
         (function() {
             var adTimer = null;
@@ -804,7 +811,6 @@
         })();
     </script>
 
-    <!-- FIFA COUNTDOWN -->
     <script>
         const targetDate = new Date("June 11, 2026 00:00:00").getTime();
         const updateCountdown = setInterval(function() {
