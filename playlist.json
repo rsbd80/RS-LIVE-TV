@@ -1,8 +1,43 @@
 [
   {
+    "name": "FIFA Football",
+    "image": "https://i.postimg.cc/Cx1jDDXt/20260527-235121.jpg",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://a62dad94.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWV1X0ZJRkFQbHVzRW5nbGlzaF9ITFM/playlist.m3u8"
+  },
+  {
     "name": "T Sports HD",
     "image": "https://s3.aynaott.com/storage/dbc585f70a60b9855b6e13a8ce4cb6f4",
     "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen7.aynaott.com/tsports-hd/index.m3u8?e=1779283784&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=3b4c5a2cfa872fa7f91ffbfb4aa0f658"
+  },
+  {
+    "name": "Star Sports 1",
+    "image": "https://i.postimg.cc/SNSpfbQr/Star-Sports-1-HD.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen7.aynaott.com/sspts1/index.m3u8"
+  },
+  {
+    "name": "WILLOW TV",
+    "image": "https://tvassets.roarzone.net/images/willow-tv.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen5.aynaott.com/willowhd/index.m3u8"
+  },
+  {
+    "name": "SONY TEN SPORTS 1 HD",
+    "image": "https://tvassets.roarzone.net/images/sony_sports_1_hd.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://edge2.roarzone.net:8447/roarzone/edge3/sony_sports_1_hd/index.m3u8?token=e9d216b60ae31e6ecc8c1744aa4ca3c7a32077d4-da32576592e31cd7bb4eee320132eb6c-1779392134-1779381334"
+  },
+  {
+    "name": "SONY TEN SPORTS 2 HD",
+    "image": "https://tvassets.roarzone.net/images/sony_sports_2_hd.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://edge2.roarzone.net:8447/roarzone/edge3/sony_sports_2_hd/index.m3u8?token=bc577aef8d3c2afc8d81e9bbf918fca924b49141-aefacf2c2a1d122e4c66eeff525a6224-1779392134-1779381334"
+  },
+  {
+    "name": "SONY TEN SPORTS 5 HD",
+    "image": "https://tvassets.roarzone.net/images/sony_sports_5_hd.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://edge2.roarzone.net:8447/roarzone/edge3/sony_sports_5_hd/index.m3u8?token=47f818f3ff4d6bc621d8590c5fd24d9b75fc2005-631c24057d8e09a822c59b69490ee099-1779392134-1779381334"
+  },
+  {
+    "name": "SONY TEN CRICKET",
+    "image": "https://tvassets.roarzone.net/images/ten_cricket.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://edge2.roarzone.net:8447/roarzone/edge3/ten_cricket/index.m3u8?token=e7d764a26d2ef815b3cb52c1108a3f2187ef4bd9-80709dfea4d0658b614aebc530e317b6-1779392133-1779381333"
   },
   {
     "name": "PTV Sports",
