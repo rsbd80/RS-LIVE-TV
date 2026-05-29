@@ -32,7 +32,7 @@
             margin-top: 15px;
         }
         
-        /* 🌟 ওপেন রিমোট বাটন - ডার্ক মোড লুক */
+        /* 🌟 ওপেন রিমোট বাটন */
         .remote-btn-container {
             margin: 0 auto 10px auto;
             width: 100%;
@@ -64,9 +64,6 @@
             color: #fff !important;
             border-color: #333;
         }
-        .remote-open-btn:active {
-            transform: scale(0.98);
-        }
 
         .tv-view .embed-responsive {
             border: 1px solid #222;
@@ -81,60 +78,95 @@
             height: 100%;
         }
 
-        /* 🛠️ চ্যানেল লিস্ট কন্টেইনার ফিক্স (যাতে সাইডে বর্ডার না কাটে) */
+        /* 🛠️ প্রথম স্ক্রিনশটের মতো রেসপন্সিভ হরাইজন্টাল লিস্ট ফিক্স */
         .channel-list {
-            padding-left: 10px !important;
-            padding-right: 10px !important;
+            padding: 5px 10px !important;
+            overflow: visible !important;
         }
+        
         #channel-container {
             list-style: none;
-            padding: 10px 5px !important; /* সাইডে গ্লো জেনারেট হওয়ার পর্যাপ্ত জায়গা */
+            padding: 12px 5px !important;
             margin: 0;
             display: flex;
-            flex-direction: column;
-            gap: 15px; /* প্রতিটি চ্যানেলের মাঝের স্পেস */
+            flex-direction: row; /* মোবাইলে পাশাপাশি দেখানোর জন্য */
+            gap: 12px;
+            overflow-x: auto; /* হরাইজন্টাল স্ক্রলিং এনেবল */
+            overflow-y: hidden;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
         }
+        
+        /* স্ক্রলবার হাইড করার চমৎকার ট্রিক */
+        #channel-container::-webkit-scrollbar {
+            display: none;
+        }
+        #channel-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
         #channel-container li {
             position: relative;
-            border: 2px solid transparent;
-            border-radius: 50% !important; /* আপনার গোলাকার চ্যানেলের সাথে মিলানোর জন্য */
-            overflow: visible !important; /* বর্ডারের গ্লো যাতে কেটে না যায় */
-            transition: all 0.2s ease-in-out;
+            display: inline-block;
+            flex-shrink: 0; /* লোগো যাতে চ্যাপ্টা না হয়ে যায় */
+            border: 2.5px solid transparent;
+            border-radius: 50% !important;
+            overflow: visible !important;
+            transition: all 0.15s ease-out;
             cursor: pointer;
-            width: fit-content;
-            margin: 0 auto;
-            padding: 2px; /* বর্ডার থেকে লোগোর দূরত্ব */
+            width: 65px;  /* মোবাইল স্ক্রিনের জন্য স্ট্যান্ডার্ড সাইজ */
+            height: 65px;
+            padding: 2px;
+            box-sizing: border-box;
         }
+        
         #channel-container li img, 
         #channel-container li a {
             border-radius: 50% !important;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover;
             display: block;
         }
 
-        /* 🌟 আল্ট্রা-কালারফুল পারফেক্ট গোলাকার সিলেকশন ও প্লেয়িং বর্ডার */
+        /* 💻 পিসি বা বড় স্ক্রিনের জন্য লেআউট ঠিক রাখা */
+        @media (min-width: 992px) {
+            #channel-container {
+                flex-direction: column; /* পিসিতে আগের মত লম্বালম্বি থাকবে */
+                overflow-x: hidden;
+                overflow-y: auto;
+                max-height: 450px;
+            }
+            #channel-container li {
+                margin: 0 auto;
+            }
+        }
+
+        /* 🌟 নিয়ন গ্লো সিলেকশন ও প্লেয়িং বর্ডার (১০০% গোল) */
         .selected-tv-channel {
             border-color: #00f0ff !important;
             box-shadow: 0 0 20px #00f0ff, inset 0 0 8px rgba(0, 240, 255, 0.4) !important;
-            transform: scale(1.05);
+            transform: scale(1.06);
             background: rgba(0, 240, 255, 0.08) !important;
             z-index: 5;
         }
 
         .active-tv-channel {
             border-color: #ff0055 !important;
-            box-shadow: 0 0 25px #ff0055, inset 0 0 10px rgba(255, 0, 85, 0.5) !important;
+            box-shadow: 0 0 22px #ff0055, inset 0 0 10px rgba(255, 0, 85, 0.5) !important;
             background: rgba(255, 0, 85, 0.1) !important;
-            transform: scale(1.03);
+            transform: scale(1.04);
             animation: hyperGlowPulse 1.4s infinite ease-in-out;
             z-index: 4;
         }
         @keyframes hyperGlowPulse {
-            0% { box-shadow: 0 0 15px #ff0055, inset 0 0 8px rgba(255, 0, 85, 0.3); border-color: #ff0055; }
-            50% { box-shadow: 0 0 30px #ff00ff, inset 0 0 12px rgba(255, 0, 255, 0.5); border-color: #ff00ff; }
-            100% { box-shadow: 0 0 15px #ff0055, inset 0 0 8px rgba(255, 0, 85, 0.3); border-color: #ff0055; }
+            0% { box-shadow: 0 0 12px #ff0055, inset 0 0 6px rgba(255, 0, 85, 0.3); border-color: #ff0055; }
+            50% { box-shadow: 0 0 25px #ff00ff, inset 0 0 12px rgba(255, 0, 255, 0.5); border-color: #ff00ff; }
+            100% { box-shadow: 0 0 12px #ff0055, inset 0 0 6px rgba(255, 0, 85, 0.3); border-color: #ff0055; }
         }
 
-        /* 🌟 পিওর ডার্ক মোড স্লিম টিভি রিমোট প্যানেল */
+        /* 🌟 রিমোট প্যানেল স্টাইল */
         .remote-body-floating {
             display: none;
             position: fixed;
@@ -206,21 +238,11 @@
             margin: 4px auto;
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
         }
-        .r-btn-ok:active {
-            background: #000000;
-            border-color: #00d2ff;
-            color: #00d2ff !important;
-            box-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
-        }
 
         .r-btn-power {
             background: #1a080a;
             border-color: #3d1218;
             color: #cc2944;
-        }
-        .r-btn-power:active {
-            background: #cc2944;
-            color: #fff;
         }
         .r-btn-close {
             background: #141417;
@@ -509,6 +531,7 @@
                     <iframe name="player" id="tvPlayer" class="embed-responsive-item" allowfullscreen src="channel.html"></iframe>
                 </div>
             </div>
+            
             <div class="col-xs-12 col-md-2 channel-list">
                 <ul class="thumbnail-slider" id="channel-container"></ul>
             </div>
@@ -659,7 +682,8 @@
                 targetElement.classList.add('selected-tv-channel');
             }
             
-            targetElement.scrollIntoView({ behavior: 'auto', block: 'nearest' });
+            // হরাইজন্টাল এবং ভার্টিকাল উভয় স্ক্রলিংয়ের জন্যই পারফেক্ট অটো-মেথড
+            targetElement.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
         }
 
         function updateSelectionHighlight() {
