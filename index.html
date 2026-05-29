@@ -32,7 +32,7 @@
             margin-top: 15px;
         }
         
-        /* ওপেন রিমোট বাটন */
+        /* 🌟 ওপেন রিমোট বাটন - ডার্ক মোড লুক */
         .remote-btn-container {
             margin: 0 auto 10px auto;
             width: 100%;
@@ -64,6 +64,9 @@
             color: #fff !important;
             border-color: #333;
         }
+        .remote-open-btn:active {
+            transform: scale(0.98);
+        }
 
         .tv-view .embed-responsive {
             border: 1px solid #222;
@@ -78,77 +81,40 @@
             height: 100%;
         }
 
-        /* 🛠️ আগের ওয়ান-লাইন লেআউট (বর্ডার কাটা ফিক্সড) */
+        /* 🛠️ চ্যানেল লিস্ট কন্টেইনার ফিক্স (যাতে সাইডে বর্ডার না কাটে) */
         .channel-list {
-            padding: 5px 10px !important;
-            overflow: visible !important; /* বর্ডারের গ্লো যাতে বের হতে পারে */
+            padding-left: 10px !important;
+            padding-right: 10px !important;
         }
-        
         #channel-container {
             list-style: none;
+            padding: 10px 5px !important; /* সাইডে গ্লো জেনারেট হওয়ার পর্যাপ্ত জায়গা */
             margin: 0;
             display: flex;
-            gap: 10px;
-            /* 🌟 নিয়ন লাইটের জায়গার জন্য উপরে-নিচে পর্যাপ্ত প্যাডিং */
-            padding: 12px 8px !important; 
-            overflow-x: auto;
-            overflow-y: hidden;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
+            flex-direction: column;
+            gap: 15px; /* প্রতিটি চ্যানেলের মাঝের স্পেস */
         }
-        
-        /* স্ক্রলবার হাইড */
-        #channel-container::-webkit-scrollbar {
-            display: none;
-        }
-        #channel-container {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
         #channel-container li {
             position: relative;
-            display: inline-block;
-            flex-shrink: 0;
-            border: 2.5px solid transparent;
-            /* 🌟 বর্ডার যাতে লোগোর সাথে চ্যাপ্টা বা চারকোনা না হয়ে পারফেক্ট রাউন্ড থাকে */
-            border-radius: 50% !important; 
-            overflow: visible !important; 
-            transition: all 0.15s ease-out;
+            border: 2px solid transparent;
+            border-radius: 50% !important; /* আপনার গোলাকার চ্যানেলের সাথে মিলানোর জন্য */
+            overflow: visible !important; /* বর্ডারের গ্লো যাতে কেটে না যায় */
+            transition: all 0.2s ease-in-out;
             cursor: pointer;
-            width: 65px;  
-            height: 65px;
-            padding: 2px;
-            box-sizing: border-box;
+            width: fit-content;
+            margin: 0 auto;
+            padding: 2px; /* বর্ডার থেকে লোগোর দূরত্ব */
         }
-        
         #channel-container li img, 
         #channel-container li a {
             border-radius: 50% !important;
-            width: 100% !important;
-            height: 100% !important;
-            object-fit: cover;
             display: block;
         }
 
-        /* 💻 পিসি বা বড় স্ক্রিনের জন্য রেসপন্সিভ লেআউট */
-        @media (min-width: 992px) {
-            #channel-container {
-                flex-direction: column;
-                overflow-x: hidden;
-                overflow-y: auto;
-                max-height: 450px;
-                padding: 10px 12px !important; /* পিসির জন্য সাইড প্যাডিং */
-            }
-            #channel-container li {
-                margin: 0 auto;
-            }
-        }
-
-        /* 🌟 নিয়ন গ্লো বর্ডার স্টাইল (কাটা পড়বে না) */
+        /* 🌟 আল্ট্রা-কালারফুল পারফেক্ট গোলাকার সিলেকশন ও প্লেয়িং বর্ডার */
         .selected-tv-channel {
             border-color: #00f0ff !important;
-            box-shadow: 0 0 18px #00f0ff, inset 0 0 6px rgba(0, 240, 255, 0.4) !important;
+            box-shadow: 0 0 20px #00f0ff, inset 0 0 8px rgba(0, 240, 255, 0.4) !important;
             transform: scale(1.05);
             background: rgba(0, 240, 255, 0.08) !important;
             z-index: 5;
@@ -156,19 +122,19 @@
 
         .active-tv-channel {
             border-color: #ff0055 !important;
-            box-shadow: 0 0 20px #ff0055, inset 0 0 8px rgba(255, 0, 85, 0.5) !important;
+            box-shadow: 0 0 25px #ff0055, inset 0 0 10px rgba(255, 0, 85, 0.5) !important;
             background: rgba(255, 0, 85, 0.1) !important;
             transform: scale(1.03);
             animation: hyperGlowPulse 1.4s infinite ease-in-out;
             z-index: 4;
         }
         @keyframes hyperGlowPulse {
-            0% { box-shadow: 0 0 12px #ff0055, inset 0 0 6px rgba(255, 0, 85, 0.3); border-color: #ff0055; }
-            50% { box-shadow: 0 0 22px #ff00ff, inset 0 0 10px rgba(255, 0, 255, 0.5); border-color: #ff00ff; }
-            100% { box-shadow: 0 0 12px #ff0055, inset 0 0 6px rgba(255, 0, 85, 0.3); border-color: #ff0055; }
+            0% { box-shadow: 0 0 15px #ff0055, inset 0 0 8px rgba(255, 0, 85, 0.3); border-color: #ff0055; }
+            50% { box-shadow: 0 0 30px #ff00ff, inset 0 0 12px rgba(255, 0, 255, 0.5); border-color: #ff00ff; }
+            100% { box-shadow: 0 0 15px #ff0055, inset 0 0 8px rgba(255, 0, 85, 0.3); border-color: #ff0055; }
         }
 
-        /* 🌟 টিভি রিমোট প্যানেল */
+        /* 🌟 পিওর ডার্ক মোড স্লিম টিভি রিমোট প্যানেল */
         .remote-body-floating {
             display: none;
             position: fixed;
@@ -240,11 +206,21 @@
             margin: 4px auto;
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
         }
+        .r-btn-ok:active {
+            background: #000000;
+            border-color: #00d2ff;
+            color: #00d2ff !important;
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
+        }
 
         .r-btn-power {
             background: #1a080a;
             border-color: #3d1218;
             color: #cc2944;
+        }
+        .r-btn-power:active {
+            background: #cc2944;
+            color: #fff;
         }
         .r-btn-close {
             background: #141417;
@@ -474,6 +450,27 @@
             color: #555;
             display: block;
         }
+        .time-box.days-box .time-label {
+            color: #fff;
+        }
+        .close-btn {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff1744;
+            color: #fff;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+        }
         
         .tv-osd {
             display: none;
@@ -512,7 +509,6 @@
                     <iframe name="player" id="tvPlayer" class="embed-responsive-item" allowfullscreen src="channel.html"></iframe>
                 </div>
             </div>
-            
             <div class="col-xs-12 col-md-2 channel-list">
                 <ul class="thumbnail-slider" id="channel-container"></ul>
             </div>
@@ -663,7 +659,7 @@
                 targetElement.classList.add('selected-tv-channel');
             }
             
-            targetElement.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
+            targetElement.scrollIntoView({ behavior: 'auto', block: 'nearest' });
         }
 
         function updateSelectionHighlight() {
