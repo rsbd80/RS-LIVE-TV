@@ -33,6 +33,38 @@
         .tv-area {
             margin-top: 15px;
         }
+        
+        /* 🌟 রিমোট বাটনটি প্লেয়ারের ওপরে সুন্দর করে সাজানোর জন্য স্টাইল */
+        .remote-btn-container {
+            margin: 0 auto 10px auto;
+            width: 100%;
+            max-width: 100%;
+        }
+        .remote-open-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #00d2ff, #0066ff);
+            color: #fff !important;
+            text-transform: uppercase;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            padding: 8px 20px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-decoration: none !important;
+            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .remote-open-btn:active {
+            transform: scale(0.98);
+        }
+
         .tv-view .embed-responsive {
             border: 1px solid #222;
             border-radius: 8px;
@@ -215,9 +247,7 @@
             margin-top: 15px;
         }
 
-        /* ==========================================
-           FIFA COUNTDOWN BANNER STYLES
-        ========================================== */
+        /* FIFA COUNTDOWN BANNER STYLES */
         .fifa-banner {
             background: linear-gradient(135deg, #0f0f11, #1e1e24);
             color: #fff;
@@ -313,9 +343,7 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.4);
         }
 
-        /* ==========================================
-           🌟 ২ ধরনের আলাদা হাইলাইট স্টাইল
-        ========================================== */
+        /* ২ ধরনের আলাদা হাইলাইট স্টাইল */
         .selected-tv-channel {
             border: 2px dashed #ffcc00 !important;
             box-shadow: 0 0 12px rgba(255, 204, 0, 0.7) !important;
@@ -356,141 +384,99 @@
             z-index: 10;
         }
 
-        /* ==========================================
-           📺 ভিডিও প্লেয়ারের ঠিক উপরের রেসপনসিভ রিমোট
-        ========================================== */
-        .remote-top-wrapper {
-            margin-bottom: 12px;
-            width: 100%;
-        }
-        .remote-open-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #1c1c24, #121216);
-            color: #00d2ff !important;
-            text-transform: uppercase;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            padding: 10px 20px;
-            border-radius: 8px;
-            border: 1px solid rgba(0, 210, 255, 0.2);
-            text-decoration: none !important;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        .remote-open-btn:hover {
-            border-color: #00d2ff;
-            box-shadow: 0 0 12px rgba(0, 210, 255, 0.3);
-        }
-
-        /* অনুভূমিক (Horizontal) গ্লাস রিমোট প্যানেল */
+        /* REALISTIC SLIM TV REMOTE CONTROLLER (VERTICAL) */
         .remote-body-floating {
             display: none;
-            background: rgba(18, 18, 22, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            width: 100%;
-            padding: 10px 12px;
-            border-radius: 8px;
-            border: 1px solid #2a2a35;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+            position: fixed;
+            bottom: 30px;
+            right: 25px;
+            background: linear-gradient(145deg, #18181c, #0a0a0c);
+            width: 120px;
+            padding: 15px 10px;
+            border-radius: 30px;
+            border: 2px solid #282830;
+            box-shadow: 5px 10px 30px rgba(0,0,0,0.85), inset 1px 1px 2px rgba(255,255,255,0.1);
+            text-align: center;
+            z-index: 999999;
             box-sizing: border-box;
         }
-        .remote-main-flex {
+        .remote-header {
+            color: #555;
+            font-size: 8px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+        .remote-row {
             display: flex;
-            flex-wrap: wrap;
-            align-items: center;
             justify-content: space-between;
+            margin-bottom: 10px;
             gap: 8px;
         }
-        .remote-header {
-            color: #00d2ff;
-            font-size: 10px;
-            font-weight: 900;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            padding-left: 5px;
-            flex-shrink: 0;
-        }
-        .remote-buttons-group {
-            display: flex;
-            flex-grow: 1;
-            justify-content: flex-end;
-            gap: 6px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
         .r-btn {
+            flex: 1;
             height: 34px;
-            min-width: 55px;
-            background: #22222a;
-            border: 1px solid #353540;
-            border-radius: 6px;
-            color: #ffffff;
+            background: linear-gradient(135deg, #25252b, #1a1a1f);
+            border: 1px solid #33333d;
+            border-radius: 8px;
+            color: #dddddd;
             font-size: 11px;
-            font-weight: bold;
             cursor: pointer;
-            display: inline-flex;
+            display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 0 6px;
-            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+            transition: background 0.1s;
         }
         .r-btn span {
-            font-size: 6px;
+            font-size: 5.5px;
             text-transform: uppercase;
             display: block;
-            color: #aaa;
-            margin-top: 1px;
+            color: #777;
+            margin-top: 2px;
+            line-height: 1;
+            font-weight: bold;
         }
         .r-btn:active {
-            background: #00d2ff;
-            color: #000;
-            border-color: #00d2ff;
+            background: #33333f;
+            color: #00d2ff;
         }
-        .r-btn:active span {
-            color: #000;
-        }
-
-        /* 🌟 স্পেশাল রাউন্ডেড OK বাটন */
+        
+        /* নো-কালার ডার্ক ওয়ান-টোন OK বাটন */
         .r-btn-ok {
-            background: #ffcc00;
-            border-color: #ffcc00;
-            color: #000 !important;
-            height: 36px;
-            width: 36px;
-            min-width: 36px;
+            background: linear-gradient(135deg, #2d2d35, #1f1f26);
+            border: 2px solid #3d3d4a;
+            color: #ffffff !important;
+            height: 46px;
+            width: 46px;
+            max-width: 46px;
             border-radius: 50%;
             font-size: 12px !important;
-            font-weight: 900 !important;
-            box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+            font-weight: bold !important;
+            margin: 4px auto;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.5);
         }
         .r-btn-ok:active {
-            background: #ffffff;
-            border-color: #ffffff;
-            box-shadow: 0 0 15px #ffffff;
+            background: #111115;
+            border-color: #555;
+            color: #00d2ff !important;
         }
 
         .r-btn-power {
-            background: #3d1016;
-            border-color: #ff1744;
-            color: #ff1744;
+            background: #360d13;
+            border-color: #b3102f;
+            color: #ff3355;
         }
         .r-btn-power:active {
-            background: #ff1744;
+            background: #ff3355;
             color: #fff;
         }
         .r-btn-close {
-            background: #2a2a33;
-            border-color: #444;
-            color: #fff;
+            background: #202025;
+            border-color: #3a3a45;
+            color: #999;
         }
         
         /* ওএসডি অ্যালার্ট */
@@ -510,21 +496,6 @@
             box-shadow: 0 4px 15px rgba(0,210,255,0.5);
             pointer-events: none;
         }
-
-        /* মোবাইল স্ক্রিনের জন্য অপ্টিমাইজেশন */
-        @media (max-width: 480px) {
-            .remote-header {
-                display: none;
-            }
-            .remote-buttons-group {
-                justify-content: center;
-                width: 100%;
-            }
-            .r-btn {
-                flex: 1;
-                min-width: 45px;
-            }
-        }
     </style>
 </head>
 
@@ -533,52 +504,16 @@
     <div id="tvOsd" class="tv-osd"></div>
 
     <div class="container tv-area">
-        
-        <!-- 📺 ভিডিও প্লেয়ারের ঠিক উপরে নতুন রিমোট সেকশন -->
-        <div class="row">
-            <div class="col-xs-12 col-md-10">
-                <div class="remote-top-wrapper">
-                    <!-- রিমোট কন্ট্রোল ওপেন বাটন -->
-                    <button id="remoteOpenBtn" onclick="toggleRemote(true)" class="remote-open-btn">
-                        <i class="fa-solid fa-tv"></i> OPEN TV REMOTE CONTROL PANEL
-                    </button>
-
-                    <!-- আপগ্রেডেড হরাইজন্টাল গ্লাস রিমোট প্যানেল -->
-                    <div class="remote-body-floating" id="remotePanel">
-                        <div class="remote-main-flex">
-                            <div class="remote-header">RS SMART</div>
-                            
-                            <div class="remote-buttons-group">
-                                <!-- রিসেট বাটন -->
-                                <button class="r-btn r-btn-power" onclick="reloadActiveChannel();" title="Reset"><i class="fa-solid fa-power-off"></i></button>
-                                
-                                <!-- চ্যানেল নেভিগেশন -->
-                                <button class="r-btn" onclick="moveSelection(-1);"><i class="fa-solid fa-chevron-up"></i><span>CH+</span></button>
-                                <button class="r-btn" onclick="moveSelection(1);"><i class="fa-solid fa-chevron-down"></i><span>CH-</span></button>
-                                
-                                <!-- 🌟 গোল আকর্ষণীয় OK বাটন -->
-                                <button class="r-btn r-btn-ok" onclick="selectAndPlayChannel();" title="Play">OK</button>
-                                
-                                <!-- ভলিউম কন্ট্রোল -->
-                                <button class="r-btn" onclick="controlVolume('UP');"><i class="fa-solid fa-plus"></i><span>VOL</span></button>
-                                <button class="r-btn" onclick="controlVolume('DOWN');"><i class="fa-solid fa-minus"></i><span>VOL</span></button>
-                                
-                                <!-- মিউট ও জুম -->
-                                <button class="r-btn" onclick="controlVolume('MUTE');" title="Mute"><i class="fa-solid fa-volume-xmark"></i></button>
-                                <button class="r-btn" onclick="remoteFullscreen();" title="Zoom"><i class="fa-solid fa-expand"></i></button>
-                                
-                                <!-- হাইড বাটন -->
-                                <button class="r-btn r-btn-close" onclick="toggleRemote(false);" title="Hide"><i class="fa-solid fa-xmark"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ভিডিও প্লেয়ার এবং সাইডবার চ্যানেল লিস্ট -->
         <div class="row">
             <div class="col-xs-12 col-md-10 tv-view">
+                
+                <!-- 🌟 রিমোট কন্ট্রোলার ওপেন করার বাটন - এখন প্লেয়ারের ঠিক ওপরে -->
+                <div class="remote-btn-container">
+                    <button onclick="toggleRemote(true)" class="remote-open-btn">
+                        <i class="fa-solid fa-tv"></i> OPEN TV REMOTE CONTROL PANEL
+                    </button>
+                </div>
+
                 <div class="embed-responsive embed-responsive-16by9">
                     <iframe name="player" id="tvPlayer" class="embed-responsive-item" allowfullscreen src="channel.html"></iframe>
                 </div>
@@ -628,7 +563,7 @@
                 <a href="https://t.me/rslivetv" target="_blank" class="telegram-btn">JOIN TELEGRAM</a>
             </div>
 
-            <!-- ফিفا ব্যানার -->
+            <!-- ফিফা ব্যানার -->
             <div class="fifa-banner" id="fifaBanner">
                 <button class="close-btn" onclick="document.getElementById('fifaBanner').style.display='none'">×</button>
                 <div class="fifa-logo-area">
@@ -678,6 +613,40 @@
         </div>
     </footer>
 
+    <!-- 🌟 রিয়ালিস্টিক স্লিম টিভি রিমোট প্যানেল -->
+    <div class="remote-body-floating" id="remotePanel">
+        <div class="remote-header">RS REMOTE</div>
+        
+        <!-- রো ১: পাওয়ার এবং এক্সিট -->
+        <div class="remote-row">
+            <button class="r-btn r-btn-power" onclick="reloadActiveChannel();" title="Reset"><i class="fa-solid fa-power-off"></i></button>
+            <button class="r-btn r-btn-close" onclick="toggleRemote(false);" title="Hide"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <!-- রো ২: চ্যানেল নেভিগেশন (CH+ / CH-) -->
+        <div class="remote-row">
+            <button class="r-btn" onclick="moveSelection(-1);" title="CH +"><i class="fa-solid fa-chevron-up"></i><span>CH+</span></button>
+            <button class="r-btn" onclick="moveSelection(1);" title="CH -"><i class="fa-solid fa-chevron-down"></i><span>CH-</span></button>
+        </div>
+
+        <!-- রো ৩: রিমোটের স্টাইলিশ ওয়ান-টোন ডার্ক OK বাটন -->
+        <div class="remote-row" style="margin-bottom: 5px;">
+            <button class="r-btn r-btn-ok" onclick="selectAndPlayChannel();" title="Play Select Channel">OK</button>
+        </div>
+
+        <!-- রো ৪: ভলিউম কন্ট্রোল -->
+        <div class="remote-row">
+            <button class="r-btn" onclick="controlVolume('UP');" title="Vol Up"><i class="fa-solid fa-plus"></i><span>VOL</span></button>
+            <button class="r-btn" onclick="controlVolume('DOWN');" title="Vol Down"><i class="fa-solid fa-minus"></i><span>VOL</span></button>
+        </div>
+
+        <!-- রো ৫: মিউট এবং জুম স্ক্রিন -->
+        <div class="remote-row" style="margin-bottom: 0;">
+            <button class="r-btn" onclick="controlVolume('MUTE');" title="Mute"><i class="fa-solid fa-volume-xmark"></i></button>
+            <button class="r-btn" onclick="remoteFullscreen();" title="Zoom Screen"><i class="fa-solid fa-expand"></i></button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
     <script>
         document.addEventListener('contextmenu', event => event.preventDefault());
@@ -687,10 +656,8 @@
         let currentVolume = 80;
         let isMuted = false;
 
-        // স্মার্ট টগল ফাংশন (ওপেন বাটন এবং রিমোট প্যানেল ওয়ান-বাই-ওয়ান দেখাবে)
         function toggleRemote(show) {
             document.getElementById('remotePanel').style.display = show ? 'block' : 'none';
-            document.getElementById('remoteOpenBtn').style.display = show ? 'none' : 'block';
             if(show) { updateSelectionHighlight(); }
         }
 
@@ -698,7 +665,7 @@
             const container = document.getElementById('channel-container');
             if (!container) return;
 
-            const channels = container.querySelectorAll('li, a, .channel-item');
+            const channels = container.querySelectorAll('li, a, .channel-item, img');
             if (channels.length === 0) return;
 
             selectedChannelIndex += direction;
@@ -713,13 +680,17 @@
             const container = document.getElementById('channel-container');
             if (!container) return;
 
-            const channels = container.querySelectorAll('li, a, .channel-item');
+            const channels = container.querySelectorAll('li, a, .channel-item, img');
             
-            channels.forEach(ch => ch.classList.remove('selected-tv-channel'));
+            channels.forEach(ch => {
+                const parent = ch.closest('li') || ch;
+                parent.classList.remove('selected-tv-channel');
+            });
 
             if (channels[selectedChannelIndex]) {
-                channels[selectedChannelIndex].classList.add('selected-tv-channel');
-                channels[selectedChannelIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                const targetElement = channels[selectedChannelIndex].closest('li') || channels[selectedChannelIndex];
+                targetElement.classList.add('selected-tv-channel');
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
         }
 
@@ -727,16 +698,28 @@
             const container = document.getElementById('channel-container');
             if (!container) return;
 
-            const channels = container.querySelectorAll('li, a, .channel-item');
+            const channels = container.querySelectorAll('li, a, .channel-item, img');
             if (channels.length === 0 || !channels[selectedChannelIndex]) return;
 
-            channels.forEach(ch => ch.classList.remove('active-tv-channel'));
+            const allItems = container.querySelectorAll('li, a, .channel-item');
+            allItems.forEach(ch => ch.classList.remove('active-tv-channel'));
 
             activePlayingIndex = selectedChannelIndex;
-            channels[activePlayingIndex].click();
+            
+            const targetEl = channels[activePlayingIndex];
+            
+            if (targetEl) {
+                targetEl.click();
+                
+                const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true, view: window });
+                targetEl.dispatchEvent(clickEvent);
+                
+                if(targetEl.parentElement) targetEl.parentElement.click();
 
-            channels[activePlayingIndex].classList.add('active-tv-channel');
-            channels[activePlayingIndex].classList.remove('selected-tv-channel');
+                const finalHighlight = targetEl.closest('li') || targetEl;
+                finalHighlight.classList.add('active-tv-channel');
+                finalHighlight.classList.remove('selected-tv-channel');
+            }
 
             showOSD("📺 LOADING CHANNEL...");
         }
@@ -745,18 +728,20 @@
             const container = document.getElementById('channel-container');
             if (container) {
                 container.addEventListener('click', function(e) {
-                    const channels = container.querySelectorAll('li, a, .channel-item');
+                    const channels = container.querySelectorAll('li, a, .channel-item, img');
                     channels.forEach((ch, idx) => {
                         if (ch.contains(e.target) || ch === e.target) {
                             selectedChannelIndex = idx;
                             activePlayingIndex = idx;
                             setTimeout(() => {
                                 channels.forEach(c => {
-                                    c.classList.remove('selected-tv-channel');
-                                    c.classList.remove('active-tv-channel');
+                                        const parent = c.closest('li') || c;
+                                        parent.classList.remove('selected-tv-channel');
+                                        parent.classList.remove('active-tv-channel');
                                 });
-                                if(channels[activePlayingIndex]) {
-                                    channels[activePlayingIndex].classList.add('active-tv-channel');
+                                const currentActive = channels[activePlayingIndex].closest('li') || channels[activePlayingIndex];
+                                if(currentActive) {
+                                    currentActive.classList.add('active-tv-channel');
                                 }
                             }, 150);
                         }
