@@ -348,25 +348,28 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.4);
         }
 
-        /* 🌟 আকর্ষণীয় প্রিমিয়াম গ্লোয়িং চ্যানেল হাইলাইট স্টাইল */
+        /* 🌟 আল্ট্রা-কালারফুল এবং নিয়ন গ্লোয়িং সিলেকশন স্টাইল */
         .selected-tv-channel {
-            border: 2px solid #00d2ff !important;
-            box-shadow: 0 0 20px rgba(0, 210, 255, 0.6) !important;
-            transform: scale(1.02);
-            transition: all 0.2s ease-in-out;
-            background: rgba(0, 210, 255, 0.05) !important;
+            border: 2.5px solid #00f0ff !important;
+            box-shadow: 0 0 25px #00f0ff, inset 0 0 10px rgba(0, 240, 255, 0.3) !important;
+            transform: scale(1.04);
+            transition: all 0.15s ease-out;
+            background: rgba(0, 240, 255, 0.1) !important;
+            z-index: 5;
         }
 
         .active-tv-channel {
-            border: 2px solid #ff0055 !important;
-            box-shadow: 0 0 25px rgba(255, 0, 85, 0.8) !important;
-            background: rgba(255, 0, 85, 0.05) !important;
-            animation: modernGlowPulse 1.8s infinite ease-in-out;
+            border: 2.5px solid #ff0055 !important;
+            box-shadow: 0 0 30px #ff0055, inset 0 0 12px rgba(255, 0, 85, 0.4) !important;
+            background: rgba(255, 0, 85, 0.12) !important;
+            transform: scale(1.02);
+            animation: hyperGlowPulse 1.4s infinite ease-in-out;
+            z-index: 4;
         }
-        @keyframes modernGlowPulse {
-            0% { box-shadow: 0 0 10px rgba(255, 0, 85, 0.5); border-color: rgba(255, 0, 85, 0.8); }
-            50% { box-shadow: 0 0 25px rgba(255, 0, 85, 0.9); border-color: rgba(255, 0, 85, 1); }
-            100% { box-shadow: 0 0 10px rgba(255, 0, 85, 0.5); border-color: rgba(255, 0, 85, 0.8); }
+        @keyframes hyperGlowPulse {
+            0% { box-shadow: 0 0 15px #ff0055, inset 0 0 8px rgba(255, 0, 85, 0.3); border-color: #ff0055; }
+            50% { box-shadow: 0 0 35px #ff00ff, inset 0 0 15px rgba(255, 0, 255, 0.5); border-color: #ff00ff; }
+            100% { box-shadow: 0 0 15px #ff0055, inset 0 0 8px rgba(255, 0, 85, 0.3); border-color: #ff0055; }
         }
 
         /* 🌟 পিওর ডার্ক মোড স্লিম টিভি রিমোট প্যানেল */
@@ -600,7 +603,7 @@
         </div>
     </footer>
 
-    <!-- 🌟 পিওর ডার্ক স্লিম রিমোট (ভলিউম ছাড়া) -->
+    <!-- 🌟 পিওর ডার্ক স্লিম রিমোট -->
     <div class="remote-body-floating" id="remotePanel">
         <div class="remote-header">RS REMOTE</div>
         
@@ -631,47 +634,57 @@
         document.addEventListener('contextmenu', event => event.preventDefault());
 
         let selectedChannelIndex = 0; 
-        let activePlayingIndex = 0;   
+        let activePlayingIndex = -1;   
 
         function toggleRemote(show) {
             document.getElementById('remotePanel').style.display = show ? 'block' : 'none';
             if(show) { updateSelectionHighlight(); }
         }
 
+        // 🛠️ ১ ক্লিকে ইনস্ট্যান্ট সিলেকশন হ্যান্ডলিং মেথড
         function moveSelection(direction) {
             const container = document.getElementById('channel-container');
             if (!container) return;
 
-            const channels = container.querySelectorAll('li, a, .channel-item, img');
+            const channels = container.querySelectorAll('li'); 
             if (channels.length === 0) return;
 
+            // আগের সিলেক্টেড ক্লাস রিমুভ
+            if (channels[selectedChannelIndex]) {
+                channels[selectedChannelIndex].classList.remove('selected-tv-channel');
+            }
+
+            // ইনডেক্স আপডেট
             selectedChannelIndex += direction;
 
+            // লুপ লজিক (লিস্টের শেষ থেকে প্রথমে বা প্রথম থেকে শেষে যাওয়া)
             if (selectedChannelIndex >= channels.length) selectedChannelIndex = 0;
             if (selectedChannelIndex < 0) selectedChannelIndex = channels.length - 1;
 
-            updateSelectionHighlight();
+            // নতুন সিলেক্টেড এলিমেন্টে ক্লাস যোগ করা
+            const targetElement = channels[selectedChannelIndex];
+            
+            // যদি চ্যানেলটি অলরেডি একটিভ প্লেয়িং না থাকে, তবেই সিলেকশন ক্লাস পাবে
+            if (selectedChannelIndex !== activePlayingIndex) {
+                targetElement.classList.add('selected-tv-channel');
+            }
+            
+            // ইনস্ট্যান্ট স্ক্রোল রেসপন্স
+            targetElement.scrollIntoView({ behavior: 'auto', block: 'nearest' });
         }
 
         function updateSelectionHighlight() {
             const container = document.getElementById('channel-container');
             if (!container) return;
 
-            const channels = container.querySelectorAll('li, a, .channel-item, img');
-            
-            channels.forEach(ch => {
-                const parent = ch.closest('li') || ch;
-                parent.classList.remove('selected-tv-channel');
-            });
-
-            if (channels[selectedChannelIndex]) {
-                const targetElement = channels[selectedChannelIndex].closest('li') || channels[selectedChannelIndex];
-                // যদি এলিমেন্টটি অলরেডি একটিভ প্লেয়িং না থাকে, তবেই সিলেক্ট বর্ডার দেবে
-                if (!targetElement.classList.contains('active-tv-channel')) {
-                    targetElement.classList.add('selected-tv-channel');
+            const channels = container.querySelectorAll('li');
+            channels.forEach((ch, idx) => {
+                if (idx === selectedChannelIndex && idx !== activePlayingIndex) {
+                    ch.classList.add('selected-tv-channel');
+                } else {
+                    ch.classList.remove('selected-tv-channel');
                 }
-                targetElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
+            });
         }
 
         // 🛠️ ১০০% নিখুঁত চ্যানেল প্লে ট্রিগার স্ক্রিপ্ট
@@ -679,60 +692,52 @@
             const container = document.getElementById('channel-container');
             if (!container) return;
 
-            // চাইল্ড ও প্যারেন্ট উভয় এলিমেন্টকে টার্গেট করা হয়েছে সেফটি চেকের জন্য
-            const channels = container.querySelectorAll('li, a, .channel-item, img');
+            const channels = container.querySelectorAll('li');
             if (channels.length === 0 || !channels[selectedChannelIndex]) return;
 
-            const allItems = container.querySelectorAll('li, a, .channel-item, img');
-            allItems.forEach(ch => {
-                const p = ch.closest('li') || ch;
-                p.classList.remove('active-tv-channel');
-                p.classList.remove('selected-tv-channel');
+            // আগের সমস্ত গ্লো হাইলাইট ক্লিয়ার করা হচ্ছে
+            channels.forEach(ch => {
+                ch.classList.remove('active-tv-channel');
+                ch.classList.remove('selected-tv-channel');
             });
 
             activePlayingIndex = selectedChannelIndex;
             const targetEl = channels[activePlayingIndex];
             
             if (targetEl) {
-                // ১. ডাইরেক্ট ইভেন্ট ফায়ারিং
+                // সরাসরি ক্লিক অ্যাকশন ও বাবলিং ইভেন্ট ট্রিগার
                 targetEl.click();
                 
-                // ২. মাউস ক্লিক সিমুলেশন (ডায়নামিক .m3u/JS প্লেয়ার লিস্টের জন্য)
                 const clickEvt = new MouseEvent('click', { bubbles: true, cancelable: true, view: window });
                 targetEl.dispatchEvent(clickEvt);
                 
-                // ৩. লিঙ্কের ভেতর বা ওপরে ক্লিক লাগলে প্যারেন্টকে ফোর্স ট্রিগার করা
-                if(targetEl.parentElement) targetEl.parentElement.click();
                 const anchor = targetEl.tagName === 'A' ? targetEl : targetEl.querySelector('a');
                 if (anchor) anchor.click();
 
-                // প্রিমিয়াম গ্লো অ্যানিমেশন যুক্ত করা
-                const finalHighlight = targetEl.closest('li') || targetEl;
-                finalHighlight.classList.add('active-tv-channel');
+                // নিয়ন মেজেন্টা গ্লো অ্যানিমেশন যুক্ত করা
+                targetEl.classList.add('active-tv-channel');
             }
 
             showOSD("📡 LOADING...");
         }
 
-        // সাইডবার ডিরেক্ট ক্লিকের সাথে রিমোট সিঙ্ক করার কোড
+        // সাইডবার লিস্টের ম্যানুয়াল ক্লিকের সাথে রিমোট ইনডেক্স সিঙ্ক
         document.addEventListener('DOMContentLoaded', function() {
             const container = document.getElementById('channel-container');
             if (container) {
                 container.addEventListener('click', function(e) {
-                    const channels = container.querySelectorAll('li, a, .channel-item, img');
+                    const channels = container.querySelectorAll('li');
                     channels.forEach((ch, idx) => {
                         if (ch.contains(e.target) || ch === e.target) {
                             selectedChannelIndex = idx;
                             activePlayingIndex = idx;
                             setTimeout(() => {
                                 channels.forEach(c => {
-                                    const parent = c.closest('li') || c;
-                                    parent.classList.remove('selected-tv-channel');
-                                    parent.classList.remove('active-tv-channel');
+                                    c.classList.remove('selected-tv-channel');
+                                    c.classList.remove('active-tv-channel');
                                 });
-                                const currentActive = channels[activePlayingIndex].closest('li') || channels[activePlayingIndex];
-                                if(currentActive) {
-                                    currentActive.classList.add('active-tv-channel');
+                                if(channels[activePlayingIndex]) {
+                                    channels[activePlayingIndex].classList.add('active-tv-channel');
                                 }
                             }, 100);
                         }
