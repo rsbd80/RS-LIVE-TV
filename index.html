@@ -70,23 +70,18 @@
             border-radius: 8px;
             background: #000;
             overflow: hidden;
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
         }
-        .tv-view .embed-responsive iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
+        iframe {
+            border: 0 !important;
+            display: block;
             width: 100%;
             height: 100%;
-            border: 0;
         }
 
-        /* ওয়ান-লাইন লেআউট */
+        /* 🛠️ আগের ওয়ান-লাইন লেআউট (বর্ডার কাটা ফিক্সড) */
         .channel-list {
             padding: 5px 10px !important;
-            overflow: visible !important;
+            overflow: visible !important; /* বর্ডারের গ্লো যাতে বের হতে পারে */
         }
         
         #channel-container {
@@ -94,6 +89,7 @@
             margin: 0;
             display: flex;
             gap: 10px;
+            /* 🌟 নিয়ন লাইটের জায়গার জন্য উপরে-নিচে পর্যাপ্ত প্যাডিং */
             padding: 12px 8px !important; 
             overflow-x: auto;
             overflow-y: hidden;
@@ -115,6 +111,7 @@
             display: inline-block;
             flex-shrink: 0;
             border: 2.5px solid transparent;
+            /* 🌟 বর্ডার যাতে লোগোর সাথে চ্যাপ্টা বা চারকোনা না হয়ে পারফেক্ট রাউন্ড থাকে */
             border-radius: 50% !important; 
             overflow: visible !important; 
             transition: all 0.15s ease-out;
@@ -134,21 +131,21 @@
             display: block;
         }
 
-        /* পিসি বা বড় স্ক্রিনের জন্য রেসপন্সিভ লেআউট */
+        /* 💻 পিসি বা বড় স্ক্রিনের জন্য রেসপন্সিভ লেআউট */
         @media (min-width: 992px) {
             #channel-container {
                 flex-direction: column;
                 overflow-x: hidden;
                 overflow-y: auto;
                 max-height: 450px;
-                padding: 10px 12px !important;
+                padding: 10px 12px !important; /* পিসির জন্য সাইড প্যাডিং */
             }
             #channel-container li {
                 margin: 0 auto;
             }
         }
 
-        /* নিয়ন গ্লো বর্ডার স্টাইল */
+        /* 🌟 নিয়ন গ্লো বর্ডার স্টাইল (কাটা পড়বে না) */
         .selected-tv-channel {
             border-color: #00f0ff !important;
             box-shadow: 0 0 18px #00f0ff, inset 0 0 6px rgba(0, 240, 255, 0.4) !important;
@@ -171,7 +168,7 @@
             100% { box-shadow: 0 0 12px #ff0055, inset 0 0 6px rgba(255, 0, 85, 0.3); border-color: #ff0055; }
         }
 
-        /* টিভি রিমোট প্যানেল */
+        /* 🌟 টিভি রিমোট প্যানেল */
         .remote-body-floating {
             display: none;
             position: fixed;
@@ -403,7 +400,7 @@
             margin-top: 15px;
         }
 
-        /* FIFA COUNTDOWN BANNER STYLES FIXED */
+        /* FIFA COUNTDOWN BANNER STYLES */
         .fifa-banner {
             background: linear-gradient(135deg, #0f0f11, #1e1e24);
             color: #fff;
@@ -411,25 +408,13 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 15px 12px 10px 12px;
+            padding: 10px 12px;
             border-radius: 14px;
             border: 1px solid #292933;
             width: 320px;
             margin: 15px auto;
             box-sizing: border-box;
             position: relative;
-        }
-        .fifa-banner .close-btn {
-            position: absolute;
-            top: 2px;
-            right: 8px;
-            background: none;
-            border: none;
-            color: #ff1744;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 10;
         }
         .fifa-logo-area {
             display: flex;
@@ -517,18 +502,18 @@
 
     <div class="container tv-area">
         <div class="row">
-            <div class="col-12 col-lg-10 tv-view">
+            <div class="col-xs-12 col-md-10 tv-view">
                 <div class="remote-btn-container">
                     <button onclick="toggleRemote(true)" class="remote-open-btn">
                         <i class="fa-solid fa-tv"></i> OPEN TV REMOTE CONTROL PANEL
                     </button>
                 </div>
-                <div class="embed-responsive">
-                    <iframe name="player" id="tvPlayer" allowfullscreen src="channel.html"></iframe>
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe name="player" id="tvPlayer" class="embed-responsive-item" allowfullscreen src="channel.html"></iframe>
                 </div>
             </div>
             
-            <div class="col-12 col-lg-2 channel-list">
+            <div class="col-xs-12 col-md-2 channel-list">
                 <ul class="thumbnail-slider" id="channel-container"></ul>
             </div>
         </div>
@@ -678,7 +663,7 @@
                 targetElement.classList.add('selected-tv-channel');
             }
             
-            targetElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            targetElement.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
         }
 
         function updateSelectionHighlight() {
@@ -702,29 +687,24 @@
             const channels = container.querySelectorAll('li');
             if (channels.length === 0 || !channels[selectedChannelIndex]) return;
 
+            channels.forEach(ch => {
+                ch.classList.remove('active-tv-channel');
+                ch.classList.remove('selected-tv-channel');
+            });
+
             activePlayingIndex = selectedChannelIndex;
             const targetEl = channels[activePlayingIndex];
             
             if (targetEl) {
-                channels.forEach(ch => {
-                    ch.classList.remove('active-tv-channel');
-                    ch.classList.remove('selected-tv-channel');
-                });
+                targetEl.click();
                 
+                const clickEvt = new MouseEvent('click', { bubbles: true, cancelable: true, view: window });
+                targetEl.dispatchEvent(clickEvt);
+                
+                const anchor = targetEl.tagName === 'A' ? targetEl : targetEl.querySelector('a');
+                if (anchor) anchor.click();
+
                 targetEl.classList.add('active-tv-channel');
-                
-                // আইফ্রেম সোর্স চেঞ্জ বা অ্যাঙ্কর ক্লিক হ্যান্ডলিং
-                const anchor = targetEl.querySelector('a');
-                if (anchor) {
-                    const player = document.getElementById('tvPlayer');
-                    if(anchor.getAttribute('href') && anchor.getAttribute('target') === 'player') {
-                        player.src = anchor.getAttribute('href');
-                    } else {
-                        anchor.click();
-                    }
-                } else {
-                    targetEl.click();
-                }
             }
 
             showOSD("📡 LOADING...");
@@ -734,22 +714,22 @@
             const container = document.getElementById('channel-container');
             if (container) {
                 container.addEventListener('click', function(e) {
-                    const targetLi = e.target.closest('li');
-                    if (!targetLi) return;
-                    
-                    const channels = Array.from(container.querySelectorAll('li'));
-                    const idx = channels.indexOf(targetLi);
-                    
-                    if (idx !== -1) {
-                        selectedChannelIndex = idx;
-                        activePlayingIndex = idx;
-                        
-                        channels.forEach(c => {
-                            c.classList.remove('selected-tv-channel');
-                            c.classList.remove('active-tv-channel');
-                        });
-                        targetLi.classList.add('active-tv-channel');
-                    }
+                    const channels = container.querySelectorAll('li');
+                    channels.forEach((ch, idx) => {
+                        if (ch.contains(e.target) || ch === e.target) {
+                            selectedChannelIndex = idx;
+                            activePlayingIndex = idx;
+                            setTimeout(() => {
+                                channels.forEach(c => {
+                                    c.classList.remove('selected-tv-channel');
+                                    c.classList.remove('active-tv-channel');
+                                });
+                                if(channels[activePlayingIndex]) {
+                                    channels[activePlayingIndex].classList.add('active-tv-channel');
+                                }
+                            }, 100);
+                        }
+                    });
                 });
             }
         });
