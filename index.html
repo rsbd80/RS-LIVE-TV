@@ -32,7 +32,7 @@
             margin-top: 15px;
         }
         
-        /* 🌟 ওপেন রিমোট বাটন - ডার্ক মোড লুক */
+        /* 🌟 ওপেন রিমোট বাটন */
         .remote-btn-container {
             margin: 0 auto 10px auto;
             width: 100%;
@@ -347,7 +347,7 @@
         }
 
         /* ------------------------------------------------------------- */
-        /* 🛠️ ফিক্সড হরিজন্টাল স্লাইডার এবং প্রিমিয়াম ইফেক্টস */
+        /* 🛠️ হরিজন্টাল স্লাইডার এবং প্রিমিয়াম ইফেক্টস */
         /* ------------------------------------------------------------- */
         .channel-list {
             width: 100% !important;
@@ -357,7 +357,6 @@
             margin: 0 !important;
         }
         
-        /* সম্পূর্ণ কন্টেইনার ফিক্স */
         .channel-list ul#channel-container {
             display: flex !important;
             flex-direction: row !important;
@@ -373,18 +372,16 @@
             -webkit-overflow-scrolling: touch !important;
         }
         
-        /* স্ক্রোলবার হাইড করার জন্য */
         .channel-list ul#channel-container::-webkit-scrollbar {
             display: none !important;
         }
 
-        /* 🌟 লোগোর সাইজ কমিয়ে ৫৫ পিক্সেল (55px) করা হলো */
         .channel-list ul#channel-container li {
             position: relative !important;
             display: inline-block !important;
             flex: 0 0 auto !important; 
-            width: 55px !important;    /* চওড়া ফিক্স */
-            height: 55px !important;   /* উচ্চতা ফিক্স */
+            width: 55px !important;    
+            height: 55px !important;   
             transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
             border-radius: 10px !important;
             border: 1px solid #1a1a1a !important;
@@ -393,7 +390,28 @@
             overflow: visible !important;
         }
 
-        /* লোগো ইমেজ রেসপনসিভনেস */
+        /* চ্যানেল নাম্বারিং ব্যাজ কাউন্টার */
+        body {
+            counter-reset: channel-counter;
+        }
+        .channel-list ul#channel-container li::before {
+            counter-increment: channel-counter;
+            content: counter(channel-counter);
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: #00f0ff;
+            font-size: 8px;
+            font-weight: bold;
+            padding: 1px 5px;
+            border-radius: 6px;
+            border: 1px solid #333;
+            z-index: 4;
+            pointer-events: none;
+        }
+
         .channel-list ul#channel-container li img {
             width: 100% !important;
             height: 100% !important;
@@ -402,7 +420,6 @@
             display: block !important;
         }
 
-        /* এঙ্কর ট্যাগ রিসেট */
         .channel-list ul#channel-container li a {
             display: block !important;
             width: 100% !important;
@@ -411,7 +428,6 @@
             margin: 0 !important;
         }
 
-        /* ১. সিলেক্টেড চ্যানেল হালকা জুম হবে (সায়ান নিয়ন গ্লো) */
         .selected-tv-channel {
             transform: scale(1.12) !important;
             border: 2px solid #00f0ff !important;
@@ -419,14 +435,12 @@
             z-index: 10 !important;
         }
 
-        /* ২. একটিভ প্লেয়িং চ্যানেল স্টাইল (ম্যাজেন্টা নিয়ন বর্ডার) */
         .active-tv-channel {
             border: 2px solid #ff0055 !important;
             box-shadow: 0 0 15px rgba(255, 0, 85, 0.5) !important;
             z-index: 5 !important;
         }
 
-        /* একটিভ চ্যানেলের ওপর প্রিমিয়াম ব্লিঙ্কিং লাইভ টেক্সট ব্যাজ */
         .live-indicator-badge {
             position: absolute !important;
             top: -6px !important;
@@ -451,16 +465,16 @@
         }
         /* ------------------------------------------------------------- */
 
-        /* 🌟 পিওর ডার্ক মোড স্লিম টিভি রিমোট প্যানেল */
+        /* 🌟 পিওর ডার্ক মোড স্লিম টিভি রিমোট প্যানেল (০ বাটন সহ ১১৫ পিক্সেল চওড়া) */
         .remote-body-floating {
             display: none;
             position: fixed;
-            bottom: 30px;
-            right: 25px;
+            bottom: 20px;
+            right: 15px;
             background: #0a0a0c;
-            width: 105px;
-            padding: 15px 8px;
-            border-radius: 25px;
+            width: 120px;
+            padding: 12px 6px;
+            border-radius: 20px;
             border: 1px solid #1f1f24;
             box-shadow: 0 15px 40px rgba(0,0,0,0.95);
             text-align: center;
@@ -468,27 +482,27 @@
             box-sizing: border-box;
         }
         .remote-header {
-            color: #444;
+            color: #555;
             font-size: 8px;
             font-weight: 900;
-            letter-spacing: 1.2px;
-            margin-bottom: 12px;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
             text-transform: uppercase;
         }
         .remote-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 8px;
-            gap: 6px;
+            margin-bottom: 5px;
+            gap: 4px;
         }
         .r-btn {
             flex: 1;
-            height: 36px;
-            background: #16161a;
-            border: 1px solid #26262b;
-            border-radius: 10px;
+            height: 32px;
+            background: #131316;
+            border: 1px solid #222226;
+            border-radius: 8px;
             color: #b5b5bd;
-            font-size: 12px;
+            font-size: 11px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
@@ -497,7 +511,7 @@
             transition: all 0.1s ease;
         }
         .r-btn span {
-            font-size: 5.5px;
+            font-size: 5px;
             text-transform: uppercase;
             display: block;
             color: #555;
@@ -510,18 +524,30 @@
             border-color: #33333f;
         }
         
-        /* পিওর ওয়ান-টোন ডার্ক OK বাটন */
+        .r-btn-num {
+            background: #18181c;
+            font-weight: bold;
+            font-size: 12px;
+            color: #eee;
+            border-radius: 6px;
+            height: 28px;
+        }
+        .r-btn-num:active {
+            background: #00f0ff;
+            color: #000;
+        }
+
         .r-btn-ok {
             background: #111114;
             border: 1px solid #282830;
             color: #ffffff !important;
-            height: 48px;
-            width: 48px;
-            max-width: 48px;
+            height: 38px;
+            width: 38px;
+            max-width: 38px;
             border-radius: 50%;
-            font-size: 11px !important;
+            font-size: 10px !important;
             font-weight: bold !important;
-            margin: 4px auto;
+            margin: 2px auto;
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
         }
         .r-btn-ok:active {
@@ -554,7 +580,7 @@
             left: 50%;
             transform: translateX(-50%);
             background: rgba(17, 17, 17, 0.95);
-            color: #ff0055;
+            color: #00f0ff;
             border: 1px solid #333;
             padding: 8px 20px;
             border-radius: 20px;
@@ -578,7 +604,7 @@
                 
                 <div class="remote-btn-container">
                     <button onclick="toggleRemote(true)" class="remote-open-btn">
-                        <i class="fa-solid fa-tv"></i> OPEN TV REMOTE CONTROL PANEL
+                        <i class="fa-solid fa-tv"></i> OPEN SMART TV REMOTE
                     </button>
                 </div>
 
@@ -679,7 +705,7 @@
     </footer>
 
     <div class="remote-body-floating" id="remotePanel">
-        <div class="remote-header">RS REMOTE</div>
+        <div class="remote-header">RS SMART TV</div>
         
         <div class="remote-row">
             <button class="r-btn r-btn-power" onclick="reloadActiveChannel();" title="Reset"><i class="fa-solid fa-power-off"></i></button>
@@ -687,10 +713,32 @@
         </div>
 
         <div class="remote-row">
+            <button class="r-btn r-btn-num" onclick="pressNumber('1');">1</button>
+            <button class="r-btn r-btn-num" onclick="pressNumber('2');">2</button>
+            <button class="r-btn r-btn-num" onclick="pressNumber('3');">3</button>
+        </div>
+        <div class="remote-row">
+            <button class="r-btn r-btn-num" onclick="pressNumber('4');">4</button>
+            <button class="r-btn r-btn-num" onclick="pressNumber('5');">5</button>
+            <button class="r-btn r-btn-num" onclick="pressNumber('6');">6</button>
+        </div>
+        <div class="remote-row">
+            <button class="r-btn r-btn-num" onclick="pressNumber('7');">7</button>
+            <button class="r-btn r-btn-num" onclick="pressNumber('8');">8</button>
+            <button class="r-btn r-btn-num" onclick="pressNumber('9');">9</button>
+        </div>
+        
+        <div class="remote-row">
+            <div style="flex:1;"></div>
+            <button class="r-btn r-btn-num" style="flex:1;" onclick="pressNumber('0');">0</button>
+            <div style="flex:1;"></div>
+        </div>
+
+        <div class="remote-row" style="margin-top: 5px;">
             <button class="r-btn" onclick="moveSelection(-1);" title="CH +"><i class="fa-solid fa-chevron-up"></i><span>CH+</span></button>
         </div>
 
-        <div class="remote-row" style="margin-bottom: 4px;">
+        <div class="remote-row">
             <button class="r-btn r-btn-ok" onclick="selectAndPlayChannel();" title="Play Channel">OK</button>
         </div>
 
@@ -698,8 +746,8 @@
             <button class="r-btn" onclick="moveSelection(1);" title="CH -"><i class="fa-solid fa-chevron-down"></i><span>CH-</span></button>
         </div>
 
-        <div class="remote-row" style="margin-bottom: 0; margin-top: 6px;">
-            <button class="r-btn" style="height: 30px;" onclick="remoteFullscreen();" title="Fullscreen"><i class="fa-solid fa-expand"></i></button>
+        <div class="remote-row" style="margin-bottom: 0; margin-top: 4px;">
+            <button class="r-btn" style="height: 28px;" onclick="remoteFullscreen();" title="Fullscreen"><i class="fa-solid fa-expand"></i></button>
         </div>
     </div>
 
@@ -709,10 +757,52 @@
 
         let selectedChannelIndex = 0; 
         let activePlayingIndex = -1;   
+        
+        // ডাবল ডিজিট ইনপুট হ্যান্ডল করার গ্লোবাল ভেরিয়েবল
+        let currentInputNumber = "";
+        let inputTimeout = null;
 
         function toggleRemote(show) {
             document.getElementById('remotePanel').style.display = show ? 'block' : 'none';
             if(show) { updateSelectionHighlight(); }
+        }
+
+        // 🔢 স্মার্ট ডাবল-ডিজিট নম্বর টাইপিং লজিক
+        function pressNumber(numString) {
+            const container = document.getElementById('channel-container');
+            if (!container) return;
+
+            const channels = container.querySelectorAll('li');
+
+            // আগের টাইমার ক্লিয়ার করা
+            if (inputTimeout) clearTimeout(inputTimeout);
+
+            // নতুন নম্বর স্ট্রিং এ যোগ করা
+            currentInputNumber += numString;
+            
+            // স্ক্রিনে ইনস্ট্যান্ট নম্বর শো করা
+            showOSD("INPUT: " + currentInputNumber);
+
+            // ১.৫ সেকেন্ড ইউজার এর পরবর্তী ক্লিকের জন্য অপেক্ষা করবে
+            inputTimeout = setTimeout(() => {
+                const finalChannelNumber = parseInt(currentInputNumber);
+                const targetIndex = finalChannelNumber - 1; // অ্যারে ইনডেক্স ০ ভিত্তিক
+
+                if (targetIndex >= 0 && targetIndex < channels.length) {
+                    selectedChannelIndex = targetIndex;
+                    updateSelectionHighlight();
+                    
+                    channels[selectedChannelIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                    
+                    showOSD("CH " + finalChannelNumber + " SELECTED");
+                    selectAndPlayChannel();
+                } else {
+                    showOSD("INVALID CH");
+                }
+                
+                // ইনপুট রিসেট করা
+                currentInputNumber = "";
+            }, 1500); // ১.৫ সেকেন্ড ডিলে
         }
 
         function moveSelection(direction) {
@@ -738,6 +828,7 @@
             }
             
             targetElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            showOSD("CH " + (selectedChannelIndex + 1));
         }
 
         function updateSelectionHighlight() {
@@ -788,7 +879,7 @@
                 targetEl.appendChild(liveTag);
             }
 
-            showOSD("📡 LOADING...");
+            showOSD("📡 CH " + (activePlayingIndex + 1) + " LOADING...");
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -827,7 +918,7 @@
             osd.innerText = text;
             osd.style.display = 'block';
             if (window.osdTimeout) clearTimeout(window.osdTimeout);
-            window.osdTimeout = setTimeout(() => { osd.style.display = 'none'; }, 1200);
+            window.osdTimeout = setTimeout(() => { osd.style.display = 'none'; }, 1500);
         }
 
         function reloadActiveChannel() {
