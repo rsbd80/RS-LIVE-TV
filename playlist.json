@@ -175,6 +175,11 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen7.aynaott.com/sjhdbd/index.m3u8"
   },
   {
+    "name": "Colors Bangla",
+    "image": "https://dl.dropbox.com/s/44vdhjj6fja02co/CBHD.jpg",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://yupptvcatchupire.yuppcdn.net/preview/colorsbanglahd/800.m3u8"
+  },
+  {
     "name": "ZEE BANGLA",
     "image": "https://tvassets.roarzone.net/images/34.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://yupptvcatchupire.yuppcdn.net/preview/zeebangla/2500.m3u8"
@@ -183,6 +188,36 @@
     "name": "ZEE BANGLA CINEMA",
     "image": "https://tvassets.roarzone.net/images/29.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://edge2.roarzone.net:8447/roarzone/edge3/zee_bangla_cinema/index.m3u8?token=33eb90cb5993505e7adebcdc9fe5a680f5ff40b4-89433e784e249e183a59446474d0fff1-1780020920-1780010120"
+  },
+  {
+    "name": "Zee 24 Ghanta",
+    "image": "https://s3.aynaott.com/storage/fea79ac5193dd9fb80aa1996f2adc1e2",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen6.aynaott.com/zee24/index.m3u8?e=1779283836&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=40021614a85616c858c5a6839f22dcc6"
+  },
+  {
+    "name": "Enter 10 Bangla",
+    "image": "https://s3.aynaott.com/storage/2b00567c538d392c8050124f0064c4a1",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://live-bangla.akamaized.net/liveabr/playlist.m3u8"
+  },
+  {
+    "name": "Sangeet Bangla",
+    "image": "https://s3.aynaott.com/storage/80424ce0682e14e7d51e28de33d5f380",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://cdn-4.pishow.tv/live/1143/master.m3u8"
+  },
+  {
+    "name": "SONY AATH",
+    "image": "https://tvassets.roarzone.net/images/33.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://edge2.roarzone.net:8447/roarzone/edge3/sonyaath/index.m3u8?token=571cbfa1fa2e6d2ce7d53975a8ae77afb5189d20-eb13b2ccb090084878804fb0e801091a-1780020920-1780010120"
+  },
+  {
+    "name": "Republic Bangla",
+    "image": "https://s3.aynaott.com/storage/18cb20e8e53eb27249c62d3aedf51241",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen5.aynaott.com/R_Bangla/index.m3u8?e=1779283835&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=fd3c370d04fa673a7faa815a98ef3ed9"
+  },
+  {
+    "name": "DD Bangla",
+    "image": "https://s3.aynaott.com/storage/e5117c508d18adf0a3f2475eb1fd5a9d",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/7ff57cc9046b4c188b51a0d506f36e7f/index_3.m3u8"
   },
   {
     "name": "BTV CTG",
@@ -344,24 +379,9 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen6.aynaott.com/mohonatv/index.m3u8?e=1779283762&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=017ac949515fd9b0181090287f362d2b"
   },
   {
-    "name": "DD Bangla",
-    "image": "https://s3.aynaott.com/storage/e5117c508d18adf0a3f2475eb1fd5a9d",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/7ff57cc9046b4c188b51a0d506f36e7f/index_3.m3u8"
-  },
-  {
-    "name": "Enter 10 Bangla",
-    "image": "https://s3.aynaott.com/storage/2b00567c538d392c8050124f0064c4a1",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://live-bangla.akamaized.net/liveabr/playlist.m3u8"
-  },
-  {
     "name": "Thikana",
     "image": "https://s3.aynaott.com/storage/6d1aaa03b84a69992940873fc11af8fc",
     "url": "https://rs-player.netlify.app/jw-player?url=https://5dd3981940faa.streamlock.net:443/thikanatv/thikanatv/playlist.m3u8"
-  },
-  {
-    "name": "SONY AATH",
-    "image": "https://tvassets.roarzone.net/images/33.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://edge2.roarzone.net:8447/roarzone/edge3/sonyaath/index.m3u8?token=571cbfa1fa2e6d2ce7d53975a8ae77afb5189d20-eb13b2ccb090084878804fb0e801091a-1780020920-1780010120"
   },
   {
     "name": "Deshe Bideshe",
@@ -609,11 +629,6 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1710/output/index.m3u8"
   },
   {
-    "name": "Zee 24 Ghanta",
-    "image": "https://s3.aynaott.com/storage/fea79ac5193dd9fb80aa1996f2adc1e2",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen6.aynaott.com/zee24/index.m3u8?e=1779283836&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=40021614a85616c858c5a6839f22dcc6"
-  },
-  {
     "name": "Music India",
     "image": "https://s3.aynaott.com/storage/20c3a2638df99ece9eb12aabfc03a8c3",
     "url": "https://rs-player.netlify.app/jw-player?url=https://cdn-2.pishow.tv/live/226/master.m3u8"
@@ -642,11 +657,6 @@
     "name": "G Series Drama",
     "image": "https://raw.githubusercontent.com/Rakib49/Rakibiptv/main/images%20(7).jpeg",
     "url": "https://rs-player.netlify.app/jw-player?url=https://vods2.aynaott.com/gseriesDrama/tracks-v1a1/mono.ts.m3u8"
-  },
-  {
-    "name": "Colors Bangla",
-    "image": "https://dl.dropbox.com/s/44vdhjj6fja02co/CBHD.jpg",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://yupptvcatchupire.yuppcdn.net/preview/colorsbanglahd/800.m3u8"
   },
   {
     "name": "Goldmines Bollywood",
@@ -822,16 +832,6 @@
     "name": "R Plus",
     "image": "https://s3.aynaott.com/storage/9531f970bb7abf30ac2a48f40838c3a1",
     "url": "https://rs-player.netlify.app/jw-player?url=https://thelegitpro.in/pntv/rplusnews24x7/index.m3u8"
-  },
-  {
-    "name": "Sangeet Bangla",
-    "image": "https://s3.aynaott.com/storage/80424ce0682e14e7d51e28de33d5f380",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://cdn-4.pishow.tv/live/1143/master.m3u8"
-  },
-  {
-    "name": "Republic Bangla",
-    "image": "https://s3.aynaott.com/storage/18cb20e8e53eb27249c62d3aedf51241",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen5.aynaott.com/R_Bangla/index.m3u8?e=1779283835&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=fd3c370d04fa673a7faa815a98ef3ed9"
   },
   {
     "name": "pix 11",
