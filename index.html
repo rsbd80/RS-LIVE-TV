@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DRBZH98TKH"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -19,7 +18,6 @@
     <link href="bootstrap.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
 
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -349,52 +347,76 @@
         }
 
         /* ------------------------------------------------------------- */
-        /* 🌟 জুম এফেক্ট এবং লাইভ টেক্সট ইন্ডিকেটর স্টাইল 🌟 */
+        /* 🛠️ ফিক্সড হরিজন্টাল স্লাইডার এবং প্রিমিয়াম ইফেক্টস */
         /* ------------------------------------------------------------- */
-        .channel-list ul li {
-            position: relative;
-            transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        .channel-list {
+            width: 100% !important;
+            clear: both;
+        }
+        .channel-list ul#channel-container {
+            display: flex !important;
+            flex-direction: row !important; /* হরিজন্টাল রেন্ডারিং ফিক্স */
+            flex-wrap: nowrap !important;
+            overflow-x: auto !important;
+            overflow-y: hidden !important;
+            padding: 10px 5px !important;
+            margin: 0 !important;
+            list-style: none !important;
+            gap: 12px !important;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        /* স্ক্রোলবার হাইড করার জন্য */
+        .channel-list ul#channel-container::-webkit-scrollbar {
+            display: none;
         }
 
-        /* ১. সিলেক্টেড চ্যানেল হালকা জুম হবে */
+        .channel-list ul li {
+            position: relative;
+            display: inline-block !important;
+            flex: 0 0 auto !important;
+            transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border-radius: 8px;
+            border: 1px solid #1a1a1a;
+            box-sizing: border-box;
+        }
+
+        /* ১. সিলেক্টেড চ্যানেল হালকা জুম হবে (সায়ান নিয়ন গ্লো) */
         .selected-tv-channel {
-            transform: scale(1.05) !important; /* হালকা জুম এফেক্ট */
-            background: linear-gradient(90deg, rgba(0, 240, 255, 0.15) 0%, rgba(0,0,0,0) 100%) !important;
-            box-shadow: inset 3px 0 0 #00f0ff, 0 4px 12px rgba(0,0,0,0.5) !important;
-            padding-left: 10px !important;
+            transform: scale(1.1) !important; /* পারফেক্ট দৃশ্যমান জুম */
+            border: 2px solid #00f0ff !important;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.6) !important;
             z-index: 10;
         }
 
-        /* ২. একটিভ প্লেয়িং চ্যানেল স্টাইল */
+        /* ২. একটিв প্লেয়িং চ্যানেল স্টাইল (ম্যাজেন্টা নিয়ন বর্ডার) */
         .active-tv-channel {
-            background: linear-gradient(90deg, rgba(255, 0, 85, 0.1) 0%, rgba(0,0,0,0) 100%) !important;
-            border: 1px solid rgba(255, 0, 85, 0.2) !important;
+            border: 2px solid #ff0055 !important;
+            box-shadow: 0 0 15px rgba(255, 0, 85, 0.5) !important;
             z-index: 5;
         }
 
-        /* ব্লিঙ্কিং লাইভ টেক্সট স্টাইল */
-        .live-indicator-text {
-            font-size: 9px;
-            font-weight: bold;
-            color: #ff0055;
-            background: rgba(255, 0, 85, 0.1);
-            padding: 2px 6px;
+        /* একটিভ চ্যানেলের ওপর সুন্দর ব্লিঙ্কিং লাইভ টেক্সট ব্যাজ */
+        .live-indicator-badge {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: #ff0055;
+            color: #fff;
+            font-size: 7.5px;
+            font-weight: 900;
+            padding: 2px 5px;
             border-radius: 4px;
-            border: 1px solid rgba(255, 0, 85, 0.3);
+            box-shadow: 0 0 8px #ff0055;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-right: 5px;
-            animation: blinker 1.2s linear infinite;
-            display: inline-block;
-            flex-shrink: 0;
+            animation: liveBlinker 1.2s linear infinite;
+            z-index: 99;
+            pointer-events: none;
         }
 
-        @keyframes blinker {
-            50% { opacity: 0.3; }
+        @keyframes liveBlinker {
+            50% { opacity: 0.4; }
         }
         /* ------------------------------------------------------------- */
 
@@ -523,7 +545,6 @@
         <div class="row">
             <div class="col-xs-12 col-md-10 tv-view">
                 
-                <!-- ওপেন রিমোট কন্ট্রোল বাটন -->
                 <div class="remote-btn-container">
                     <button onclick="toggleRemote(true)" class="remote-open-btn">
                         <i class="fa-solid fa-tv"></i> OPEN TV REMOTE CONTROL PANEL
@@ -534,13 +555,13 @@
                     <iframe name="player" id="tvPlayer" class="embed-responsive-item" allowfullscreen src="channel.html"></iframe>
                 </div>
             </div>
+            
             <div class="col-xs-12 col-md-2 channel-list">
-                <ul class="thumbnail-slider" id="channel-container"></ul>
+                <ul id="channel-container"></ul>
             </div>
         </div>
     </div>
 
-    <!-- নোটিশ বার -->
     <div class="marquee-container">
         <div class="notice-label">NOTICE</div>
         <marquee scrollamount="6" onmouseover="this.stop()" onmouseout="this.start()">
@@ -572,14 +593,12 @@
                 </div>
             </div>
 
-            <!-- টেলিগ্রাম কার্ড -->
             <div class="tg-card">
                 <h5 style="color:#fff; margin-bottom:5px; font-size:16px;">সাপোর্ট প্রয়োজন?</h5>
                 <p style="color:#777; font-size:11px; margin-bottom:5px;">আপডেট ও চ্যানেল রিকোয়েস্টের জন্য আমাদের টেলিগ্রাম গ্রুপে যোগ দিন।</p>
                 <a href="https://t.me/rslivetv" target="_blank" class="telegram-btn">JOIN TELEGRAM</a>
             </div>
 
-            <!-- ফিফা ব্যানার -->
             <div class="fifa-banner" id="fifaBanner">
                 <button class="close-btn" onclick="document.getElementById('fifaBanner').style.display='none'">×</button>
                 <div class="fifa-logo-area">
@@ -609,7 +628,6 @@
                 </div>
             </div>
 
-            <!-- Adsterra Banner -->
             <div class="ad-box">
                 <script type="text/javascript">
                     atOptions = {
@@ -629,7 +647,6 @@
         </div>
     </footer>
 
-    <!-- 🌟 পিওর ডার্ক স্লিম রিমোট -->
     <div class="remote-body-floating" id="remotePanel">
         <div class="remote-header">RS REMOTE</div>
         
@@ -692,7 +709,7 @@
                 targetElement.classList.add('selected-tv-channel');
             }
             
-            targetElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         }
 
         function updateSelectionHighlight() {
@@ -721,7 +738,7 @@
             channels.forEach(ch => {
                 ch.classList.remove('active-tv-channel');
                 ch.classList.remove('selected-tv-channel');
-                const oldLive = ch.querySelector('.live-indicator-text');
+                const oldLive = ch.querySelector('.live-indicator-badge');
                 if (oldLive) oldLive.remove();
             });
 
@@ -737,11 +754,11 @@
                 const anchor = targetEl.tagName === 'A' ? targetEl : targetEl.querySelector('a');
                 if (anchor) anchor.click();
 
-                // একটিভ ক্লাস এবং ব্লিঙ্কিং লাইভ ইন্ডিকেটর যুক্ত করা হচ্ছে
+                // একটিভ ক্লাস এবং প্রিমিয়াম ব্লিঙ্কিং লাইভ ইন্ডিকেটর যুক্ত করা হচ্ছে
                 targetEl.classList.add('active-tv-channel');
                 
                 const liveTag = document.createElement('span');
-                liveTag.className = 'live-indicator-text';
+                liveTag.className = 'live-indicator-badge';
                 liveTag.innerHTML = '🔴 Live';
                 targetEl.appendChild(liveTag);
             }
@@ -749,7 +766,7 @@
             showOSD("📡 LOADING...");
         }
 
-        // মাউস দিয়ে ম্যানুয়াল ক্লিকের সাথে রিমোট ইনডেক্স ও লাইভ ট্যাগ সিঙ্ক
+        // মাউস দিয়ে ম্যানニュアル ক্লিকের সাথে রিমোট ইনডেক্স ও লাইভ ট্যাগ সিঙ্ক
         document.addEventListener('DOMContentLoaded', function() {
             const container = document.getElementById('channel-container');
             if (container) {
@@ -763,14 +780,14 @@
                                 channels.forEach(c => {
                                     c.classList.remove('selected-tv-channel');
                                     c.classList.remove('active-tv-channel');
-                                    const oldLive = c.querySelector('.live-indicator-text');
+                                    const oldLive = c.querySelector('.live-indicator-badge');
                                     if (oldLive) oldLive.remove();
                                 });
                                 if(channels[activePlayingIndex]) {
                                     channels[activePlayingIndex].classList.add('active-tv-channel');
                                     
                                     const liveTag = document.createElement('span');
-                                    liveTag.className = 'live-indicator-text';
+                                    liveTag.className = 'live-indicator-badge';
                                     liveTag.innerHTML = '🔴 Live';
                                     channels[activePlayingIndex].appendChild(liveTag);
                                 }
@@ -809,7 +826,6 @@
         }
     </script>
     
-    <!-- অ্যাড স্ক্রিপ্ট -->
     <script>
         (function() {
             var adTimer = null;
@@ -839,7 +855,6 @@
         })();
     </script>
 
-    <!-- FIFA COUNTDOWN -->
     <script>
         const targetDate = new Date("June 11, 2026 00:00:00").getTime();
         const updateCountdown = setInterval(function() {
