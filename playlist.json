@@ -170,6 +170,21 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://partneta.cdn.mgmlcdn.com/omsport/smil:omsport.stream.smil/chunklist.m3u8"
   },
   {
+    "name": "Star Jalsha",
+    "image": "https://raw.githubusercontent.com/Rakib49/Rakibiptv/main/images%20(9).jpeg",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen7.aynaott.com/sjhdbd/index.m3u8"
+  },
+  {
+    "name": "ZEE BANGLA",
+    "image": "https://tvassets.roarzone.net/images/34.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://yupptvcatchupire.yuppcdn.net/preview/zeebangla/2500.m3u8"
+  },
+  {
+    "name": "ZEE BANGLA CINEMA",
+    "image": "https://tvassets.roarzone.net/images/29.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://edge2.roarzone.net:8447/roarzone/edge3/zee_bangla_cinema/index.m3u8?token=33eb90cb5993505e7adebcdc9fe5a680f5ff40b4-89433e784e249e183a59446474d0fff1-1780020920-1780010120"
+  },
+  {
     "name": "BTV CTG",
     "image": "https://s3.aynaott.com/storage/00da8a07fb26b2fb79359ee535e4c7bc",
     "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen6.aynaott.com/btvctg/index.m3u8?e=1779283747&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=9bca925fbdfe526b29d41ab7802348ec"
@@ -583,22 +598,7 @@
     "image": "https://i.ibb.co/Gfw89mC/20240804-033102.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://dzkyvlfyge.erbvr.com/PeaceTvBangla/tracks-v2a1/mono.m3u8"
   },
-  {
-    "name": "ZEE BANGLA",
-    "image": "https://tvassets.roarzone.net/images/34.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://yupptvcatchupire.yuppcdn.net/preview/zeebangla/2500.m3u8"
-  },
-  {
-    "name": "ZEE BANGLA CINEMA",
-    "image": "https://tvassets.roarzone.net/images/29.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://edge2.roarzone.net:8447/roarzone/edge3/zee_bangla_cinema/index.m3u8?token=33eb90cb5993505e7adebcdc9fe5a680f5ff40b4-89433e784e249e183a59446474d0fff1-1780020920-1780010120"
-  },
-  {
-    "name": "Star Jalsha",
-    "image": "https://raw.githubusercontent.com/Rakib49/Rakibiptv/main/images%20(9).jpeg",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen7.aynaott.com/sjhdbd/index.m3u8"
-  },
-  {
+  (
     "name": "AlJazeera",
     "image": "https://s3.aynaott.com/storage/5d707a103f48d8f9f1634f1b70e2ecdf",
     "url": "https://rs-player.netlify.app/jw-player?url=https://live-hls-apps-aje-fa.getaj.net/AJE/index.m3u8"
