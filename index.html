@@ -294,6 +294,7 @@
             color: #71718a; 
             font-size: 10px; 
             margin-bottom: 4px;
+            line-height: 1.4;
         }
         .telegram-btn {
             display: inline-block;
@@ -314,7 +315,7 @@
         .ad-box { margin: 15px auto 5px auto; width: 340px; height: 50px; display: flex; justify-content: center; overflow: hidden; }
         .copyright { color: #4b4b5c; font-size: 11px; margin-top: 15px; letter-spacing: 0.5px; }
 
-        /* 🛠️ হরিজন্টাল স্লাইডার লিস্ট */
+        /* 🛠️ হরিজন্টাল স্লাইডার লিস্ট (কার্ড সাইজ কিছুটা ছোট করা হয়েছে) */
         .channel-list { width: 100% !important; clear: both !important; display: block !important; padding: 0 !important; margin: 0 !important; }
         .channel-list ul#channel-container {
             display: flex !important;
@@ -325,7 +326,7 @@
             padding: 15px 10px !important;
             margin: 0 !important;
             list-style: none !important;
-            gap: 14px !important;
+            gap: 12px !important;
             width: 100% !important;
             box-sizing: border-box !important;
             -webkit-overflow-scrolling: touch !important;
@@ -336,10 +337,10 @@
             position: relative !important;
             display: inline-block !important;
             flex: 0 0 auto !important; 
-            width: 62px !important;    
-            height: 62px !important;   
+            width: 52px !important;    /* আগে ছিল 62px, এখন করা হয়েছে 52px */
+            height: 52px !important;   /* আগে ছিল 62px, এখন করা হয়েছে 52px */
             transition: transform 0.15s ease, border-color 0.15s ease !important;
-            border-radius: 12px !important;
+            border-radius: 10px !important;
             border: 1px solid rgba(255,255,255,0.06) !important;
             background: #09090f !important;
             box-sizing: border-box !important;
@@ -356,16 +357,16 @@
             transform: translateX(-50%);
             background: #12121f;
             color: #00f0ff;
-            font-size: 9px;
+            font-size: 8px;
             font-weight: bold;
-            padding: 1px 6px;
-            border-radius: 6px;
+            padding: 1px 5px;
+            border-radius: 5px;
             border: 1px solid rgba(0, 240, 255, 0.2);
             z-index: 4;
             pointer-events: none;
         }
 
-        .channel-list ul#channel-container li img { width: 100% !important; height: 100% !important; object-fit: cover !important; border-radius: 10px !important; display: block !important; }
+        .channel-list ul#channel-container li img { width: 100% !important; height: 100% !important; object-fit: cover !important; border-radius: 8px !important; display: block !important; }
 
         .selected-tv-channel {
             transform: scale(1.08) !important;
@@ -384,10 +385,10 @@
             right: -6px !important;
             background: #ff0055 !important;
             color: #fff !important;
-            font-size: 8px !important;
+            font-size: 7px !important;
             font-weight: bold;
-            padding: 2px 6px !important;
-            border-radius: 5px !important;
+            padding: 1px 4px !important;
+            border-radius: 4px !important;
             z-index: 99 !important;
         }
 
@@ -540,9 +541,10 @@
 
         <footer class="footer-premium">
             <div class="container">
+                <!-- 🛠️ ২ লাইনে বিভক্ত টেলিগ্রাম সাপোর্ট বিবরণ -->
                 <div class="tg-card">
                     <h5>সাপোর্ট প্রয়োজন?</h5>
-                    <p>আপডেট ও চ্যানেল রিকোয়েস্টের জন্য আমাদের টেলিগ্রাম গ্রুপে যোগ দিন।</p>
+                    <p>আপডেট ও চ্যানেল রিকোয়েস্টের জন্য আমাদের টেলিগ্রাম <br>গ্রুপে যোগ দিন।</p>
                     <a href="https://t.me/rslivetv" target="_blank" class="telegram-btn">JOIN TELEGRAM</a>
                 </div>
 
@@ -770,7 +772,7 @@
                 const currentSrc = player.src;
                 player.src = '';
                 player.src = currentSrc;
-                showOSD("RECONNECTING...");
+                showOSD("🔄 RECONNECTING...");
             }
         }
 
@@ -784,13 +786,17 @@
         }
     </script>
     
+    <!-- 📈 নিয়ন্ত্রিত সোশ্যাল বার অ্যাড স্ক্রিপ্ট (৩০ সেকেন্ডে ফিক্সড) -->
     <script>
         (function() {
             var adTimer = null;
             var isScriptInjected = false;
 
             function triggerSocialBarAd() {
+                if (isScriptInjected) return; // একবার রান হয়ে গেলে স্ক্রিপ্ট আর ডুপ্লিকেট হবে না
+
                 if (adTimer) clearTimeout(adTimer);
+                // আপনার রিকোয়েস্ট অনুযায়ী ৩০ সেকেন্ড (30000ms) সেট করা হলো
                 adTimer = setTimeout(function() {
                     if (!isScriptInjected) {
                         var adScript = document.createElement('script');
@@ -799,7 +805,7 @@
                         document.body.appendChild(adScript);
                         isScriptInjected = true;
                     }
-                }, 15000); 
+                }, 30000); 
             }
 
             document.addEventListener("DOMContentLoaded", function() {
