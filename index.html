@@ -22,12 +22,183 @@
 
     <style>
         body {
-            background: #000;
+            background: #040406;
             overflow-x: hidden;
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
+            position: relative;
         }
+
+        /* 🌌 লাইভ প্রিমিয়াম ব্যাকগ্রাউন্ড অ্যানিমেশন ইফেক্ট */
+        .bg-animation-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            background: #030305;
+            pointer-events: none;
+        }
+
+        /* নিওন গ্লোয়িং অরবিটাল ৩টি পার্টিক্যাল */
+        .bg-glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            mix-blend-mode: screen;
+            animation: floatOrb 20s infinite ease-in-out;
+        }
+        .orb-1 {
+            width: 300px;
+            height: 300px;
+            background: #00f0ff;
+            top: -50px;
+            left: -50px;
+        }
+        .orb-2 {
+            width: 350px;
+            height: 350px;
+            background: #ff0055;
+            bottom: -50px;
+            right: -50px;
+            animation-delay: -5s;
+        }
+        .orb-3 {
+            width: 250px;
+            height: 250px;
+            background: #ff9100;
+            top: 40%;
+            left: 50%;
+            animation-delay: -10s;
+        }
+
+        @keyframes floatOrb {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(40px, 60px) scale(1.1); }
+            66% { transform: translate(-30px, 30px) scale(0.9); }
+        }
+
+        /* 🎬 ওটিটি স্টাইল প্রিমিয়াম সিনেমাটিক লোডার */
+        #app-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999999;
+            opacity: 1;
+            transform: scale(1);
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease, filter 0.7s ease;
+        }
+        
+        .loader-fade-out {
+            transform: scale(1.15) !important;
+            opacity: 0 !important;
+            filter: blur(10px);
+            pointer-events: none;
+        }
+
+        .loader-content {
+            text-align: center;
+            position: relative;
+        }
+
+        .neon-line-pulse {
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00f0ff, #ff0055, transparent);
+            margin: 0 auto 20px auto;
+            animation: expandLine 1s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+            box-shadow: 0 0 10px #00f0ff, 0 0 20px #ff0055;
+        }
+
+        .loader-subtitle {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            color: #666673;
+            margin-bottom: 5px;
+            font-weight: bold;
+            opacity: 0;
+            transform: translateY(5px);
+            animation: fadeInUp 0.6s ease forwards 0.4s;
+        }
+
+        .brand-cinematic {
+            font-size: 44px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            display: flex;
+            justify(content): center;
+            align-items: center;
+            gap: 4px;
+            opacity: 0;
+            transform: scale(0.9);
+            animation: logoPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 0.6s;
+        }
+
+        @media (min-width: 768px) {
+            .brand-cinematic { font-size: 62px; letter-spacing: 6px; }
+            .loader-subtitle { font-size: 13px; letter-spacing: 8px; }
+            .neon-line-pulse { width: 180px; }
+        }
+
+        .brand-cinematic .part-rs {
+            color: #ffffff;
+            text-shadow: 0 0 15px rgba(255,255,255,0.4);
+        }
+        
+        .brand-cinematic .part-live {
+            color: #ff0055;
+            position: relative;
+            text-shadow: 0 0 15px #ff0055, 0 0 30px rgba(255, 0, 85, 0.4);
+        }
+
+        .brand-cinematic .part-tv {
+            color: #ff9100;
+            text-shadow: 0 0 15px #ff9100, 0 0 30px rgba(255, 145, 0, 0.4);
+        }
+
+        .ott-ring-loader {
+            width: 32px;
+            height: 32px;
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            border-top-color: #00f0ff;
+            border-bottom-color: #ff0055;
+            border-radius: 50%;
+            margin: 30px auto 0 auto;
+            opacity: 0;
+            animation: spinRing 1s linear infinite, fadeIn 0.5s ease forwards 0.8s;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+        }
+
+        @keyframes expandLine { to { width: 120px; } }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { to { opacity: 1; } }
+        @keyframes logoPop { to { opacity: 1; transform: scale(1); } }
+        @keyframes spinRing { to { transform: rotate(360deg); } }
+
+        /* মূল অ্যাপ্লিকেশন ব্যাকগ্রাউন্ড স্মুথনেস */
+        .main-app-content {
+            opacity: 0;
+            transform: scale(0.96);
+            filter: blur(5px);
+            transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+        }
+        .content-ready {
+            opacity: 1;
+            transform: scale(1);
+            filter: blur(0px);
+        }
+
         .tv-area {
             margin-top: 15px;
         }
@@ -43,7 +214,8 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            background: #0d0d0d;
+            background: rgba(13, 13, 13, 0.8);
+            backdrop-filter: blur(10px);
             color: #aaa !important;
             text-transform: uppercase;
             font-size: 11px;
@@ -64,15 +236,13 @@
             color: #fff !important;
             border-color: #333;
         }
-        .remote-open-btn:active {
-            transform: scale(0.98);
-        }
 
         .tv-view .embed-responsive {
             border: 1px solid #222;
             border-radius: 8px;
             background: #000;
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
         iframe {
             border: 0 !important;
@@ -81,7 +251,8 @@
             height: 100%;
         }
         .marquee-container {
-            background: #121212;
+            background: rgba(18, 18, 12, 0.8);
+            backdrop-filter: blur(10px);
             color: #ffffff;
             padding: 8px 0;
             display: flex;
@@ -100,9 +271,11 @@
             flex-shrink: 0;
         }
         .footer-premium {
-            background: #0a0a0a;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(10px);
             padding: 20px 0 30px 0;
             text-align: center;
+            border-top: 1px solid #1a1a1a;
         }
         .tio-style-banner-fixed {
             width: 320px;
@@ -215,7 +388,8 @@
             100% { transform: scale(1.5); opacity: 0; }
         }
         .tg-card {
-            background: #161616;
+            background: rgba(22, 22, 22, 0.7);
+            backdrop-filter: blur(10px);
             padding: 15px;
             border-radius: 12px;
             border: 1px solid #222;
@@ -245,14 +419,15 @@
             overflow: hidden;
         }
         .copyright {
-            color: #444;
+            color: #555;
             font-size: 11px;
             margin-top: 15px;
         }
 
         /* FIFA COUNTDOWN BANNER STYLES */
         .fifa-banner {
-            background: linear-gradient(135deg, #0f0f11, #1e1e24);
+            background: linear-gradient(135deg, rgba(15, 15, 17, 0.85), rgba(30, 30, 36, 0.85));
+            backdrop-filter: blur(10px);
             color: #fff;
             font-family: 'Arial', sans-serif;
             display: flex;
@@ -324,9 +499,6 @@
             color: #555;
             display: block;
         }
-        .time-box.days-box .time-label {
-            color: #fff;
-        }
         .close-btn {
             position: absolute;
             top: -8px;
@@ -346,9 +518,7 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.4);
         }
 
-        /* ------------------------------------------------------------- */
         /* 🛠️ হরিজন্টাল স্লাইডার এবং প্রিমিয়াম ইফেক্টস */
-        /* ------------------------------------------------------------- */
         .channel-list {
             width: 100% !important;
             clear: both !important;
@@ -384,7 +554,7 @@
             height: 55px !important;   
             transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
             border-radius: 10px !important;
-            border: 1px solid #1a1a1a !important;
+            border: 1px solid #222 !important;
             background: #000 !important;
             box-sizing: border-box !important;
             overflow: visible !important;
@@ -463,15 +633,15 @@
         @keyframes liveBlinker {
             50% { opacity: 0.4; }
         }
-        /* ------------------------------------------------------------- */
 
-        /* 🌟 পিওর ডার্ক মোড স্লিম টিভি রিমোট প্যানেল (০ বাটন সহ ১১৫ পিক্সেল চওড়া) */
+        /* 🌟 পিওর ডার্ক মোড স্লিম টিভি রিমোট প্যানেল */
         .remote-body-floating {
             display: none;
             position: fixed;
             bottom: 20px;
             right: 15px;
-            background: #0a0a0c;
+            background: rgba(10, 10, 12, 0.9);
+            backdrop-filter: blur(15px);
             width: 120px;
             padding: 12px 6px;
             border-radius: 20px;
@@ -596,113 +766,134 @@
 
 <body>
 
-    <div id="tvOsd" class="tv-osd"></div>
+    <div class="bg-animation-container">
+        <div class="bg-glow-orb orb-1"></div>
+        <div class="bg-glow-orb orb-2"></div>
+        <div class="bg-glow-orb orb-3"></div>
+    </div>
 
-    <div class="container tv-area">
-        <div class="row">
-            <div class="col-xs-12 col-md-10 tv-view">
+    <div id="app-loader">
+        <div class="loader-content">
+            <div class="neon-line-pulse"></div>
+            <div class="loader-subtitle">Premium Streaming</div>
+            <div class="brand-cinematic">
+                <span class="part-rs">RS</span>
+                <span class="part-live">LIVE</span>
+                <span class="part-tv">TV</span>
+            </div>
+            <div class="ott-ring-loader"></div>
+        </div>
+    </div>
+
+    <div id="mainAppContent" class="main-app-content">
+        <div id="tvOsd" class="tv-osd"></div>
+
+        <div class="container tv-area">
+            <div class="row">
+                <div class="col-xs-12 col-md-10 tv-view">
+                    
+                    <div class="remote-btn-container">
+                        <button onclick="toggleRemote(true)" class="remote-open-btn">
+                            <i class="fa-solid fa-tv"></i> OPEN SMART TV REMOTE
+                        </button>
+                    </div>
+
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe name="player" id="tvPlayer" class="embed-responsive-item" allowfullscreen src="channel.html"></iframe>
+                    </div>
+                </div>
                 
-                <div class="remote-btn-container">
-                    <button onclick="toggleRemote(true)" class="remote-open-btn">
-                        <i class="fa-solid fa-tv"></i> OPEN SMART TV REMOTE
-                    </button>
+                <div class="col-xs-12 channel-list">
+                    <ul id="channel-container"></ul>
                 </div>
-
-                <div class="embed-responsive embed-responsive-16by9">
-                    <iframe name="player" id="tvPlayer" class="embed-responsive-item" allowfullscreen src="channel.html"></iframe>
-                </div>
-            </div>
-            
-            <div class="col-xs-12 channel-list">
-                <ul id="channel-container"></ul>
             </div>
         </div>
-    </div>
 
-    <div class="marquee-container">
-        <div class="notice-label">NOTICE</div>
-        <marquee scrollamount="6" onmouseover="this.stop()" onmouseout="this.start()">
-            ⚠️ বর্তমানে আমাদের ওয়েবসাইট আপডেট চলছে, আপডেট চলাকালীন সময় কিছু চ্যানেল ডাউন হতে পারে। 
-            <span style="color: aqua; font-weight: bold;">টিভি চ্যানেল সম্পূর্ণ প্লে হতে ৫ থেকে ১০ সেকেন্ড টাইম নিতে পারে।</span> 
-            💡 বিরক্তিকর বিজ্ঞাপন ছাড়া টিভি দেখতে ভিডিও প্লেয়ারের নিচে ডান কোণায় ক্লিক করে 
-            <span style="color: #00FF00; font-weight: bold;">"Full Screen" মুডে ভিডিও দেখুন</span>, তাহলে কোনো অ্যাড আপনার সামনে আসবে না! ধন্যবাদ ⛔
-        </marquee>
-    </div>
-
-    <footer class="footer-premium">
-        <div class="container">
-            <div class="tio-style-banner-fixed">
-                <div class="banner-overlay"></div>
-                <div class="content-wrapper">
-                    <div class="brand-logo-fixed">
-                        <span class="rs-live">RS Live</span>
-                        <span class="tv-text">TV</span>
-                    </div>
-                    <div class="text-section-fixed">
-                        <div class="main-tags">
-                            <span class="tag-cricket">CRICKET 🏏</span>
-                            <span class="tag-football">FOOTBALL ⚽</span>
-                            <span class="tag-tv">TV SHOWS 📺</span>
-                        </div>
-                        <p class="sub-text">সব পাবেন একদম ফ্রিতে!</p>
-                    </div>
-                    <div class="live-circle"><span class="pulse"></span>LIVE</div>
-                </div>
-            </div>
-
-            <div class="tg-card">
-                <h5 style="color:#fff; margin-bottom:5px; font-size:16px;">সাপোর্ট প্রয়োজন?</h5>
-                <p style="color:#777; font-size:11px; margin-bottom:5px;">আপডেট ও চ্যানেল রিকোয়েস্টের জন্য আমাদের টেলিগ্রাম গ্রুপে যোগ দিন।</p>
-                <a href="https://t.me/rslivetv" target="_blank" class="telegram-btn">JOIN TELEGRAM</a>
-            </div>
-
-            <div class="fifa-banner" id="fifaBanner">
-                <button class="close-btn" onclick="document.getElementById('fifaBanner').style.display='none'">×</button>
-                <div class="fifa-logo-area">
-                    <img src="https://i.postimg.cc/Cx1jDDXt/20260527-235121.jpg" alt="FIFA Logo">
-                </div>
-                <div class="fifa-content">
-                    <h3 class="fifa-title">FIFA World Cup 2026</h3>
-                    <p class="fifa-date">June 11 - July 19</p>
-                    <div class="countdown-container">
-                        <div class="time-box days-box">
-                            <span class="time-num" id="days">00</span>
-                            <span class="time-label">Days</span>
-                        </div>
-                        <div class="time-box">
-                            <span class="time-num" id="hours">00</span>
-                            <span class="time-label">Hrs</span>
-                        </div>
-                        <div class="time-box">
-                            <span class="time-num" id="mins">00</span>
-                            <span class="time-label">Min</span>
-                        </div>
-                        <div class="time-box">
-                            <span class="time-num" id="secs">00</span>
-                            <span class="time-label">Sec</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="ad-box">
-                <script type="text/javascript">
-                    atOptions = {
-                        'key' : '774c0e371455f6476668178b5faae5ab',
-                        'format' : 'iframe',
-                        'height' : 50,
-                        'width' : 320,
-                        'params' : {}
-                    };
-                </script>
-                <script type="text/javascript" src="//www.highperformanceformat.com/774c0e371455f6476668178b5faae5ab/invoke.js"></script>
-            </div>
-
-            <div class="copyright">
-                © 2026 RS LIVE TV | All Rights Reserved
-            </div>
+        <div class="marquee-container">
+            <div class="notice-label">NOTICE</div>
+            <marquee scrollamount="6" onmouseover="this.stop()" onmouseout="this.start()">
+                ⚠️ বর্তমানে আমাদের ওয়েবসাইট আপডেট চলছে, আপডেট চলাকালীন সময় কিছু চ্যানেল ডাউন হতে পারে। 
+                <span style="color: aqua; font-weight: bold;">টিভি চ্যানেল সম্পূর্ণ প্লে হতে ৫ থেকে ১০ সেকেন্ড টাইম নিতে পারে।</span> 
+                💡 বিরক্তিকর বিজ্ঞাপন ছাড়া টিভি দেখতে ভিডিও প্লেয়ারের নিচে ডান কোণায় ক্লিক করে 
+                <span style="color: #00FF00; font-weight: bold;">"Full Screen" মুডে ভিডিও দেখুন</span>, তাহলে কোনো অ্যাড আপনার সামনে আসবে না! ধন্যবাদ ⛔
+            </marquee>
         </div>
-    </footer>
+
+        <footer class="footer-premium">
+            <div class="container">
+                <div class="tio-style-banner-fixed">
+                    <div class="banner-overlay"></div>
+                    <div class="content-wrapper">
+                        <div class="brand-logo-fixed">
+                            <span class="rs-live">RS Live</span>
+                            <span class="tv-text">TV</span>
+                        </div>
+                        <div class="text-section-fixed">
+                            <div class="main-tags">
+                                <span class="tag-cricket">CRICKET 🏏</span>
+                                <span class="tag-football">FOOTBALL ⚽</span>
+                                <span class="tag-tv">TV SHOWS 📺</span>
+                            </div>
+                            <p class="sub-text">সব পাবেন একদম ফ্রিতে!</p>
+                        </div>
+                        <div class="live-circle"><span class="pulse"></span>LIVE</div>
+                    </div>
+                </div>
+
+                <div class="tg-card">
+                    <h5 style="color:#fff; margin-bottom:5px; font-size:16px;">সাপোর্ট প্রয়োজন?</h5>
+                    <p style="color:#777; font-size:11px; margin-bottom:5px;">আপডেট ও চ্যানেল রিকোয়েস্টের জন্য আমাদের টেলিগ্রাম গ্রুপে যোগ দিন।</p>
+                    <a href="https://t.me/rslivetv" target="_blank" class="telegram-btn">JOIN TELEGRAM</a>
+                </div>
+
+                <div class="fifa-banner" id="fifaBanner">
+                    <button class="close-btn" onclick="document.getElementById('fifaBanner').style.display='none'">×</button>
+                    <div class="fifa-logo-area">
+                        <img src="https://i.postimg.cc/Cx1jDDXt/20260527-235121.jpg" alt="FIFA Logo">
+                    </div>
+                    <div class="fifa-content">
+                        <h3 class="fifa-title">FIFA World Cup 2026</h3>
+                        <p class="fifa-date">June 11 - July 19</p>
+                        <div class="countdown-container">
+                            <div class="time-box days-box">
+                                <span class="time-num" id="days">00</span>
+                                <span class="time-label">Days</span>
+                            </div>
+                            <div class="time-box">
+                                <span class="time-num" id="hours">00</span>
+                                <span class="time-label">Hrs</span>
+                            </div>
+                            <div class="time-box">
+                                <span class="time-num" id="mins">00</span>
+                                <span class="time-label">Min</span>
+                            </div>
+                            <div class="time-box">
+                                <span class="time-num" id="secs">00</span>
+                                <span class="time-label">Sec</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ad-box">
+                    <script type="text/javascript">
+                        atOptions = {
+                            'key' : '774c0e371455f6476668178b5faae5ab',
+                            'format' : 'iframe',
+                            'height' : 50,
+                            'width' : 320,
+                            'params' : {}
+                        };
+                    </script>
+                    <script type="text/javascript" src="//www.highperformanceformat.com/774c0e371455f6476668178b5faae5ab/invoke.js"></script>
+                </div>
+
+                <div class="copyright">
+                    © 2026 RS LIVE TV | All Rights Reserved
+                </div>
+            </div>
+        </footer>
+    </div>
 
     <div class="remote-body-floating" id="remotePanel">
         <div class="remote-header">RS SMART TV</div>
@@ -753,12 +944,26 @@
 
     <script src="script.js"></script>
     <script>
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const loader = document.getElementById('app-loader');
+                const mainContent = document.getElementById('mainAppContent');
+                
+                if (loader) {
+                    loader.classList.add('loader-fade-out');
+                    if (mainContent) {
+                        mainContent.classList.add('content-ready');
+                    }
+                    setTimeout(() => loader.remove(), 700);
+                }
+            }, 1800);
+        });
+
         document.addEventListener('contextmenu', event => event.preventDefault());
 
         let selectedChannelIndex = 0; 
         let activePlayingIndex = -1;   
         
-        // ডাবল ডিজিট ইনপুট হ্যান্ডল করার গ্লোবাল ভেরিয়েবল
         let currentInputNumber = "";
         let inputTimeout = null;
 
@@ -767,42 +972,32 @@
             if(show) { updateSelectionHighlight(); }
         }
 
-        // 🔢 স্মার্ট ডাবল-ডিজিট নম্বর টাইপিং লজিক
         function pressNumber(numString) {
             const container = document.getElementById('channel-container');
             if (!container) return;
 
             const channels = container.querySelectorAll('li');
 
-            // আগের টাইমার ক্লিয়ার করা
             if (inputTimeout) clearTimeout(inputTimeout);
 
-            // নতুন নম্বর স্ট্রিং এ যোগ করা
             currentInputNumber += numString;
-            
-            // স্ক্রিনে ইনস্ট্যান্ট নম্বর শো করা
             showOSD("INPUT: " + currentInputNumber);
 
-            // ১.৫ সেকেন্ড ইউজার এর পরবর্তী ক্লিকের জন্য অপেক্ষা করবে
             inputTimeout = setTimeout(() => {
                 const finalChannelNumber = parseInt(currentInputNumber);
-                const targetIndex = finalChannelNumber - 1; // অ্যারে ইনডেক্স ০ ভিত্তিক
+                const targetIndex = finalChannelNumber - 1;
 
                 if (targetIndex >= 0 && targetIndex < channels.length) {
                     selectedChannelIndex = targetIndex;
                     updateSelectionHighlight();
-                    
                     channels[selectedChannelIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                    
                     showOSD("CH " + finalChannelNumber + " SELECTED");
                     selectAndPlayChannel();
                 } else {
                     showOSD("INVALID CH");
                 }
-                
-                // ইনপুট রিসেট করা
                 currentInputNumber = "";
-            }, 1500); // ১.৫ সেকেন্ড ডিলে
+            }, 1500);
         }
 
         function moveSelection(direction) {
