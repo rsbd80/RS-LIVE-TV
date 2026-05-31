@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        /* 🌌 প্রিমিয়াম ডার্ক ব্যাকগ্রাউন্ড (ইমেজ রিমুভড) */
         body {
             background: #020204;
             overflow-x: hidden;
@@ -29,39 +30,6 @@
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             position: relative;
             color: #fff;
-        }
-
-        /* 🌌 অপ্টিমাইজড ল্যাগ-ফ্রি ব্যাকগ্রাউন্ড */
-        .bg-animation-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-            background: radial-gradient(circle at 50% 50%, #060612 0%, #020205 100%);
-            pointer-events: none;
-        }
-
-        .bg-glow-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.12;
-            mix-blend-mode: screen;
-            will-change: transform;
-            transform: translate3d(0,0,0);
-            animation: floatOrb 30s infinite ease-in-out;
-        }
-        .orb-1 { width: 300px; height: 300px; background: #00f0ff; top: -50px; left: -50px; }
-        .orb-2 { width: 350px; height: 350px; background: #bd00ff; bottom: -50px; right: -50px; animation-delay: -7s; }
-        .orb-3 { width: 250px; height: 250px; background: #ff0055; top: 40%; left: 50%; animation-delay: -15s; }
-
-        @keyframes floatOrb {
-            0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-            33% { transform: translate3d(30px, 40px, 0) scale(1.1); }
-            66% { transform: translate3d(-20px, 20px, 0) scale(0.9); }
         }
 
         /* 🎬 ওটিটি সিনেমাটিক লোডার */
@@ -188,6 +156,7 @@
         }
         iframe { border: 0 !important; display: block; width: 100%; height: 100%; }
 
+        /* 📋 নোটিশ বার */
         .marquee-container {
             background: #09090f;
             color: #e1e1e6;
@@ -197,6 +166,7 @@
             border-top: 1px solid rgba(255,255,255,0.04);
             border-bottom: 1px solid rgba(255,255,255,0.04);
             font-size: 13px;
+            margin-top: 5px;
         }
         .notice-label {
             background: linear-gradient(90deg, #ff0055, #bd00ff);
@@ -208,15 +178,20 @@
             font-size: 11px;
             letter-spacing: 1px;
             flex-shrink: 0;
+            z-index: 5;
+        }
+        .marquee-container marquee {
+            margin-left: 10px;
         }
 
         .footer-premium {
             background: #040408;
-            padding: 30px 0;
+            padding: 25px 0;
             text-align: center;
             border-top: 1px solid rgba(255,255,255,0.03);
         }
 
+        /* ✨ প্রিমিয়াম লাইভ ব্যানার */
         .tio-style-banner-fixed {
             width: 340px;
             height: 55px;
@@ -227,7 +202,7 @@
             border: 1px solid rgba(255,255,255,0.05);
             display: flex;
             align-items: center;
-            margin: 10px auto;
+            margin: 15px auto 5px auto;
         }
         .tio-style-banner-fixed::after {
             content: '';
@@ -298,35 +273,46 @@
             100% { transform: scale(1.6); opacity: 0; }
         }
 
-        /* 🛠️ প্রিমিয়াম টেলিগ্রাম সাপোর্ট কার্ড */
+        /* 🛠️ টেলিগ্রাম সাপোর্ট কার্ড (স্লিম ডিজাইন) */
         .tg-card {
             background: rgba(15, 15, 25, 0.6);
-            padding: 18px;
-            border-radius: 14px;
+            padding: 10px 15px;
+            border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.05);
             display: block;
             width: 340px;
-            margin: 20px auto;
+            margin: 5px auto;
             box-sizing: border-box;
+        }
+        .tg-card h5 {
+            color: #fff; 
+            margin-bottom: 2px; 
+            font-size: 14px; 
+            font-weight: 700;
+        }
+        .tg-card p {
+            color: #71718a; 
+            font-size: 10px; 
+            margin-bottom: 4px;
         }
         .telegram-btn {
             display: inline-block;
             background: linear-gradient(135deg, #0088cc, #00a2ed);
             color: #fff !important;
-            padding: 10px 30px;
-            border-radius: 8px;
+            padding: 6px 22px;
+            border-radius: 6px;
             font-weight: bold;
             text-decoration: none !important;
-            margin-top: 12px;
-            font-size: 13px;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(0, 136, 204, 0.3);
+            margin-top: 2px;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(0, 136, 204, 0.25);
             transition: all 0.2s ease;
         }
-        .telegram-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 136, 204, 0.5); }
+        .telegram-btn:hover { transform: translateY(-1px); box-shadow: 0 5px 15px rgba(0, 136, 204, 0.4); }
 
-        .ad-box { margin: 20px auto; width: 340px; height: 50px; display: flex; justify-content: center; overflow: hidden; }
-        .copyright { color: #4b4b5c; font-size: 11px; margin-top: 20px; letter-spacing: 0.5px; }
+        .ad-box { margin: 15px auto 5px auto; width: 340px; height: 50px; display: flex; justify-content: center; overflow: hidden; }
+        .copyright { color: #4b4b5c; font-size: 11px; margin-top: 15px; letter-spacing: 0.5px; }
 
         /* 🛠️ হরিজন্টাল স্লাইডার লিস্ট */
         .channel-list { width: 100% !important; clear: both !important; display: block !important; padding: 0 !important; margin: 0 !important; }
@@ -405,7 +391,7 @@
             z-index: 99 !important;
         }
 
-        /* 📺 স্মার্ট রিমোট প্যানেল */
+        /* 📺 スマートリモコンパネル */
         .remote-body-floating {
             display: none;
             position: fixed;
@@ -456,7 +442,6 @@
             margin: 4px auto;
         }
 
-        /* 🔴 লাল বাটন ফিক্স (পাওয়ার অফ আইকন সহ) */
         .r-btn-power { background: rgba(255, 0, 85, 0.1); border-color: rgba(255, 0, 85, 0.2); color: #ff0055; }
         .r-btn-power:active { background: #ff0055; color: #fff; }
         .r-btn-close { background: rgba(255,255,255,0.04); color: #8f8f9e; }
@@ -482,12 +467,6 @@
 </head>
 
 <body>
-
-    <div class="bg-animation-container">
-        <div class="bg-glow-orb orb-1"></div>
-        <div class="bg-glow-orb orb-2"></div>
-        <div class="bg-glow-orb orb-3"></div>
-    </div>
 
     <div id="app-loader">
         <div class="loader-content">
@@ -526,6 +505,7 @@
             </div>
         </div>
 
+        <!-- 📋 নোটিশ বার -->
         <div class="marquee-container">
             <div class="notice-label">NOTICE</div>
             <marquee scrollamount="6" onmouseover="this.stop()" onmouseout="this.start()">
@@ -536,31 +516,33 @@
             </marquee>
         </div>
 
+        <!-- 🔄 প্রিমিয়াম ব্যানার প্যানেল -->
+        <div class="container text-center">
+            <div class="tio-style-banner-fixed">
+                <div class="banner-overlay"></div>
+                <div class="content-wrapper">
+                    <div class="brand-logo-fixed">
+                        <span class="rs-live">RS Live</span>
+                        <span class="tv-text">TV</span>
+                    </div>
+                    <div class="text-section-fixed">
+                        <div class="main-tags">
+                            <span class="tag-cricket">CRICKET 🏏</span>
+                            <span class="tag-football">FOOTBALL ⚽</span>
+                            <span class="tag-tv">TV SHOWS 📺</span>
+                        </div>
+                        <p class="sub-text">সব পাবেন একদম ফ্রিতে!</p>
+                    </div>
+                    <div class="live-circle"><span class="pulse"></span>LIVE</div>
+                </div>
+            </div>
+        </div>
+
         <footer class="footer-premium">
             <div class="container">
-                <div class="tio-style-banner-fixed">
-                    <div class="banner-overlay"></div>
-                    <div class="content-wrapper">
-                        <div class="brand-logo-fixed">
-                            <span class="rs-live">RS Live</span>
-                            <span class="tv-text">TV</span>
-                        </div>
-                        <div class="text-section-fixed">
-                            <div class="main-tags">
-                                <span class="tag-cricket">CRICKET 🏏</span>
-                                <span class="tag-football">FOOTBALL ⚽</span>
-                                <span class="tag-tv">TV SHOWS 📺</span>
-                            </div>
-                            <p class="sub-text">সব পাবেন একদম ফ্রিতে!</p>
-                        </div>
-                        <div class="live-circle"><span class="pulse"></span>LIVE</div>
-                    </div>
-                </div>
-
-                <!-- 🛠️ আগের পুরো লেখা সহ সাপোর্ট ব্যানার -->
                 <div class="tg-card">
-                    <h5 style="color:#fff; margin-bottom:5px; font-size:16px;">সাপোর্ট প্রয়োজন?</h5>
-                    <p style="color:#71718a; font-size:11px; margin-bottom:5px;">আপডেট ও চ্যানেল রিকোয়েস্টের জন্য আমাদের টেলিগ্রাম গ্রুপে যোগ দিন।</p>
+                    <h5>সাপোর্ট প্রয়োজন?</h5>
+                    <p>আপডেট ও চ্যানেল রিকোয়েস্টের জন্য আমাদের টেলিগ্রাম গ্রুপে যোগ দিন।</p>
                     <a href="https://t.me/rslivetv" target="_blank" class="telegram-btn">JOIN TELEGRAM</a>
                 </div>
 
@@ -584,11 +566,11 @@
         </footer>
     </div>
 
+    <!-- Smart TV Remote Panel -->
     <div class="remote-body-floating" id="remotePanel">
         <div class="remote-header">RS SMART TV</div>
         
         <div class="remote-row">
-            <!-- 🔴 লাল বাটন (আইকন ফিরিয়ে আনা হয়েছে) -->
             <button class="r-btn r-btn-power" onclick="reloadActiveChannel();" title="Reset"><i class="fa-solid fa-power-off"></i></button>
             <button class="r-btn r-btn-close" onclick="toggleRemote(false);" title="Hide"><i class="fa-solid fa-xmark"></i></button>
         </div>
