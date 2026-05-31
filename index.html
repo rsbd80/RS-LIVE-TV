@@ -31,7 +31,7 @@
             color: #fff;
         }
 
-        /* 🌌 আল্ট্রা-প্রিমিয়াম গ্ল্যামারাস নিয়ন ব্যাকগ্রাউন্ড */
+        /* 🌌 অপ্টিমাইজড ল্যাগ-ফ্রি ব্যাকগ্রাউন্ড */
         .bg-animation-container {
             position: fixed;
             top: 0;
@@ -40,46 +40,28 @@
             height: 100%;
             z-index: -1;
             overflow: hidden;
-            background: radial-gradient(circle at 50% 50%, #070714 0%, #020205 100%);
+            background: radial-gradient(circle at 50% 50%, #060612 0%, #020205 100%);
             pointer-events: none;
         }
 
         .bg-glow-orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.22;
+            filter: blur(60px);
+            opacity: 0.12;
             mix-blend-mode: screen;
-            animation: floatOrb 25s infinite ease-in-out;
+            will-change: transform;
+            transform: translate3d(0,0,0);
+            animation: floatOrb 30s infinite ease-in-out;
         }
-        .orb-1 {
-            width: 400px;
-            height: 400px;
-            background: #00f0ff;
-            top: -100px;
-            left: -100px;
-        }
-        .orb-2 {
-            width: 450px;
-            height: 450px;
-            background: #bd00ff;
-            bottom: -100px;
-            right: -100px;
-            animation-delay: -6s;
-        }
-        .orb-3 {
-            width: 350px;
-            height: 350px;
-            background: #ff0055;
-            top: 30%;
-            left: 60%;
-            animation-delay: -12s;
-        }
+        .orb-1 { width: 300px; height: 300px; background: #00f0ff; top: -50px; left: -50px; }
+        .orb-2 { width: 350px; height: 350px; background: #bd00ff; bottom: -50px; right: -50px; animation-delay: -7s; }
+        .orb-3 { width: 250px; height: 250px; background: #ff0055; top: 40%; left: 50%; animation-delay: -15s; }
 
         @keyframes floatOrb {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(60px, 80px) scale(1.2); }
-            66% { transform: translate(-40px, 40px) scale(0.85); }
+            0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+            33% { transform: translate3d(30px, 40px, 0) scale(1.1); }
+            66% { transform: translate3d(-20px, 20px, 0) scale(0.9); }
         }
 
         /* 🎬 ওটিটি সিনেমাটিক লোডার */
@@ -96,27 +78,24 @@
             z-index: 9999999;
             opacity: 1;
             transform: scale(1);
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease, filter 0.8s ease;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
         }
         
         .loader-fade-out {
-            transform: scale(1.1) !important;
+            transform: scale(1.05) !important;
             opacity: 0 !important;
-            filter: blur(15px);
             pointer-events: none;
         }
 
-        .loader-content {
-            text-align: center;
-        }
+        .loader-content { text-align: center; }
 
         .neon-line-pulse {
             width: 0;
             height: 3px;
             background: linear-gradient(90deg, transparent, #00f0ff, #bd00ff, transparent);
             margin: 0 auto 25px auto;
-            animation: expandLine 1.2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
-            box-shadow: 0 0 15px #00f0ff, 0 0 25px #bd00ff;
+            animation: expandLine 1s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+            box-shadow: 0 0 10px #00f0ff;
         }
 
         .loader-subtitle {
@@ -128,7 +107,7 @@
             font-weight: 600;
             opacity: 0;
             transform: translateY(10px);
-            animation: fadeInUp 0.6s ease forwards 0.4s;
+            animation: fadeInUp 0.5s ease forwards 0.3s;
         }
 
         .brand-cinematic {
@@ -140,79 +119,50 @@
             align-items: center;
             gap: 6px;
             opacity: 0;
-            transform: scale(0.9);
-            animation: logoPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 0.6s;
+            transform: scale(0.95);
+            animation: logoPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 0.4s;
         }
 
         @media (min-width: 768px) {
             .brand-cinematic { font-size: 68px; letter-spacing: 8px; }
             .loader-subtitle { font-size: 14px; letter-spacing: 10px; }
-            .neon-line-pulse { width: 220px; }
+            .neon-line-pulse { width: 200px; }
         }
 
-        .brand-cinematic .part-rs {
-            color: #ffffff;
-            text-shadow: 0 0 20px rgba(255,255,255,0.5);
-        }
-        
-        .brand-cinematic .part-live {
-            color: #00f0ff;
-            text-shadow: 0 0 20px #00f0ff, 0 0 40px rgba(0, 240, 255, 0.4);
-        }
-
-        .brand-cinematic .part-tv {
-            color: #bd00ff;
-            text-shadow: 0 0 20px #bd00ff, 0 0 40px rgba(189, 0, 255, 0.4);
-        }
+        .brand-cinematic .part-rs { color: #ffffff; text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+        .brand-cinematic .part-live { color: #00f0ff; text-shadow: 0 0 10px #00f0ff; }
+        .brand-cinematic .part-tv { color: #bd00ff; text-shadow: 0 0 10px #bd00ff; }
 
         .ott-ring-loader {
-            width: 36px;
-            height: 36px;
-            border: 3px solid rgba(255, 255, 255, 0.03);
+            width: 32px;
+            height: 32px;
+            border: 2px solid rgba(255, 255, 255, 0.03);
             border-top-color: #00f0ff;
             border-bottom-color: #bd00ff;
             border-radius: 50%;
-            margin: 35px auto 0 auto;
+            margin: 30px auto 0 auto;
             opacity: 0;
-            animation: spinRing 1s linear infinite, fadeIn 0.5s ease forwards 0.8s;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+            animation: spinRing 0.8s linear infinite, fadeIn 0.4s ease forwards 0.6s;
         }
 
-        @keyframes expandLine { to { width: 200px; } }
+        @keyframes expandLine { to { width: 180px; } }
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeIn { to { opacity: 1; } }
         @keyframes logoPop { to { opacity: 1; transform: scale(1); } }
         @keyframes spinRing { to { transform: rotate(360deg); } }
 
-        /* মূল কনটেন্ট এরিয়া */
-        .main-app-content {
-            opacity: 0;
-            transform: scale(0.98);
-            filter: blur(8px);
-            transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
-        }
-        .content-ready {
-            opacity: 1;
-            transform: scale(1);
-            filter: blur(0px);
-        }
+        .main-app-content { opacity: 0; transition: opacity 0.4s ease; }
+        .content-ready { opacity: 1; }
 
-        .tv-area {
-            margin-top: 20px;
-        }
+        .tv-area { margin-top: 20px; }
         
-        /* 🌟 ওপেন রিমোট বাটন */
-        .remote-btn-container {
-            margin: 0 auto 15px auto;
-            width: 100%;
-        }
+        .remote-btn-container { margin: 0 auto 15px auto; width: 100%; }
         .remote-open-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            background: linear-gradient(135deg, rgba(20, 20, 30, 0.7), rgba(10, 10, 15, 0.8));
-            backdrop-filter: blur(12px);
+            background: #0d0d14;
             color: #00f0ff !important;
             text-transform: uppercase;
             font-size: 11px;
@@ -220,45 +170,32 @@
             letter-spacing: 2px;
             padding: 12px 20px;
             border-radius: 10px;
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            box-shadow: 0 4px 20px rgba(0, 240, 255, 0.15);
-            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transition: all 0.2s ease;
             cursor: pointer;
             width: 100%;
             box-sizing: border-box;
         }
-        .remote-open-btn:hover {
-            background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(189, 0, 255, 0.1));
-            border-color: #00f0ff;
-            color: #fff !important;
-            box-shadow: 0 4px 25px rgba(0, 240, 255, 0.3);
-        }
+        .remote-open-btn:hover { background: rgba(0, 240, 255, 0.05); border-color: #00f0ff; }
 
-        /* ভিডিও প্লেয়ার এরিয়া */
         .tv-view .embed-responsive {
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 12px;
             background: #000;
             overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.9);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
-        iframe {
-            border: 0 !important;
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
+        iframe { border: 0 !important; display: block; width: 100%; height: 100%; }
 
-        /* নোটিশ স্ক্রল এরিয়া */
         .marquee-container {
-            background: rgba(10, 10, 15, 0.85);
-            backdrop-filter: blur(15px);
+            background: #09090f;
             color: #e1e1e6;
             padding: 10px 0;
             display: flex;
             align-items: center;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-top: 1px solid rgba(255,255,255,0.04);
+            border-bottom: 1px solid rgba(255,255,255,0.04);
             font-size: 13px;
         }
         .notice-label {
@@ -271,19 +208,15 @@
             font-size: 11px;
             letter-spacing: 1px;
             flex-shrink: 0;
-            box-shadow: 0 0 10px rgba(255, 0, 85, 0.4);
         }
 
-        /* প্রিমিয়াম ফুটার */
         .footer-premium {
-            background: rgba(4, 4, 8, 0.9);
-            backdrop-filter: blur(20px);
+            background: #040408;
             padding: 30px 0;
             text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.04);
+            border-top: 1px solid rgba(255,255,255,0.03);
         }
 
-        /* টপ ব্র্যান্ড ব্যানার */
         .tio-style-banner-fixed {
             width: 340px;
             height: 55px;
@@ -291,7 +224,7 @@
             position: relative;
             overflow: hidden;
             border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.05);
             display: flex;
             align-items: center;
             margin: 10px auto;
@@ -303,14 +236,14 @@
             left: -150%;
             width: 50%;
             height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(0, 240, 255, 0.15) 50%, rgba(255,255,255,0) 100%);
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(0, 240, 255, 0.1) 50%, rgba(255,255,255,0) 100%);
             transform: skewX(-25deg);
-            animation: smoke-shine 4s infinite;
+            animation: smoke-shine 5s infinite;
             z-index: 3;
         }
         @keyframes smoke-shine {
             0% { left: -150%; }
-            30% { left: 150%; }
+            25% { left: 150%; }
             100% { left: 150%; }
         }
         .banner-overlay {
@@ -319,7 +252,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(189,0,255,0.05) 100%);
+            background: linear-gradient(90deg, rgba(0,0,0,0.95) 0%, transparent 100%);
             z-index: 1;
         }
         .content-wrapper {
@@ -331,39 +264,16 @@
             padding: 0 12px;
             justify-content: space-between;
         }
-        .brand-logo-fixed {
-            font-weight: 900;
-            font-size: 15px;
-            white-space: nowrap;
-            flex-shrink: 0;
-            letter-spacing: 1px;
-        }
+        .brand-logo-fixed { font-weight: 900; font-size: 15px; white-space: nowrap; flex-shrink: 0; }
         .rs-live { color: #fff; }
-        .tv-text { color: #00f0ff; text-shadow: 0 0 10px rgba(0, 240, 255, 0.6); }
+        .tv-text { color: #00f0ff; text-shadow: 0 0 5px rgba(0, 240, 255, 0.5); }
         
-        .text-section-fixed {
-            flex-grow: 1;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-        }
-        .main-tags {
-            display: flex;
-            justify-content: center;
-            gap: 5px;
-            font-size: 8px;
-            font-weight: 800;
-            text-transform: uppercase;
-        }
+        .text-section-fixed { flex-grow: 1; text-align: center; display: flex; flex-direction: column; }
+        .main-tags { display: flex; justify-content: center; gap: 5px; font-size: 8px; font-weight: 800; text-transform: uppercase; }
         .tag-cricket { color: #FFD700; }
         .tag-football { color: #00FF00; }
         .tag-tv { color: #00D2FF; }
-        .sub-text {
-            font-size: 9px;
-            color: #a5a5b5;
-            margin: 2px 0 0 0;
-            font-weight: 600;
-        }
+        .sub-text { font-size: 9px; color: #a5a5b5; margin: 2px 0 0 0; font-weight: 600; }
         .live-circle {
             background: #ff0055;
             color: white;
@@ -375,30 +285,29 @@
             align-items: center;
             gap: 5px;
             flex-shrink: 0;
-            box-shadow: 0 0 10px rgba(255, 0, 85, 0.4);
         }
         .pulse {
             width: 6px;
             height: 6px;
             background: white;
             border-radius: 50%;
-            animation: pulse-animation 1s infinite;
+            animation: pulse-animation 1.2s infinite;
         }
         @keyframes pulse-animation {
             0% { transform: scale(0.8); opacity: 1; }
-            100% { transform: scale(1.8); opacity: 0; }
+            100% { transform: scale(1.6); opacity: 0; }
         }
 
-        /* টেলিগ্রাম সাপোর্ট কার্ড */
+        /* 🛠️ প্রিমিয়াম টেলিগ্রাম সাপোর্ট কার্ড */
         .tg-card {
             background: rgba(15, 15, 25, 0.6);
-            backdrop-filter: blur(12px);
             padding: 18px;
             border-radius: 14px;
             border: 1px solid rgba(255, 255, 255, 0.05);
             display: block;
             width: 340px;
             margin: 20px auto;
+            box-sizing: border-box;
         }
         .telegram-btn {
             display: inline-block;
@@ -414,133 +323,13 @@
             box-shadow: 0 4px 15px rgba(0, 136, 204, 0.3);
             transition: all 0.2s ease;
         }
-        .telegram-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 136, 204, 0.5);
-        }
+        .telegram-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 136, 204, 0.5); }
 
-        /* 🏆 ফিফা ওটিটি স্টাইল কাউন্টডাউন ব্যানার */
-        .fifa-banner {
-            background: linear-gradient(135deg, rgba(16, 11, 28, 0.85), rgba(7, 7, 15, 0.9));
-            backdrop-filter: blur(15px);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 14px;
-            border-radius: 16px;
-            border: 1px solid rgba(189, 0, 255, 0.2);
-            width: 340px;
-            margin: 20px auto;
-            box-sizing: border-box;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(189, 0, 255, 0.1);
-        }
-        .fifa-logo-area img {
-            height: 52px;
-            width: auto;
-            object-fit: contain;
-            border-radius: 8px;
-        }
-        .fifa-content {
-            flex-grow: 1;
-            text-align: center;
-            padding: 0 10px;
-        }
-        .fifa-title {
-            font-size: 15px;
-            font-weight: 800;
-            margin: 0 0 2px 0;
-            letter-spacing: 0.5px;
-            background: linear-gradient(90deg, #fff, #00f0ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .fifa-date {
-            font-size: 10px;
-            color: #8f8f9e;
-            margin: 0 0 8px 0;
-        }
-        .countdown-container {
-            display: flex;
-            justify-content: center;
-            gap: 6px;
-        }
-        .time-box {
-            background: rgba(255, 255, 255, 0.06);
-            color: #ffffff;
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 6px;
-            padding: 4px 0;
-            flex: 1;
-            max-width: 45px;
-            text-align: center;
-        }
-        .time-box.days-box {
-            background: linear-gradient(135deg, #bd00ff, #ff0055);
-            border: none;
-        }
-        .time-num {
-            font-size: 14px;
-            font-weight: 800;
-            display: block;
-            line-height: 1.2;
-        }
-        .time-label {
-            font-size: 7.5px;
-            text-transform: uppercase;
-            font-weight: bold;
-            color: #a5a5b5;
-            display: block;
-        }
-        .time-box.days-box .time-label {
-            color: rgba(255, 255, 255, 0.8);
-        }
-        .close-btn {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: #161622;
-            color: #8f8f9e;
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            font-size: 12px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .close-btn:hover {
-            color: #fff;
-            background: #ff0055;
-        }
-
-        .ad-box {
-            margin: 20px auto;
-            width: 340px;
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            overflow: hidden;
-        }
-        .copyright {
-            color: #4b4b5c;
-            font-size: 11px;
-            margin-top: 20px;
-            letter-spacing: 0.5px;
-        }
+        .ad-box { margin: 20px auto; width: 340px; height: 50px; display: flex; justify-content: center; overflow: hidden; }
+        .copyright { color: #4b4b5c; font-size: 11px; margin-top: 20px; letter-spacing: 0.5px; }
 
         /* 🛠️ হরিজন্টাল স্লাইডার লিস্ট */
-        .channel-list {
-            width: 100% !important;
-            clear: both !important;
-            display: block !important;
-            padding: 0 !important;
-            margin: 0 !important;
-        }
-        
+        .channel-list { width: 100% !important; clear: both !important; display: block !important; padding: 0 !important; margin: 0 !important; }
         .channel-list ul#channel-container {
             display: flex !important;
             flex-direction: row !important;
@@ -555,10 +344,7 @@
             box-sizing: border-box !important;
             -webkit-overflow-scrolling: touch !important;
         }
-        
-        .channel-list ul#channel-container::-webkit-scrollbar {
-            display: none !important;
-        }
+        .channel-list ul#channel-container::-webkit-scrollbar { display: none !important; }
 
         .channel-list ul#channel-container li {
             position: relative !important;
@@ -566,18 +352,15 @@
             flex: 0 0 auto !important; 
             width: 62px !important;    
             height: 62px !important;   
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            transition: transform 0.15s ease, border-color 0.15s ease !important;
             border-radius: 12px !important;
-            border: 1px solid rgba(255,255,255,0.08) !important;
+            border: 1px solid rgba(255,255,255,0.06) !important;
             background: #09090f !important;
             box-sizing: border-box !important;
             overflow: visible !important;
         }
 
-        /* চ্যানেল কাউন্টার ব্যাজ */
-        body {
-            counter-reset: channel-counter;
-        }
+        body { counter-reset: channel-counter; }
         .channel-list ul#channel-container li::before {
             counter-increment: channel-counter;
             content: counter(channel-counter);
@@ -591,29 +374,21 @@
             font-weight: bold;
             padding: 1px 6px;
             border-radius: 6px;
-            border: 1px solid rgba(0, 240, 255, 0.3);
+            border: 1px solid rgba(0, 240, 255, 0.2);
             z-index: 4;
             pointer-events: none;
         }
 
-        .channel-list ul#channel-container li img {
-            width: 100% !important;
-            height: 100% !important;
-            object-fit: cover !important;
-            border-radius: 10px !important;
-            display: block !important;
-        }
+        .channel-list ul#channel-container li img { width: 100% !important; height: 100% !important; object-fit: cover !important; border-radius: 10px !important; display: block !important; }
 
         .selected-tv-channel {
-            transform: scale(1.1) !important;
+            transform: scale(1.08) !important;
             border: 2px solid #00f0ff !important;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5) !important;
             z-index: 10 !important;
         }
 
         .active-tv-channel {
             border: 2px solid #bd00ff !important;
-            box-shadow: 0 0 15px rgba(189, 0, 255, 0.5) !important;
             z-index: 5 !important;
         }
 
@@ -621,56 +396,38 @@
             position: absolute !important;
             top: -6px !important;
             right: -6px !important;
-            background: linear-gradient(90deg, #ff0055, #bd00ff) !important;
+            background: #ff0055 !important;
             color: #fff !important;
             font-size: 8px !important;
             font-weight: bold;
             padding: 2px 6px !important;
             border-radius: 5px !important;
-            box-shadow: 0 0 10px rgba(255, 0, 85, 0.5) !important;
-            text-transform: uppercase !important;
-            animation: liveBlinker 1.5s linear infinite !important;
             z-index: 99 !important;
         }
 
-        @keyframes liveBlinker { 50% { opacity: 0.5; } }
-
-        /* 📺 লাক্সারি ওটিটি স্মার্ট রিমোট প্যানেল */
+        /* 📺 স্মার্ট রিমোট প্যানেল */
         .remote-body-floating {
             display: none;
             position: fixed;
             bottom: 25px;
             right: 20px;
-            background: rgba(10, 10, 18, 0.85);
-            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 18, 0.9);
             width: 130px;
             padding: 14px 8px;
             border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.8);
             text-align: center;
             z-index: 999999;
             box-sizing: border-box;
         }
-        .remote-header {
-            color: #71718a;
-            font-size: 9px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-        }
-        .remote-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 6px;
-            gap: 5px;
-        }
+        .remote-header { color: #71718a; font-size: 9px; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 12px; text-transform: uppercase; }
+        .remote-row { display: flex; justify-content: space-between; margin-bottom: 6px; gap: 5px; }
         .r-btn {
             flex: 1;
             height: 34px;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.06);
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
             border-radius: 10px;
             color: #c5c5d6;
             font-size: 12px;
@@ -679,32 +436,12 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s ease;
         }
-        .r-btn span {
-            font-size: 5px;
-            text-transform: uppercase;
-            display: block;
-            color: #6b6b80;
-            margin-top: 2px;
-            font-weight: bold;
-        }
-        .r-btn:active, .r-btn:hover {
-            background: rgba(0, 240, 255, 0.1);
-            color: #00f0ff;
-            border-color: rgba(0, 240, 255, 0.3);
-        }
+        .r-btn span { font-size: 5px; text-transform: uppercase; display: block; color: #6b6b80; margin-top: 2px; font-weight: bold; }
+        .r-btn:active { background: rgba(0, 240, 255, 0.1); color: #00f0ff; }
         
-        .r-btn-num {
-            background: rgba(255,255,255,0.02);
-            font-weight: 700;
-            font-size: 13px;
-            color: #fff;
-        }
-        .r-btn-num:active {
-            background: #00f0ff;
-            color: #000;
-        }
+        .r-btn-num { background: rgba(255,255,255,0.01); font-weight: 700; font-size: 13px; color: #fff; }
+        .r-btn-num:active { background: #00f0ff; color: #000; }
 
         .r-btn-ok {
             background: linear-gradient(135deg, #bd00ff, #00f0ff);
@@ -717,43 +454,27 @@
             font-size: 11px !important;
             font-weight: bold !important;
             margin: 4px auto;
-            box-shadow: 0 4px 15px rgba(189, 0, 255, 0.3);
-        }
-        .r-btn-ok:active {
-            transform: scale(0.95);
-            box-shadow: 0 0 15px #00f0ff;
         }
 
-        .r-btn-power {
-            background: rgba(255, 0, 85, 0.1);
-            border-color: rgba(255, 0, 85, 0.2);
-            color: #ff0055;
-        }
-        .r-btn-power:active {
-            background: #ff0055;
-            color: #fff;
-        }
-        .r-btn-close {
-            background: rgba(255,255,255,0.05);
-            color: #8f8f9e;
-        }
+        /* 🔴 লাল বাটন ফিক্স (পাওয়ার অফ আইকন সহ) */
+        .r-btn-power { background: rgba(255, 0, 85, 0.1); border-color: rgba(255, 0, 85, 0.2); color: #ff0055; }
+        .r-btn-power:active { background: #ff0055; color: #fff; }
+        .r-btn-close { background: rgba(255,255,255,0.04); color: #8f8f9e; }
         
-        /* OSD মেসেজ উইন্ডো */
         .tv-osd {
             display: none;
             position: fixed;
             top: 50px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(10, 10, 18, 0.95);
+            background: #0a0a12;
             color: #00f0ff;
-            border: 1px solid rgba(0, 240, 255, 0.3);
+            border: 1px solid rgba(0, 240, 255, 0.2);
             padding: 10px 24px;
             border-radius: 30px;
             font-weight: bold;
             font-size: 13px;
             z-index: 1000000;
-            box-shadow: 0 10px 25px rgba(0, 240, 255, 0.2);
             pointer-events: none;
             letter-spacing: 1px;
         }
@@ -836,39 +557,11 @@
                     </div>
                 </div>
 
+                <!-- 🛠️ আগের পুরো লেখা সহ সাপোর্ট ব্যানার -->
                 <div class="tg-card">
                     <h5 style="color:#fff; margin-bottom:5px; font-size:16px;">সাপোর্ট প্রয়োজন?</h5>
                     <p style="color:#71718a; font-size:11px; margin-bottom:5px;">আপডেট ও চ্যানেল রিকোয়েস্টের জন্য আমাদের টেলিগ্রাম গ্রুপে যোগ দিন।</p>
                     <a href="https://t.me/rslivetv" target="_blank" class="telegram-btn">JOIN TELEGRAM</a>
-                </div>
-
-                <div class="fifa-banner" id="fifaBanner">
-                    <button class="close-btn" onclick="document.getElementById('fifaBanner').style.display='none'">×</button>
-                    <div class="fifa-logo-area">
-                        <img src="https://i.postimg.cc/Cx1jDDXt/20260527-235121.jpg" alt="FIFA Logo">
-                    </div>
-                    <div class="fifa-content">
-                        <h3 class="fifa-title">FIFA World Cup 2026</h3>
-                        <p class="fifa-date">June 11 - July 19</p>
-                        <div class="countdown-container">
-                            <div class="time-box days-box">
-                                <span class="time-num" id="days">00</span>
-                                <span class="time-label">Days</span>
-                            </div>
-                            <div class="time-box">
-                                <span class="time-num" id="hours">00</span>
-                                <span class="time-label">Hrs</span>
-                            </div>
-                            <div class="time-box">
-                                <span class="time-num" id="mins">00</span>
-                                <span class="time-label">Min</span>
-                            </div>
-                            <div class="time-box">
-                                <span class="time-num" id="secs">00</span>
-                                <span class="time-label">Sec</span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="ad-box">
@@ -895,6 +588,7 @@
         <div class="remote-header">RS SMART TV</div>
         
         <div class="remote-row">
+            <!-- 🔴 লাল বাটন (আইকন ফিরিয়ে আনা হয়েছে) -->
             <button class="r-btn r-btn-power" onclick="reloadActiveChannel();" title="Reset"><i class="fa-solid fa-power-off"></i></button>
             <button class="r-btn r-btn-close" onclick="toggleRemote(false);" title="Hide"><i class="fa-solid fa-xmark"></i></button>
         </div>
@@ -940,26 +634,22 @@
 
     <script src="script.js"></script>
     <script>
-        window.addEventListener('load', function() {
+        window.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 const loader = document.getElementById('app-loader');
                 const mainContent = document.getElementById('mainAppContent');
-                
                 if (loader) {
                     loader.classList.add('loader-fade-out');
-                    if (mainContent) {
-                        mainContent.classList.add('content-ready');
-                    }
-                    setTimeout(() => loader.remove(), 800);
+                    if (mainContent) mainContent.classList.add('content-ready');
+                    setTimeout(() => loader.remove(), 500);
                 }
-            }, 1800);
+            }, 1500);
         });
 
         document.addEventListener('contextmenu', event => event.preventDefault());
 
         let selectedChannelIndex = 0; 
         let activePlayingIndex = -1;   
-        
         let currentInputNumber = "";
         let inputTimeout = null;
 
@@ -971,9 +661,7 @@
         function pressNumber(numString) {
             const container = document.getElementById('channel-container');
             if (!container) return;
-
             const channels = container.querySelectorAll('li');
-
             if (inputTimeout) clearTimeout(inputTimeout);
 
             currentInputNumber += numString;
@@ -987,19 +675,17 @@
                     selectedChannelIndex = targetIndex;
                     updateSelectionHighlight();
                     channels[selectedChannelIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                    showOSD("CH " + finalChannelNumber + " SELECTED");
                     selectAndPlayChannel();
                 } else {
                     showOSD("INVALID CH");
                 }
                 currentInputNumber = "";
-            }, 1500);
+            }, 1200);
         }
 
         function moveSelection(direction) {
             const container = document.getElementById('channel-container');
             if (!container) return;
-
             const channels = container.querySelectorAll('li'); 
             if (channels.length === 0) return;
 
@@ -1008,24 +694,19 @@
             }
 
             selectedChannelIndex += direction;
-
             if (selectedChannelIndex >= channels.length) selectedChannelIndex = 0;
             if (selectedChannelIndex < 0) selectedChannelIndex = channels.length - 1;
 
             const targetElement = channels[selectedChannelIndex];
-            
             if (selectedChannelIndex !== activePlayingIndex) {
                 targetElement.classList.add('selected-tv-channel');
             }
-            
             targetElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-            showOSD("CH " + (selectedChannelIndex + 1));
         }
 
         function updateSelectionHighlight() {
             const container = document.getElementById('channel-container');
             if (!container) return;
-
             const channels = container.querySelectorAll('li');
             channels.forEach((ch, idx) => {
                 if (idx === selectedChannelIndex && idx !== activePlayingIndex) {
@@ -1039,13 +720,11 @@
         function selectAndPlayChannel() {
             const container = document.getElementById('channel-container');
             if (!container) return;
-
             const channels = container.querySelectorAll('li');
             if (channels.length === 0 || !channels[selectedChannelIndex]) return;
 
             channels.forEach(ch => {
-                ch.classList.remove('active-tv-channel');
-                ch.classList.remove('selected-tv-channel');
+                ch.classList.remove('active-tv-channel', 'selected-tv-channel');
                 const oldLive = ch.querySelector('.live-indicator-badge');
                 if (oldLive) oldLive.remove();
             });
@@ -1054,14 +733,8 @@
             const targetEl = channels[activePlayingIndex];
             
             if (targetEl) {
-                targetEl.click();
-                
-                const clickEvt = new MouseEvent('click', { bubbles: true, cancelable: true, view: window });
-                targetEl.dispatchEvent(clickEvt);
-                
                 const anchor = targetEl.tagName === 'A' ? targetEl : targetEl.querySelector('a');
                 if (anchor) anchor.click();
-
                 targetEl.classList.add('active-tv-channel');
                 
                 const liveTag = document.createElement('span');
@@ -1069,37 +742,34 @@
                 liveTag.innerHTML = '🔴 Live';
                 targetEl.appendChild(liveTag);
             }
-
-            showOSD("📡 CH " + (activePlayingIndex + 1) + " LOADING...");
         }
 
         document.addEventListener('DOMContentLoaded', function() {
             const container = document.getElementById('channel-container');
             if (container) {
                 container.addEventListener('click', function(e) {
-                    const channels = container.querySelectorAll('li');
-                    channels.forEach((ch, idx) => {
-                        if (ch.contains(e.target) || ch === e.target) {
-                            selectedChannelIndex = idx;
-                            activePlayingIndex = idx;
-                            setTimeout(() => {
-                                channels.forEach(c => {
-                                    c.classList.remove('selected-tv-channel');
-                                    c.classList.remove('active-tv-channel');
-                                    const oldLive = c.querySelector('.live-indicator-badge');
-                                    if (oldLive) oldLive.remove();
-                                });
-                                if(channels[activePlayingIndex]) {
-                                    channels[activePlayingIndex].classList.add('active-tv-channel');
-                                    
-                                    const liveTag = document.createElement('span');
-                                    liveTag.className = 'live-indicator-badge';
-                                    liveTag.innerHTML = '🔴 Live';
-                                    channels[activePlayingIndex].appendChild(liveTag);
-                                }
-                            }, 100);
-                        }
-                    });
+                    const li = e.target.closest('li');
+                    if (!li || !container.contains(li)) return;
+                    
+                    const channels = Array.from(container.querySelectorAll('li'));
+                    const idx = channels.indexOf(li);
+                    
+                    if (idx !== -1) {
+                        selectedChannelIndex = idx;
+                        activePlayingIndex = idx;
+                        
+                        channels.forEach(c => {
+                            c.classList.remove('selected-tv-channel', 'active-tv-channel');
+                            const oldLive = c.querySelector('.live-indicator-badge');
+                            if (oldLive) oldLive.remove();
+                        });
+                        
+                        li.classList.add('active-tv-channel');
+                        const liveTag = document.createElement('span');
+                        liveTag.className = 'live-indicator-badge';
+                        liveTag.innerHTML = '🔴 Live';
+                        li.appendChild(liveTag);
+                    }
                 });
             }
         });
@@ -1109,7 +779,7 @@
             osd.innerText = text;
             osd.style.display = 'block';
             if (window.osdTimeout) clearTimeout(window.osdTimeout);
-            window.osdTimeout = setTimeout(() => { osd.style.display = 'none'; }, 1500);
+            window.osdTimeout = setTimeout(() => { osd.style.display = 'none'; }, 1200);
         }
 
         function reloadActiveChannel() {
@@ -1118,7 +788,7 @@
                 const currentSrc = player.src;
                 player.src = '';
                 player.src = currentSrc;
-                showOSD("🔄 RECONNECTING...");
+                showOSD("RECONNECTING...");
             }
         }
 
@@ -1153,35 +823,10 @@
             document.addEventListener("DOMContentLoaded", function() {
                 var channelContainer = document.getElementById('channel-container');
                 if (channelContainer) {
-                    channelContainer.addEventListener('click', function() {
-                        triggerSocialBarAd();
-                    });
+                    channelContainer.addEventListener('click', triggerSocialBarAd);
                 }
             });
         })();
-    </script>
-
-    <script>
-        const targetDate = new Date("June 11, 2026 00:00:00").getTime();
-        const updateCountdown = setInterval(function() {
-            const now = new Date().getTime();
-            const difference = targetDate - now;
-
-            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-            document.getElementById("mins").innerText = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("secs").innerText = seconds < 10 ? "0" + seconds : seconds;
-
-            if (difference < 0) {
-                clearInterval(updateCountdown);
-                document.querySelector(".countdown-container").innerHTML = "<h4 style='margin:0; color:#ff1744;'>Tournament Started!</h4>";
-            }
-        }, 1000);
     </script>
 </body>
 </html>
