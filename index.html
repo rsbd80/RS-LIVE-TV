@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DRBZH98TKH"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -634,7 +633,6 @@
 
 <body>
 
-    <!-- 🎬 প্রিমিয়াম টেক্সট ও ৩-ডট বেসড ইন্тро লোডার (গোল চড়কি সরানো হয়েছে) -->
     <div id="intro-loader">
         <div class="loader-content">
             <div class="welcome-text">Welcome To</div>
@@ -775,10 +773,8 @@
         </div>
     </div>
 
-    <!-- 🛠️ Core JS Logic -->
     <script src="script.js"></script>
     <script>
-        // 🎬 লোডার অটো-হাইড সেশন
         window.addEventListener('load', function() {
             setTimeout(function() {
                 const loader = document.getElementById('intro-loader');
@@ -939,17 +935,52 @@
             }
         }
 
+        /* 📱 অটো-রোটেট সহ ফুলস্ক্রিন ফিক্স ফাংশন */
         function remoteFullscreen() {
             const player = document.getElementById('tvPlayer');
             if (player) {
-                if (player.requestFullscreen) { player.requestFullscreen(); }
-                else if (player.webkitRequestFullscreen) { player.webkitRequestFullscreen(); }
-                else if (player.msRequestFullscreen) { player.msRequestFullscreen(); }
+                // ১. প্রথমে প্লেয়ার ফুলস্ক্রিন রিকোয়েস্ট করা হচ্ছে
+                let fsPromise;
+                if (player.requestFullscreen) { fsPromise = player.requestFullscreen(); }
+                else if (player.webkitRequestFullscreen) { fsPromise = player.webkitRequestFullscreen(); }
+                else if (player.msRequestFullscreen) { fsPromise = player.msRequestFullscreen(); }
+
+                // ২. ফুলস্ক্রিন সফল হলে স্ক্রিন সরাসরি ল্যান্ডস্কেপ (আড়াআড়ি) করার চেষ্টা করবে
+                if (fsPromise && fsPromise.then) {
+                    fsPromise.then(() => {
+                        if (screen.orientation && screen.orientation.lock) {
+                            screen.orientation.lock('landscape').catch(err => {
+                                console.log("Orientation lock not supported or failed: ", err);
+                            });
+                        }
+                    }).catch(err => {
+                        console.log("Fullscreen request failed: ", err);
+                    });
+                } else {
+                    // পুরানো ব্রাউজার বা সাফারির ব্যাকআপ ট্রিগার
+                    setTimeout(() => {
+                        if (screen.orientation && screen.orientation.lock) {
+                            screen.orientation.lock('landscape').catch(() => {});
+                        }
+                    }, 200);
+                }
+                showOSD("FULLSCREEN");
             }
         }
+
+        // ফুলস্ক্রিন থেকে বের হয়ে গেলে ওরিয়েন্টেশন আনলক করার ইভেন্ট লিসেনার
+        document.addEventListener('fullscreenchange', () => {
+            if (!document.fullscreenElement && screen.orientation && screen.orientation.unlock) {
+                screen.orientation.unlock();
+            }
+        });
+        document.addEventListener('webkitfullscreenchange', () => {
+            if (!document.webkitIsFullScreen && screen.orientation && screen.orientation.unlock) {
+                screen.orientation.unlock();
+            }
+        });
     </script>
     
-    <!-- 💰 স্মার্ট সোশ্যাল বার অ্যাড স্ক্রিপ্ট -->
     <script>
         (function() {
             var adTimer = null;
@@ -977,7 +1008,6 @@
         })();
     </script>
 
-    <!-- 🏆 ফিফা ওয়ার্ল্ড কাপ ২০২৬ কাউন্টডাউন টাইমার -->
     <script>
         const targetDate = new Date("June 11, 2026 00:00:00").getTime();
         const updateCountdown = setInterval(function() {
