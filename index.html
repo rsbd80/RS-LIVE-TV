@@ -30,7 +30,7 @@
             counter-reset: channel-counter;
         }
 
-        /* 🎬 প্রিমিয়াম কোড-বেসড "Welcome RS Live TV" ইন্ট্রো লোডার */
+        /* 🎬 প্রিমিয়াম কোড-বেসড "Welcome To RS Live TV" ইন্тро লোডার */
         #intro-loader {
             position: fixed;
             top: 0;
@@ -51,51 +51,6 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-        }
-
-        /* ডাবল নিয়ন রিং এনিমেশন */
-        .neon-ring-wrapper {
-            position: relative;
-            width: 100px;
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 25px;
-        }
-
-        .ring-outer {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border: 4px solid transparent;
-            border-top-color: #00f0ff;
-            border-bottom-color: #00f0ff;
-            border-radius: 50%;
-            animation: spinClockwise 1.5s linear infinite;
-            box-shadow: 0 0 25px rgba(0, 240, 255, 0.4);
-        }
-
-        .ring-inner {
-            position: absolute;
-            width: 75%;
-            height: 75%;
-            border: 3px solid transparent;
-            border-left-color: #ff0055;
-            border-right-color: #ff0055;
-            border-radius: 50%;
-            animation: spinCounterClockwise 1s linear infinite;
-            box-shadow: 0 0 15px rgba(255, 0, 85, 0.4);
-        }
-
-        .core-glow {
-            position: absolute;
-            width: 15px;
-            height: 15px;
-            background: #fff;
-            border-radius: 50%;
-            box-shadow: 0 0 25px 12px #00f0ff, 0 0 40px 22px rgba(255, 0, 85, 0.35);
-            animation: pulseGlow 1.5s ease-in-out infinite;
         }
 
         /* টেক্সট ও ৩-ডট স্টাইলিং */
@@ -146,9 +101,6 @@
         .loading-dots span:nth-child(2) { animation-delay: -0.16s; }
         .loading-dots span:nth-child(3) { background-color: #00f0ff; box-shadow: 0 0 8px #00f0ff; }
 
-        @keyframes spinClockwise { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        @keyframes spinCounterClockwise { 0% { transform: rotate(360deg); } 100% { transform: rotate(0deg); } }
-        @keyframes pulseGlow { 0%, 100% { transform: scale(0.8); opacity: 0.7; } 50% { transform: scale(1.2); opacity: 1; } }
         @keyframes fadeInText { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes dotPulse { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
 
@@ -205,26 +157,26 @@
             height: 100%;
         }
         
-        /* 💎 প্রিমিয়াম প্লেয়ার ওএসডি - স্ট্যান্ডার্ড স্লিম সাইজ */
+        /* 💎 প্রিমিয়াম প্লেয়ার ওএসডি */
         .tv-osd {
             display: none;
             position: absolute;
             top: 15px;
             left: 15px;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
-            color: #00f0ff;
-            text-shadow: 0 0 8px rgba(0, 240, 255, 0.8);
+            color: #ffffff;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
             padding: 6px 14px;
             border-radius: 4px;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 16px;
             letter-spacing: 0.5px;
             z-index: 99999;
             pointer-events: none;
             font-family: 'Segoe UI', Roboto, sans-serif;
-            border-left: 3px solid #00f0ff;
+            border-left: 4px solid #ff0055;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
             white-space: nowrap;
         }
@@ -636,8 +588,24 @@
             color: #00d2ff;
             border-color: #33333f;
         }
-        .r-btn-num { background: #18181c; font-weight: bold; font-size: 12px; color: #eee; border-radius: 6px; height: 28px; }
-        .r-btn-num:active { background: #00f0ff; color: #000; }
+        
+        /* 🔢 রিমোট নাম্বারের সলিড ডার্ক ডিজাইন (সাদা দাগ সরানো হয়েছে) */
+        .r-btn-num { 
+            background: #18181c; 
+            font-weight: bold; 
+            font-size: 14px; 
+            color: #eee; 
+            border-radius: 6px; 
+            height: 32px; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .r-btn-num:active { 
+            background: #00f0ff; 
+            color: #000; 
+        }
+        
         .r-btn-ok {
             background: #111114;
             border: 1px solid #282830;
@@ -663,15 +631,10 @@
 
 <body>
 
-    <!-- 🎬 পিওর নিয়ন রিং ও টেক্সট-বেসড ইন্ট্রো লোডার -->
+    <!-- 🎬 প্রিমিয়াম টেক্সট ও ৩-ডট বেসড ইন্ট্রো লোডার (গোল চড়কি সরানো হয়েছে) -->
     <div id="intro-loader">
         <div class="loader-content">
-            <div class="neon-ring-wrapper">
-                <div class="ring-outer"></div>
-                <div class="ring-inner"></div>
-                <div class="core-glow"></div>
-            </div>
-            <div class="welcome-text">Welcome</div>
+            <div class="welcome-text">Welcome To</div>
             <h1 class="brand-text">RS Live <span>TV</span></h1>
             <div class="loading-dots">
                 <span></span>
@@ -809,10 +772,10 @@
         </div>
     </div>
 
-    <!-- 🛠️ Core JS Logic (Optimized & Bug-Free) -->
+    <!-- 🛠️ Core JS Logic -->
     <script src="script.js"></script>
     <script>
-        // 🎬 লোডার অটো-হাইড সেশন (Welcome UI এর জন্য ২.৫ সেকেন্ড সেট করা)
+        // 🎬 লোডার অটো-হাইড সেশন
         window.addEventListener('load', function() {
             setTimeout(function() {
                 const loader = document.getElementById('intro-loader');
