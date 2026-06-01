@@ -30,14 +30,14 @@
             counter-reset: channel-counter;
         }
 
-        /* 🎬 মিনিমালিস্টিক পিওর নিয়ন রিং ইন্тро লোডার */
+        /* 🎬 প্রিমিয়াম কোড-বেসড "Welcome RS Live TV" ইন্ট্রো লোডার */
         #intro-loader {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #040406;
+            background: radial-gradient(circle at center, #0f0f16 0%, #040406 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -45,13 +45,23 @@
             transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.6s;
         }
 
+        .loader-content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ডাবল নিয়ন রিং এনিমেশন */
         .neon-ring-wrapper {
             position: relative;
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-bottom: 25px;
         }
 
         .ring-outer {
@@ -63,13 +73,13 @@
             border-bottom-color: #00f0ff;
             border-radius: 50%;
             animation: spinClockwise 1.5s linear infinite;
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.4);
         }
 
         .ring-inner {
             position: absolute;
-            width: 70%;
-            height: 70%;
+            width: 75%;
+            height: 75%;
             border: 3px solid transparent;
             border-left-color: #ff0055;
             border-right-color: #ff0055;
@@ -80,28 +90,67 @@
 
         .core-glow {
             position: absolute;
-            width: 12px;
-            height: 12px;
+            width: 15px;
+            height: 15px;
             background: #fff;
             border-radius: 50%;
-            box-shadow: 0 0 25px 10px #00f0ff, 0 0 40px 20px rgba(255, 0, 85, 0.3);
+            box-shadow: 0 0 25px 12px #00f0ff, 0 0 40px 22px rgba(255, 0, 85, 0.35);
             animation: pulseGlow 1.5s ease-in-out infinite;
         }
 
-        @keyframes spinClockwise {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        /* টেক্সট ও ৩-ডট স্টাইলিং */
+        .welcome-text {
+            font-size: 14px;
+            color: #888899;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 5px;
+            font-weight: 600;
+            animation: fadeInText 1s ease-out;
         }
 
-        @keyframes spinCounterClockwise {
-            0% { transform: rotate(360deg); }
-            100% { transform: rotate(0deg); }
+        .brand-text {
+            font-size: 32px;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 1px;
+            margin: 0;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
         }
 
-        @keyframes pulseGlow {
-            0%, 100% { transform: scale(0.8); opacity: 0.7; }
-            50% { transform: scale(1.2); opacity: 1; }
+        .brand-text span {
+            color: #00f0ff;
+            text-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
         }
+
+        /* ৩ ডট লোডিং অ্যানিমেশন */
+        .loading-dots {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            margin-top: 15px;
+        }
+
+        .loading-dots span {
+            width: 6px;
+            height: 6px;
+            background-color: #ff0055;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 8px #ff0055;
+            animation: dotPulse 1.4s infinite ease-in-out both;
+        }
+
+        .loading-dots span:nth-child(1) { animation-delay: -0.32s; background-color: #00f0ff; box-shadow: 0 0 8px #00f0ff; }
+        .loading-dots span:nth-child(2) { animation-delay: -0.16s; }
+        .loading-dots span:nth-child(3) { background-color: #00f0ff; box-shadow: 0 0 8px #00f0ff; }
+
+        @keyframes spinClockwise { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes spinCounterClockwise { 0% { transform: rotate(360deg); } 100% { transform: rotate(0deg); } }
+        @keyframes pulseGlow { 0%, 100% { transform: scale(0.8); opacity: 0.7; } 50% { transform: scale(1.2); opacity: 1; } }
+        @keyframes fadeInText { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes dotPulse { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
 
         /* মেইন কনটেন্ট এরিয়া */
         .tv-area {
@@ -614,12 +663,21 @@
 
 <body>
 
-    <!-- 🎬 পিওর নিয়ন রিং ইন্ট্রো লোডার -->
+    <!-- 🎬 পিওর নিয়ন রিং ও টেক্সট-বেসড ইন্ট্রো লোডার -->
     <div id="intro-loader">
-        <div class="neon-ring-wrapper">
-            <div class="ring-outer"></div>
-            <div class="ring-inner"></div>
-            <div class="core-glow"></div>
+        <div class="loader-content">
+            <div class="neon-ring-wrapper">
+                <div class="ring-outer"></div>
+                <div class="ring-inner"></div>
+                <div class="core-glow"></div>
+            </div>
+            <div class="welcome-text">Welcome</div>
+            <h1 class="brand-text">RS Live <span>TV</span></h1>
+            <div class="loading-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </div>
 
@@ -754,7 +812,7 @@
     <!-- 🛠️ Core JS Logic (Optimized & Bug-Free) -->
     <script src="script.js"></script>
     <script>
-        // 🎬 লোডার অটো-হাইড সেশন
+        // 🎬 লোডার অটো-হাইড সেশন (Welcome UI এর জন্য ২.৫ সেকেন্ড সেট করা)
         window.addEventListener('load', function() {
             setTimeout(function() {
                 const loader = document.getElementById('intro-loader');
@@ -763,7 +821,7 @@
                     loader.style.visibility = 'hidden';
                     setTimeout(() => loader.remove(), 600);
                 }
-            }, 2000); 
+            }, 2500); 
         });
 
         document.addEventListener('contextmenu', event => event.preventDefault());
@@ -876,7 +934,6 @@
             showOSD(activePlayingIndex + 1);
         }
 
-        // মাউস/টাচ ক্লিকের জন্য কম্বাইন্ড ইভেন্ট লিসেনার (বাগ প্রিভেনশন)
         document.addEventListener('DOMContentLoaded', function() {
             const container = document.getElementById('channel-container');
             if (container) {
