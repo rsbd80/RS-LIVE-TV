@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DRBZH98TKH"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -208,6 +207,19 @@
             font-size: 11px;
             margin-top: 15px;
         }
+
+        /* রিমোট নেভিগেশনের জন্য নতুন স্টাইল (চ্যানেল ফোকাস বর্ডার) */
+        #channel-container li, #channel-container a, .channel-item {
+            transition: all 0.2s ease;
+            outline: none;
+        }
+        /* রিমোট দিয়ে যখন কোনো চ্যানেল সিলেক্ট করা হবে তখন লাল/কমলা বর্ডার জ্বলবে */
+        .remote-focused {
+            border: 3px solid #ff9100 !important;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #ff9100 !important;
+            background-color: #222 !important;
+        }
     </style>
 </head>
 
@@ -217,7 +229,7 @@
         <div class="row">
             <div class="col-xs-12 col-md-10 tv-view">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe name="player" class="embed-responsive-item" allowfullscreen src="channel.html"></iframe>
+                    <iframe name="player" id="tv-player" class="embed-responsive-item" allowfullscreen src="channel.html"></iframe>
                 </div>
             </div>
             <div class="col-xs-12 col-md-2 channel-list">
@@ -263,7 +275,6 @@
                 <a href="https://t.me/rslivetv" target="_blank" class="telegram-btn">JOIN TELEGRAM</a>
             </div>
 
-            <!-- Adsterra Banner -->
             <div class="ad-box">
                 <script type="text/javascript">
                     atOptions = {
@@ -287,9 +298,63 @@
     <script>
         // রাইট ক্লিক বন্ধ রাখার স্ক্রিপ্ট
         document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // --- রিমোট কন্ট্রোল সাপোর্ট স্ক্রিপ্ট ---
+        let currentFocusIndex = -1;
+
+        document.addEventListener('keydown', function(event) {
+            // আপনার script.js থেকে জেনারেট হওয়া চ্যানেলের লিস্ট আইটেমগুলো ধরবে
+            // আপনার স্ক্রিপ্ট অনুযায়ী যদি li বা a ট্যাগ ব্যবহার হয় তা এখানে সিলেক্ট হবে
+            const channels = document.querySelectorAll('#channel-container li, #channel-container a, .channel-item');
+            
+            if (channels.length === 0) return;
+
+            // রিমোটের Up Arrow (38) অথবা Left Arrow (37) চাপলে আগের চ্যানেলে যাবে
+            if (event.keyCode === 38 || event.keyCode === 37) {
+                event.preventDefault();
+                if (currentFocusIndex > 0) {
+                    currentFocusIndex--;
+                } else {
+                    currentFocusIndex = channels.length - 1; // শেষেরটায় চলে যাবে
+                }
+                updateRemoteFocus(channels);
+            }
+            // রিমোটের Down Arrow (40) অথবা Right Arrow (39) চাপলে পরের চ্যানেলে যাবে
+            else if (event.keyCode === 40 || event.keyCode === 39) {
+                event.preventDefault();
+                if (currentFocusIndex < channels.length - 1) {
+                    currentFocusIndex++;
+                } else {
+                    currentFocusIndex = 0; // প্রথমটায় চলে আসবে
+                }
+                updateRemoteFocus(channels);
+            }
+            // রিমোটের OK / Enter বাটন (13) চাপলে চ্যানেল প্লে হবে
+            else if (event.keyCode === 13) {
+                if (currentFocusIndex >= 0 && currentFocusIndex < channels.length) {
+                    event.preventDefault();
+                    channels[currentFocusIndex].click(); // সিলেক্টেড চ্যানেলে অটো ক্লিক করবে
+                }
+            }
+        });
+
+        // ফোকাস স্টাইল আপডেট এবং অটো স্ক্রল করার ফাংশন
+        function updateRemoteFocus(channels) {
+            // আগের ফোকাস রিমুভ করা
+            channels.forEach(ch => ch.classList.remove('remote-focused'));
+            
+            // নতুন আইটেমে ফোকাস যুক্ত করা
+            const activeChannel = channels[currentFocusIndex];
+            activeChannel.classList.add('remote-focused');
+            
+            // রিমোট দিয়ে স্ক্রল করলে চ্যানেল লিস্ট যেন স্বয়ংক্রিয়ভাবে স্ক্রিন ভিউতে আসে
+            activeChannel.scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest'
+            });
+        }
     </script>
     
-    <!-- Adsterra Social Bar -->
     <script src="https://pl26377172.effectivecpmnetwork.com/d7/8b/93/d78b9343b29d8ff89244b094b359e591.js"></script>
 </body>
 </html>
