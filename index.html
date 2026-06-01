@@ -17,6 +17,7 @@
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/mD1VCt2C/RS-Live.png">
     <link href="bootstrap.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -26,84 +27,7 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            counter-reset: channel-counter;
         }
-
-        /* 🎬 প্রিমিয়াম কোড-বেসড "Welcome To RS Live TV" ইন্тро লোডার */
-        #intro-loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, #0f0f16 0%, #040406 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999999;
-            transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.6s;
-        }
-
-        .loader-content {
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* টেক্সট ও ৩-ডট স্টাইলিং */
-        .welcome-text {
-            font-size: 14px;
-            color: #888899;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 5px;
-            font-weight: 600;
-            animation: fadeInText 1s ease-out;
-        }
-
-        .brand-text {
-            font-size: 32px;
-            font-weight: 900;
-            color: #fff;
-            letter-spacing: 1px;
-            margin: 0;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-        }
-
-        .brand-text span {
-            color: #00f0ff;
-            text-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
-        }
-
-        /* ৩ ডট লোডিং অ্যানিমেশন */
-        .loading-dots {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 6px;
-            margin-top: 15px;
-        }
-
-        .loading-dots span {
-            width: 6px;
-            height: 6px;
-            background-color: #ff0055;
-            border-radius: 50%;
-            display: inline-block;
-            box-shadow: 0 0 8px #ff0055;
-            animation: dotPulse 1.4s infinite ease-in-out both;
-        }
-
-        .loading-dots span:nth-child(1) { animation-delay: -0.32s; background-color: #00f0ff; box-shadow: 0 0 8px #00f0ff; }
-        .loading-dots span:nth-child(2) { animation-delay: -0.16s; }
-        .loading-dots span:nth-child(3) { background-color: #00f0ff; box-shadow: 0 0 8px #00f0ff; }
-
-        @keyframes fadeInText { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes dotPulse { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
-
-        /* মেইন কনটেন্ট এরিয়া */
         .tv-area {
             margin-top: 15px;
         }
@@ -140,14 +64,15 @@
             color: #fff !important;
             border-color: #333;
         }
+        .remote-open-btn:active {
+            transform: scale(0.98);
+        }
 
-        /* 📺 প্লেয়ার কন্টেইনার এরিয়া */
         .tv-view .embed-responsive {
             border: 1px solid #222;
             border-radius: 8px;
             background: #000;
             overflow: hidden;
-            position: relative;
         }
         iframe {
             border: 0 !important;
@@ -155,32 +80,6 @@
             width: 100%;
             height: 100%;
         }
-        
-        /* 💎 প্রিমিয়াম প্লেয়ার ওএসডি */
-        .tv-osd {
-            display: none;
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            color: #ffffff;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
-            padding: 6px 14px;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 16px;
-            letter-spacing: 0.5px;
-            z-index: 99999;
-            pointer-events: none;
-            font-family: 'Segoe UI', Roboto, sans-serif;
-            border-left: 4px solid #ff0055;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-            white-space: nowrap;
-        }
-
-        /* নোটিশ এরিয়া */
         .marquee-container {
             background: #121212;
             color: #ffffff;
@@ -200,8 +99,6 @@
             font-size: 11px;
             flex-shrink: 0;
         }
-
-        /* ব্যানার ও ফোটার সেকশন */
         .footer-premium {
             background: #0a0a0a;
             padding: 20px 0 30px 0;
@@ -227,7 +124,12 @@
             left: -150%;
             width: 60%;
             height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+            background: linear-gradient(
+                to right,
+                rgba(255,255,255,0) 0%,
+                rgba(255,255,255,0.2) 50%,
+                rgba(255,255,255,0) 100%
+            );
             transform: skewX(-25deg);
             animation: smoke-shine 4s infinite;
             z-index: 3;
@@ -264,7 +166,6 @@
         }
         .rs-live { color: #fff; }
         .tv-text { color: #ff9100; text-shadow: 0 0 5px #ff9100; }
-        
         .text-section-fixed {
             flex-grow: 1;
             text-align: center;
@@ -313,73 +214,47 @@
             0% { transform: scale(0.95); opacity: 1; }
             100% { transform: scale(1.5); opacity: 0; }
         }
-
-        /* 🛠️ টেলিগ্রাম সাপোর্ট ব্যানার (সেন্টারড ডিজাইন) */
         .tg-card {
-            background: linear-gradient(135deg, rgba(20, 20, 25, 0.7), rgba(10, 10, 12, 0.9));
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            background: #161616;
             padding: 15px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 8px 24px rgba(0, 0, 0, 0.6);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
+            border-radius: 12px;
+            border: 1px solid #222;
+            display: block;
             width: 320px;
             margin: 15px auto;
-            box-sizing: border-box;
-            position: relative;
-            overflow: hidden;
         }
-        .tg-info-text {
-            text-align: center;
-            flex-grow: unset;
-        }
-        .tg-info-text h5 {
-            color: #fff;
-            margin: 0 0 4px 0;
-            font-size: 13px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-        .tg-info-text h5 i { color: #0088cc; font-size: 14px; }
-        .tg-info-text p { color: #888; font-size: 10px; margin: 0; line-height: 1.3; }
         .telegram-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
+            display: inline-block;
             background: #0088cc;
             color: #fff !important;
-            padding: 6px 20px;
+            padding: 8px 25px;
             border-radius: 6px;
-            font-size: 10px;
             font-weight: bold;
-            text-transform: uppercase;
             text-decoration: none !important;
-            box-shadow: 0 0 10px rgba(0, 136, 204, 0.4);
-            transition: all 0.2s ease;
-            flex-shrink: 0;
-            height: 30px;
-            box-sizing: border-box;
-            border: 1px solid rgba(255,255,255,0.1);
-            width: fit-content;
+            margin-top: 10px;
+            font-size: 13px;
+            font-family: 'Courier New', Courier, monospace;
+            font-style: italic;
         }
-        .telegram-btn:hover {
-            background: #0099e6;
-            box-shadow: 0 0 15px rgba(0, 136, 204, 0.7);
+        .ad-box {
+            margin: 15px auto;
+            width: 320px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .copyright {
+            color: #444;
+            font-size: 11px;
+            margin-top: 15px;
         }
 
-        /* ফিফা কাউন্টডাউন ব্যানার */
+        /* FIFA COUNTDOWN BANNER STYLES */
         .fifa-banner {
             background: linear-gradient(135deg, #0f0f11, #1e1e24);
             color: #fff;
+            font-family: 'Arial', sans-serif;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -390,6 +265,11 @@
             margin: 15px auto;
             box-sizing: border-box;
             position: relative;
+        }
+        .fifa-logo-area {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
         }
         .fifa-logo-area img {
             height: 50px;
@@ -402,9 +282,22 @@
             text-align: center;
             padding: 0 8px;
         }
-        .fifa-title { font-size: 14px; font-weight: bold; margin: 0 0 1px 0; }
-        .fifa-date { font-size: 9px; color: #bbb; margin: 0 0 6px 0; }
-        .countdown-container { display: flex; justify-content: center; gap: 5px; }
+        .fifa-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin: 0 0 1px 0;
+            letter-spacing: 0.3px;
+        }
+        .fifa-date {
+            font-size: 9px;
+            color: #bbb;
+            margin: 0 0 6px 0;
+        }
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
         .time-box {
             background: #ffffff;
             color: #000000;
@@ -414,10 +307,26 @@
             max-width: 42px;
             text-align: center;
         }
-        .time-box.days-box { background: #ff1744; color: #fff; }
-        .time-num { font-size: 13px; font-weight: bold; display: block; line-height: 1.2; }
-        .time-label { font-size: 7.5px; text-transform: uppercase; font-weight: bold; color: #555; display: block; }
-        .time-box.days-box .time-label { color: #fff; }
+        .time-box.days-box {
+            background: #ff1744;
+            color: #fff;
+        }
+        .time-num {
+            font-size: 13px;
+            font-weight: bold;
+            display: block;
+            line-height: 1.2;
+        }
+        .time-label {
+            font-size: 7.5px;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: #555;
+            display: block;
+        }
+        .time-box.days-box .time-label {
+            color: #fff;
+        }
         .close-btn {
             position: absolute;
             top: -8px;
@@ -434,9 +343,12 @@
             align-items: center;
             justify-content: center;
             font-weight: bold;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
         }
 
-        /* 🛠️ হরিজন্টাল স্লাইডার সিস্টেম */
+        /* ------------------------------------------------------------- */
+        /* 🛠️ হরিজন্টাল স্লাইডার এবং প্রিমিয়াম ইফেক্টস */
+        /* ------------------------------------------------------------- */
         .channel-list {
             width: 100% !important;
             clear: both !important;
@@ -444,6 +356,7 @@
             padding: 0 !important;
             margin: 0 !important;
         }
+        
         .channel-list ul#channel-container {
             display: flex !important;
             flex-direction: row !important;
@@ -458,7 +371,11 @@
             box-sizing: border-box !important;
             -webkit-overflow-scrolling: touch !important;
         }
-        .channel-list ul#channel-container::-webkit-scrollbar { display: none !important; }
+        
+        .channel-list ul#channel-container::-webkit-scrollbar {
+            display: none !important;
+        }
+
         .channel-list ul#channel-container li {
             position: relative !important;
             display: inline-block !important;
@@ -470,6 +387,12 @@
             border: 1px solid #1a1a1a !important;
             background: #000 !important;
             box-sizing: border-box !important;
+            overflow: visible !important;
+        }
+
+        /* চ্যানেল নাম্বারিং ব্যাজ কাউন্টার */
+        body {
+            counter-reset: channel-counter;
         }
         .channel-list ul#channel-container li::before {
             counter-increment: channel-counter;
@@ -488,6 +411,7 @@
             z-index: 4;
             pointer-events: none;
         }
+
         .channel-list ul#channel-container li img {
             width: 100% !important;
             height: 100% !important;
@@ -495,10 +419,13 @@
             border-radius: 8px !important;
             display: block !important;
         }
+
         .channel-list ul#channel-container li a {
             display: block !important;
             width: 100% !important;
             height: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
         }
 
         .selected-tv-channel {
@@ -507,6 +434,7 @@
             box-shadow: 0 0 15px rgba(0, 240, 255, 0.6) !important;
             z-index: 10 !important;
         }
+
         .active-tv-channel {
             border: 2px solid #ff0055 !important;
             box-shadow: 0 0 15px rgba(255, 0, 85, 0.5) !important;
@@ -525,14 +453,19 @@
             border-radius: 4px !important;
             box-shadow: 0 0 8px #ff0055 !important;
             text-transform: uppercase !important;
+            letter-spacing: 0.5px !important;
             animation: liveBlinker 1.2s linear infinite !important;
             z-index: 99 !important;
             pointer-events: none !important;
             white-space: nowrap !important;
         }
-        @keyframes liveBlinker { 50% { opacity: 0.4; } }
 
-        /* 🌟 পিওর ডার্ক মোড স্লিমি টিভি রিমোট প্যানেল */
+        @keyframes liveBlinker {
+            50% { opacity: 0.4; }
+        }
+        /* ------------------------------------------------------------- */
+
+        /* 🌟 পিওর ডার্ক মোড স্লিম টিভি রিমোট প্যানেল (০ বাটন সহ ১১৫ পিক্সেল চওড়া) */
         .remote-body-floating {
             display: none;
             position: fixed;
@@ -591,23 +524,19 @@
             border-color: #33333f;
         }
         
-        /* 🔢 রিমোট নাম্বারের সলিড ডার্ক ডিজাইন (সাদা দাগ সরানো হয়েছে) */
-        .r-btn-num { 
-            background: #18181c; 
-            font-weight: bold; 
-            font-size: 14px; 
-            color: #eee; 
-            border-radius: 6px; 
-            height: 32px; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .r-btn-num {
+            background: #18181c;
+            font-weight: bold;
+            font-size: 12px;
+            color: #eee;
+            border-radius: 6px;
+            height: 28px;
         }
-        .r-btn-num:active { 
-            background: #00f0ff; 
-            color: #000; 
+        .r-btn-num:active {
+            background: #00f0ff;
+            color: #000;
         }
-        
+
         .r-btn-ok {
             background: #111114;
             border: 1px solid #282830;
@@ -621,43 +550,69 @@
             margin: 2px auto;
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
         }
-        .r-btn-ok:active { background: #000000; border-color: #00d2ff; color: #00d2ff !important; }
-        .r-btn-power { background: #1a080a; border-color: #3d1218; color: #cc2944; }
-        .r-btn-power:active { background: #cc2944; color: #fff; }
-        .r-btn-close { background: #141417; border-color: #24242b; color: #666; }
+        .r-btn-ok:active {
+            background: #000000;
+            border-color: #00d2ff;
+            color: #00d2ff !important;
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
+        }
+
+        .r-btn-power {
+            background: #1a080a;
+            border-color: #3d1218;
+            color: #cc2944;
+        }
+        .r-btn-power:active {
+            background: #cc2944;
+            color: #fff;
+        }
+        .r-btn-close {
+            background: #141417;
+            border-color: #24242b;
+            color: #666;
+        }
         
-        .ad-box { margin: 15px auto; width: 320px; height: 50px; display: flex; justify-content: center; overflow: hidden; }
-        .copyright { color: #444; font-size: 11px; margin-top: 15px; }
+        /* ওএসডি অ্যালার্ট */
+        .tv-osd {
+            display: none;
+            position: fixed;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(17, 17, 17, 0.95);
+            color: #00f0ff;
+            border: 1px solid #333;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 12px;
+            z-index: 1000000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            pointer-events: none;
+            letter-spacing: 0.5px;
+        }
     </style>
 </head>
 
 <body>
 
-    <div id="intro-loader">
-        <div class="loader-content">
-            <div class="welcome-text">Welcome To</div>
-            <h1 class="brand-text">RS Live <span>TV</span></h1>
-            <div class="loading-dots">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </div>
+    <div id="tvOsd" class="tv-osd"></div>
 
     <div class="container tv-area">
         <div class="row">
             <div class="col-xs-12 col-md-10 tv-view">
+                
                 <div class="remote-btn-container">
                     <button onclick="toggleRemote(true)" class="remote-open-btn">
                         <i class="fa-solid fa-tv"></i> OPEN SMART TV REMOTE
                     </button>
                 </div>
+
                 <div class="embed-responsive embed-responsive-16by9">
-                    <div id="tvOsd" class="tv-osd"></div>
                     <iframe name="player" id="tvPlayer" class="embed-responsive-item" allowfullscreen src="channel.html"></iframe>
                 </div>
             </div>
+            
             <div class="col-xs-12 channel-list">
                 <ul id="channel-container"></ul>
             </div>
@@ -696,13 +651,9 @@
             </div>
 
             <div class="tg-card">
-                <div class="tg-info-text">
-                    <h5><i class="fa-brands fa-telegram"></i> সাপোর্ট প্রয়োজন?</h5>
-                    <p>আপডেট ও চ্যানেল রিকোয়েস্টের জন্য আমাদের গ্রুপে যোগ দিন।</p>
-                </div>
-                <a href="https://t.me/rslivetv" target="_blank" class="telegram-btn">
-                    <span>JOIN</span> <i class="fa-solid fa-arrow-right" style="font-size: 9px;"></i>
-                </a>
+                <h5 style="color:#fff; margin-bottom:5px; font-size:16px;">সাপোর্ট প্রয়োজন?</h5>
+                <p style="color:#777; font-size:11px; margin-bottom:5px;">আপডেট ও চ্যানেল রিকোয়েস্টের জন্য আমাদের টেলিগ্রাম গ্রুপে যোগ দিন।</p>
+                <a href="https://t.me/rslivetv" target="_blank" class="telegram-btn">JOIN TELEGRAM</a>
             </div>
 
             <div class="fifa-banner" id="fifaBanner">
@@ -714,31 +665,53 @@
                     <h3 class="fifa-title">FIFA World Cup 2026</h3>
                     <p class="fifa-date">June 11 - July 19</p>
                     <div class="countdown-container">
-                        <div class="time-box days-box"><span class="time-num" id="days">00</span><span class="time-label">Days</span></div>
-                        <div class="time-box"><span class="time-num" id="hours">00</span><span class="time-label">Hrs</span></div>
-                        <div class="time-box"><span class="time-num" id="mins">00</span><span class="time-label">Min</span></div>
-                        <div class="time-box"><span class="time-num" id="secs">00</span><span class="time-label">Sec</span></div>
+                        <div class="time-box days-box">
+                            <span class="time-num" id="days">00</span>
+                            <span class="time-label">Days</span>
+                        </div>
+                        <div class="time-box">
+                            <span class="time-num" id="hours">00</span>
+                            <span class="time-label">Hrs</span>
+                        </div>
+                        <div class="time-box">
+                            <span class="time-num" id="mins">00</span>
+                            <span class="time-label">Min</span>
+                        </div>
+                        <div class="time-box">
+                            <span class="time-num" id="secs">00</span>
+                            <span class="time-label">Sec</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="ad-box">
                 <script type="text/javascript">
-                    atOptions = { 'key' : '774c0e371455f6476668178b5faae5ab', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
+                    atOptions = {
+                        'key' : '774c0e371455f6476668178b5faae5ab',
+                        'format' : 'iframe',
+                        'height' : 50,
+                        'width' : 320,
+                        'params' : {}
+                    };
                 </script>
                 <script type="text/javascript" src="//www.highperformanceformat.com/774c0e371455f6476668178b5faae5ab/invoke.js"></script>
             </div>
 
-            <div class="copyright">© 2026 RS LIVE TV | All Rights Reserved</div>
+            <div class="copyright">
+                © 2026 RS LIVE TV | All Rights Reserved
+            </div>
         </div>
     </footer>
 
     <div class="remote-body-floating" id="remotePanel">
         <div class="remote-header">RS SMART TV</div>
+        
         <div class="remote-row">
             <button class="r-btn r-btn-power" onclick="reloadActiveChannel();" title="Reset"><i class="fa-solid fa-power-off"></i></button>
             <button class="r-btn r-btn-close" onclick="toggleRemote(false);" title="Hide"><i class="fa-solid fa-xmark"></i></button>
         </div>
+
         <div class="remote-row">
             <button class="r-btn r-btn-num" onclick="pressNumber('1');">1</button>
             <button class="r-btn r-btn-num" onclick="pressNumber('2');">2</button>
@@ -754,20 +727,25 @@
             <button class="r-btn r-btn-num" onclick="pressNumber('8');">8</button>
             <button class="r-btn r-btn-num" onclick="pressNumber('9');">9</button>
         </div>
+        
         <div class="remote-row">
             <div style="flex:1;"></div>
             <button class="r-btn r-btn-num" style="flex:1;" onclick="pressNumber('0');">0</button>
             <div style="flex:1;"></div>
         </div>
+
         <div class="remote-row" style="margin-top: 5px;">
             <button class="r-btn" onclick="moveSelection(-1);" title="CH +"><i class="fa-solid fa-chevron-up"></i><span>CH+</span></button>
         </div>
+
         <div class="remote-row">
             <button class="r-btn r-btn-ok" onclick="selectAndPlayChannel();" title="Play Channel">OK</button>
         </div>
+
         <div class="remote-row">
             <button class="r-btn" onclick="moveSelection(1);" title="CH -"><i class="fa-solid fa-chevron-down"></i><span>CH-</span></button>
         </div>
+
         <div class="remote-row" style="margin-bottom: 0; margin-top: 4px;">
             <button class="r-btn" style="height: 28px;" onclick="remoteFullscreen();" title="Fullscreen"><i class="fa-solid fa-expand"></i></button>
         </div>
@@ -775,21 +753,12 @@
 
     <script src="script.js"></script>
     <script>
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                const loader = document.getElementById('intro-loader');
-                if (loader) {
-                    loader.style.opacity = '0';
-                    loader.style.visibility = 'hidden';
-                    setTimeout(() => loader.remove(), 600);
-                }
-            }, 2500); 
-        });
-
         document.addEventListener('contextmenu', event => event.preventDefault());
 
         let selectedChannelIndex = 0; 
         let activePlayingIndex = -1;   
+        
+        // ডাবল ডিজিট ইনপুট হ্যান্ডল করার গ্লোবাল ভেরিয়েবল
         let currentInputNumber = "";
         let inputTimeout = null;
 
@@ -798,39 +767,42 @@
             if(show) { updateSelectionHighlight(); }
         }
 
-        function showOSD(text) {
-            const osd = document.getElementById('tvOsd');
-            if(!osd) return;
-            osd.innerText = text;
-            osd.style.display = 'block';
-            if (window.osdTimeout) clearTimeout(window.osdTimeout);
-            window.osdTimeout = setTimeout(() => { osd.style.display = 'none'; }, 1500);
-        }
-
+        // 🔢 স্মার্ট ডাবল-ডিজিট নম্বর টাইপিং লজিক
         function pressNumber(numString) {
             const container = document.getElementById('channel-container');
             if (!container) return;
 
             const channels = container.querySelectorAll('li');
+
+            // আগের টাইমার ক্লিয়ার করা
             if (inputTimeout) clearTimeout(inputTimeout);
 
+            // নতুন নম্বর স্ট্রিং এ যোগ করা
             currentInputNumber += numString;
-            showOSD(currentInputNumber);
+            
+            // স্ক্রিনে ইনস্ট্যান্ট নম্বর শো করা
+            showOSD("INPUT: " + currentInputNumber);
 
+            // ১.৫ সেকেন্ড ইউজার এর পরবর্তী ক্লিকের জন্য অপেক্ষা করবে
             inputTimeout = setTimeout(() => {
                 const finalChannelNumber = parseInt(currentInputNumber);
-                const targetIndex = finalChannelNumber - 1;
+                const targetIndex = finalChannelNumber - 1; // অ্যারে ইনডেক্স ০ ভিত্তিক
 
                 if (targetIndex >= 0 && targetIndex < channels.length) {
                     selectedChannelIndex = targetIndex;
                     updateSelectionHighlight();
+                    
                     channels[selectedChannelIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                    
+                    showOSD("CH " + finalChannelNumber + " SELECTED");
                     selectAndPlayChannel();
                 } else {
-                    showOSD("X");
+                    showOSD("INVALID CH");
                 }
+                
+                // ইনপুট রিসেট করা
                 currentInputNumber = "";
-            }, 1500);
+            }, 1500); // ১.৫ সেকেন্ড ডিলে
         }
 
         function moveSelection(direction) {
@@ -840,13 +812,23 @@
             const channels = container.querySelectorAll('li'); 
             if (channels.length === 0) return;
 
+            if (channels[selectedChannelIndex]) {
+                channels[selectedChannelIndex].classList.remove('selected-tv-channel');
+            }
+
             selectedChannelIndex += direction;
+
             if (selectedChannelIndex >= channels.length) selectedChannelIndex = 0;
             if (selectedChannelIndex < 0) selectedChannelIndex = channels.length - 1;
 
-            updateSelectionHighlight();
-            channels[selectedChannelIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-            showOSD(selectedChannelIndex + 1);
+            const targetElement = channels[selectedChannelIndex];
+            
+            if (selectedChannelIndex !== activePlayingIndex) {
+                targetElement.classList.add('selected-tv-channel');
+            }
+            
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            showOSD("CH " + (selectedChannelIndex + 1));
         }
 
         function updateSelectionHighlight() {
@@ -871,7 +853,8 @@
             if (channels.length === 0 || !channels[selectedChannelIndex]) return;
 
             channels.forEach(ch => {
-                ch.classList.remove('active-tv-channel', 'selected-tv-channel');
+                ch.classList.remove('active-tv-channel');
+                ch.classList.remove('selected-tv-channel');
                 const oldLive = ch.querySelector('.live-indicator-badge');
                 if (oldLive) oldLive.remove();
             });
@@ -880,50 +863,63 @@
             const targetEl = channels[activePlayingIndex];
             
             if (targetEl) {
+                targetEl.click();
+                
+                const clickEvt = new MouseEvent('click', { bubbles: true, cancelable: true, view: window });
+                targetEl.dispatchEvent(clickEvt);
+                
                 const anchor = targetEl.tagName === 'A' ? targetEl : targetEl.querySelector('a');
-                if (anchor) {
-                    anchor.click();
-                } else {
-                    targetEl.click();
-                }
+                if (anchor) anchor.click();
 
                 targetEl.classList.add('active-tv-channel');
+                
                 const liveTag = document.createElement('span');
                 liveTag.className = 'live-indicator-badge';
                 liveTag.innerHTML = '🔴 Live';
                 targetEl.appendChild(liveTag);
             }
-            showOSD(activePlayingIndex + 1);
+
+            showOSD("📡 CH " + (activePlayingIndex + 1) + " LOADING...");
         }
 
         document.addEventListener('DOMContentLoaded', function() {
             const container = document.getElementById('channel-container');
             if (container) {
                 container.addEventListener('click', function(e) {
-                    const li = e.target.closest('li');
-                    if (!li || !container.contains(li)) return;
-
-                    const channels = Array.from(container.querySelectorAll('li'));
-                    const idx = channels.indexOf(li);
-                    if (idx !== -1) {
-                        selectedChannelIndex = idx;
-                        activePlayingIndex = idx;
-                        
-                        channels.forEach(c => {
-                            c.classList.remove('selected-tv-channel', 'active-tv-channel');
-                            const oldLive = c.querySelector('.live-indicator-badge');
-                            if (oldLive) oldLive.remove();
-                        });
-
-                        li.classList.add('active-tv-channel');
-                        const liveTag = document.createElement('span');
-                        liveTag.className = 'live-indicator-badge';
-                        liveTag.innerHTML = '🔴 Live';
-                        li.appendChild(liveTag);
-                    }
+                    const channels = container.querySelectorAll('li');
+                    channels.forEach((ch, idx) => {
+                        if (ch.contains(e.target) || ch === e.target) {
+                            selectedChannelIndex = idx;
+                            activePlayingIndex = idx;
+                            setTimeout(() => {
+                                channels.forEach(c => {
+                                    c.classList.remove('selected-tv-channel');
+                                    c.classList.remove('active-tv-channel');
+                                    const oldLive = c.querySelector('.live-indicator-badge');
+                                    if (oldLive) oldLive.remove();
+                                });
+                                if(channels[activePlayingIndex]) {
+                                    channels[activePlayingIndex].classList.add('active-tv-channel');
+                                    
+                                    const liveTag = document.createElement('span');
+                                    liveTag.className = 'live-indicator-badge';
+                                    liveTag.innerHTML = '🔴 Live';
+                                    channels[activePlayingIndex].appendChild(liveTag);
+                                }
+                            }, 100);
+                        }
+                    });
                 });
             }
         });
+
+        function showOSD(text) {
+            const osd = document.getElementById('tvOsd');
+            osd.innerText = text;
+            osd.style.display = 'block';
+            if (window.osdTimeout) clearTimeout(window.osdTimeout);
+            window.osdTimeout = setTimeout(() => { osd.style.display = 'none'; }, 1500);
+        }
 
         function reloadActiveChannel() {
             const player = document.getElementById('tvPlayer');
@@ -931,54 +927,18 @@
                 const currentSrc = player.src;
                 player.src = '';
                 player.src = currentSrc;
-                showOSD("RECONNECTING...");
+                showOSD("🔄 RECONNECTING...");
             }
         }
 
-        /* 📱 অটো-রোটেট সহ ফুলস্ক্রিন ফিক্স ফাংশন */
         function remoteFullscreen() {
             const player = document.getElementById('tvPlayer');
             if (player) {
-                // ১. প্রথমে প্লেয়ার ফুলস্ক্রিন রিকোয়েস্ট করা হচ্ছে
-                let fsPromise;
-                if (player.requestFullscreen) { fsPromise = player.requestFullscreen(); }
-                else if (player.webkitRequestFullscreen) { fsPromise = player.webkitRequestFullscreen(); }
-                else if (player.msRequestFullscreen) { fsPromise = player.msRequestFullscreen(); }
-
-                // ২. ফুলস্ক্রিন সফল হলে স্ক্রিন সরাসরি ল্যান্ডস্কেপ (আড়াআড়ি) করার চেষ্টা করবে
-                if (fsPromise && fsPromise.then) {
-                    fsPromise.then(() => {
-                        if (screen.orientation && screen.orientation.lock) {
-                            screen.orientation.lock('landscape').catch(err => {
-                                console.log("Orientation lock not supported or failed: ", err);
-                            });
-                        }
-                    }).catch(err => {
-                        console.log("Fullscreen request failed: ", err);
-                    });
-                } else {
-                    // পুরানো ব্রাউজার বা সাফারির ব্যাকআপ ট্রিগার
-                    setTimeout(() => {
-                        if (screen.orientation && screen.orientation.lock) {
-                            screen.orientation.lock('landscape').catch(() => {});
-                        }
-                    }, 200);
-                }
-                showOSD("FULLSCREEN");
+                if (player.requestFullscreen) { player.requestFullscreen(); }
+                else if (player.webkitRequestFullscreen) { player.webkitRequestFullscreen(); }
+                else if (player.msRequestFullscreen) { player.msRequestFullscreen(); }
             }
         }
-
-        // ফুলস্ক্রিন থেকে বের হয়ে গেলে ওরিয়েন্টেশন আনলক করার ইভেন্ট লিসেনার
-        document.addEventListener('fullscreenchange', () => {
-            if (!document.fullscreenElement && screen.orientation && screen.orientation.unlock) {
-                screen.orientation.unlock();
-            }
-        });
-        document.addEventListener('webkitfullscreenchange', () => {
-            if (!document.webkitIsFullScreen && screen.orientation && screen.orientation.unlock) {
-                screen.orientation.unlock();
-            }
-        });
     </script>
     
     <script>
@@ -1002,7 +962,9 @@
             document.addEventListener("DOMContentLoaded", function() {
                 var channelContainer = document.getElementById('channel-container');
                 if (channelContainer) {
-                    channelContainer.addEventListener('click', triggerSocialBarAd);
+                    channelContainer.addEventListener('click', function() {
+                        triggerSocialBarAd();
+                    });
                 }
             });
         })();
@@ -1019,22 +981,14 @@
             const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-            const dEl = document.getElementById("days");
-            const hEl = document.getElementById("hours");
-            const mEl = document.getElementById("mins");
-            const sEl = document.getElementById("secs");
-
-            if(dEl && hEl && mEl && sEl) {
-                dEl.innerText = days < 10 ? "0" + days : days;
-                hEl.innerText = hours < 10 ? "0" + hours : hours;
-                mEl.innerText = minutes < 10 ? "0" + minutes : minutes;
-                sEl.innerText = seconds < 10 ? "0" + seconds : seconds;
-            }
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("mins").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("secs").innerText = seconds < 10 ? "0" + seconds : seconds;
 
             if (difference < 0) {
                 clearInterval(updateCountdown);
-                const container = document.querySelector(".countdown-container");
-                if(container) container.innerHTML = "<h4 style='margin:0; color:#ff1744;'>Tournament Started!</h4>";
+                document.querySelector(".countdown-container").innerHTML = "<h4 style='margin:0; color:#ff1744;'>Tournament Started!</h4>";
             }
         }, 1000);
     </script>
