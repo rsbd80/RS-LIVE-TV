@@ -2,7 +2,7 @@
 <html lang="bn">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=1200">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DRBZH98TKH"></script>
     <script>
@@ -23,13 +23,15 @@
     <style>
         body {
             background: #000;
-            overflow-x: hidden;
+            overflow-x: auto; /* ডেস্কটপ ভিউর জন্য সাইড স্ক্রোল এলাও করা হলো */
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
+            min-width: 1200px; /* সর্বনিম্ন উইডথ ফিক্সড */
         }
         .tv-area {
-            margin-top: 15px;
+            margin-top: 30px;
+            margin-bottom: 30px;
         }
         
         /* 🌟 ওপেন রিমোট বাটন */
@@ -49,7 +51,7 @@
             font-size: 11px;
             font-weight: bold;
             letter-spacing: 1px;
-            padding: 8px 20px;
+            padding: 10px 20px;
             border-radius: 6px;
             border: 1px solid #222;
             text-decoration: none !important;
@@ -73,6 +75,7 @@
             border-radius: 8px;
             background: #000;
             overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.7);
         }
         iframe {
             border: 0 !important;
@@ -83,30 +86,31 @@
         .marquee-container {
             background: #121212;
             color: #ffffff;
-            padding: 8px 0;
+            padding: 10px 0;
             display: flex;
             align-items: center;
             border-top: 1px solid #333;
             border-bottom: 1px solid #333;
+            margin-top: 20px;
         }
         .notice-label {
             background: #ff4444;
             color: #fff;
-            padding: 2px 10px;
-            margin-left: 10px;
+            padding: 4px 12px;
+            margin-left: 20px;
             border-radius: 4px;
             font-weight: bold;
-            font-size: 11px;
+            font-size: 12px;
             flex-shrink: 0;
         }
         .footer-premium {
             background: #0a0a0a;
-            padding: 20px 0 30px 0;
+            padding: 30px 0;
             text-align: center;
         }
         .tio-style-banner-fixed {
-            width: 320px;
-            height: 50px;
+            width: 400px;
+            height: 60px;
             background: url('https://png.pngtree.com/background/20250208/original/pngtree-smooth-gradient-chaotic-texture-in-abstract-dark-background-with-black-shade-picture-image_15219959.jpg') center/cover;
             position: relative;
             overflow: hidden;
@@ -154,12 +158,12 @@
             display: flex;
             align-items: center;
             width: 100%;
-            padding: 0 10px;
+            padding: 0 15px;
             justify-content: space-between;
         }
         .brand-logo-fixed {
             font-weight: 900;
-            font-size: 13px;
+            font-size: 15px;
             font-style: italic;
             white-space: nowrap;
             flex-shrink: 0;
@@ -176,8 +180,8 @@
         .main-tags {
             display: flex;
             justify-content: center;
-            gap: 4px;
-            font-size: 7.5px;
+            gap: 6px;
+            font-size: 9px;
             font-weight: 800;
             text-transform: uppercase;
         }
@@ -185,7 +189,7 @@
         .tag-football { color: #00FF00; }
         .tag-tv { color: #00D2FF; }
         .sub-text {
-            font-size: 9px;
+            font-size: 11px;
             color: #ffffff;
             margin: 0;
             font-weight: bold;
@@ -194,9 +198,9 @@
         .live-circle {
             background: #ff0000;
             color: white;
-            font-size: 8px;
+            font-size: 9px;
             font-weight: bold;
-            padding: 2px 6px;
+            padding: 3px 8px;
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -204,8 +208,8 @@
             flex-shrink: 0;
         }
         .pulse {
-            width: 5px;
-            height: 5px;
+            width: 6px;
+            height: 6px;
             background: white;
             border-radius: 50%;
             animation: pulse-animation 1s infinite;
@@ -220,7 +224,7 @@
             border-radius: 12px;
             border: 1px solid #222;
             display: block;
-            width: 320px;
+            width: 350px;
             margin: 15px auto;
         }
         .telegram-btn {
@@ -245,9 +249,9 @@
             overflow: hidden;
         }
         .copyright {
-            color: #444;
-            font-size: 11px;
-            margin-top: 15px;
+            color: #555;
+            font-size: 12px;
+            margin-top: 20px;
         }
 
         /* FIFA COUNTDOWN BANNER STYLES */
@@ -258,10 +262,10 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 10px 12px;
+            padding: 12px 15px;
             border-radius: 14px;
             border: 1px solid #292933;
-            width: 320px;
+            width: 350px;
             margin: 15px auto;
             box-sizing: border-box;
             position: relative;
@@ -272,7 +276,7 @@
             flex-shrink: 0;
         }
         .fifa-logo-area img {
-            height: 50px;
+            height: 55px;
             width: auto;
             object-fit: contain;
             border-radius: 6px;
@@ -280,31 +284,31 @@
         .fifa-content {
             flex-grow: 1;
             text-align: center;
-            padding: 0 8px;
+            padding: 0 10px;
         }
         .fifa-title {
-            font-size: 14px;
+            font-size: 15px;
             font-weight: bold;
-            margin: 0 0 1px 0;
+            margin: 0 0 2px 0;
             letter-spacing: 0.3px;
         }
         .fifa-date {
-            font-size: 9px;
+            font-size: 10px;
             color: #bbb;
             margin: 0 0 6px 0;
         }
         .countdown-container {
             display: flex;
             justify-content: center;
-            gap: 5px;
+            gap: 6px;
         }
         .time-box {
             background: #ffffff;
             color: #000000;
             border-radius: 5px;
-            padding: 3px 0;
+            padding: 4px 0;
             flex: 1;
-            max-width: 42px;
+            max-width: 45px;
             text-align: center;
         }
         .time-box.days-box {
@@ -312,13 +316,13 @@
             color: #fff;
         }
         .time-num {
-            font-size: 13px;
+            font-size: 14px;
             font-weight: bold;
             display: block;
             line-height: 1.2;
         }
         .time-label {
-            font-size: 7.5px;
+            font-size: 8px;
             text-transform: uppercase;
             font-weight: bold;
             color: #555;
@@ -347,47 +351,60 @@
         }
 
         /* ------------------------------------------------------------- */
-        /* 🛠️ হরিজন্টাল স্লাইডার এবং প্রিমিয়াম ইফেক্টস */
+        /* 🛠️ ডেক্সটপ গ্রিড লেআউট ফিক্স (হরিজন্টাল মোবাইল ভিউ রিমুভড) */
         /* ------------------------------------------------------------- */
         .channel-list {
-            width: 100% !important;
-            clear: both !important;
             display: block !important;
-            padding: 0 !important;
+            padding: 0 0 0 15px !important;
             margin: 0 !important;
         }
         
         .channel-list ul#channel-container {
-            display: flex !important;
-            flex-direction: row !important;
-            flex-wrap: nowrap !important;
-            overflow-x: auto !important;
-            overflow-y: hidden !important;
-            padding: 12px 10px !important;
+            display: grid !important;
+            grid-template-columns: repeat(3, 100px) !important; /* ডেক্সটপে প্রতি লাইনে ৩টি করে চ্যানেল সুন্দর গ্রিড আকারে বসবে */
+            grid-gap: 15px !important;
+            overflow-x: hidden !important;
+            overflow-y: auto !important; /* লম্বা লিস্ট হলে নিচে স্ক্রোল হবে */
+            max-height: 480px !important; /* প্লেয়ারের উচ্চতার সাথে সামঞ্জস্যপূর্ণ */
+            padding: 5px !important;
             margin: 0 !important;
             list-style: none !important;
-            gap: 12px !important;
             width: 100% !important;
             box-sizing: border-box !important;
-            -webkit-overflow-scrolling: touch !important;
         }
         
+        /* ডেক্সটপ স্ক্রোলবার স্টাইল */
         .channel-list ul#channel-container::-webkit-scrollbar {
-            display: none !important;
+            width: 6px !important;
+            display: block !important;
+        }
+        .channel-list ul#channel-container::-webkit-scrollbar-track {
+            background: #111;
+        }
+        .channel-list ul#channel-container::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        .channel-list ul#channel-container::-webkit-scrollbar-thumb:hover {
+            background: #ff0055;
         }
 
         .channel-list ul#channel-container li {
             position: relative !important;
-            display: inline-block !important;
-            flex: 0 0 auto !important; 
-            width: 55px !important;    
-            height: 55px !important;   
-            transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+            width: 100% !important;    
+            height: 100px !important; /* ডেক্সটপ সাইজ বড় ও স্পষ্ট করা হলো */
+            transition: all 0.2s ease-in-out !important;
             border-radius: 10px !important;
-            border: 1px solid #1a1a1a !important;
-            background: #000 !important;
+            border: 1px solid #222 !important;
+            background: #0d0d0d !important;
             box-sizing: border-box !important;
             overflow: visible !important;
+            cursor: pointer;
+        }
+        .channel-list ul#channel-container li:hover {
+            transform: translateY(-3px) scale(1.03) !important;
+            border-color: #00f0ff !important;
+            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.3) !important;
         }
 
         /* চ্যানেল নাম্বারিং ব্যাজ কাউন্টার */
@@ -398,16 +415,15 @@
             counter-increment: channel-counter;
             content: counter(channel-counter);
             position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.9);
+            bottom: 6px;
+            right: 6px;
+            background: rgba(0, 0, 0, 0.8);
             color: #00f0ff;
-            font-size: 8px;
+            font-size: 10px;
             font-weight: bold;
-            padding: 1px 5px;
-            border-radius: 6px;
-            border: 1px solid #333;
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid #222;
             z-index: 4;
             pointer-events: none;
         }
@@ -416,7 +432,7 @@
             width: 100% !important;
             height: 100% !important;
             object-fit: cover !important;
-            border-radius: 8px !important;
+            border-radius: 9px !important;
             display: block !important;
         }
 
@@ -429,9 +445,8 @@
         }
 
         .selected-tv-channel {
-            transform: scale(1.12) !important;
             border: 2px solid #00f0ff !important;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.6) !important;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5) !important;
             z-index: 10 !important;
         }
 
@@ -443,13 +458,13 @@
 
         .live-indicator-badge {
             position: absolute !important;
-            top: -6px !important;
-            right: -6px !important;
+            top: 6px !important;
+            left: 6px !important;
             background: #ff0055 !important;
             color: #fff !important;
-            font-size: 8px !important;
-            font-weight: 900 !important;
-            padding: 1px 5px !important;
+            font-size: 9px !important;
+            font-weight: bold !important;
+            padding: 2px 6px !important;
             border-radius: 4px !important;
             box-shadow: 0 0 8px #ff0055 !important;
             text-transform: uppercase !important;
@@ -465,15 +480,15 @@
         }
         /* ------------------------------------------------------------- */
 
-        /* 🌟 পিওর ডার্ক মোড স্লিম টিভি রিমোট প্যানেল (০ বাটন সহ ১১৫ পিক্সেল চওড়া) */
+        /* রিমোট কন্ট্রোল প্যানেল স্টাইল */
         .remote-body-floating {
             display: none;
             position: fixed;
-            bottom: 20px;
-            right: 15px;
+            bottom: 30px;
+            right: 30px;
             background: #0a0a0c;
-            width: 120px;
-            padding: 12px 6px;
+            width: 130px;
+            padding: 15px 8px;
             border-radius: 20px;
             border: 1px solid #1f1f24;
             box-shadow: 0 15px 40px rgba(0,0,0,0.95);
@@ -482,27 +497,27 @@
             box-sizing: border-box;
         }
         .remote-header {
-            color: #555;
-            font-size: 8px;
+            color: #666;
+            font-size: 9px;
             font-weight: 900;
             letter-spacing: 1px;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             text-transform: uppercase;
         }
         .remote-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 5px;
-            gap: 4px;
+            margin-bottom: 6px;
+            gap: 5px;
         }
         .r-btn {
             flex: 1;
-            height: 32px;
+            height: 35px;
             background: #131316;
             border: 1px solid #222226;
             border-radius: 8px;
             color: #b5b5bd;
-            font-size: 11px;
+            font-size: 12px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
@@ -511,12 +526,16 @@
             transition: all 0.1s ease;
         }
         .r-btn span {
-            font-size: 5px;
+            font-size: 6px;
             text-transform: uppercase;
             display: block;
             color: #555;
             margin-top: 1px;
             font-weight: bold;
+        }
+        .r-btn:hover {
+            border-color: #444;
+            color: #fff;
         }
         .r-btn:active {
             background: #22222a;
@@ -527,10 +546,10 @@
         .r-btn-num {
             background: #18181c;
             font-weight: bold;
-            font-size: 12px;
+            font-size: 13px;
             color: #eee;
             border-radius: 6px;
-            height: 28px;
+            height: 32px;
         }
         .r-btn-num:active {
             background: #00f0ff;
@@ -541,11 +560,11 @@
             background: #111114;
             border: 1px solid #282830;
             color: #ffffff !important;
-            height: 38px;
-            width: 38px;
-            max-width: 38px;
+            height: 42px;
+            width: 42px;
+            max-width: 42px;
             border-radius: 50%;
-            font-size: 10px !important;
+            font-size: 11px !important;
             font-weight: bold !important;
             margin: 2px auto;
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
@@ -576,16 +595,16 @@
         .tv-osd {
             display: none;
             position: fixed;
-            top: 40px;
+            top: 50px;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(17, 17, 17, 0.95);
             color: #00f0ff;
             border: 1px solid #333;
-            padding: 8px 20px;
+            padding: 8px 25px;
             border-radius: 20px;
             font-weight: bold;
-            font-size: 12px;
+            font-size: 13px;
             z-index: 1000000;
             box-shadow: 0 4px 15px rgba(0,0,0,0.6);
             pointer-events: none;
@@ -600,8 +619,7 @@
 
     <div class="container tv-area">
         <div class="row">
-            <div class="col-xs-12 col-md-10 tv-view">
-                
+            <div class="col-md-9 tv-view">
                 <div class="remote-btn-container">
                     <button onclick="toggleRemote(true)" class="remote-open-btn">
                         <i class="fa-solid fa-tv"></i> OPEN SMART TV REMOTE
@@ -613,7 +631,7 @@
                 </div>
             </div>
             
-            <div class="col-xs-12 channel-list">
+            <div class="col-md-3 channel-list">
                 <ul id="channel-container"></ul>
             </div>
         </div>
@@ -758,7 +776,6 @@
         let selectedChannelIndex = 0; 
         let activePlayingIndex = -1;   
         
-        // ডাবল ডিজিট ইনপুট হ্যান্ডল করার গ্লোবাল ভেরিয়েবল
         let currentInputNumber = "";
         let inputTimeout = null;
 
@@ -767,42 +784,30 @@
             if(show) { updateSelectionHighlight(); }
         }
 
-        // 🔢 স্মার্ট ডাবল-ডিজিট নম্বর টাইপিং লজিক
         function pressNumber(numString) {
             const container = document.getElementById('channel-container');
             if (!container) return;
 
             const channels = container.querySelectorAll('li');
-
-            // আগের টাইমার ক্লিয়ার করা
             if (inputTimeout) clearTimeout(inputTimeout);
-
-            // নতুন নম্বর স্ট্রিং এ যোগ করা
             currentInputNumber += numString;
-            
-            // স্ক্রিনে ইনস্ট্যান্ট নম্বর শো করা
             showOSD("INPUT: " + currentInputNumber);
 
-            // ১.৫ সেকেন্ড ইউজার এর পরবর্তী ক্লিকের জন্য অপেক্ষা করবে
             inputTimeout = setTimeout(() => {
                 const finalChannelNumber = parseInt(currentInputNumber);
-                const targetIndex = finalChannelNumber - 1; // অ্যারে ইনডেক্স ০ ভিত্তিক
+                const targetIndex = finalChannelNumber - 1;
 
                 if (targetIndex >= 0 && targetIndex < channels.length) {
                     selectedChannelIndex = targetIndex;
                     updateSelectionHighlight();
-                    
                     channels[selectedChannelIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                    
                     showOSD("CH " + finalChannelNumber + " SELECTED");
                     selectAndPlayChannel();
                 } else {
                     showOSD("INVALID CH");
                 }
-                
-                // ইনপুট রিসেট করা
                 currentInputNumber = "";
-            }, 1500); // ১.৫ সেকেন্ড ডিলে
+            }, 1500);
         }
 
         function moveSelection(direction) {
@@ -817,16 +822,13 @@
             }
 
             selectedChannelIndex += direction;
-
             if (selectedChannelIndex >= channels.length) selectedChannelIndex = 0;
             if (selectedChannelIndex < 0) selectedChannelIndex = channels.length - 1;
 
             const targetElement = channels[selectedChannelIndex];
-            
             if (selectedChannelIndex !== activePlayingIndex) {
                 targetElement.classList.add('selected-tv-channel');
             }
-            
             targetElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
             showOSD("CH " + (selectedChannelIndex + 1));
         }
@@ -863,14 +865,8 @@
             const targetEl = channels[activePlayingIndex];
             
             if (targetEl) {
-                targetEl.click();
-                
-                const clickEvt = new MouseEvent('click', { bubbles: true, cancelable: true, view: window });
-                targetEl.dispatchEvent(clickEvt);
-                
                 const anchor = targetEl.tagName === 'A' ? targetEl : targetEl.querySelector('a');
                 if (anchor) anchor.click();
-
                 targetEl.classList.add('active-tv-channel');
                 
                 const liveTag = document.createElement('span');
@@ -878,7 +874,6 @@
                 liveTag.innerHTML = '🔴 Live';
                 targetEl.appendChild(liveTag);
             }
-
             showOSD("📡 CH " + (activePlayingIndex + 1) + " LOADING...");
         }
 
@@ -900,7 +895,6 @@
                                 });
                                 if(channels[activePlayingIndex]) {
                                     channels[activePlayingIndex].classList.add('active-tv-channel');
-                                    
                                     const liveTag = document.createElement('span');
                                     liveTag.className = 'live-indicator-badge';
                                     liveTag.innerHTML = '🔴 Live';
