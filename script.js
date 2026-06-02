@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('channel-container');
 
-    // ক্যাশ এড়াতে এবং দ্রুত লোড করতে একটি র্যান্ডম নাম্বার যোগ করা হয়েছে (?v=)
+    // ক্যাশ সমস্যা এড়াতে এবং দ্রুত লোড করতে র্যান্ডম ভার্সন যোগ করা হয়েছে
     fetch('playlist.json?v=' + Math.random())
         .then(response => response.json())
         .then(data => {
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
             data.forEach(channel => {
                 const li = document.createElement('li');
                 
-                // loading="lazy" ব্যবহার করায় ডেক্সটপে চ্যানেলগুলো পলকের মধ্যে লোড হবে
+                // ১ ক্লিকে ১টি চ্যানেল সিলেক্ট হওয়ার অরিজিনাল লজিক
                 li.innerHTML = `
                     <a href="javascript:void(0);" onclick="player.location.href='${channel.url}'">
                         <img src="${channel.image}" alt="${channel.name}" loading="lazy">
