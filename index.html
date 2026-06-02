@@ -16,7 +16,7 @@
 
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/mD1VCt2C/RS-Live.png">
     <link href="bootstrap.min.css" rel="stylesheet">
-    <link href="style.css?v=4.0" rel="stylesheet">
+    <link href="style.css?v=5.0" rel="stylesheet">
 
     <style>
         body {
@@ -27,7 +27,7 @@
             font-family: Arial, sans-serif;
         }
 
-        /* 🎬 "Welcome To RS Live TV" ইন্ট্রো লোডার */
+        /* 🎬 "Welcome To RS Live TV" ইন্тро লোডার */
         #intro-loader {
             position: fixed;
             top: 0;
@@ -371,8 +371,9 @@
         </div>
     </footer>
 
-    <script src="script.js?v=4.0"></script>
+    <script src="script.js?v=5.0"></script>
     <script>
+        // ১. ইন্ট্রো লোডার বন্ধ করার লজিক
         window.addEventListener('load', function() {
             setTimeout(function() {
                 const loader = document.getElementById('intro-loader');
@@ -387,60 +388,70 @@
             }, 2500); 
         });
 
-        // 🎮 রিমোট স্ক্রোলিং ট্র্যাকার ইঞ্জিন (চ্যানেল এলোমেলো হওয়া সম্পূর্ণ বন্ধের সমাধান)
+        // ২. 🎮 ইন্টারনাল কাউন্টার ট্র্যাকিং রিমোট ইঞ্জিন (চ্যানেল জাম্প হওয়া বা এলোমেলো হওয়া সম্পূর্ণ অসম্ভব)
+        let currentFocusedIndex = 0; // মেমরিতে কারেন্ট পজিশন সেভ রাখার জন্য ভেরিয়েবল
+
         document.addEventListener('keydown', function(event) {
             const items = Array.from(document.querySelectorAll('#channel-container li'));
             if (items.length === 0) return;
-            
-            const activeElement = document.activeElement;
-            let currentIndex = items.indexOf(activeElement);
 
-            if (currentIndex === -1 && (event.keyCode === 38 || event.keyCode === 40)) {
+            // আপ এবং ডাউন বাটনের স্বাভাবিক ব্রাউজার অ্যাকশন সম্পূর্ণ ব্লক করা হলো
+            if (event.keyCode === 38 || event.keyCode === 40 || event.keyCode === 13) {
                 event.preventDefault();
-                items[0].focus();
-                items[0].scrollIntoView({ block: 'center', behavior: 'smooth' });
-                return;
+                event.stopImmediatePropagation();
             }
 
             switch(event.keyCode) {
                 case 38: // 🔼 Up Button
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
-                    if (currentIndex > 0) {
-                        items[currentIndex - 1].focus();
-                        items[currentIndex - 1].scrollIntoView({ block: 'center', behavior: 'smooth' });
+                    if (currentFocusedIndex > 0) {
+                        currentFocusedIndex--;
                     } else {
-                        items[items.length - 1].focus();
-                        items[items.length - 1].scrollIntoView({ block: 'center', behavior: 'smooth' });
+                        currentFocusedIndex = items.length - 1; // সবার শেষে চলে যাবে
                     }
+                    updateRemoteFocus(items);
                     break;
                     
                 case 40: // 🔽 Down Button
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
-                    if (currentIndex < items.length - 1) {
-                        items[currentIndex + 1].focus();
-                        items[currentIndex + 1].scrollIntoView({ block: 'center', behavior: 'smooth' });
+                    if (currentFocusedIndex < items.length - 1) {
+                        currentFocusedIndex++;
                     } else {
-                        items[0].focus();
-                        items[0].scrollIntoView({ block: 'center', behavior: 'smooth' });
+                        currentFocusedIndex = 0; // আবার প্রথমে ফিরে আসবে
                     }
+                    updateRemoteFocus(items);
                     break;
                     
                 case 13: // 🔘 OK Button
-                    if (currentIndex !== -1) {
-                        event.preventDefault();
-                        items[currentIndex].click(); 
+                    if (items[currentFocusedIndex]) {
+                        items[currentFocusedIndex].click(); 
                     }
                     break;
             }
         });
 
+        // ৩. ফোকাস পরিবর্তন ও স্মুথ পজিশনিং করার মাস্টার ফাংশন
+        function updateRemoteFocus(items) {
+            items.forEach(item => item.blur()); // সব এলিমেন্ট থেকে পুরানো ফোকাস রিলিজ করা
+            
+            const activeItem = items[currentFocusedIndex];
+            if (activeItem) {
+                activeItem.focus(); // নতুন এলিমেন্টে ফোকাস দেওয়া
+                
+                // চ্যানেলটি স্ক্রোলের একদম মাঝখানে ধরে রাখার জন্য লজিক
+                activeItem.scrollIntoView({
+                    block: 'center',
+                    inline: 'nearest',
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // ৪. পেজ ওপেন হওয়ার সাথে সাথে ইনিশিয়াল ফোকাস সেট করা
         function initTVFocus() {
-            const firstChannel = document.querySelector('#channel-container li');
-            if (firstChannel) {
-                firstChannel.focus();
-                firstChannel.scrollIntoView({ block: 'center' });
+            const items = Array.from(document.querySelectorAll('#channel-container li'));
+            if (items.length > 0) {
+                currentFocusedIndex = 0;
+                items[0].focus();
+                items[0].scrollIntoView({ block: 'center' });
             }
         }
 
@@ -450,4 +461,4 @@
     <script async="async" data-cfasync="false" src="https://pl26377079.effectivecpmnetwork.com/cdeccdd75d3e2e6916a42ce9653cfb08/invoke.js"></script>
     <div id="container-cdeccdd75d3e2e6916a42ce9653cfb08"></div>
 </body>
-</html>
+    </html>
