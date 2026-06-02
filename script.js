@@ -10,30 +10,15 @@ document.addEventListener('DOMContentLoaded', function() {
             data.forEach(channel => {
                 const li = document.createElement('li');
                 
-                // কিবোর্ড নেভিগেশনের জন্য শুধুমাত্র li-কে ফোকাস দেওয়া হলো
-                li.setAttribute('tabindex', '0');
-                
+                // এখানে আপনার অরিজিনাল ১ ক্লিকের এঙ্কর (a) ট্যাগ লজিক রাখা হয়েছে
                 li.innerHTML = `
-                    <a href="javascript:void(0);" style="display: block; text-decoration: none; pointer-events: none;">
+                    <a href="javascript:void(0);" onclick="player.location.href='${channel.url}'">
                         <img src="${channel.image}" alt="${channel.name}">
                         <div class="channel-info-box">
                             <p class="channel-title">${channel.name}</p>
                         </div>
                     </a>
                 `;
-
-                // ১. মাউস দিয়ে ক্লিক করলে চ্যানেল প্লে হবে
-                li.addEventListener('click', function(e) {
-                    player.location.href = channel.url;
-                });
-
-                // ২. কিবোর্ড বা টিভি রিমোটের 'Enter' চাপলে চ্যানেল প্লে হবে
-                li.addEventListener('keydown', function(e) {
-                    if (e.key === 'Enter') {
-                        e.preventDefault(); 
-                        player.location.href = channel.url;
-                    }
-                });
                 
                 container.appendChild(li);
             });
