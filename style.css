@@ -38,16 +38,16 @@ a {
 /* 🖼️ প্রতিটি চ্যানেল কার্ডের বক্স */
 .thumbnail-slider li { 
     list-style: none; 
-    margin: 6px 10px 14px 10px; 
-    background: #1a1a1a; 
-    border: 1px solid #252525;
+    margin: 6px 12px 12px 12px; 
+    background: #1e1e1e; 
+    border: 1px solid #2d2d2d; /* স্বাভাবিক অবস্থায় হালকা বর্ডার */
     border-radius: 6px;
-    padding: 4px;
-    transition: all 0.2s ease-out;
+    padding: 5px;
     display: flex;
     flex-direction: column;
     cursor: pointer;
     outline: none !important;
+    box-sizing: border-box;
 }
 
 /* ⚠️ লোগো ইমেজ সেটিংস */
@@ -68,7 +68,7 @@ a {
 }
 
 .channel-info-box .channel-title {
-    color: #e0e0e0;
+    color: #cccccc;
     font-size: 13px;
     font-weight: bold;
     margin: 0;
@@ -77,13 +77,12 @@ a {
     text-overflow: ellipsis; 
 }
 
-/* 🎮 কিবোর্ড ফোকাস ও মাউস হোভার ইফেক্ট (চোখে না লাগার মতো হালকা ও মার্জিত কালার) */
+/* 🎮 কিবোর্ড ফোকাস ও মাউস হোভার ইফেক্ট (নতুন হালকা ও মার্জিত মেটালিক গ্রে বর্ডার) */
 .thumbnail-slider li:hover, .thumbnail-slider li:focus {
     outline: none !important;
-    transform: scale(1.02); /* জুম সামান্য কমানো হয়েছে যেন বর্ডার কাটার চান্স না থাকে */
-    border-color: #00a2ff !important; /* উজ্জ্বল নীলের বদলে সফট মেটালিক ব্লু */
-    box-shadow: 0 0 8px rgba(0, 162, 255, 0.35) !important; /* গ্লো অনেক হালকা ও স্মুথ করা হয়েছে */
-    background: #22222b !important; /* ব্যাকগ্রাউন্ড হালকা উন্নত হবে */
+    border-color: #888888 !important; /* চোখে না লাগার মতো হালকা সিলভার/গ্রে বর্ডার */
+    background: #2a2a2a !important; /* ব্যাকগ্রাউন্ড সামান্য উজ্জ্বল হবে */
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.15) !important; /* একদম হালকা সফট গ্লো */
 }
 
 /* 📜 সাইডবার স্ক্রোলবার স্টাইল */
@@ -93,7 +92,7 @@ a {
 }
 .channel-list::-webkit-scrollbar-thumb {
     border-radius: 4px;
-    background-color: #00a2ff; 
+    background-color: #444444; 
 }
 
 /* 📱 মোবাইল ও ট্যাবলেটের জন্য রেসপনসিভ ভিউ */
@@ -136,4 +135,4 @@ a {
     .thumbnail-slider li img { 
         height: 48px; 
     }
-    }
+}
