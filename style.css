@@ -17,7 +17,7 @@ a {
 
 .tv-area { margin-top: 50px; }
 
-/* 📺 ল্যাপটপ ও ডেক্সটপ মুডে সাইডবার কন্টেইনার (আগের মতো নিচে নিচে শো করার জন্য) */
+/* 📺 ডেক্সটপ ও ল্যাপটপে সাইডবার কন্টেইনার */
 .channel-list { 
     padding-left: 0; 
     height: 520px; 
@@ -32,13 +32,13 @@ a {
     margin: 0; 
     padding: 0;  
     list-style: none;
-    display: block; /* ডেক্সটপ/ল্যাপটপে ব্লক মুড থাকবে যাতে নিচে নিচে আসে */
+    display: block; /* ডেক্সটপে নিচে নিচে শো করার জন্য */
 }
 
-/* 🖼️ প্রতিটি চ্যানেল কার্ডের বক্স */
+/* 🖼️ প্রতিটি চ্যানেল কার্ডের বক্স (বর্ডার যেন না কাটে সেজন্য মার্জিন ফিক্সড) */
 .thumbnail-slider li { 
     list-style: none; 
-    margin-bottom: 12px; 
+    margin: 6px 10px 14px 10px; /* ডানে-বামে ১০ পিক্সেল মার্জিন দেওয়ায় বর্ডার আর কাটবে না */
     background: #1a1a1a; 
     border: 1px solid #252525;
     border-radius: 6px;
@@ -46,15 +46,16 @@ a {
     transition: all 0.2s ease;
     display: flex;
     flex-direction: column;
+    cursor: pointer;
 }
 
-/* ⚠️ লোগো যেন কোনোভাবেই কাটা না পড়ে তার মাস্টার সেটিংস */
+/* ⚠️ লোগো ইমেজ সেটিংস (কাটা পড়া রোধ করতে) */
 .thumbnail-slider li img { 
     width: 100%; 
-    height: 85px; /* ল্যাপটপ/ডেক্সটপের জন্য স্ট্যান্ডার্ড হাইট */
-    object-fit: contain !important; /* লোগো পুরোটা দেখাবে, কোনো অংশ কাটবে না */
+    height: 85px; 
+    object-fit: contain !important; /* লোগো পুরোটা দেখাবে, কাটবে না */
     display: block;
-    background: #000; /* লোগোর চারপাশে ফাঁকা অংশে কালো ব্যাকগ্রাউন্ড */
+    background: #000; 
     border-radius: 4px;
 }
 
@@ -62,10 +63,9 @@ a {
 .channel-info-box {
     padding: 6px 4px 2px 4px;
     text-align: center;
-    white-space: normal; /* নাম বড় হলে নিচে নামবে */
+    white-space: normal; 
 }
 
-/* চ্যানেলের নামের ফন্ট স্টাইল */
 .channel-info-box .channel-title {
     color: #ffffff;
     font-size: 13px;
@@ -73,19 +73,20 @@ a {
     margin: 0;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; /* নাম বেশি বড় হলে শেষে ... দেখাবে */
+    text-overflow: ellipsis; 
 }
 
-/* মাউস হোভার বা সিলেক্ট ইফেক্ট */
+/* 🎮 কিবোর্ড ফোকাস ও মাউস হোভার ইফেক্ট (কাটা না পড়ে গ্লো হওয়ার জন্য) */
 .thumbnail-slider li:hover, .thumbnail-slider li:focus {
-    transform: scale(1.03);
-    border-color: #00f0ff;
-    box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+    outline: none !important;
+    transform: scale(1.04); /* সামান্য বড় হবে */
+    border-color: #00f0ff !important; /* চারপাশের বর্ডার গ্লো করবে */
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.6) !important;
 }
 
 /* 📜 সাইডবার স্ক্রোলবার স্টাইল */
 .channel-list::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
     background-color: #1a1a1a;
 }
 .channel-list::-webkit-scrollbar-thumb {
@@ -93,7 +94,7 @@ a {
     background-color: #00f0ff; 
 }
 
-/* 📱 শুধুমাত্র মোবাইল ও ট্যাবলেটের জন্য রেসপনসিভ ভিউ (নিচে নিচে থেকে পাশাপাশি স্ক্রোলে রূপান্তর হবে) */
+/* 📱 মোবাইল ও ট্যাবলেটের জন্য রেসপনসিভ ভিউ */
 @media (max-width: 1199px) {
     .channel-list { height: 425px; }
 }
@@ -103,15 +104,15 @@ a {
         padding: 10px 15px; 
         height: auto !important; 
         overflow-y: hidden; 
-        overflow-x: auto; /* মোবাইলে পাশাপাশি স্ক্রোল */
+        overflow-x: auto; 
     }
     .thumbnail-slider {
-        display: flex; /* মোবাইলে পাশাপাশি নেওয়ার জন্য flex করা হলো */
+        display: flex; 
         gap: 8px;
     }
     .thumbnail-slider li { 
         display: inline-block; 
-        margin-bottom: 0;
+        margin: 0;
         flex-shrink: 0;
     }
     .thumbnail-slider li a { 
@@ -133,4 +134,4 @@ a {
     .thumbnail-slider li img { 
         height: 48px; 
     }
-    }
+}
