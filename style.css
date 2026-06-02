@@ -40,13 +40,13 @@ a {
     list-style: none; 
     margin: 6px 12px 12px 12px; 
     background: #1a1a1a; 
-    border: 1px solid #252525; /* স্বাভাবিক অবস্থায় ডার্ক বর্ডার */
+    border: 1px solid #252525; 
     border-radius: 6px;
     padding: 5px;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    content-visibility: auto; /* ডেক্সটপে লোডিং ফাস্ট করার জন্য */
+    content-visibility: auto; /* ডেক্সটপে ফাস্ট রেন্ডার করার জন্য */
 }
 
 /* ⚠️ লোগো ইমেজ সেটিংস */
@@ -76,12 +76,12 @@ a {
     text-overflow: ellipsis; 
 }
 
-/* 🎮 মাউস হোভার বা কিবোর্ড সিলেক্ট ইফেক্ট (নতুন হালকা ও মার্জিত বর্ডার) */
+/* 🎮 মাউস হোভার বা কিবোর্ড সিলেক্ট ইফেক্ট (নতুন এবং একদম হালকা ডার্ক-ব্লু বর্ডার) */
 .thumbnail-slider li:hover, .thumbnail-slider li:focus {
     outline: none !important;
-    border-color: #444444 !important; /* উজ্জ্বল কালার বদলে একদম হালকা মেটালিক গ্রে বর্ডার */
-    background: #222222 !important; /* সিলেক্ট হলে ব্যাকগ্রাউন্ড সামান্য পরিবর্তন হবে */
-    box-shadow: none !important; /* অতিরিক্ত চোখের আলো বা গ্লো সম্পূর্ণ বন্ধ */
+    border-color: #1e3a8a !important; /* কালার পরিবর্তন চেক করার জন্য একদম নতুন হালকা নেভি ব্লু বর্ডার */
+    background: #16161f !important; /* সিলেক্ট হলে ব্যাকগ্রাউন্ড সামান্য নরম হবে */
+    box-shadow: none !important; /* অতিরিক্ত কোনো গ্লো বা নিয়ন আলো থাকবে না */
 }
 
 /* 📜 সাইডবার স্ক্রোলবার স্টাইল */
@@ -134,4 +134,4 @@ a {
     .thumbnail-slider li img { 
         height: 48px; 
     }
-    }
+}
