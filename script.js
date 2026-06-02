@@ -1,32 +1,36 @@
-let isProcessing = false; // বাটন লক করার জন্য ভ্যারিয়েবল
+document.addEventListener('DOMContentLoaded', function() {
+    const container = document.getElementById('channel-container');
 
-document.addEventListener('keydown', function(event) {
-    // যদি প্রসেসিং চলছে, তবে নতুন ইনপুট ব্লক করো
-    if (isProcessing) return;
+    fetch('playlist.json?t=' + Date.now())
+        .then(response => response.json())
+        .then(data => {
+            container.innerHTML = ''; 
 
-    const items = Array.from(document.querySelectorAll('#channel-container li'));
-    const active = document.activeElement;
-    let index = items.indexOf(active);
+            data.forEach((channel, index) => {
+                const li = document.createElement('li');
+                
+                // রিমোট ফোকাস ধরার জন্য স্ট্যান্ডার্ড tabindex
+                li.setAttribute('tabindex', '0');
+                
+                li.innerHTML = `
+                    <div style="display: block; text-decoration: none; pointer-events: none; width: 100%;">
+                        <img src="${channel.image}" alt="${channel.name}" loading="lazy">
+                        <div class="channel-info-box">
+                            <p class="channel-title">${channel.name}</p>
+                        </div>
+                    </div>
+                `;
 
-    if (index === -1 && items.length > 0) {
-        items[0].focus();
-        return;
-    }
+                // চ্যানেল প্লে করার মাউস, টাচ ও রিমোট ক্লিক ইভেন্ট
+                li.addEventListener('click', function() {
+                    if (window.frames['player']) {
+                        window.frames['player'].location.href = channel.url;
+                    } else {
+                        player.location.href = channel.url;
+                    }
+                });
+                
+                container.appendChild(li);
+            });
 
-    if (event.keyCode === 40 || event.keyCode === 38 || event.keyCode === 13) {
-        isProcessing = true; // প্রসেস শুরু
-        
-        if (event.keyCode === 40) { // Down
-            event.preventDefault();
-            if (index + 1 < items.length) items[index + 1].focus();
-        } else if (event.keyCode === 38) { // Up
-            event.preventDefault();
-            if (index - 1 >= 0) items[index - 1].focus();
-        } else if (event.keyCode === 13) { // OK
-            if (active.tagName === 'LI') active.click();
-        }
-
-        // ৩০০ মিলি-সেকেন্ড পর আবার ইনপুট গ্রহণ করবে
-        setTimeout(() => { isProcessing = false; }, 300);
-    }
-});
+            // প্লেলিস্ট লোড সম্পন্ন হলে টিভি ফোকাস সচল হবে
