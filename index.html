@@ -16,10 +16,10 @@
 
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/mD1VCt2C/RS-Live.png">
     <link href="bootstrap.min.css" rel="stylesheet">
-    <link href="style.css?v=8.0" rel="stylesheet">
+    <link href="style.css?v=9.0" rel="stylesheet">
 
     <style>
-        /* 🎬 "Welcome To RS Live TV" ইন্тро লোডার */
+        /* 🎬 ইন্ট্রো লোডার */
         #intro-loader {
             position: fixed;
             top: 0;
@@ -358,9 +358,9 @@
         </div>
     </footer>
 
-    <script src="script.js?v=8.0"></script>
+    <script src="script.js?v=9.0"></script>
     <script>
-        // ১. লোডিং ইন্ট্রো স্ক্রিন রিমুভার
+        // ১. লোডিং ইন্тро স্ক্রিন রিমুভার
         window.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 const loader = document.getElementById('intro-loader');
@@ -372,37 +372,37 @@
             }, 1200); 
         });
 
-        // ২. 🎮 অ্যান্ড্রয়েড স্মার্ট টিভি ও অ্যাপ রিমোটের জন্য ন্যাটিভ ফোকাস লিসেনার 
-        // (ব্রাউজারের স্বাভাবিক স্ক্রোলিং লক না করে এটি রিমোটের ন্যাটিভ সিলেকশনকে ট্র্যাক করবে)
-        document.addEventListener('focusin', function(event) {
-            if (event.target && event.target.tagName === 'LI') {
-                event.target.scrollIntoView({
-                    block: 'nearest',
-                    inline: 'nearest',
-                    behavior: 'smooth'
-                });
-            }
-        });
-
-        // কিবোর্ড এন্টার বা রিমোট ওকের (OK) ব্যাকআপ লজিক
+        // ২. 🎮 স্মার্ট টিভি রিমোট নেভিগেশন ও বাটন সিলেকশন ইউনিভার্সাল স্ক্রিপ্ট
         document.addEventListener('keydown', function(event) {
-            if (event.keyCode === 13) {
-                const activeElement = document.activeElement;
-                if (activeElement && activeElement.tagName === 'LI') {
+            const active = document.activeElement;
+            
+            // রিমোটের ওকে (OK / Enter) বাটন প্রেস ফিক্স
+            if (event.keyCode === 13 || event.key === "Enter") {
+                if (active && active.tagName === 'LI') {
                     event.preventDefault();
-                    activeElement.click();
+                    active.click(); 
                 }
             }
         });
 
-        // অটোমেটিক প্রথম চ্যানেলে ফোকাস নিয়ে যাওয়ার মেথড
+        // রিমোট আপ-ডাউন ট্র্যাকিং পজিশন ফিক্স
+        window.addEventListener('focus', function(event) {
+            if (event.target && event.target.tagName === 'LI') {
+                event.target.scrollIntoView({
+                    block: 'center', 
+                    behavior: 'smooth'
+                });
+            }
+        }, true); 
+
+        // অটোমেটিক প্রথম চ্যানেলে ফোকাস নেওয়ার মেথড
         function initTVFocus() {
             setTimeout(() => {
                 const firstChannel = document.querySelector('#channel-container li');
                 if (firstChannel) {
                     firstChannel.focus();
                 }
-            }, 300);
+            }, 500);
         }
 
         document.addEventListener('contextmenu', event => event.preventDefault());
@@ -411,4 +411,4 @@
     <script async="async" data-cfasync="false" src="https://pl26377079.effectivecpmnetwork.com/cdeccdd75d3e2e6916a42ce9653cfb08/invoke.js"></script>
     <div id="container-cdeccdd75d3e2e6916a42ce9653cfb08"></div>
 </body>
-</html>
+        </html>
