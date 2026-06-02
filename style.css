@@ -6,7 +6,7 @@
 /* 📺 সাইডবার চ্যানেল কন্টেইনার */
 .channel-list { 
     padding-left: 0; 
-    height: 520px; 
+    height: 540px; 
     white-space: nowrap; 
     overflow-y: auto; 
     overflow-x: hidden; 
@@ -21,76 +21,85 @@
     display: block;
 }
 
-/* 🖼️ প্রতিটি চ্যানেল বক্স */
+/* 🖼️ প্রতিটি চ্যানেল কার্ড বক্স */
 .thumbnail-slider li { 
     list-style: none; 
-    margin: 6px 12px 12px 12px; 
-    background: #161616; 
-    border: 1px solid #222222; 
+    margin: 0 12px 12px 12px; 
+    background: #1b1c21; 
+    border: 1px solid #2d2e35; 
     border-radius: 6px;
-    padding: 5px;
+    padding: 0; /* প্যাডিং মুছে লোগো বর্ডারের সাথে পুরো ফিট করা হয়েছে */
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     cursor: pointer;
     outline: none !important;
-    content-visibility: auto; 
+    overflow: hidden; 
+    content-visibility: auto;
+    scroll-margin-top: 20px;
+    scroll-margin-bottom: 20px;
+    transition: all 0.15s ease-in-out;
 }
 
+/* 🎯 Fox Sports 2 এর মতো লোগো পুরো কার্ড জুড়ে বড় করে দেখানোর ফিক্স */
 .thumbnail-slider li img { 
-    width: 100%; 
-    height: 85px; 
-    object-fit: contain !important; 
+    width: 100% !important; 
+    height: 85px !important; /* নির্দিষ্ট নিখুঁত হাইট */
+    object-fit: cover !important; /* যেকোনো লোগো পুরো বক্সে বর্ডার টু বর্ডার ছড়িয়ে যাবে */
     display: block;
     background: #000; 
-    border-radius: 4px;
 }
 
 .channel-info-box {
-    padding: 6px 4px 2px 4px;
+    padding: 8px 6px;
     text-align: center;
-    white-space: normal; 
+    background: #1f2026; 
+    border-top: 1px solid #2d2e35;
 }
 
 .channel-info-box .channel-title {
-    color: #cccccc;
-    font-size: 13px;
-    font-weight: bold;
+    color: #aaaaaa;
+    font-size: 12px;
+    font-weight: 600;
     margin: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis; 
 }
 
-/* 🎮 ফোকাস বা হোভার করা বর্ডার (গাঢ় মেটালিক গ্রে কালার) */
+/* 🎮 ফোকাস বর্ডারের কালার আরও গাঢ় ও প্রিমিয়াম গ্রে করা হলো */
 .thumbnail-slider li:hover, 
-.thumbnail-slider li:focus {
+.thumbnail-slider li:focus,
+.thumbnail-slider li:focus-within {
     outline: none !important;
-    border: 2px solid #777777 !important; /* স্পষ্ট গাঢ় মেটালিক ডার্ক গ্রে */
-    background: #252525 !important; 
-    box-shadow: none !important; 
-    transform: scale(1.02); 
-    transition: all 0.1s ease-in-out;
+    border: 2px solid #777777 !important; /* আপনার চাওয়া গাঢ় বর্ডার কালার */
+    background: #252731 !important;
+    transform: scale(1.02);
+}
+
+.thumbnail-slider li:focus .channel-info-box .channel-title,
+.thumbnail-slider li:hover .channel-info-box .channel-title {
+    color: #ffffff !important; 
 }
 
 .channel-list::-webkit-scrollbar {
-    width: 6px;
-    background-color: #1a1a1a;
+    width: 5px;
+    background-color: #0c0d11;
 }
 .channel-list::-webkit-scrollbar-thumb {
     border-radius: 4px;
-    background-color: #333333; 
+    background-color: #252731; 
 }
 
-/* 📱 মোবাইল ও বড় ট্যাবলেটের জন্য রেসপনসিভ কনফিগারেশন */
+/* 📱 মোবাইল ও বড় ট্যাবলেটের রেসপনসিভ ভিউ কনফিগারেশন */
 @media (max-width: 1199px) {
-    .channel-list { height: 425px; }
+    .channel-list { height: 450px; }
 }
 
 @media (max-width: 990px) {
     /* 📱 মোবাইলের জন্য ভিডিও প্লেয়ারের উপরে আগের মতো টপ গ্যাপ ফাঁকা জায়গা */
     .tv-area { 
-        margin-top: 35px !important; /* প্লেয়ারের উপরে ৩৫ পিক্সেল নিখুঁত ফাকা জায়গা */
+        margin-top: 35px !important; /* প্লেয়ারের উপরে নিখুঁত ফাঁকা গ্যাপ */
         padding-top: 5px !important;
     }
     
@@ -102,19 +111,20 @@
     }
     .thumbnail-slider {
         display: flex; 
-        gap: 8px;
+        gap: 10px;
     }
     .thumbnail-slider li { 
         display: inline-block; 
         margin: 0;
         flex-shrink: 0;
+        scroll-margin-left: 20px;
     }
     .thumbnail-slider li a { 
         display: block; 
-        width: 110px; 
+        width: 120px; 
     }
     .thumbnail-slider li img { 
-        height: 55px; 
+        height: 65px !important; 
     }
     .channel-info-box .channel-title {
         font-size: 11px;
@@ -123,9 +133,9 @@
 
 @media (max-width: 410px) {
     .thumbnail-slider li a { 
-        width: 95px; 
+        width: 100px; 
     }
     .thumbnail-slider li img { 
-        height: 48px; 
+        height: 55px !important; 
     }
 }
