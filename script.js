@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
             data.forEach((channel, index) => {
                 const li = document.createElement('li');
                 
-                // রিমোটের ফোকাস ইন্ডেক্স লক রাখার জন্য সঠিক উপায়েTabIndex যুক্ত করা হলো
+                // রিমোট ট্র্যাকিংয়ের জন্য TabIndex সেট করা হলো
                 li.setAttribute('tabindex', index + 1);
                 
                 li.innerHTML = `
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 `;
 
-                // চ্যানেল প্লে করার মাউস ও রিমোট ক্লিক ইভেন্ট
+                // চ্যানেল প্লে করার ইভেন্ট
                 li.addEventListener('click', function() {
                     if (window.frames['player']) {
                         window.frames['player'].location.href = channel.url;
@@ -32,9 +32,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 container.appendChild(li);
             });
+
+            // 🎯 চ্যানেললিস্ট সম্পূর্ণ লোড হওয়ার পর রিমোট ফোকাস ইঞ্জিন চালু করা হলো
+            if (typeof initTVFocus === 'function') {
+                initTVFocus();
+            }
         })
         .catch(error => {
             console.error('Error loading playlist:', error);
-            container.innerHTML = '<p style="color:red; font-size:10px;">Error Loading Playlist!</p>';
+            container.innerHTML = '<p style="color:red; font-size:10px; text-align:center;">Error Loading Playlist!</p>';
         });
 });
