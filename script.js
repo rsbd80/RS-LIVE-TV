@@ -11,15 +11,30 @@ document.addEventListener('DOMContentLoaded', function() {
             data.forEach(channel => {
                 const li = document.createElement('li');
                 
-                // লোগো এবং তার নিচে চ্যানেলের নিজস্ব নাম (Rs Live Tv বাদ দেওয়া হয়েছে)
+                // কিবোর্ড বা রিমোট ফোকাস ধরার জন্য tabindex="0" যোগ করা হলো
+                li.setAttribute('tabindex', '0');
+                
                 li.innerHTML = `
-                    <a href="javascript:void(0);" onclick="player.location.href='${channel.url}'">
+                    <a href="javascript:void(0);" style="display: block; text-decoration: none;">
                         <img src="${channel.image}" alt="${channel.name}">
                         <div class="channel-info-box">
                             <p class="channel-title">${channel.name}</p>
                         </div>
                     </a>
                 `;
+
+                // ১. মাউস দিয়ে ক্লিক করলে চ্যানেল প্লে হবে
+                li.addEventListener('click', function() {
+                    player.location.href = channel.url;
+                });
+
+                // ২. কিবোর্ড বা টিভি রিমোটের 'Enter' চাপলে চ্যানেল প্লে হবে
+                li.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault(); // পেজের ডিফল্ট স্ক্রোল আচরণ বন্ধ করবে
+                        player.location.href = channel.url;
+                    }
+                });
                 
                 container.appendChild(li);
             });
