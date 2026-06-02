@@ -86,12 +86,13 @@ body {
     text-overflow: ellipsis;
 }
 
-/* 🎮 স্মার্ট টিভি রিমোট সিলেকশন ও হোভার মাস্টার ফিক্স */
+/* 🎮 স্মার্ট টিভি রিমোট সিলেকশন ও হোভার মাস্টার ফিক্স (লাক্সারি নেঅন ব্লু বর্ডার ও গ্লো ইফেক্ট) */
 .thumbnail-slider li:hover, 
 .thumbnail-slider li:focus,
 .thumbnail-slider li:focus-within {
     outline: none !important;
-    border: 2px solid red !important; /* স্পষ্ট গাঢ় মেটালিক বর্ডার */
+    border: 2px solid #00f0ff !important; /* প্রিমিয়াম উজ্জ্বল নেঅন ব্লু বর্ডার */
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.4); /* হালকা গ্লো ইফেক্ট, যা টিভিতে দারুণ দেখাবে */
     background: #252731 !important;
     transform: scale(1.03);
 }
