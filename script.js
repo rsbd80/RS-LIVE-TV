@@ -34,3 +34,12 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             // প্লেলিস্ট লোড সম্পন্ন হলে টিভি ফোকাস সচল হবে
+            if (typeof initTVFocus === 'function') {
+                initTVFocus();
+            }
+        })
+        .catch(error => {
+            console.error('Error loading playlist:', error);
+            container.innerHTML = '<p style="color:red; font-size:10px; text-align:center; padding:20px;">Playlist Load Error!</p>';
+        });
+});
