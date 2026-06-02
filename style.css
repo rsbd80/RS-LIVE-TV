@@ -17,7 +17,7 @@ a {
 
 .tv-area { margin-top: 50px; }
 
-/* 📺 চ্যানেল লিস্ট কন্টেইনার */
+/* 📺 ডেক্সটপে চ্যানেল তালিকা কন্টেইনার (আগের মতো নিচে নিচে শো করবে) */
 .channel-list { 
     padding-left: 0; 
     height: 520px; 
@@ -34,81 +34,44 @@ a {
     list-style: none;
 }
 
-/* 🖼️ প্রতিটি চ্যানেল কার্ড (ব্যানার স্টাইল) */
+/* 🖼️ প্রতিটি চ্যানেল কার্ডের বক্স */
 .thumbnail-slider li { 
-    background: #0d0d13; /* কার্ড ব্যাকগ্রাউন্ড */
-    border: 1px solid #222;
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 15px; 
+    list-style: none; 
+    margin-bottom: 12px; 
+    background: #1a1a1a; /* লোগোর পেছনে সুন্দর ডার্ক ব্যাকগ্রাউন্ড */
+    border: 1px solid #252525;
+    border-radius: 6px;
+    padding: 4px;
     transition: all 0.2s ease;
-    display: flex;
-    flex-direction: column;
 }
 
-/* ইমেজকে ফিক্সড ১২৮০×৭২০ (16:9 HD) সাইজে লক করা */
+/* ⚠️ লোগো যেন কোনোভাবেই কাটা না পড়ে তার মাস্টার সেটিংস */
 .thumbnail-slider li img { 
-    width: 100% !important; 
-    height: auto !important; 
-    aspect-ratio: 1280 / 720 !important; /* পারফেক্ট এইচডি রেশিও */
-    object-fit: cover !important; /* ইমেজ চ্যাপ্টা হবে না */
+    width: 100%; 
+    height: 90px; /* ডেক্সটপের জন্য স্ট্যান্ডার্ড হাইট */
+    object-fit: contain !important; /* লোগো ছোট-বড় বা যে সাইজেরই হোক, পুরোটা দেখাবে, কাটবে না */
     display: block;
-    border-bottom: 1px solid #1a1a24;
+    border-radius: 4px;
 }
 
-/* 🏷️ লোগোর নিচের ইনফো বক্স ও টেক্সট স্টাইল */
-.channel-info-box {
-    padding: 8px;
-    text-align: center;
-    background: #060609;
-    white-space: normal; /* নাম বড় হলে নিচে নামবে */
-}
-
-.channel-info-box .channel-title {
-    color: #ffffff;
-    font-size: 13px;
-    font-weight: bold;
-    margin: 0 0 2px 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis; /* নাম বেশি বড় হলে শেষে ... দেখাবে */
-}
-
-/* প্রতিটা চ্যানেলের নিচে স্টাইলিশ "Rs Live Tv" ওয়াটারমার্ক */
-.channel-info-box .brand-watermark {
-    color: #00f0ff; /* গ্লোয়িং স্কাই ব্লু */
-    font-size: 10px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: 0;
-    text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
-}
-
-/* 🎮 স্মার্ট টিভি রিমোট ও কিবোর্ড ফোকাস গ্লো */
-.thumbnail-slider li:focus {
-    outline: none !important;
-    border: 2px solid #00f0ff !important;
-    box-shadow: 0 0 15px rgba(0, 240, 255, 0.6) !important;
-    transform: scale(1.04);
-}
-.thumbnail-slider li:focus .channel-info-box {
-    background: #11111c !important;
+/* ডেক্সটপ হোভার বা ফোকাস ইফেক্ট */
+.thumbnail-slider li:hover, .thumbnail-slider li:focus {
+    transform: scale(1.03);
+    border-color: #00f0ff;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
 }
 
 /* 📜 স্ক্রোলবার স্টাইল */
 .channel-list::-webkit-scrollbar {
-    width: 12px;
-    border-radius: 10px;
+    width: 8px;
     background-color: #1a1a1a;
 }
 .channel-list::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-    background-color: #00f0ff; /* আপনার থিমের সাথে মিলিয়ে স্ক্রোলবার নীল করা হয়েছে */
+    border-radius: 4px;
+    background-color: #00f0ff; 
 }
 
-/* 📱 রেসপনসিভ মিডিয়া কোয়েরি (Responsive Media Queries) */
+/* 📱 রেসপনসিভ মিডিয়া কোয়েরি (মোবাইল ভিউ) */
 @media (max-width: 1199px) {
     .channel-list { height: 425px; }
 }
@@ -118,32 +81,28 @@ a {
         padding: 10px 15px; 
         height: auto !important; 
         overflow-y: hidden; 
-        overflow-x: auto; 
-    }
-    .thumbnail-slider {
-        display: flex;
-        gap: 10px;
+        overflow-x: auto; /* মোবাইলে পাশাপাশি স্ক্রোল হবে */
     }
     .thumbnail-slider li { 
         display: inline-block; 
+        margin: 0 8px 0 0; 
         margin-bottom: 0;
-        flex-shrink: 0;
     }
-    /* মোবাইলে পাশাপাশি স্ক্রোলের সময় ব্যানার সাইজ ঠিক রাখার জন্য উইডথ ফিক্সড */
+    /* মোবাইলে লোগোর চওড়া ও উচ্চতা ফিক্সড করা যাতে কাটা না যায় */
     .thumbnail-slider li a { 
         display: block; 
-        width: 130px; /* লোগো ও লেখা সুন্দর দেখানোর জন্য সাইজ বাড়ানো হয়েছে */
+        width: 100px; 
     }
-    .channel-info-box .channel-title {
-        font-size: 11px;
-    }
-    .channel-info-box .brand-watermark {
-        font-size: 9px;
+    .thumbnail-slider li img { 
+        height: 60px; /* মোবাইলের জন্য পারফেক্ট সাইজ */
     }
 }
 
 @media (max-width: 410px) {
     .thumbnail-slider li a { 
-        width: 110px; /* ছোট মোবাইলের জন্য পারফেক্ট এডজাস্টমেন্ট */
+        width: 85px; 
+    }
+    .thumbnail-slider li img { 
+        height: 50px; 
     }
 }
