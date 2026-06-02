@@ -19,6 +19,14 @@
     <link href="style.css?v=10.0" rel="stylesheet">
 
     <style>
+        /* 🚫 টেক্সট সিলেক্ট বা কপি করা বন্ধ করার CSS */
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
         /* 🎬 ইন্ট্রো লোডার */
         #intro-loader {
             position: fixed;
@@ -360,7 +368,25 @@
 
     <script src="script.js?v=10.0"></script>
     <script>
-        // ১. লোডিং ইন্ট্রো স্ক্রিন রিমুভার
+        // ১. 🚫 সিকিউরিটি প্রোটেকশন (Inspect Element, Right Click, Shortcuts Block)
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        document.onkeydown = function(e) {
+            if (e.keyCode == 123) { // F12
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { // Ctrl+Shift+I
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { // Ctrl+Shift+J
+                return false;
+            }
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { // Ctrl+U
+                return false;
+            }
+        }
+
+        // ২. 🎬 লোডিং ইন্ট্রো স্ক্রিন রিমুভার
         window.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 const loader = document.getElementById('intro-loader');
@@ -372,7 +398,7 @@
             }, 1200); 
         });
 
-        // ২. 🎮 স্মার্ট টিভি রিমোটের আপ/ডাউন এবং ওকে বাটনকে ম্যানুয়ালি কন্ট্রোল করার মাস্টার লজিক
+        // ৩. 🎮 স্মার্ট টিভি রিমোটের আপ/ডাউন এবং ওকে বাটনকে ম্যানুয়ালি কন্ট্রোল করার মাস্টার লজিক
         document.addEventListener('keydown', function(event) {
             const items = Array.from(document.querySelectorAll('#channel-container li'));
             if (items.length === 0) return;
@@ -424,11 +450,9 @@
                 }
             }, 600);
         }
-
-        document.addEventListener('contextmenu', event => event.preventDefault());
     </script>
     
     <script async="async" data-cfasync="false" src="https://pl26377079.effectivecpmnetwork.com/cdeccdd75d3e2e6916a42ce9653cfb08/invoke.js"></script>
     <div id="container-cdeccdd75d3e2e6916a42ce9653cfb08"></div>
 </body>
-    </html>
+</html>
