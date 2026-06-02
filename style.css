@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Rambla:400i');
 
-/* 📺 ডেক্সটপ ও ল্যাপটপে সাইডবার কন্টেইনার */
+/* 📺 সাইডবার কন্টেইনার */
 .channel-list { 
     padding-left: 0; 
     height: 520px; 
@@ -18,12 +18,12 @@
     display: block;
 }
 
-/* 🖼️ প্রতিটি চ্যানেল কার্ডের বক্স (বর্ডার যেন না কাটে সেজন্য মার্জিন অ্যাডজাস্টেড) */
+/* 🖼️ প্রতিটি চ্যানেল কার্ডের বক্স */
 .thumbnail-slider li { 
     list-style: none; 
     margin: 6px 12px 12px 12px; 
-    background: #1a1a1a; 
-    border: 1px solid #252525; 
+    background: #161616; 
+    border: 1px solid #222222; /* সাধারণ অবস্থায় কালো ব্যাকগ্রাউন্ডের সাথে মিশে থাকবে */
     border-radius: 6px;
     padding: 5px;
     display: flex;
@@ -31,7 +31,7 @@
     box-sizing: border-box;
     cursor: pointer;
     outline: none !important;
-    content-visibility: auto; /* ডেক্সটপে ফাস্ট রেন্ডার হওয়ার জন্য */
+    content-visibility: auto; 
 }
 
 /* ⚠️ লোগো ইমেজ সেটিংস */
@@ -61,12 +61,15 @@
     text-overflow: ellipsis; 
 }
 
-/* 🎮 মাউস হোভার বা রিমোট সিলেক্টেড বর্ডার কালার (একদম হালকা চোখ-বান্ধব গ্রে) */
-.thumbnail-slider li:hover, .thumbnail-slider li:focus {
+/* 🎮 মাউস হোভার বা রিমোট দিয়ে সিলেক্টেড বর্ডার কালার (আগের চেয়ে গাঢ় ও আকর্ষণীয় গ্রে) */
+.thumbnail-slider li:hover, 
+.thumbnail-slider li:focus {
     outline: none !important;
-    border-color: #444444 !important; /* উজ্জ্বল ব্লু সম্পূর্ণ বাদ, এটি একদম হালকা ও স্মুথ গ্রে */
-    background: #222222 !important; 
-    box-shadow: none !important; /* কোনো এক্সট্রা চোখে লাগার মতো গ্লো নেই */
+    border: 2px solid #777777 !important; /* বর্ডার কালার আরও গাঢ় ও প্রিমিয়াম গ্রে করা হলো */
+    background: #252525 !important; /* ব্যাকগ্রাউন্ড সামান্য হাইলাইট হবে */
+    box-shadow: none !important; /* অতিরিক্ত কোনো চোখের আলো বা গ্লো থাকবে না */
+    transform: scale(1.02); /* সিলেক্ট হলে সামান্য বড় হবে যেন ইউজার বুঝতে পারে */
+    transition: all 0.1s ease-in-out;
 }
 
 /* 📜 সাইডবার স্ক্রোলবার স্টাইল */
