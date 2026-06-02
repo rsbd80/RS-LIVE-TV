@@ -16,8 +16,7 @@
 
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/mD1VCt2C/RS-Live.png">
     <link href="bootstrap.min.css" rel="stylesheet">
-    
-    <link href="style.css?v=2.0" rel="stylesheet">
+    <link href="style.css?v=3.0" rel="stylesheet">
 
     <style>
         body {
@@ -101,15 +100,10 @@
         @keyframes fadeInText { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes dotPulse { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
 
-        /* 📺 ⚠️ তীব্র নিয়ন ব্লু বর্ডারটি এখান থেকে সরিয়ে একদম হালকা ও মার্জিত গ্রে কালার করা হলো */
+        /* 📺 বর্ডার ও শ্যাডো এখান থেকে মুছে style.css-এ একদম নিখুঁত করে হ্যান্ডেল করা হয়েছে */
         #channel-container li:focus,
-        #channel-container a:focus,
-        .thumbnail-slider li:focus,
-        .channel-list ul li:focus {
+        .thumbnail-slider li:focus {
             outline: none !important;
-            border: 1px solid #444444 !important; /* হালকা চোখ-বান্ধব গ্রে বর্ডার */
-            box-shadow: none !important; /* চোখের জন্য ক্ষতিকর তীব্র আলো সম্পূর্ণ বন্ধ */
-            background: #222222 !important;
         }
 
         /* মেইন ইন্টারফেস স্টাইল */
@@ -380,9 +374,9 @@
         </div>
     </footer>
 
-    <script src="script.js?v=2.0"></script>
+    <script src="script.js?v=3.0"></script>
     <script>
-        // ১. ইন্ট্রো লোডার বন্ধ করার স্ক্রিপ্ট (২.৫ সেকেন্ড রান হবে)
+        // ১. ইন্ট্রো লোডার বন্ধ করার স্ক্রিপ্ট
         window.addEventListener('load', function() {
             setTimeout(function() {
                 const loader = document.getElementById('intro-loader');
@@ -397,33 +391,43 @@
             }, 2500); 
         });
 
-        // ২. 🎮 🛠️ ফিক্সড করা রিমোট ইঞ্জিন (ডাবল ট্যাপ লুপ এবং অ্যারো জাম্পিং সম্পূর্ণ বন্ধ করা হয়েছে)
+        // ২. 🎮 সুপার স্টেবল স্মার্ট টিভি রিমোট ইঞ্জিন (এলোমেলো বা ডাবল জাম্পিং বন্ধের মাস্টার কোড)
         document.addEventListener('keydown', function(event) {
             const items = Array.from(document.querySelectorAll('#channel-container li'));
             if (items.length === 0) return;
             
-            const currentIndex = items.indexOf(document.activeElement);
+            const activeElement = document.activeElement;
+            let currentIndex = items.indexOf(activeElement);
+
+            // যদি বর্তমান ফোকাস কোনো চ্যানেলে না থাকে, তবে প্রথম চ্যানেলে ফোকাস সেট হবে
+            if (currentIndex === -1 && (event.keyCode === 38 || event.keyCode === 40)) {
+                event.preventDefault();
+                items[0].focus();
+                return;
+            }
 
             switch(event.keyCode) {
-                case 38: // 🔼 Up Button (১ ক্লিকে নিখুঁতভাবে ১টি চ্যানেল উপরে উঠবে)
+                case 38: // 🔼 Up Button (১ ক্লিকে মাত্র ১ ঘর উপরে উঠবে)
                     event.preventDefault();
+                    event.stopImmediatePropagation();
                     if (currentIndex > 0) {
                         items[currentIndex - 1].focus();
                     } else {
-                        items[items.length - 1].focus();
+                        items[items.length - 1].focus(); // শেষটায় যাবে
                     }
                     break;
                     
-                case 40: // 🔽 Down Button (১ ক্লিকে নিখুঁতভাবে ১টি চ্যানেল নিচে নামবে)
+                case 40: // 🔽 Down Button (১ ক্লিকে মাত্র ১ ঘর নিচে নামবে)
                     event.preventDefault();
+                    event.stopImmediatePropagation();
                     if (currentIndex < items.length - 1) {
                         items[currentIndex + 1].focus();
                     } else {
-                        items[0].focus();
+                        items[0].focus(); // প্রথমটায় ফিরবে
                     }
                     break;
                     
-                case 13: // 🔘 OK / Enter Button (কিবোর্ড বা রিমোটের ওকে চাপলে প্লে হবে)
+                case 13: // 🔘 OK / Enter Button (১ ক্লিকে চ্যানেল প্লে হবে)
                     if (currentIndex !== -1) {
                         event.preventDefault();
                         items[currentIndex].click(); 
@@ -432,7 +436,7 @@
             }
         });
 
-        // ৩. প্রথম চ্যানেলটিতে অটোমেটিক রিমোট ফোকাস ইনিশিয়েট করার ফাংশন
+        // ৩. প্রথম চ্যানেলে অটো-ফোকাস করা
         function initTVFocus() {
             const firstChannel = document.querySelector('#channel-container li');
             if (firstChannel) {
@@ -440,11 +444,11 @@
             }
         }
 
-        // ৪. রাইট ক্লিক বন্ধ রাখার স্ক্রিপ্ট
+        // ৪. রাইট ক্লিক বন্ধ রাখা
         document.addEventListener('contextmenu', event => event.preventDefault());
     </script>
     
     <script async="async" data-cfasync="false" src="https://pl26377079.effectivecpmnetwork.com/cdeccdd75d3e2e6916a42ce9653cfb08/invoke.js"></script>
     <div id="container-cdeccdd75d3e2e6916a42ce9653cfb08"></div>
 </body>
-</html>
+                </html>
