@@ -1,6 +1,21 @@
+// =====================================================================
+// 🔒 ১. Solo Browser & AppCreator24 ব্লকিং প্রোটেকশন
+// =====================================================================
+(function() {
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    if (ua.includes("Solo") || ua.includes("Solo Browser") || ua.includes("AppCreator24")) {
+        document.documentElement.innerHTML = "<h1 style='color:white; text-align:center; margin-top:20%; font-family:sans-serif; background:#000;'>This browser or application is not supported! Please use Google Chrome or Microsoft Edge.</h1>";
+        window.location.href = "about:blank";
+    }
+})();
+
+// =====================================================================
+// 📺 ২. JSON প্লেলিস্ট লোড ও চ্যানেল প্লে করার নিখুঁত লজিক
+// =====================================================================
 document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('channel-container');
 
+    // ক্যাশ সমস্যা এড়াতে টাইমস্ট্যাম্পসহ প্লেলিস্ট কল
     fetch('playlist.json?t=' + Date.now())
         .then(response => response.json())
         .then(data => {
@@ -8,12 +23,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
             data.forEach((channel, index) => {
                 const li = document.createElement('li');
-                
-                // রিমোট ফোকাস ধরার জন্য স্ট্যান্ডার্ড tabindex
                 li.setAttribute('tabindex', '0');
+                li.style.cursor = 'pointer'; // মাউস নিলে হাতের চিহ্ন আসবে
                 
+                // ভেতরের pointer-events তুলে দেওয়া হয়েছে যেন ক্লিক মিস না হয়
                 li.innerHTML = `
-                    <div style="display: block; text-decoration: none; pointer-events: none; width: 100%;">
+                    <div class="channel-card-inside" style="width: 100%;">
                         <img src="${channel.image}" alt="${channel.name}" loading="lazy">
                         <div class="channel-info-box">
                             <p class="channel-title">${channel.name}</p>
@@ -21,19 +36,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 `;
 
-                // চ্যানেল প্লে করার মাউস, টাচ ও রিমোট ক্লিক ইভেন্ট
-                li.addEventListener('click', function() {
-                    if (window.frames['player']) {
-                        window.frames['player'].location.href = channel.url;
-                    } else {
-                        player.location.href = channel.url;
+                // সরাসরি ও নিখুঁত ক্লিক লজিক
+                li.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const iframe = document.getElementById('tv-player-iframe');
+                    if (iframe) {
+                        // URL প্যারামিটার হিসেবে আসল .m3u8 পাস করা হচ্ছে
+                        iframe.src = "channel.html?url=" + encodeURIComponent(channel.url);
                     }
                 });
                 
                 container.appendChild(li);
             });
 
-            // প্লেলিস্ট লোড সম্পন্ন হলে টিভি ফোকাস সচল হবে
             if (typeof initTVFocus === 'function') {
                 initTVFocus();
             }
