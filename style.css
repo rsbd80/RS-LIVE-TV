@@ -91,7 +91,7 @@ body {
 .thumbnail-slider li:focus,
 .thumbnail-slider li:focus-within {
     outline: none !important;
-    border: 2px solid #777777 !important; /* স্পষ্ট গাঢ় মেটালিক বর্ডার */
+    border: 2px solid red !important; /* স্পষ্ট গাঢ় মেটালিক বর্ডার */
     background: #252731 !important;
     transform: scale(1.03);
 }
