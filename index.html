@@ -372,19 +372,21 @@
         document.addEventListener('contextmenu', event => event.preventDefault());
 
         document.onkeydown = function(e) {
-            if (e.keyCode == 123) { // F12
-                return false;
-            }
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { // Ctrl+Shift+I
-                return false;
-            }
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { // Ctrl+Shift+J
-                return false;
-            }
-            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { // Ctrl+U
-                return false;
-            }
+            if (e.keyCode == 123) { return false; }
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; }
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; }
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; }
         }
+
+        // 🔥 এন্টি-ডেভেলপার টুলস হ্যাক (ইন্সপেক্ট করলেই পেজ ব্ল্যাঙ্ক হয়ে যাবে)
+        setInterval(function() {
+            const startTime = +new Date();
+            debugger; 
+            const endTime = +new Date();
+            if (endTime - startTime > 100) {
+                window.location.href = "about:blank"; 
+            }
+        }, 100);
 
         // ২. 🎬 লোডিং ইন্ট্রো স্ক্রিন রিমুভার
         window.addEventListener('DOMContentLoaded', function() {
@@ -406,23 +408,16 @@
             const active = document.activeElement;
             let index = items.indexOf(active);
 
-            // রিমোট ডাউন বাটন (ArrowDown = 40)
             if (event.keyCode === 40 || event.key === "ArrowDown") {
                 event.preventDefault();
                 let nextIndex = index + 1;
-                if (nextIndex < items.length) {
-                    items[nextIndex].focus();
-                }
+                if (nextIndex < items.length) { items[nextIndex].focus(); }
             } 
-            // রিমোট আপ বাটন (ArrowUp = 38)
             else if (event.keyCode === 38 || event.key === "ArrowUp") {
                 event.preventDefault();
                 let prevIndex = index - 1;
-                if (prevIndex >= 0) {
-                    items[prevIndex].focus();
-                }
+                if (prevIndex >= 0) { items[prevIndex].focus(); }
             } 
-            // রিমোট ওকে / এন্টার বাটন (Enter = 13)
             else if (event.keyCode === 13 || event.key === "Enter") {
                 if (active && active.tagName === 'LI') {
                     event.preventDefault();
@@ -431,23 +426,16 @@
             }
         });
 
-        // রিমোট ফোকাস হওয়ার সাথে সাথে অটো স্ক্রোল ভিউ লক
         window.addEventListener('focus', function(event) {
             if (event.target && event.target.tagName === 'LI') {
-                event.target.scrollIntoView({
-                    block: 'center', 
-                    behavior: 'smooth'
-                });
+                event.target.scrollIntoView({ block: 'center', behavior: 'smooth' });
             }
         }, true); 
 
-        // প্রথম চ্যানেলে অটোমেটিক রিমোট ফোকাস নেওয়া
         function initTVFocus() {
             setTimeout(() => {
                 const firstChannel = document.querySelector('#channel-container li');
-                if (firstChannel) {
-                    firstChannel.focus();
-                }
+                if (firstChannel) { firstChannel.focus(); }
             }, 600);
         }
     </script>
