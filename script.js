@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
             data.forEach((channel, index) => {
                 const li = document.createElement('li');
                 
-                // রিমোটের ফোকাস লক রাখার জন্য সঠিক ইনডেক্স ব্যবহার
+                // রিমোট কাউন্টার ট্র্যাকিংয়ের জন্য tabindex ইন্টিগ্রেশন করা হলো
                 li.setAttribute('tabindex', index + 1);
                 
                 li.innerHTML = `
