@@ -5,17 +5,16 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch('playlist.json')
         .then(response => response.json())
         .then(data => {
-            // আগের তালিকা পরিষ্কার করা
             container.innerHTML = ''; 
 
             data.forEach(channel => {
                 const li = document.createElement('li');
                 
-                // কিবোর্ড বা রিমোট ফোকাস ধরার জন্য tabindex="0" যোগ করা হলো
+                // কিবোর্ড বা রিমোট ফোকাস যেন ডাবল ট্যাপ না খায়, তাই স্বাভাবিক ফোকাস রাখা হলো
                 li.setAttribute('tabindex', '0');
                 
                 li.innerHTML = `
-                    <a href="javascript:void(0);" style="display: block; text-decoration: none;">
+                    <a href="javascript:void(0);" style="display: block; text-decoration: none;" tabindex="-1">
                         <img src="${channel.image}" alt="${channel.name}">
                         <div class="channel-info-box">
                             <p class="channel-title">${channel.name}</p>
@@ -28,10 +27,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     player.location.href = channel.url;
                 });
 
-                // ২. কিবোর্ড বা টিভি রিমোটের 'Enter' চাপলে চ্যানেল প্লে হবে
+                // ২. কিবোর্ড বা টিভি রিমোটের 'Enter' চাপলে চ্যানেল প্লে হবে (ডাবল ট্যাপ ফ্রি)
                 li.addEventListener('keydown', function(e) {
                     if (e.key === 'Enter') {
-                        e.preventDefault(); // পেজের ডিফল্ট স্ক্রোল আচরণ বন্ধ করবে
+                        e.preventDefault(); 
                         player.location.href = channel.url;
                     }
                 });
