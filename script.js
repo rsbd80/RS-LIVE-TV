@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
             data.forEach((channel, index) => {
                 const li = document.createElement('li');
                 
-                // রিমোট ফোকাসকে একদম মসৃণ করতে স্ট্যান্ডার্ড tabindex যুক্ত করা হলো
+                // রিমোট ফোকাসকে সচল করতে স্ট্যান্ডার্ড tabindex যুক্ত করা হলো
                 li.setAttribute('tabindex', '0');
                 
                 li.innerHTML = `
