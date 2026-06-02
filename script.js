@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('channel-container');
 
-    // ক্যাশ সমস্যা এড়াতে টাইমস্ট্যাম্পসহ প্লেলিস্ট লোড করা হচ্ছে
+    // ব্রাউজার ক্যাশ সমস্যা এড়াতে টাইমস্ট্যাম্পসহ প্লেলিস্ট ফেচ করা হচ্ছে
     fetch('playlist.json?t=' + Date.now())
         .then(response => response.json())
         .then(data => {
@@ -9,7 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
             data.forEach((channel, index) => {
                 const li = document.createElement('li');
+                
+                // রিমোট ফোকাস ধরার জন্য স্ট্যান্ডার্ড tabindex ও মাউস কার্সার স্টাইল
                 li.setAttribute('tabindex', '0');
+                li.style.cursor = 'pointer';
                 
                 li.innerHTML = `
                     <div style="display: block; text-decoration: none; pointer-events: none; width: 100%;">
@@ -20,20 +23,26 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 `;
 
-                // আপনার আগের সেই আসল ক্লিক লজিক
+                // 🎯 মাস্টার ফিক্সড ক্লিক ইভেন্ট লজিক
                 li.addEventListener('click', function() {
-                    const targetUrl = "channel.html?url=" + channel.url;
+                    // ইউআরএল-এর ভেতরের স্পেশাল ক্যারেক্টার বা টোকেন যেন ব্রাউজার ব্লক না করে, তাই encodeURIComponent ব্যবহার করা হয়েছে
+                    const targetUrl = "channel.html?url=" + encodeURIComponent(channel.url);
                     
+                    // আপনার ওরিজিনাল ব্যাকআপের আইফ্রেম টার্গেটিং লজিক যা এখন সঠিকভাবে রিডাইরেক্ট করবে
                     if (window.frames['player']) {
                         window.frames['player'].location.href = targetUrl;
                     } else {
-                        player.location.href = targetUrl;
+                        const iframe = document.getElementById('tv-player-iframe') || document.querySelector('iframe[name="player"]');
+                        if (iframe) {
+                            iframe.src = targetUrl;
+                        }
                     }
                 });
                 
                 container.appendChild(li);
             });
 
+            // প্লেলিস্ট লোড সম্পন্ন হলে টিভি ফোকাস সচল হবে
             if (typeof initTVFocus === 'function') {
                 initTVFocus();
             }
