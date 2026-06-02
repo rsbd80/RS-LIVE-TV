@@ -7,19 +7,19 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             container.innerHTML = ''; 
 
-            data.forEach(channel => {
+            data.forEach((channel, index) => {
                 const li = document.createElement('li');
                 
-                // রিমোট কন্ট্রোল ইঞ্জিনের সুবিধার্থে li এলিমেন্টেই tabindex সেট করা হলো
-                li.setAttribute('tabindex', '0');
+                // রিমোট কন্ট্রোল ইঞ্জিনের সিরিয়াল ঠিক রাখার জন্য ১, ২, ৩ করে tabindex সেট করা হলো
+                li.setAttribute('tabindex', index + 1);
                 
                 li.innerHTML = `
-                    <a href="javascript:void(0);" style="display: block; text-decoration: none; pointer-events: none;">
+                    <div style="display: block; text-decoration: none; pointer-events: none;">
                         <img src="${channel.image}" alt="${channel.name}" loading="lazy">
                         <div class="channel-info-box">
                             <p class="channel-title">${channel.name}</p>
                         </div>
-                    </a>
+                    </div>
                 `;
 
                 // চ্যানেল প্লে করার একক (১ ক্লিক) ইভেন্ট লিসেনার
