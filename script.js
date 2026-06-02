@@ -1,3 +1,17 @@
+// =====================================================================
+// 🔒 ১. Solo Browser & AppCreator24 ব্লকিং প্রোটেকশন
+// =====================================================================
+(function() {
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    if (ua.includes("Solo") || ua.includes("Solo Browser") || ua.includes("AppCreator24")) {
+        document.documentElement.innerHTML = "<h1 style='color:white; text-align:center; margin-top:20%; font-family:sans-serif; background:#000;'>This browser or application is not supported! Please use Google Chrome or Microsoft Edge.</h1>";
+        window.location.href = "about:blank";
+    }
+})();
+
+// =====================================================================
+// 📺 ২. JSON প্লেলিস্ট লোড ও চ্যানেল প্লে করার লজিক
+// =====================================================================
 document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('channel-container');
 
@@ -8,8 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             data.forEach((channel, index) => {
                 const li = document.createElement('li');
-                
-                // রিমোট ফোকাস ধরার জন্য স্ট্যান্ডার্ড tabindex
                 li.setAttribute('tabindex', '0');
                 
                 li.innerHTML = `
@@ -21,19 +33,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 `;
 
-                // চ্যানেল প্লে করার মাউস, টাচ ও রিমোট ক্লিক ইভেন্ট
+                // চ্যানেল ক্লিক করলে সরাসরি আইফ্রেমের src চেঞ্জ হবে
                 li.addEventListener('click', function() {
-                    if (window.frames['player']) {
-                        window.frames['player'].location.href = channel.url;
-                    } else {
-                        player.location.href = channel.url;
+                    const iframe = document.getElementById('tv-player-iframe');
+                    if (iframe) {
+                        // সরাসরি channel.html ফাইলে প্যারামিটার পাঠানো হচ্ছে
+                        iframe.src = "channel.html?url=" + encodeURIComponent(channel.url);
                     }
                 });
                 
                 container.appendChild(li);
             });
 
-            // প্লেলিস্ট লোড সম্পন্ন হলে টিভি ফোকাস সচল হবে
             if (typeof initTVFocus === 'function') {
                 initTVFocus();
             }
