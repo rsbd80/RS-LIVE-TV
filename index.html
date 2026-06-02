@@ -16,7 +16,7 @@
 
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/mD1VCt2C/RS-Live.png">
     <link href="bootstrap.min.css" rel="stylesheet">
-    <link href="style.css?v=6.0" rel="stylesheet">
+    <link href="style.css?v=7.0" rel="stylesheet">
 
     <style>
         body {
@@ -27,7 +27,7 @@
             font-family: Arial, sans-serif;
         }
 
-        /* 🎬 "Welcome To RS Live TV" ইন্ট্রো লোডার */
+        /* 🎬 "Welcome To RS Live TV" ইন্тро লোডার */
         #intro-loader {
             position: fixed;
             top: 0;
@@ -39,7 +39,7 @@
             align-items: center;
             justify-content: center;
             z-index: 9999999;
-            transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.6s;
+            transition: opacity 0.5s ease, visibility 0.5s;
         }
 
         .loader-content {
@@ -371,31 +371,27 @@
         </div>
     </footer>
 
-    <script src="script.js?v=6.0"></script>
+    <script src="script.js?v=7.0"></script>
     <script>
-        // ১. ইন্ট্রো লোডার স্ক্রিপ্ট
-        window.addEventListener('load', function() {
+        // ১. ইন্ট্রো লোডার স্ক্রিপ্ট (কোনো এরর ছাড়াই ১.৫ সেকেন্ড পর স্মুথলি কেটে যাবে)
+        window.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 const loader = document.getElementById('intro-loader');
                 if (loader) {
                     loader.style.opacity = '0';
                     loader.style.visibility = 'hidden';
-                    setTimeout(() => {
-                        loader.remove();
-                        initTVFocus();
-                    }, 600);
+                    setTimeout(() => { loader.remove(); }, 500);
                 }
-            }, 2500); 
+            }, 1500); 
         });
 
-        // ২. 🎮 উন্নত ট্র্যাকিং কাউন্টার রিমোট ইঞ্জিন (চ্যানেল এলোমেলো হওয়া ১০০% বন্ধের গ্যারান্টি)
+        // ২. 🎮 ইন্টারনাল ট্র্যাকিং রিমোট ইঞ্জিন (চ্যানেল জাম্প বা এলোমেলো হওয়া সম্পূর্ণ বন্ধের ফিক্স)
         let currentFocusedIndex = 0; 
 
         document.addEventListener('keydown', function(event) {
             const items = Array.from(document.querySelectorAll('#channel-container li'));
             if (items.length === 0) return;
 
-            // রিমোট কী প্রেস অ্যাকশন লক করা
             if (event.keyCode === 38 || event.keyCode === 40 || event.keyCode === 13) {
                 event.preventDefault();
                 event.stopImmediatePropagation();
@@ -414,3 +410,48 @@
                 case 40: // 🔽 Down Button
                     if (currentFocusedIndex < items.length - 1) {
                         currentFocusedIndex++;
+                    } else {
+                        currentFocusedIndex = 0; 
+                    }
+                    updateRemoteFocus(items);
+                    break;
+                    
+                case 13: // 🔘 OK Button
+                    if (items[currentFocusedIndex]) {
+                        items[currentFocusedIndex].click(); 
+                    }
+                    break;
+            }
+        });
+
+        // ৩. নিখুঁত স্ক্রোল ও ফোকাস মেইনটেইনার ফাংশন
+        function updateRemoteFocus(items) {
+            items.forEach(item => item.blur()); 
+            const activeItem = items[currentFocusedIndex];
+            if (activeItem) {
+                activeItem.focus(); 
+                activeItem.scrollIntoView({
+                    block: 'center',
+                    inline: 'nearest',
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // ৪. প্রথম ফোকাস সেট করার গ্লোবাল ফাংশন (যা script.js থেকে ডেটা আসার পর কল হবে)
+        function initTVFocus() {
+            const items = Array.from(document.querySelectorAll('#channel-container li'));
+            if (items.length > 0) {
+                currentFocusedIndex = 0;
+                items[0].focus();
+                items[0].scrollIntoView({ block: 'center' });
+            }
+        }
+
+        document.addEventListener('contextmenu', event => event.preventDefault());
+    </script>
+    
+    <script async="async" data-cfasync="false" src="https://pl26377079.effectivecpmnetwork.com/cdeccdd75d3e2e6916a42ce9653cfb08/invoke.js"></script>
+    <div id="container-cdeccdd75d3e2e6916a42ce9653cfb08"></div>
+</body>
+</html>
