@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
             data.forEach((channel, index) => {
                 const li = document.createElement('li');
                 
-                // রিমোট ফোকাসকে সচল করতে স্ট্যান্ডার্ড tabindex যুক্ত করা হলো
+                // রিমোট ফোকাস ধরার জন্য স্ট্যান্ডার্ড tabindex
                 li.setAttribute('tabindex', '0');
                 
                 li.innerHTML = `
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 container.appendChild(li);
             });
 
-            // প্লেলিস্ট লোড সম্পন্ন হলে টিভি ফোকাস ইনিশিয়াল করা হবে
+            // প্লেলিস্ট লোড সম্পন্ন হলে টিভি ফোকাস সচল হবে
             if (typeof initTVFocus === 'function') {
                 initTVFocus();
             }
