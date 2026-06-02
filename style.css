@@ -19,35 +19,37 @@ body {
     overflow-x: hidden; 
     -webkit-overflow-scrolling: touch; 
     scroll-behavior: smooth;
+    display: block;
 }
 
 .thumbnail-slider { 
     margin: 0; 
     padding: 0 5px;  
     list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+    display: block; /* রিমোট আপ-ডাউন ট্র্যাকিংয়ের জন্য ব্লক লেআউট আবশ্যক */
+    width: 100%;
 }
 
 /* 🖼️ প্রতিটি চ্যানেল কার্ড বক্স */
 .thumbnail-slider li { 
     list-style: none; 
     background: #1b1c21; 
-    border: 1px solid #2d2e35; 
+    border: 2px solid #2d2e35; /* ডিফল্ট বর্ডার ২ পিক্সেল রাখা হলো যাতে ফোকাসে কার্ড না কাঁপে */
     border-radius: 8px;
     padding: 0; 
-    display: block;
+    display: inline-block; /* রিমোট সিলেকশন নিচে-ওপরে যাওয়ার জন্য এটি ফিক্সড */
     width: 100%;
+    margin-bottom: 12px;
     box-sizing: border-box;
     cursor: pointer;
     overflow: hidden; 
     outline: none !important;
+    position: relative;
     transition: all 0.15s ease-in-out;
     
     /* রিমোট স্ক্রোলিং পজিশন লক */
-    scroll-margin-top: 15px;
-    scroll-margin-bottom: 15px;
+    scroll-margin-top: 20px;
+    scroll-margin-bottom: 20px;
 }
 
 /* 🎯 লোগো ইমেজ ফিক্সড */
@@ -91,10 +93,11 @@ body {
 .thumbnail-slider li:focus,
 .thumbnail-slider li:focus-within {
     outline: none !important;
-    border: 2px solid #00f0ff !important; 
-    box-shadow: 0 0 10px rgba(0, 240, 255, 0.4); 
+    border: 2px solid #00f0ff !important; /* উজ্জ্বল নেঅন ব্লু বর্ডার */
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.6); 
     background: #252731 !important;
-    transform: scale(1.03);
+    transform: scale(1.02);
+    z-index: 10;
 }
 
 .thumbnail-slider li:focus .channel-info-box,
@@ -133,17 +136,21 @@ body {
         height: auto !important; 
         overflow-y: hidden; 
         overflow-x: auto; 
+        display: block;
     }
     
     .thumbnail-slider {
+        display: flex !important;
         flex-direction: row !important;
         gap: 10px;
         padding: 0;
+        width: auto;
     }
     
     .thumbnail-slider li { 
         width: 115px !important; 
         flex-shrink: 0;
+        margin-bottom: 0;
         scroll-margin-left: 15px;
         scroll-margin-right: 15px;
     }
@@ -159,4 +166,4 @@ body {
     .channel-info-box .channel-title {
         font-size: 10px;
     }
-        }
+}
