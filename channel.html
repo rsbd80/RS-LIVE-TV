@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover">
-<title>Player</title>
+<title>Rs Live TV</title>
 
+<!-- JW Player Script -->
 <script src="https://content.jwplatform.com/libraries/IDzF9Zmk.js"></script>
 <script>
 jwplayer.key="Khpp2dHxlBJHC8MCmLnBuV2jK/DwDnJMniwF6EO9HC/riJ712ZmbHg==";
@@ -24,8 +25,6 @@ background:#000;
 overflow:hidden;
 font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 -webkit-user-select: none;
--moz-user-select: none;
--ms-user-select: none;
 user-select: none;
 }
 
@@ -37,6 +36,7 @@ top: 0;
 left: 0;
 }
 
+/* নেটলিফাই প্লেয়ারের মতো ক্লিন ও মিনিমাল লোডার */
 #loader {
 position:fixed;
 top:0;
@@ -52,6 +52,7 @@ flex-direction:column;
 transition: opacity 0.3s ease;
 }
 
+/* ওই সাইটের মতো ম্যাটেরিয়াল/স্মুথ স্পিনার */
 .spinner {
 width: 50px;
 height: 50px;
@@ -78,10 +79,16 @@ height:100% !important;
 width:100% !important;
 }
 
+/* ফিক্সড: জুম হবে না, ভিডিওর কোনো অংশ কাটবে না */
 .jw-video {
-object-fit: fill !important; 
+object-fit: fill !important; /* fill দেওয়ার কারণে ভিডিও কাটা পড়বে না */
 width: 100vw !important;
 height: 100vh !important;
+}
+
+:-webkit-full-screen {
+  width: 100% !important;
+  height: 100% !important;
 }
 </style>
 </head>
@@ -96,16 +103,21 @@ height: 100vh !important;
 <div id="player"></div>
 
 <script>
-if (window.self === window.top) {
+// 🔒 সিকিউরিটি: কেউ যাতে এই পেজটি সরাসরি লিঙ্ক কপি করে অন্য ট্যাবে বা ব্রাউজারে ওপেন করতে না পারে
+if (window.self === window.top) { 
     window.location.href = "index.html"; 
 }
 
+// 🔒 সিকিউরিটি: রাইট ক্লিক টোটাল ব্লক
 document.addEventListener('contextmenu', event => event.preventDefault());
 
-// আপনার আগের সাধারণ লিঙ্ক রিডার ফাংশন
 function getStreamUrl() {
     const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('url');
+    const rawUrl = urlParams.get('url');
+    if (rawUrl) {
+        return decodeURIComponent(rawUrl); // এনকোডেড ইউআরএল সঠিকভাবে ডিকোড করার জন্য
+    }
+    return null;
 }
 
 const streamUrl = getStreamUrl();
@@ -116,21 +128,26 @@ const finalStream = streamUrl ? streamUrl : defaultStream;
 
 player.setup({
 playlist:[{
+title:"",
 sources:[
 {
 file: finalStream,
-type: "hls"
+type: "hls",
+label: "HD"
 }
 ]
 }],
 width:"100%",
 height:"100%",
+aspectratio:"16:9",
 autostart:true,
-controls:true,
-stretching:"fill"
+mute:false,
+primary:"html5",
+stretching:"fill", /* প্লেয়ার লেভেলেও স্ট্রেচিং fill রাখা হলো */
+controls:true
 });
 
-/* ফুলস্ক্রিন ও অটো-রোটেট লজিক */
+/* ফুলস্ক্রিন ইভেন্ট হ্যান্ডলার */
 player.on("fullscreen", function(event){
     if(event.fullscreen) {
         if (screen.orientation && screen.orientation.lock) {
@@ -138,6 +155,7 @@ player.on("fullscreen", function(event){
                 console.log("Orientation lock ignored: ", error);
             });
         }
+        // ফুলস্ক্রিনেও অবজেক্ট ফিট 'fill' নিশ্চিত করা
         setTimeout(() => {
             const videoEl = document.querySelector('.jw-video');
             if(videoEl) videoEl.style.setProperty('object-fit', 'fill', 'important');
@@ -145,13 +163,15 @@ player.on("fullscreen", function(event){
     }
 });
 
-player.on("ready",function(){ fadeAndHideLoader(); });
-player.on("play",function(){ fadeAndHideLoader(); });
+/* প্লেয়ার ইভেন্ট কন্ট্রোল */
+player.on("ready",function(){
+fadeAndHideLoader();
+});
 
 player.on("error",function(){
 document.getElementById("loader").style.display="flex";
 document.getElementById("loader").style.opacity="1";
-document.getElementById("loader-text").innerHTML = "<span style='color:#ff4444;'>Stream Failed</span>";
+document.getElementById("loader-text").innerHTML = "<span style='color:#ff4444;'>Stream Failed or Invalid URL</span>";
 });
 
 player.on("buffer",function(){
@@ -160,9 +180,15 @@ document.getElementById("loader").style.opacity="1";
 document.getElementById("loader-text").innerText = "Buffering...";
 });
 
+player.on("play",function(){
+fadeAndHideLoader();
+});
+
 function fadeAndHideLoader() {
     document.getElementById("loader").style.opacity="0";
-    setTimeout(() => { document.getElementById("loader").style.display="none"; }, 300);
+    setTimeout(() => { 
+        document.getElementById("loader").style.display="none"; 
+    }, 300);
 }
 </script>
 
