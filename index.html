@@ -2,7 +2,7 @@
 <html lang="bn">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DRBZH98TKH"></script>
     <script>
@@ -25,6 +25,7 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
+            background-color: #0b0b12;
         }
 
         /* 🎬 ইন্ট্রো লোডার */
@@ -368,27 +369,16 @@
 
     <script src="script.js?v=10.0"></script>
     <script>
-        // ১. 🚫 সিকিউরিটি প্রোটেকশন (Inspect Element, Right Click, Shortcuts Block)
+        // 🔒 সাধারণ মাউস রাইট-ক্লিক এবং শর্টকার্ট ব্লক
         document.addEventListener('contextmenu', event => event.preventDefault());
-
         document.onkeydown = function(e) {
-            if (e.keyCode == 123) { return false; }
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; }
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; }
-            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; }
-        }
+            if (e.keyCode == 123) { return false; } 
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; } 
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; } 
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; } 
+        };
 
-        // 🔥 এন্টি-ডেভেলপার টুলস হ্যাক (ইন্সপেক্ট করলেই পেজ ব্ল্যাঙ্ক হয়ে যাবে)
-        setInterval(function() {
-            const startTime = +new Date();
-            debugger; 
-            const endTime = +new Date();
-            if (endTime - startTime > 100) {
-                window.location.href = "about:blank"; 
-            }
-        }, 100);
-
-        // ২. 🎬 লোডিং ইন্ট্রো স্ক্রিন রিমুভার
+        // 🎬 লোডিং ইন্ট্রো স্ক্রিন রিমুভার অ্যানিমেশন
         window.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 const loader = document.getElementById('intro-loader');
@@ -400,25 +390,21 @@
             }, 1200); 
         });
 
-        // ৩. 🎮 স্মার্ট টিভি রিমোটের আপ/ডাউন এবং ওকে বাটনকে ম্যানুয়ালি কন্ট্রোল করার মাস্টার লজিক
+        // 🎮 স্মার্ট টিভি রিমোট কন্ট্রোল কি লজিক
         document.addEventListener('keydown', function(event) {
             const items = Array.from(document.querySelectorAll('#channel-container li'));
             if (items.length === 0) return;
-            
             const active = document.activeElement;
             let index = items.indexOf(active);
-
             if (event.keyCode === 40 || event.key === "ArrowDown") {
                 event.preventDefault();
                 let nextIndex = index + 1;
                 if (nextIndex < items.length) { items[nextIndex].focus(); }
-            } 
-            else if (event.keyCode === 38 || event.key === "ArrowUp") {
+            } else if (event.keyCode === 38 || event.key === "ArrowUp") {
                 event.preventDefault();
                 let prevIndex = index - 1;
                 if (prevIndex >= 0) { items[prevIndex].focus(); }
-            } 
-            else if (event.keyCode === 13 || event.key === "Enter") {
+            } else if (event.keyCode === 13 || event.key === "Enter") {
                 if (active && active.tagName === 'LI') {
                     event.preventDefault();
                     active.click(); 
