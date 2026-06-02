@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded', function() {
             data.forEach(channel => {
                 const li = document.createElement('li');
                 
-                // কিবোর্ড বা রিমোট ফোকাস যেন ডাবল ট্যাপ না খায়, তাই স্বাভাবিক ফোকাস রাখা হলো
+                // কিবোর্ড নেভিগেশনের জন্য শুধুমাত্র li-কে ফোকাস দেওয়া হলো
                 li.setAttribute('tabindex', '0');
                 
                 li.innerHTML = `
-                    <a href="javascript:void(0);" style="display: block; text-decoration: none;" tabindex="-1">
+                    <a href="javascript:void(0);" style="display: block; text-decoration: none; pointer-events: none;">
                         <img src="${channel.image}" alt="${channel.name}">
                         <div class="channel-info-box">
                             <p class="channel-title">${channel.name}</p>
@@ -23,11 +23,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 `;
 
                 // ১. মাউস দিয়ে ক্লিক করলে চ্যানেল প্লে হবে
-                li.addEventListener('click', function() {
+                li.addEventListener('click', function(e) {
                     player.location.href = channel.url;
                 });
 
-                // ২. কিবোর্ড বা টিভি রিমোটের 'Enter' চাপলে চ্যানেল প্লে হবে (ডাবল ট্যাপ ফ্রি)
+                // ২. কিবোর্ড বা টিভি রিমোটের 'Enter' চাপলে চ্যানেল প্লে হবে
                 li.addEventListener('keydown', function(e) {
                     if (e.key === 'Enter') {
                         e.preventDefault(); 
