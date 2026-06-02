@@ -1,15 +1,7 @@
-// 🚫 Solo Browser বা ক্ষতিকারক অ্যাপ ডিটেক্ট করে ব্লক করার লজিক (সবার আগে রান হবে)
-(function() {
-    const ua = navigator.userAgent || navigator.vendor || window.opera;
-    if (ua.includes("Solo") || ua.includes("Solo Browser") || ua.includes("AppCreator24")) {
-        document.documentElement.innerHTML = "<h1 style='color:white; text-align:center; margin-top:20%; font-family:sans-serif; background:#000;'>This browser or application is not supported! Please use Google Chrome or Microsoft Edge.</h1>";
-        window.location.href = "about:blank";
-    }
-})();
-
 document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('channel-container');
 
+    // ক্যাশ সমস্যা এড়াতে টাইমস্ট্যাম্পসহ প্লেলিস্ট লোড করা হচ্ছে
     fetch('playlist.json?t=' + Date.now())
         .then(response => response.json())
         .then(data => {
@@ -17,8 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             data.forEach((channel, index) => {
                 const li = document.createElement('li');
-                
-                // রিমোট ফোকাস ধরার জন্য স্ট্যান্ডার্ড tabindex
                 li.setAttribute('tabindex', '0');
                 
                 li.innerHTML = `
@@ -30,22 +20,20 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 `;
 
-                // 🔒 চ্যানেল প্লে করার মাউস, টাচ ও রিমোট ক্লিক ইভেন্ট (Base64 দিয়ে এনক্রিপ্ট করা হলো)
+                // আপনার আগের সেই আসল ক্লিক লজিক
                 li.addEventListener('click', function() {
-                    // btoa() এর মাধ্যমে আসল URL টিকে হিজিবিজি টেক্সটে রূপান্তর করা হচ্ছে
-                    const encryptedUrl = "channel.html?url=" + btoa(channel.url);
+                    const targetUrl = "channel.html?url=" + channel.url;
                     
                     if (window.frames['player']) {
-                        window.frames['player'].location.href = encryptedUrl;
+                        window.frames['player'].location.href = targetUrl;
                     } else {
-                        player.location.href = encryptedUrl;
+                        player.location.href = targetUrl;
                     }
                 });
                 
                 container.appendChild(li);
             });
 
-            // প্লেলিস্ট লোড সম্পন্ন হলে টিভি ফোকাস সচল হবে
             if (typeof initTVFocus === 'function') {
                 initTVFocus();
             }
