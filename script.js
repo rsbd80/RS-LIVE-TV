@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('channel-container');
 
-    // ডেক্সটপে ফাস্ট লোড করতে এবং ব্রাউজার ক্যাশ এড়াতে Date.now() ব্যবহার করা হয়েছে
     fetch('playlist.json?t=' + Date.now())
         .then(response => response.json())
         .then(data => {
@@ -10,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
             data.forEach((channel, index) => {
                 const li = document.createElement('li');
                 
-                // রিমোট কন্ট্রোল ইঞ্জিনের সিরিয়াল ঠিক রাখার জন্য ১, ২, ৩ করে tabindex সেট করা হলো
+                // রিমোটের ফোকাস লক রাখার জন্য সঠিক ইনডেক্স ব্যবহার
                 li.setAttribute('tabindex', index + 1);
                 
                 li.innerHTML = `
@@ -22,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 `;
 
-                // চ্যানেল প্লে করার একক (১ ক্লিক) ইভেন্ট লিসেনার
+                // চ্যানেল প্লে করার মাউস ও রিমোট ক্লিক ইভেন্ট
                 li.addEventListener('click', function() {
                     if (window.frames['player']) {
                         window.frames['player'].location.href = channel.url;
