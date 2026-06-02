@@ -46,7 +46,7 @@ a {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    content-visibility: auto; /* ডেক্সটপে ফাস্ট রেন্ডার করার জন্য */
+    content-visibility: auto; /* ডেক্সটপে দ্রুত স্ক্রোলিং ও রেন্ডারিং এর জন্য */
 }
 
 /* ⚠️ লোগো ইমেজ সেটিংস */
@@ -76,12 +76,10 @@ a {
     text-overflow: ellipsis; 
 }
 
-/* 🎮 মাউস হোভার বা কিবোর্ড সিলেক্ট ইফেক্ট (নতুন এবং একদম হালকা ডার্ক-ব্লু বর্ডার) */
-.thumbnail-slider li:hover, .thumbnail-slider li:focus {
-    outline: none !important;
-    border-color: #1e3a8a !important; /* কালার পরিবর্তন চেক করার জন্য একদম নতুন হালকা নেভি ব্লু বর্ডার */
-    background: #16161f !important; /* সিলেক্ট হলে ব্যাকগ্রাউন্ড সামান্য নরম হবে */
-    box-shadow: none !important; /* অতিরিক্ত কোনো গ্লো বা নিয়ন আলো থাকবে না */
+/* 🎮 মাউস হোভার ইফেক্ট */
+.thumbnail-slider li:hover {
+    border-color: #444444 !important; 
+    background: #222222 !important; 
 }
 
 /* 📜 সাইডবার স্ক্রোলবার স্টাইল */
@@ -135,3 +133,23 @@ a {
         height: 48px; 
     }
 }
+
+
+/* ==========================================================================
+   🎮 রিমোট কন্ট্রোল এবং ডিফল্ট ব্রাউজার ফোকাস জোরপূর্বক ওভাররাইড করার মাস্টার কোড
+   ========================================================================== */
+
+/* রিমোটের কারণে তৈরি হওয়া অতিরিক্ত উজ্জ্বল নীল বর্ডার বা আউটলাইন সম্পূর্ণ বন্ধ */
+:focus, 
+.focused, 
+.active, 
+.selected,
+[tabindex]:focus,
+.thumbnail-slider li:focus,
+.thumbnail-slider li.focused,
+.thumbnail-slider li a:focus {
+    outline: none !important;
+    border-color: #444444 !important; /* উজ্জ্বল কালার বদলে একদম হালকা ও চোখ-বান্ধব মেটালিক গ্রে বর্ডার */
+    box-shadow: none !important; /* অতিরিক্ত কোনো গ্লো বা উজ্জ্বল নিয়ন আলো থাকবে না */
+    background-color: #222222 !important; /* সিলেক্টেড কার্ডের ব্যাকগ্রাউন্ড হালকা উন্নত হবে */
+        }
