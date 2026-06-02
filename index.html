@@ -16,7 +16,7 @@
 
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/mD1VCt2C/RS-Live.png">
     <link href="bootstrap.min.css" rel="stylesheet">
-    <link href="style.css?v=3.0" rel="stylesheet">
+    <link href="style.css?v=4.0" rel="stylesheet">
 
     <style>
         body {
@@ -27,7 +27,7 @@
             font-family: Arial, sans-serif;
         }
 
-        /* 🎬 প্রিমিয়াম কোড-বেসড "Welcome To RS Live TV" ইন্тро লোডার */
+        /* 🎬 "Welcome To RS Live TV" ইন্ট্রো লোডার */
         #intro-loader {
             position: fixed;
             top: 0;
@@ -74,7 +74,6 @@
             text-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
         }
 
-        /* ৩ ডট লোডিং অ্যানিমেশন */
         .loading-dots {
             display: flex;
             justify-content: center;
@@ -100,13 +99,11 @@
         @keyframes fadeInText { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes dotPulse { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
 
-        /* 📺 বর্ডার ও শ্যাডো এখান থেকে মুছে style.css-এ একদম নিখুঁত করে হ্যান্ডেল করা হয়েছে */
         #channel-container li:focus,
         .thumbnail-slider li:focus {
             outline: none !important;
         }
 
-        /* মেইন ইন্টারফেস স্টাইল */
         .tv-view .embed-responsive {
             border: 1px solid #222;
             border-radius: 8px;
@@ -374,9 +371,8 @@
         </div>
     </footer>
 
-    <script src="script.js?v=3.0"></script>
+    <script src="script.js?v=4.0"></script>
     <script>
-        // ১. ইন্ট্রো লোডার বন্ধ করার স্ক্রিপ্ট
         window.addEventListener('load', function() {
             setTimeout(function() {
                 const loader = document.getElementById('intro-loader');
@@ -391,7 +387,7 @@
             }, 2500); 
         });
 
-        // ২. 🎮 সুপার স্টেবল স্মার্ট টিভি রিমোট ইঞ্জিন (এলোমেলো বা ডাবল জাম্পিং বন্ধের মাস্টার কোড)
+        // 🎮 রিমোট স্ক্রোলিং ট্র্যাকার ইঞ্জিন (চ্যানেল এলোমেলো হওয়া সম্পূর্ণ বন্ধের সমাধান)
         document.addEventListener('keydown', function(event) {
             const items = Array.from(document.querySelectorAll('#channel-container li'));
             if (items.length === 0) return;
@@ -399,35 +395,39 @@
             const activeElement = document.activeElement;
             let currentIndex = items.indexOf(activeElement);
 
-            // যদি বর্তমান ফোকাস কোনো চ্যানেলে না থাকে, তবে প্রথম চ্যানেলে ফোকাস সেট হবে
             if (currentIndex === -1 && (event.keyCode === 38 || event.keyCode === 40)) {
                 event.preventDefault();
                 items[0].focus();
+                items[0].scrollIntoView({ block: 'center', behavior: 'smooth' });
                 return;
             }
 
             switch(event.keyCode) {
-                case 38: // 🔼 Up Button (১ ক্লিকে মাত্র ১ ঘর উপরে উঠবে)
+                case 38: // 🔼 Up Button
                     event.preventDefault();
                     event.stopImmediatePropagation();
                     if (currentIndex > 0) {
                         items[currentIndex - 1].focus();
+                        items[currentIndex - 1].scrollIntoView({ block: 'center', behavior: 'smooth' });
                     } else {
-                        items[items.length - 1].focus(); // শেষটায় যাবে
+                        items[items.length - 1].focus();
+                        items[items.length - 1].scrollIntoView({ block: 'center', behavior: 'smooth' });
                     }
                     break;
                     
-                case 40: // 🔽 Down Button (১ ক্লিকে মাত্র ১ ঘর নিচে নামবে)
+                case 40: // 🔽 Down Button
                     event.preventDefault();
                     event.stopImmediatePropagation();
                     if (currentIndex < items.length - 1) {
                         items[currentIndex + 1].focus();
+                        items[currentIndex + 1].scrollIntoView({ block: 'center', behavior: 'smooth' });
                     } else {
-                        items[0].focus(); // প্রথমটায় ফিরবে
+                        items[0].focus();
+                        items[0].scrollIntoView({ block: 'center', behavior: 'smooth' });
                     }
                     break;
                     
-                case 13: // 🔘 OK / Enter Button (১ ক্লিকে চ্যানেল প্লে হবে)
+                case 13: // 🔘 OK Button
                     if (currentIndex !== -1) {
                         event.preventDefault();
                         items[currentIndex].click(); 
@@ -436,19 +436,18 @@
             }
         });
 
-        // ৩. প্রথম চ্যানেলে অটো-ফোকাস করা
         function initTVFocus() {
             const firstChannel = document.querySelector('#channel-container li');
             if (firstChannel) {
                 firstChannel.focus();
+                firstChannel.scrollIntoView({ block: 'center' });
             }
         }
 
-        // ৪. রাইট ক্লিক বন্ধ রাখা
         document.addEventListener('contextmenu', event => event.preventDefault());
     </script>
     
     <script async="async" data-cfasync="false" src="https://pl26377079.effectivecpmnetwork.com/cdeccdd75d3e2e6916a42ce9653cfb08/invoke.js"></script>
     <div id="container-cdeccdd75d3e2e6916a42ce9653cfb08"></div>
 </body>
-                </html>
+</html>
