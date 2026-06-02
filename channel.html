@@ -32,10 +32,11 @@ html,body{ width:100%; height:100%; background:#000; overflow:hidden; font-famil
 <div id="player"></div>
 
 <script>
+// আইফ্রেম প্রোটেকশন
 if (window.self === window.top) { window.location.href = "index.html"; }
 document.addEventListener('contextmenu', event => event.preventDefault());
 
-// মেইন পেজ থেকে আসা ইউআরএল রিড করার ফাংশন
+// মেইন পেজ থেকে আসা ইউআরএল সঠিকভাবে রিড করার ফাংশন
 function getStreamUrl() {
     const urlParams = new URLSearchParams(window.location.search);
     const rawUrl = urlParams.get('url');
@@ -47,14 +48,21 @@ function getStreamUrl() {
 
 const streamUrl = getStreamUrl();
 const player = jwplayer("player");
+
+// ব্যাকআপ লিঙ্ক যদি কোনো লিঙ্ক না পাওয়া যায়
 const defaultStream = "https://cdn.jsdelivr.net/gh/nurmd2006/empty@main/stream/by/your-abbu/srktv.m3u8";
 const finalStream = streamUrl ? streamUrl : defaultStream;
 
 player.setup({
     playlist:[{ sources:[{ file: finalStream, type: "hls" }] }],
-    width:"100%", height:"100%", autostart:true, controls:true, stretching:"fill"
+    width:"100%",
+    height:"100%",
+    autostart:true,
+    controls:true,
+    stretching:"fill"
 });
 
+// ফুলস্ক্রিন ও রোটেশন লজিক
 player.on("fullscreen", function(event){
     if(event.fullscreen) {
         if (screen.orientation && screen.orientation.lock) {
