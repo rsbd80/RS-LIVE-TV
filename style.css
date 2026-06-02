@@ -17,7 +17,7 @@ a {
 
 .tv-area { margin-top: 50px; }
 
-/* 📺 ডেক্সটপে চ্যানেল তালিকা কন্টেইনার (নিচে নিচে শো করবে) */
+/* 📺 ল্যাপটপ ও ডেক্সটপ মুডে সাইডবার কন্টেইনার (আগের মতো নিচে নিচে শো করার জন্য) */
 .channel-list { 
     padding-left: 0; 
     height: 520px; 
@@ -32,13 +32,14 @@ a {
     margin: 0; 
     padding: 0;  
     list-style: none;
+    display: block; /* ডেক্সটপ/ল্যাপটপে ব্লক মুড থাকবে যাতে নিচে নিচে আসে */
 }
 
 /* 🖼️ প্রতিটি চ্যানেল কার্ডের বক্স */
 .thumbnail-slider li { 
     list-style: none; 
     margin-bottom: 12px; 
-    background: #1a1a1a; /* কার্ডের ব্যাকগ্রাউন্ড */
+    background: #1a1a1a; 
     border: 1px solid #252525;
     border-radius: 6px;
     padding: 4px;
@@ -47,11 +48,11 @@ a {
     flex-direction: column;
 }
 
-/* ⚠️ লোগো যেন কোনোভাবেই কাটা না পড়ে তার সেটিংস */
+/* ⚠️ লোগো যেন কোনোভাবেই কাটা না পড়ে তার মাস্টার সেটিংস */
 .thumbnail-slider li img { 
     width: 100%; 
-    height: 85px; /* ডেক্সটপের জন্য স্ট্যান্ডার্ড হাইট */
-    object-fit: contain !important; /* লোগো ছোট বা বড় যাই হোক, কাটবে না, পুরোটা দেখাবে */
+    height: 85px; /* ল্যাপটপ/ডেক্সটপের জন্য স্ট্যান্ডার্ড হাইট */
+    object-fit: contain !important; /* লোগো পুরোটা দেখাবে, কোনো অংশ কাটবে না */
     display: block;
     background: #000; /* লোগোর চারপাশে ফাঁকা অংশে কালো ব্যাকগ্রাউন্ড */
     border-radius: 4px;
@@ -61,7 +62,7 @@ a {
 .channel-info-box {
     padding: 6px 4px 2px 4px;
     text-align: center;
-    white-space: normal; /* নাম বড় হলে নিচে নামবে, কেটে যাবে না */
+    white-space: normal; /* নাম বড় হলে নিচে নামবে */
 }
 
 /* চ্যানেলের নামের ফন্ট স্টাইল */
@@ -72,17 +73,17 @@ a {
     margin: 0;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; /* নাম অতিরিক্ত বড় হলে শেষে ... দেখাবে */
+    text-overflow: ellipsis; /* নাম বেশি বড় হলে শেষে ... দেখাবে */
 }
 
-/* ডেক্সটপ হোভার বা ফোকাস ইফেক্ট */
+/* মাউস হোভার বা সিলেক্ট ইফেক্ট */
 .thumbnail-slider li:hover, .thumbnail-slider li:focus {
     transform: scale(1.03);
     border-color: #00f0ff;
     box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
 }
 
-/* 📜 স্ক্রোলবার স্টাইল */
+/* 📜 সাইডবার স্ক্রোলবার স্টাইল */
 .channel-list::-webkit-scrollbar {
     width: 8px;
     background-color: #1a1a1a;
@@ -92,7 +93,7 @@ a {
     background-color: #00f0ff; 
 }
 
-/* 📱 রেসপনসিভ মিডিয়া কোয়েরি (মোবাইল ভিউ) */
+/* 📱 শুধুমাত্র মোবাইল ও ট্যাবলেটের জন্য রেসপনসিভ ভিউ (নিচে নিচে থেকে পাশাপাশি স্ক্রোলে রূপান্তর হবে) */
 @media (max-width: 1199px) {
     .channel-list { height: 425px; }
 }
@@ -105,7 +106,7 @@ a {
         overflow-x: auto; /* মোবাইলে পাশাপাশি স্ক্রোল */
     }
     .thumbnail-slider {
-        display: flex;
+        display: flex; /* মোবাইলে পাশাপাশি নেওয়ার জন্য flex করা হলো */
         gap: 8px;
     }
     .thumbnail-slider li { 
@@ -113,13 +114,12 @@ a {
         margin-bottom: 0;
         flex-shrink: 0;
     }
-    /* মোবাইলে লোগো ও নাম সুন্দর দেখানোর জন্য কার্ডের চওড়া ফিক্সড */
     .thumbnail-slider li a { 
         display: block; 
         width: 110px; 
     }
     .thumbnail-slider li img { 
-        height: 55px; /* মোবাইলের জন্য লোগো সাইজ */
+        height: 55px; 
     }
     .channel-info-box .channel-title {
         font-size: 11px;
