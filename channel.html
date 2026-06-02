@@ -24,6 +24,11 @@ height:100%;
 background:#000;
 overflow:hidden;
 font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+/* 🚫 টেক্সট সিলেক্ট বন্ধ করার জন্য */
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
 }
 
 #player{
@@ -101,6 +106,32 @@ height: 100vh !important;
 <div id="player"></div>
 
 <script>
+// 🔒 ১. iframe সিকিউরিটি (কেউ সরাসরি লিংক ওপেন করলে index.html এ পাঠিয়ে দেবে)
+if (window.self === window.top) {
+    window.location.href = "index.html"; 
+}
+
+// 🚫 ২. মাউসের রাইট ক্লিক এবং কিবোর্ড শর্টকাট ব্লক
+document.addEventListener('contextmenu', event => event.preventDefault());
+
+document.onkeydown = function(e) {
+    if (e.keyCode == 123) { return false; } // F12
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; } // Ctrl+Shift+I
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; } // Ctrl+Shift+J
+    if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; } // Ctrl+U
+}
+
+// 🔥 ৩. এন্টি-ডেভেলপার টুলস ডিটেক্টর (ব্রাউজার মেনু থেকে ইন্সপেক্ট খুললেই পেজ ব্ল্যাঙ্ক হবে)
+setInterval(function() {
+    const startTime = +new Date();
+    debugger; 
+    const endTime = +new Date();
+    if (endTime - startTime > 100) {
+        window.location.href = "about:blank"; 
+    }
+}, 100);
+
+// --- প্লেয়ারের আসল লজিক শুরু ---
 function getStreamUrl() {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get('url');
