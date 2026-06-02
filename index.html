@@ -50,7 +50,6 @@
             justify-content: center;
         }
 
-        /* টেক্সট ও ৩-ডট স্টাইলিং */
         .welcome-text {
             font-size: 14px;
             color: #888899;
@@ -101,7 +100,20 @@
         @keyframes fadeInText { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes dotPulse { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
 
-        /* মেইন কনটেন্ট স্টাইল */
+        /* 📺 টিভি রিমোট নেভিগেশন ফোকাস বর্ডার স্টাইল */
+        #channel-container li:focus,
+        #channel-container a:focus,
+        .thumbnail-slider li:focus,
+        .channel-list ul li:focus {
+            outline: none !important;
+            border: 3px solid #00f0ff !important; /* রিমোট বা কিবোর্ড দিয়ে সিলেক্ট করলে গ্লোয়িং বর্ডার আসবে */
+            box-shadow: 0 0 20px #00f0ff !important;
+            transform: scale(1.05);
+            transition: all 0.2s ease;
+            background: #111 !important;
+        }
+
+        /* মেইন ইন্টারফেস স্টাইল */
         .tv-view .embed-responsive {
             border: 1px solid #222;
             border-radius: 8px;
@@ -371,23 +383,91 @@
 
     <script src="script.js"></script>
     <script>
-        // ইন্ট্রো লোডার স্ক্রিপ্ট (২.৫ সেকেন্ড পর এটি স্বয়ংক্রিয়ভাবে রিমুভ হয়ে যাবে)
+        // ১. ইন্ট্রো লোডার বন্ধ করার স্ক্রিপ্ট (২.৫ সেকেন্ড রান হবে)
         window.addEventListener('load', function() {
             setTimeout(function() {
                 const loader = document.getElementById('intro-loader');
                 if (loader) {
                     loader.style.opacity = '0';
                     loader.style.visibility = 'hidden';
-                    setTimeout(() => loader.remove(), 600);
+                    setTimeout(() => {
+                        loader.remove();
+                        // লোডার শেষ হওয়ার পর প্রথম চ্যানেলে অটো-ফোকাস সেট করা (টিভি রিমোটের সুবিধার্থে)
+                        initTVFocus();
+                    }, 600);
                 }
             }, 2500); 
         });
 
-        // রাইট ক্লিক বন্ধ রাখার স্ক্রিপ্ট
+        // ২. 🎮 অ্যান্ড্রয়েড টিভি/স্মার্ট টিভি রিমোট কন্ট্রোল ইঞ্জিন (D-Pad Navigation)
+        document.addEventListener('keydown', function(event) {
+            // রিমোট দিয়ে নেভিগেট করার মত এলিমেন্টগুলো সিলেক্ট করা
+            const focusableSelector = '#channel-container li, #channel-container a, .thumbnail-slider li, .channel-list ul li';
+            const items = Array.from(document.querySelectorAll(focusableSelector));
+            
+            if (items.length === 0) return;
+            
+            // প্রতিটি এলিমেন্টে রিমোটের মাধ্যমে ফোকাস নিয়ে যাওয়ার যোগ্যতা (tabindex) নিশ্চিত করা
+            items.forEach(item => {
+                if (!item.hasAttribute('tabindex')) {
+                    item.setAttribute('tabindex', '0');
+                }
+            });
+            
+            const currentIndex = items.indexOf(document.activeElement);
+
+            switch(event.keyCode) {
+                case 38: // 🔼 রিমোটের Up Button
+                    event.preventDefault();
+                    if (currentIndex > 0) {
+                        items[currentIndex - 1].focus();
+                    } else {
+                        items[items.length - 1].focus(); // শেষ এলিমেন্টে যাবে
+                    }
+                    break;
+                    
+                case 40: // 🔽 রিমোটের Down Button
+                    event.preventDefault();
+                    if (currentIndex < items.length - 1) {
+                        items[currentIndex + 1].focus();
+                    } else {
+                        items[0].focus(); // প্রথম এলিমেন্টে ব্যাক করবে
+                    }
+                    break;
+                    
+                case 37: // ◀️ রিমোটের Left Button
+                    event.preventDefault();
+                    if (currentIndex > 0) items[currentIndex - 1].focus();
+                    break;
+                    
+                case 39: // ▶️ রিমোটের Right Button
+                    event.preventDefault();
+                    if (currentIndex < items.length - 1) items[currentIndex + 1].focus();
+                    break;
+                    
+                case 13: // 🔘 রিমোটের OK / Enter Button
+                    if (currentIndex !== -1) {
+                        event.preventDefault();
+                        items[currentIndex].click(); // সিলেক্টেড চ্যানেলটি প্লে হবে
+                    }
+                    break;
+            }
+        });
+
+        // ৩. প্রথম চ্যানেলটিতে অটোমেটিক রিমোট ফোকাস ইনিশিয়েট করার ফাংশন
+        function initTVFocus() {
+            const firstChannel = document.querySelector('#channel-container li, #channel-container a, .thumbnail-slider li');
+            if (firstChannel) {
+                firstChannel.setAttribute('tabindex', '0');
+                firstChannel.focus();
+            }
+        }
+
+        // ৪. রাইট ক্লিক বন্ধ রাখার স্ক্রিপ্ট
         document.addEventListener('contextmenu', event => event.preventDefault());
     </script>
     
     <script async="async" data-cfasync="false" src="https://pl26377079.effectivecpmnetwork.com/cdeccdd75d3e2e6916a42ce9653cfb08/invoke.js"></script>
-<div id="container-cdeccdd75d3e2e6916a42ce9653cfb08"></div>
+    <div id="container-cdeccdd75d3e2e6916a42ce9653cfb08"></div>
 </body>
 </html>
