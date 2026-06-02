@@ -19,13 +19,12 @@
     <link href="style.css?v=10.0" rel="stylesheet">
 
     <style>
-        /* 🚫 টেক্সট সিলেক্ট বা কপি করা বন্ধ করার CSS */
+        /* 🔒 বডিতে ইউজার সিলেক্ট ব্লক */
         body {
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
-            background-color: #0b0b12;
         }
 
         /* 🎬 ইন্ট্রো লোডার */
@@ -302,7 +301,8 @@
         <div class="row">
             <div class="col-xs-12 col-md-10 tv-view">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe name="player" class="embed-responsive-item" allowfullscreen src="channel.html"></iframe>
+                    <!-- আইডি 'tv-player-iframe' যুক্ত করা হলো যা স্ক্রিপ্ট থেকে আইডেন্টিফাই হবে -->
+                    <iframe id="tv-player-iframe" name="player" class="embed-responsive-item" allowfullscreen src="channel.html"></iframe>
                 </div>
             </div>
             <div class="col-xs-12 col-md-2 channel-list" id="scroll-wrapper">
@@ -369,16 +369,7 @@
 
     <script src="script.js?v=10.0"></script>
     <script>
-        // 🔒 সাধারণ মাউস রাইট-ক্লিক এবং শর্টকার্ট ব্লক
-        document.addEventListener('contextmenu', event => event.preventDefault());
-        document.onkeydown = function(e) {
-            if (e.keyCode == 123) { return false; } 
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; } 
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; } 
-            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; } 
-        };
-
-        // 🎬 লোডিং ইন্ট্রো স্ক্রিন রিমুভার অ্যানিমেশন
+        // ১. লোডিং ইন্ট্রো স্ক্রিন রিমুভার
         window.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 const loader = document.getElementById('intro-loader');
@@ -390,21 +381,41 @@
             }, 1200); 
         });
 
-        // 🎮 স্মার্ট টিভি রিমোট কন্ট্রোল কি লজিক
+        // 🔒 সিকিউরিটি: রাইট ক্লিক এবং কীবোর্ড ডেভেলপার সোর্স ভিউ ব্লক স্ক্রিপ্ট
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.onkeydown = function(e) {
+            if (e.keyCode == 123) { return false; } 
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; } 
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; } 
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; } 
+        };
+
+        // ২. 🎮 স্মার্ট টিভি রিমোটের আপ/ডাউন এবং ওকে বাটনকে ম্যানুয়ালি কন্ট্রোল করার মাস্টার লজিক
         document.addEventListener('keydown', function(event) {
             const items = Array.from(document.querySelectorAll('#channel-container li'));
             if (items.length === 0) return;
+            
             const active = document.activeElement;
             let index = items.indexOf(active);
+
+            // রিমোট ডাউন বাটন (ArrowDown = 40)
             if (event.keyCode === 40 || event.key === "ArrowDown") {
                 event.preventDefault();
                 let nextIndex = index + 1;
-                if (nextIndex < items.length) { items[nextIndex].focus(); }
-            } else if (event.keyCode === 38 || event.key === "ArrowUp") {
+                if (nextIndex < items.length) {
+                    items[nextIndex].focus();
+                }
+            } 
+            // রিমোট আপ বাটন (ArrowUp = 38)
+            else if (event.keyCode === 38 || event.key === "ArrowUp") {
                 event.preventDefault();
                 let prevIndex = index - 1;
-                if (prevIndex >= 0) { items[prevIndex].focus(); }
-            } else if (event.keyCode === 13 || event.key === "Enter") {
+                if (prevIndex >= 0) {
+                    items[prevIndex].focus();
+                }
+            } 
+            // রিমোট ওকে / এন্টার বাটন (Enter = 13)
+            else if (event.keyCode === 13 || event.key === "Enter") {
                 if (active && active.tagName === 'LI') {
                     event.preventDefault();
                     active.click(); 
@@ -412,16 +423,23 @@
             }
         });
 
+        // রিমোট ফোকাস হওয়ার সাথে সাথে অটো স্ক্রোল ভিউ লক
         window.addEventListener('focus', function(event) {
             if (event.target && event.target.tagName === 'LI') {
-                event.target.scrollIntoView({ block: 'center', behavior: 'smooth' });
+                event.target.scrollIntoView({
+                    block: 'center', 
+                    behavior: 'smooth'
+                });
             }
         }, true); 
 
+        // প্রথম চ্যানেলে অটোমেটিক রিমোট ফোকাস নেওয়া
         function initTVFocus() {
             setTimeout(() => {
                 const firstChannel = document.querySelector('#channel-container li');
-                if (firstChannel) { firstChannel.focus(); }
+                if (firstChannel) {
+                    firstChannel.focus();
+                }
             }, 600);
         }
     </script>
