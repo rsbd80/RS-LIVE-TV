@@ -5,16 +5,19 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch('playlist.json')
         .then(response => response.json())
         .then(data => {
-            // আগের লিস্ট পরিষ্কার করা
+            // আগের তালিকা পরিষ্কার করা
             container.innerHTML = ''; 
 
             data.forEach(channel => {
                 const li = document.createElement('li');
                 
-                // শুধু লোগো ইমেজ রাখা হয়েছে, কোনো টেক্সট নেই
+                // লোগো এবং তার ঠিক নিচে চ্যানেলের নিজস্ব নাম (Rs Live Tv বাদ দেওয়া হয়েছে)
                 li.innerHTML = `
                     <a href="javascript:void(0);" onclick="player.location.href='${channel.url}'">
                         <img src="${channel.image}" alt="${channel.name}">
+                        <div class="channel-info-box">
+                            <p class="channel-title">${channel.name}</p>
+                        </div>
                     </a>
                 `;
                 
