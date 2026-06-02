@@ -1,3 +1,12 @@
+// 🚫 Solo Browser বা ক্ষতিকারক অ্যাপ ডিটেক্ট করে ব্লক করার লজিক (সবার আগে রান হবে)
+(function() {
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    if (ua.includes("Solo") || ua.includes("Solo Browser") || ua.includes("AppCreator24")) {
+        document.documentElement.innerHTML = "<h1 style='color:white; text-align:center; margin-top:20%; font-family:sans-serif; background:#000;'>This browser or application is not supported! Please use Google Chrome or Microsoft Edge.</h1>";
+        window.location.href = "about:blank";
+    }
+})();
+
 document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('channel-container');
 
@@ -21,12 +30,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 `;
 
-                // চ্যানেল প্লে করার মাউস, টাচ ও রিমোট ক্লিক ইভেন্ট
+                // 🔒 চ্যানেল প্লে করার মাউস, টাচ ও রিমোট ক্লিক ইভেন্ট (Base64 দিয়ে এনক্রিপ্ট করা হলো)
                 li.addEventListener('click', function() {
+                    // btoa() এর মাধ্যমে আসল URL টিকে হিজিবিজি টেক্সটে রূপান্তর করা হচ্ছে
+                    const encryptedUrl = "channel.html?url=" + btoa(channel.url);
+                    
                     if (window.frames['player']) {
-                        window.frames['player'].location.href = channel.url;
+                        window.frames['player'].location.href = encryptedUrl;
                     } else {
-                        player.location.href = channel.url;
+                        player.location.href = encryptedUrl;
                     }
                 });
                 
