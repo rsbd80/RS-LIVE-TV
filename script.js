@@ -1,6 +1,4 @@
-// =====================================================================
-// 🔒 ১. Solo Browser & AppCreator24 ব্লকিং প্রোটেকশন
-// =====================================================================
+// 🚫 Solo Browser বা ক্ষতিকারক অ্যাপ ডিটেক্ট করে ব্লক করার লজিক (সবার আগে রান হবে)
 (function() {
     const ua = navigator.userAgent || navigator.vendor || window.opera;
     if (ua.includes("Solo") || ua.includes("Solo Browser") || ua.includes("AppCreator24")) {
@@ -9,13 +7,9 @@
     }
 })();
 
-// =====================================================================
-// 📺 ২. JSON প্লেলিস্ট লোড ও চ্যানেল প্লে করার নিখুঁত লজিক
-// =====================================================================
 document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('channel-container');
 
-    // ক্যাশ সমস্যা এড়াতে টাইমস্ট্যাম্পসহ প্লেলিস্ট কল
     fetch('playlist.json?t=' + Date.now())
         .then(response => response.json())
         .then(data => {
@@ -23,12 +17,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
             data.forEach((channel, index) => {
                 const li = document.createElement('li');
-                li.setAttribute('tabindex', '0');
-                li.style.cursor = 'pointer'; // মাউস নিলে হাতের চিহ্ন আসবে
                 
-                // ভেতরের pointer-events তুলে দেওয়া হয়েছে যেন ক্লিক মিস না হয়
+                // রিমোট ফোকাস ধরার জন্য স্ট্যান্ডার্ড tabindex
+                li.setAttribute('tabindex', '0');
+                
                 li.innerHTML = `
-                    <div class="channel-card-inside" style="width: 100%;">
+                    <div style="display: block; text-decoration: none; pointer-events: none; width: 100%;">
                         <img src="${channel.image}" alt="${channel.name}" loading="lazy">
                         <div class="channel-info-box">
                             <p class="channel-title">${channel.name}</p>
@@ -36,19 +30,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 `;
 
-                // সরাসরি ও নিখুঁত ক্লিক লজিক
-                li.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const iframe = document.getElementById('tv-player-iframe');
-                    if (iframe) {
-                        // URL প্যারামিটার হিসেবে আসল .m3u8 পাস করা হচ্ছে
-                        iframe.src = "channel.html?url=" + encodeURIComponent(channel.url);
+                // 🔒 চ্যানেল প্লে করার মাউস, টাচ ও রিমোট ক্লিক ইভেন্ট (Base64 দিয়ে এনক্রিপ্ট করা হলো)
+                li.addEventListener('click', function() {
+                    // btoa() এর মাধ্যমে আসল URL টিকে হিজিবিজি টেক্সটে রূপান্তর করা হচ্ছে
+                    const encryptedUrl = "channel.html?url=" + btoa(channel.url);
+                    
+                    if (window.frames['player']) {
+                        window.frames['player'].location.href = encryptedUrl;
+                    } else {
+                        player.location.href = encryptedUrl;
                     }
                 });
                 
                 container.appendChild(li);
             });
 
+            // প্লেলিস্ট লোড সম্পন্ন হলে টিভি ফোকাস সচল হবে
             if (typeof initTVFocus === 'function') {
                 initTVFocus();
             }
