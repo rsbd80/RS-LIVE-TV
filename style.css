@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Rambla:400i');
 
+body {
+    background: #000;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
 /* 🖥️ ডেক্সটপ ও ল্যাপটপের জন্য মার্জিন */
 .tv-area { margin-top: 50px; }
 
@@ -7,74 +15,91 @@
 .channel-list { 
     padding-left: 0; 
     height: 540px; 
-    white-space: nowrap; 
     overflow-y: auto; 
     overflow-x: hidden; 
     -webkit-overflow-scrolling: touch; 
-    scroll-behavior: smooth; 
+    scroll-behavior: smooth;
 }
 
 .thumbnail-slider { 
     margin: 0; 
-    padding: 0;  
+    padding: 0 5px;  
     list-style: none;
-    display: block;
-}
-
-/* 🖼️ প্রতিটি চ্যানেল কার্ড বক্স */
-.thumbnail-slider li { 
-    list-style: none; 
-    margin: 0 12px 12px 12px; 
-    background: #1b1c21; 
-    border: 1px solid #2d2e35; 
-    border-radius: 6px;
-    padding: 0; /* প্যাডিং ০ করায় লোগো পুরো বক্সে বর্ডার ছুঁয়ে থাকবে */
     display: flex;
     flex-direction: column;
-    box-sizing: border-box;
-    cursor: pointer;
-    outline: none !important;
-    overflow: hidden; 
-    content-visibility: auto;
-    scroll-margin-top: 20px;
-    scroll-margin-bottom: 20px;
-    transition: all 0.15s ease-in-out;
+    gap: 12px;
 }
 
-/* 🎯 Fox Sports 2 এর মতো লোগো পুরো কার্ড জুড়ে বড় করে দেখানোর ফিক্স */
+/* 🖼️ প্রতিটি চ্যানেল কার্ড বক্স (Fox Sports 2 এর মতো একদম ফিক্সড সাইজ) */
+.thumbnail-slider li { 
+    list-style: none; 
+    background: #1b1c21; 
+    border: 1px solid #2d2e35; 
+    border-radius: 8px;
+    padding: 0; 
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    overflow: hidden; 
+    outline: none !important;
+    transition: all 0.15s ease-in-out;
+    
+    /* রিমোট স্ক্রোলিং পজিশন লক */
+    scroll-margin-top: 15px;
+    scroll-margin-bottom: 15px;
+}
+
+/* 🎯 লোগো ইমেজ ফিক্সড (পুরো বক্সে ছড়িয়ে থাকবে) */
 .thumbnail-slider li img { 
     width: 100% !important; 
     height: 85px !important; 
-    object-fit: cover !important; /* যেকোনো লোগো পুরো বক্সে নিখুঁতভাবে ফিট হবে */
+    object-fit: cover !important; 
     display: block;
     background: #000; 
 }
 
+/* 📋 চ্যানেল টাইটেল বক্সের সাইজ ফিক্সড (টেক্সট ছোট-বড় হলেও বক্সের সাইজ একই থাকবে) */
 .channel-info-box {
-    padding: 8px 6px;
-    text-align: center;
+    height: 35px !important; /* ফিক্সড হাইট */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6px;
     background: #1f2026; 
     border-top: 1px solid #2d2e35;
+    box-sizing: border-box;
 }
 
 .channel-info-box .channel-title {
     color: #aaaaaa;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     margin: 0;
-    white-space: nowrap;
+    text-align: center;
+    white-space: normal;
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* নাম বেশি বড় হলে সর্বোচ্চ ২ লাইনে দেখাবে, কার্ড ভাঙবে না */
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis; 
+    text-overflow: ellipsis;
 }
 
-/* 🎮 প্রিমিয়াম ডার্ক মেটালিক ফোকাস বর্ডার */
+/* 🎮 স্মার্ট টিভি রিমোট সিলেকশন ও হোভার মাস্টার ফিক্স (লাক্সারি নেঅন ব্লু বর্ডার ও গ্লো ইফেক্ট) */
 .thumbnail-slider li:hover, 
 .thumbnail-slider li:focus,
 .thumbnail-slider li:focus-within {
     outline: none !important;
-    border: 2px solid #777777 !important; /* স্পষ্ট মেটালিক গ্রে বর্ডার */
+    border: 2px solid #00f0ff !important; /* প্রিমিয়াম উজ্জ্বল নেঅন ব্লু বর্ডার */
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.4); /* হালকা গ্লো ইফেক্ট, যা টিভিতে দারুণ দেখাবে */
     background: #252731 !important;
-    transform: scale(1.02);
+    transform: scale(1.03);
+}
+
+.thumbnail-slider li:focus .channel-info-box,
+.thumbnail-slider li:hover .channel-info-box {
+    background: #252731 !important;
 }
 
 .thumbnail-slider li:focus .channel-info-box .channel-title,
@@ -82,8 +107,9 @@
     color: #ffffff !important; 
 }
 
+/* স্ক্রোলবার */
 .channel-list::-webkit-scrollbar {
-    width: 5px;
+    width: 4px;
     background-color: #0c0d11;
 }
 .channel-list::-webkit-scrollbar-thumb {
@@ -97,9 +123,9 @@
 }
 
 @media (max-width: 990px) {
-    /* 📱 মোবাইলের জন্য ভিডিও প্লেয়ারের উপরে আগের মতো টপ গ্যাপ বা ফাঁকা জায়গা */
+    /* 📱 মোবাইলের জন্য ভিডিও প্লেয়ারের উপরে আগের মতো টপ গ্যাপ */
     .tv-area { 
-        margin-top: 35px !important; /* প্লেয়ারের উপরে ৩৫ পিক্সেল নিখুঁত ফাকা জায়গা */
+        margin-top: 35px !important; 
         padding-top: 5px !important;
     }
     
@@ -109,33 +135,29 @@
         overflow-y: hidden; 
         overflow-x: auto; 
     }
+    
     .thumbnail-slider {
-        display: flex; 
+        flex-direction: row !important;
         gap: 10px;
+        padding: 0;
     }
+    
     .thumbnail-slider li { 
-        display: inline-block; 
-        margin: 0;
+        width: 115px !important; /* মোবাইলে প্রতিটা কার্ডের উইথ ফিক্সড */
         flex-shrink: 0;
-        scroll-margin-left: 20px;
+        scroll-margin-left: 15px;
+        scroll-margin-right: 15px;
     }
-    .thumbnail-slider li a { 
-        display: block; 
-        width: 120px; 
-    }
+    
     .thumbnail-slider li img { 
         height: 65px !important; 
     }
+    
+    .channel-info-box {
+        height: 32px !important;
+    }
+    
     .channel-info-box .channel-title {
-        font-size: 11px;
-    }
-}
-
-@media (max-width: 410px) {
-    .thumbnail-slider li a { 
-        width: 100px; 
-    }
-    .thumbnail-slider li img { 
-        height: 55px !important; 
+        font-size: 10px;
     }
 }
