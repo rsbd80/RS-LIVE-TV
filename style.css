@@ -32,28 +32,29 @@ a {
     margin: 0; 
     padding: 0;  
     list-style: none;
-    display: block; /* ডেক্সটপে নিচে নিচে শো করার জন্য */
+    display: block;
 }
 
-/* 🖼️ প্রতিটি চ্যানেল কার্ডের বক্স (বর্ডার যেন না কাটে সেজন্য মার্জিন ফিক্সড) */
+/* 🖼️ প্রতিটি চ্যানেল কার্ডের বক্স */
 .thumbnail-slider li { 
     list-style: none; 
-    margin: 6px 10px 14px 10px; /* ডানে-বামে ১০ পিক্সেল মার্জিন দেওয়ায় বর্ডার আর কাটবে না */
+    margin: 6px 10px 14px 10px; 
     background: #1a1a1a; 
     border: 1px solid #252525;
     border-radius: 6px;
     padding: 4px;
-    transition: all 0.2s ease;
+    transition: all 0.2s ease-out;
     display: flex;
     flex-direction: column;
     cursor: pointer;
+    outline: none !important;
 }
 
-/* ⚠️ লোগো ইমেজ সেটিংস (কাটা পড়া রোধ করতে) */
+/* ⚠️ লোগো ইমেজ সেটিংস */
 .thumbnail-slider li img { 
     width: 100%; 
     height: 85px; 
-    object-fit: contain !important; /* লোগো পুরোটা দেখাবে, কাটবে না */
+    object-fit: contain !important; 
     display: block;
     background: #000; 
     border-radius: 4px;
@@ -67,7 +68,7 @@ a {
 }
 
 .channel-info-box .channel-title {
-    color: #ffffff;
+    color: #e0e0e0;
     font-size: 13px;
     font-weight: bold;
     margin: 0;
@@ -76,12 +77,13 @@ a {
     text-overflow: ellipsis; 
 }
 
-/* 🎮 কিবোর্ড ফোকাস ও মাউস হোভার ইফেক্ট (কাটা না পড়ে গ্লো হওয়ার জন্য) */
+/* 🎮 কিবোর্ড ফোকাস ও মাউস হোভার ইফেক্ট (চোখে না লাগার মতো হালকা ও মার্জিত কালার) */
 .thumbnail-slider li:hover, .thumbnail-slider li:focus {
     outline: none !important;
-    transform: scale(1.04); /* সামান্য বড় হবে */
-    border-color: #00f0ff !important; /* চারপাশের বর্ডার গ্লো করবে */
-    box-shadow: 0 0 12px rgba(0, 240, 255, 0.6) !important;
+    transform: scale(1.02); /* জুম সামান্য কমানো হয়েছে যেন বর্ডার কাটার চান্স না থাকে */
+    border-color: #00a2ff !important; /* উজ্জ্বল নীলের বদলে সফট মেটালিক ব্লু */
+    box-shadow: 0 0 8px rgba(0, 162, 255, 0.35) !important; /* গ্লো অনেক হালকা ও স্মুথ করা হয়েছে */
+    background: #22222b !important; /* ব্যাকগ্রাউন্ড হালকা উন্নত হবে */
 }
 
 /* 📜 সাইডবার স্ক্রোলবার স্টাইল */
@@ -91,7 +93,7 @@ a {
 }
 .channel-list::-webkit-scrollbar-thumb {
     border-radius: 4px;
-    background-color: #00f0ff; 
+    background-color: #00a2ff; 
 }
 
 /* 📱 মোবাইল ও ট্যাবলেটের জন্য রেসপনসিভ ভিউ */
@@ -134,4 +136,4 @@ a {
     .thumbnail-slider li img { 
         height: 48px; 
     }
-}
+    }
