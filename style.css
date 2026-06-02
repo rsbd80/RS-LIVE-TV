@@ -39,14 +39,12 @@ a {
 .thumbnail-slider li { 
     list-style: none; 
     margin: 6px 12px 12px 12px; 
-    background: #1e1e1e; 
-    border: 1px solid #2d2d2d; /* স্বাভাবিক অবস্থায় হালকা বর্ডার */
+    background: #1a1a1a; 
+    border: 1px solid #252525;
     border-radius: 6px;
     padding: 5px;
     display: flex;
     flex-direction: column;
-    cursor: pointer;
-    outline: none !important;
     box-sizing: border-box;
 }
 
@@ -77,12 +75,10 @@ a {
     text-overflow: ellipsis; 
 }
 
-/* 🎮 কিবোর্ড ফোকাস ও মাউস হোভার ইফেক্ট (নতুন হালকা ও মার্জিত মেটালিক গ্রে বর্ডার) */
-.thumbnail-slider li:hover, .thumbnail-slider li:focus {
-    outline: none !important;
-    border-color: #888888 !important; /* চোখে না লাগার মতো হালকা সিলভার/গ্রে বর্ডার */
-    background: #2a2a2a !important; /* ব্যাকগ্রাউন্ড সামান্য উজ্জ্বল হবে */
-    box-shadow: 0 0 6px rgba(255, 255, 255, 0.15) !important; /* একদম হালকা সফট গ্লো */
+/* 🎮 মাউস হোভার ইফেক্ট (চোখে না লাগার মতো অত্যন্ত হালকা ও মার্জিত গ্রে বর্ডার) */
+.thumbnail-slider li:hover {
+    border-color: #555555 !important; /* একদম হালকা সফট কালার */
+    background: #222222 !important; /* ব্যাকগ্রাউন্ড সামান্য পরিবর্তন হবে */
 }
 
 /* 📜 সাইডবার স্ক্রোলবার স্টাইল */
@@ -92,7 +88,7 @@ a {
 }
 .channel-list::-webkit-scrollbar-thumb {
     border-radius: 4px;
-    background-color: #444444; 
+    background-color: #333333; 
 }
 
 /* 📱 মোবাইল ও ট্যাবলেটের জন্য রেসপনসিভ ভিউ */
