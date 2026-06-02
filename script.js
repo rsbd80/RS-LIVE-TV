@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
             data.forEach((channel, index) => {
                 const li = document.createElement('li');
                 
-                // রিমোট কাউন্টার ট্র্যাকিংয়ের জন্য tabindex ইন্টিগ্রেশন করা হলো
+                // রিমোটের ফোকাস ইন্ডেক্স লক রাখার জন্য সঠিক উপায়েTabIndex যুক্ত করা হলো
                 li.setAttribute('tabindex', index + 1);
                 
                 li.innerHTML = `
@@ -35,6 +35,6 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => {
             console.error('Error loading playlist:', error);
-            container.innerHTML = '<p style="color:red; font-size:10px;">Error!</p>';
+            container.innerHTML = '<p style="color:red; font-size:10px;">Error Loading Playlist!</p>';
         });
 });
