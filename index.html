@@ -100,13 +100,107 @@
         @keyframes fadeInText { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes dotPulse { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
 
+        /* 📺 প্লেয়ারের উপরের স্টাইলিশ প্রিমিয়াম ব্যানার হেডার */
+        .player-top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, #10101a 0%, #16162e 100%);
+            padding: 12px 20px;
+            border-radius: 10px 10px 0 0;
+            border: 1px solid #222;
+            border-bottom: 2px solid #00f0ff;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+        }
+        
+        .player-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* স্টাইলিশ টিভি আইকন */
+        .tv-icon {
+            width: 32px;
+            height: 22px;
+            background: #111;
+            border-radius: 4px;
+            position: relative;
+            border: 2px solid #00f0ff;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+        }
+        .tv-icon::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 4px;
+            width: 10px;
+            height: 6px;
+            border-left: 2px solid #00f0ff;
+            transform: rotate(-35deg);
+        }
+        .tv-icon::after {
+            content: '';
+            position: absolute;
+            top: -6px;
+            right: 4px;
+            width: 10px;
+            height: 6px;
+            border-right: 2px solid #00f0ff;
+            transform: rotate(35deg);
+        }
+
+        /* RS Live TV ব্যানার টেক্সট স্টাইল */
+        .player-logo-text {
+            font-family: 'Arial Black', sans-serif;
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 1px 1px 2px #000;
+        }
+        .player-logo-text span {
+            color: #00f0ff;
+            text-shadow: 0 0 12px rgba(0, 240, 255, 0.8);
+        }
+
+        /* সার্চ বাটন স্টাইল */
+        .search-trigger-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #333;
+            color: #fff;
+            cursor: pointer;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+        }
+        .search-trigger-btn:hover {
+            color: #00f0ff;
+            border-color: #00f0ff;
+            background: rgba(0, 240, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+        }
+        .search-trigger-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
         /* 📺 টিভি রিমোট নেভিগেশন ফোকাস বর্ডার স্টাইল */
         #channel-container li:focus,
         #channel-container a:focus,
         .thumbnail-slider li:focus,
-        .channel-list ul li:focus {
+        .channel-list ul li:focus,
+        .search-trigger-btn:focus {
             outline: none !important;
-            border: 3px solid #00f0ff !important; /* রিমোট বা কিবোর্ড দিয়ে সিলেক্ট করলে গ্লোয়িং বর্ডার আসবে */
+            border: 3px solid #00f0ff !important;
             box-shadow: 0 0 20px #00f0ff !important;
             transform: scale(1.05);
             transition: all 0.2s ease;
@@ -116,9 +210,11 @@
         /* মেইন ইন্টারফেস স্টাইল */
         .tv-view .embed-responsive {
             border: 1px solid #222;
-            border-radius: 8px;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
             background: #000;
             overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.8);
         }
         iframe {
             border: 0 !important;
@@ -134,6 +230,7 @@
             align-items: center;
             border-top: 1px solid #333;
             border-bottom: 1px solid #333;
+            margin-top: 20px;
         }
         .notice-label {
             background: #ff4444;
@@ -315,11 +412,21 @@
     <div class="container tv-area">
         <div class="row">
             <div class="col-xs-12 col-md-10 tv-view">
+                <div class="player-top-bar">
+                    <div class="player-logo-container">
+                        <div class="tv-icon"></div> <div class="player-logo-text">RS Live <span>TV</span></div>
+                    </div>
+                    <button class="search-trigger-btn" onclick="searchChannels()" title="Search Channel" tabindex="0">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        </svg>
+                    </button>
+                </div>
                 <div class="embed-responsive embed-responsive-16by9">
                     <iframe name="player" class="embed-responsive-item" allowfullscreen src="channel.html"></iframe>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-2 channel-list">
+            <div class="col-xs-12 col-md-2 channel-list" style="margin-top: 65px;">
                 <ul class="thumbnail-slider" id="channel-container"></ul>
             </div>
         </div>
@@ -383,7 +490,17 @@
 
     <script src="script.js"></script>
     <script>
-        // ১. ইন্ট্রো লোডার বন্ধ করার স্ক্রিপ্ট (২.৫ সেকেন্ড রান হবে)
+        // ১. 🛑 ব্যাক বাটন চাপলে সরাসরি সাইট/অ্যাপ থেকে এক ক্লিকে একবারে বের হয়ে যাওয়ার মাস্টার স্ক্রিপ্ট 
+        (function() {
+            window.history.pushState({exit: true}, "", "");
+            
+            window.addEventListener('popstate', function(event) {
+                // আইফ্রেম বা চ্যানেলে ক্লিক করার পর ব্যাক বাটন চাপলে কোনো লুপ ছাড়াই একবারে ক্লোজ হবে
+                window.history.go(-1);
+            });
+        })();
+
+        // ২. ইন্ট্রো লোডার বন্ধ করার স্ক্রিপ্ট (২.৫ সেকেন্ড রান হবে)
         window.addEventListener('load', function() {
             setTimeout(function() {
                 const loader = document.getElementById('intro-loader');
@@ -392,22 +509,43 @@
                     loader.style.visibility = 'hidden';
                     setTimeout(() => {
                         loader.remove();
-                        // লোডার শেষ হওয়ার পর প্রথম চ্যানেলে অটো-ফোকাস সেট করা (টিভি রিমোটের সুবিধার্থে)
                         initTVFocus();
                     }, 600);
                 }
             }, 2500); 
         });
 
-        // ২. 🎮 অ্যান্ড্রয়েড টিভি/স্মার্ট টিভি রিমোট কন্ট্রোল ইঞ্জিন (D-Pad Navigation)
+        // ৩. 🔍 চ্যানেল সার্চ করার ইনটেলিজেন্ট ফাংশন
+        function searchChannels() {
+            let query = prompt("আপনি কোন চ্যানেলটি দেখতে চান? নাম লিখুন:");
+            if (query === null || query.trim() === "") return;
+            
+            query = query.toLowerCase().trim();
+            const items = document.querySelectorAll('#channel-container li, .thumbnail-slider li, .channel-list ul li');
+            let found = false;
+            
+            for (let item of items) {
+                if (item.innerText.toLowerCase().includes(query)) {
+                    item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    item.focus();
+                    item.click(); // চ্যানেলটি খুঁজে পাওয়ার সাথে সাথে অটোমেটিক প্লে হবে
+                    found = true;
+                    break;
+                }
+            }
+            
+            if (!found) {
+                alert("দুঃখিত, এই নামের কোনো চ্যানেল পাওয়া যায়নি!");
+            }
+        }
+
+        // ৪. 🎮 অ্যান্ড্রয়েড টিভি/স্মার্ট টিভি রিমোট কন্ট্রোল ইঞ্জিন (D-Pad Navigation)
         document.addEventListener('keydown', function(event) {
-            // রিমোট দিয়ে নেভিগেট করার মত এলিমেন্টগুলো সিলেক্ট করা
-            const focusableSelector = '#channel-container li, #channel-container a, .thumbnail-slider li, .channel-list ul li';
+            const focusableSelector = '.search-trigger-btn, #channel-container li, #channel-container a, .thumbnail-slider li, .channel-list ul li';
             const items = Array.from(document.querySelectorAll(focusableSelector));
             
             if (items.length === 0) return;
             
-            // প্রতিটি এলিমেন্টে রিমোটের মাধ্যমে ফোকাস নিয়ে যাওয়ার যোগ্যতা (tabindex) নিশ্চিত করা
             items.forEach(item => {
                 if (!item.hasAttribute('tabindex')) {
                     item.setAttribute('tabindex', '0');
@@ -422,7 +560,7 @@
                     if (currentIndex > 0) {
                         items[currentIndex - 1].focus();
                     } else {
-                        items[items.length - 1].focus(); // শেষ এলিমেন্টে যাবে
+                        items[items.length - 1].focus();
                     }
                     break;
                     
@@ -431,7 +569,7 @@
                     if (currentIndex < items.length - 1) {
                         items[currentIndex + 1].focus();
                     } else {
-                        items[0].focus(); // প্রথম এলিমেন্টে ব্যাক করবে
+                        items[0].focus();
                     }
                     break;
                     
@@ -448,13 +586,13 @@
                 case 13: // 🔘 রিমোটের OK / Enter Button
                     if (currentIndex !== -1) {
                         event.preventDefault();
-                        items[currentIndex].click(); // সিলেক্টেড চ্যানেলটি প্লে হবে
+                        items[currentIndex].click();
                     }
                     break;
             }
         });
 
-        // ৩. প্রথম চ্যানেলটিতে অটোমেটিক রিমোট ফোকাস ইনিশিয়েট করার ফাংশন
+        // ৫. প্রথম চ্যানেলটিতে অটোমেটিক রিমোট ফোকাস ইনিশিয়েট করার ফাংশন
         function initTVFocus() {
             const firstChannel = document.querySelector('#channel-container li, #channel-container a, .thumbnail-slider li');
             if (firstChannel) {
@@ -463,11 +601,11 @@
             }
         }
 
-        // ৪. রাইট ক্লিক বন্ধ রাখার স্ক্রিপ্ট
+        // ৬. রাইট ক্লিক বন্ধ রাখার স্ক্রিপ্ট
         document.addEventListener('contextmenu', event => event.preventDefault());
     </script>
     
     <script async="async" data-cfasync="false" src="https://pl26377079.effectivecpmnetwork.com/cdeccdd75d3e2e6916a42ce9653cfb08/invoke.js"></script>
     <div id="container-cdeccdd75d3e2e6916a42ce9653cfb08"></div>
 </body>
-</html>
+    </html>
