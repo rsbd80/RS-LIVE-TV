@@ -23,7 +23,6 @@ height:100%;
 background:#000;
 overflow:hidden;
 font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-/* 🔒 কপি প্রোটেকশন */
 -webkit-user-select: none;
 -moz-user-select: none;
 -ms-user-select: none;
@@ -38,6 +37,7 @@ top: 0;
 left: 0;
 }
 
+/* নেটলিফাই প্লেয়ারের মতো ক্লিন ও মিনিমাল লোডার */
 #loader {
 position:fixed;
 top:0;
@@ -53,6 +53,7 @@ flex-direction:column;
 transition: opacity 0.3s ease;
 }
 
+/* ওই সাইটের মতো ম্যাটেরিয়াল/স্মুথ স্পিনার */
 .spinner {
 width: 50px;
 height: 50px;
@@ -97,7 +98,25 @@ height: 100vh !important;
 <div id="player"></div>
 
 <script>
-// আপনার ওরিজিনাল প্লেয়ার স্ট্রাকচার লজিক (হুবহু ব্যাকআপের মতো)
+// 🛠️ মেইন পেজ বা script.js থেকে আসা চ্যানেল ইউআরএল রিড করার মাস্টার লজিক
+function getStreamUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const rawUrl = urlParams.get('url');
+    if (rawUrl) {
+        return decodeURIComponent(rawUrl);
+    }
+    // যদি সরাসরি কেউ ওপেন করে বা প্যারামিটার না থাকে, তবে হ্যাশ/ইউআরএল চেক করবে
+    const hashUrl = window.location.hash.substring(1);
+    if (hashUrl && hashUrl.startsWith('http')) {
+        return hashUrl;
+    }
+    return null;
+}
+
+const streamUrl = getStreamUrl();
+const defaultStream = "https://cdn.jsdelivr.net/gh/nurmd2006/empty@main/stream/by/your-abbu/srktv.m3u8";
+const finalStream = streamUrl ? streamUrl : defaultStream;
+
 const player = jwplayer("player");
 
 player.setup({
@@ -105,7 +124,7 @@ playlist:[{
 title:"",
 sources:[
 {
-file: window.location.href, // আপনার ওরিজিনাল ব্যাকআপের লিঙ্ক ডিটেকশন স্ট্রাকচার
+file: finalStream, // এখানে এখন পারফেক্টলি লাইভ চ্যানেলের লিঙ্ক লোড হবে
 type: "hls",
 label: "HD"
 }
