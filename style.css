@@ -131,7 +131,7 @@ body {
     }
     
     .channel-list { 
-        padding: 5px 10px; /* মোবাইলে প্যাডিং আরেকটু কমানো হলো */
+        padding: 5px 8px; 
         height: auto !important; 
         overflow-y: hidden; 
         overflow-x: auto; 
@@ -141,35 +141,35 @@ body {
     .thumbnail-slider {
         display: flex !important;
         flex-direction: row !important;
-        gap: 8px; /* কার্ডগুলোর মাঝখানের গ্যাপ সামান্য কমানো হলো */
+        gap: 6px; /* কার্ডের মাঝের স্পেস আরও কিছুটা কমানো হলো */
         padding: 0;
         width: auto;
     }
     
-    /* 📱 মোবাইলের জন্য কার্ডের সাইজ ছোট করা হলো (যাতে এক স্ক্রিনে বেশি চ্যানেল ধরে) */
+    /* 📱 মোবাইলের জন্য আল্ট্রা-কম্প্যাক্ট সাইজ */
     .thumbnail-slider li { 
-        width: 88px !important; /* চওড়া ১১৫px থেকে কমিয়ে ৮৮px করা হলো */
+        width: 80px !important; /* চওড়া ৮৮px থেকে কমিয়ে ৮০px করা হলো */
         flex-shrink: 0;
         margin-bottom: 0;
-        border-radius: 6px; /* ছোট কার্ডের সাথে মিল রেখে রেডিয়াস টিউনিং */
+        border-radius: 5px; 
         scroll-margin-left: 10px;
         scroll-margin-right: 10px;
     }
     
-    /* 🎯 লোগো ইমেজের হাইট মোবাইলে ছোট করা হলো */
+    /* 🎯 লোগো ইমেজের হাইট মোবাইলে আরেকটু স্লিম করা হলো */
     .thumbnail-slider li img { 
-        height: 52px !important; /* ৬৫px থেকে কমিয়ে ৫২px করা হলো */
+        height: 48px !important; /* ৫২px থেকে কমিয়ে ৪৮px করা হলো */
     }
     
-    /* 📋 চ্যানেল টাইটেল বক্স মোবাইলে ছোট করা হলো */
+    /* 📋 চ্যানেল টাইটেল বক্সের হাইট ও প্যাডিং টিউনিং */
     .channel-info-box {
-        height: 28px !important; /* ৩২px থেকে কমিয়ে ২৮px করা হলো */
-        padding: 0 4px;
+        height: 26px !important; /* ২৮px থেকে কমিয়ে ২৬px করা হলো */
+        padding: 0 3px;
     }
     
     .channel-info-box .channel-title {
-        font-size: 9px; /* লেখা যেন বক্সে সুন্দরভাবে ধরে তাই ফন্ট সাইজ ৯px করা হলো */
+        font-size: 8.5px; /* ছোট বক্সে লেখা সুন্দরভাবে ফিট হওয়ার জন্য ফন্ট সাইজ ৮.৫px করা হলো */
         line-height: 1.1;
         -webkit-line-clamp: 2;
     }
-        }
+}
