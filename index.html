@@ -2,7 +2,7 @@
 <html lang="bn">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DRBZH98TKH"></script>
     <script>
@@ -19,7 +19,7 @@
     <link href="style.css?v=10.0" rel="stylesheet">
 
     <style>
-        /* 🔒 বডিতে ইউজার সিলেক্ট ব্লক */
+        /* 🔒 টেক্সট সিলেকশন বা কপি ব্লক করার CSS */
         body {
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -301,8 +301,7 @@
         <div class="row">
             <div class="col-xs-12 col-md-10 tv-view">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <!-- আইডি 'tv-player-iframe' যুক্ত করা হলো যা স্ক্রিপ্ট থেকে আইডেন্টিফাই হবে -->
-                    <iframe id="tv-player-iframe" name="player" class="embed-responsive-item" allowfullscreen src="channel.html"></iframe>
+                    <iframe name="player" class="embed-responsive-item" allowfullscreen src="channel.html"></iframe>
                 </div>
             </div>
             <div class="col-xs-12 col-md-2 channel-list" id="scroll-wrapper">
@@ -381,16 +380,7 @@
             }, 1200); 
         });
 
-        // 🔒 সিকিউরিটি: রাইট ক্লিক এবং কীবোর্ড ডেভেলপার সোর্স ভিউ ব্লক স্ক্রিপ্ট
-        document.addEventListener('contextmenu', event => event.preventDefault());
-        document.onkeydown = function(e) {
-            if (e.keyCode == 123) { return false; } 
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; } 
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; } 
-            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; } 
-        };
-
-        // ২. 🎮 স্মার্ট টিভি রিমোটের আপ/ডাউন এবং ওকে বাটনকে ম্যানুয়ালি কন্ট্রোল করার মাস্টার লজিক
+        // 🎮 ২. স্মার্ট টিভি রিমোট কন্ট্রোল মাস্টার লজিক (আপনার ব্যাকআপ কোড)
         document.addEventListener('keydown', function(event) {
             const items = Array.from(document.querySelectorAll('#channel-container li'));
             if (items.length === 0) return;
@@ -398,7 +388,6 @@
             const active = document.activeElement;
             let index = items.indexOf(active);
 
-            // রিমোট ডাউন বাটন (ArrowDown = 40)
             if (event.keyCode === 40 || event.key === "ArrowDown") {
                 event.preventDefault();
                 let nextIndex = index + 1;
@@ -406,7 +395,6 @@
                     items[nextIndex].focus();
                 }
             } 
-            // রিমোট আপ বাটন (ArrowUp = 38)
             else if (event.keyCode === 38 || event.key === "ArrowUp") {
                 event.preventDefault();
                 let prevIndex = index - 1;
@@ -414,7 +402,6 @@
                     items[prevIndex].focus();
                 }
             } 
-            // রিমোট ওকে / এন্টার বাটন (Enter = 13)
             else if (event.keyCode === 13 || event.key === "Enter") {
                 if (active && active.tagName === 'LI') {
                     event.preventDefault();
@@ -423,7 +410,6 @@
             }
         });
 
-        // রিমোট ফোকাস হওয়ার সাথে সাথে অটো স্ক্রোল ভিউ লক
         window.addEventListener('focus', function(event) {
             if (event.target && event.target.tagName === 'LI') {
                 event.target.scrollIntoView({
@@ -433,7 +419,6 @@
             }
         }, true); 
 
-        // প্রথম চ্যানেলে অটোমেটিক রিমোট ফোকাস নেওয়া
         function initTVFocus() {
             setTimeout(() => {
                 const firstChannel = document.querySelector('#channel-container li');
@@ -442,9 +427,18 @@
                 }
             }, 600);
         }
+
+        // 🔒 সিকিউরিটি: রাইট ক্লিক এবং ইনস্পেক্ট কীবোর্ড শর্টকাট লক
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.onkeydown = function(e) {
+            if (e.keyCode == 123) { return false; } 
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; } 
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; } 
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; } 
+        };
     </script>
     
     <script async="async" data-cfasync="false" src="https://pl26377079.effectivecpmnetwork.com/cdeccdd75d3e2e6916a42ce9653cfb08/invoke.js"></script>
     <div id="container-cdeccdd75d3e2e6916a42ce9653cfb08"></div>
 </body>
-</html>
+        </html>
