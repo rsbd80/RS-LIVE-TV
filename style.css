@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Rambla:400i');
 
-/* 📺 সাইডবার কন্টেইনার */
+/* 🖥️ ডেক্সটপ ও ল্যাপটপের জন্য মার্জিন */
+.tv-area { margin-top: 50px; }
+
+/* 📺 সাইডবার চ্যানেল কন্টেইনার */
 .channel-list { 
     padding-left: 0; 
     height: 520px; 
@@ -18,12 +21,12 @@
     display: block;
 }
 
-/* 🖼️ প্রতিটি চ্যানেল কার্ডের বক্স */
+/* 🖼️ প্রতিটি চ্যানেল বক্স */
 .thumbnail-slider li { 
     list-style: none; 
     margin: 6px 12px 12px 12px; 
     background: #161616; 
-    border: 1px solid #222222; /* সাধারণ অবস্থায় কালো ব্যাকগ্রাউন্ডের সাথে মিশে থাকবে */
+    border: 1px solid #222222; 
     border-radius: 6px;
     padding: 5px;
     display: flex;
@@ -34,7 +37,6 @@
     content-visibility: auto; 
 }
 
-/* ⚠️ লোগো ইমেজ সেটিংস */
 .thumbnail-slider li img { 
     width: 100%; 
     height: 85px; 
@@ -44,7 +46,6 @@
     border-radius: 4px;
 }
 
-/* 🏷️ চ্যানেলের নাম দেখানোর বক্স */
 .channel-info-box {
     padding: 6px 4px 2px 4px;
     text-align: center;
@@ -61,18 +62,17 @@
     text-overflow: ellipsis; 
 }
 
-/* 🎮 মাউস হোভার বা রিমোট দিয়ে সিলেক্টেড বর্ডার কালার (আগের চেয়ে গাঢ় ও আকর্ষণীয় গ্রে) */
+/* 🎮 ফোকাস বা হোভার করা বর্ডার (গাঢ় মেটালিক গ্রে কালার) */
 .thumbnail-slider li:hover, 
 .thumbnail-slider li:focus {
     outline: none !important;
-    border: 2px solid #777777 !important; /* বর্ডার কালার আরও গাঢ় ও প্রিমিয়াম গ্রে করা হলো */
-    background: #252525 !important; /* ব্যাকগ্রাউন্ড সামান্য হাইলাইট হবে */
-    box-shadow: none !important; /* অতিরিক্ত কোনো চোখের আলো বা গ্লো থাকবে না */
-    transform: scale(1.02); /* সিলেক্ট হলে সামান্য বড় হবে যেন ইউজার বুঝতে পারে */
+    border: 2px solid #777777 !important; /* স্পষ্ট গাঢ় মেটালিক ডার্ক গ্রে */
+    background: #252525 !important; 
+    box-shadow: none !important; 
+    transform: scale(1.02); 
     transition: all 0.1s ease-in-out;
 }
 
-/* 📜 সাইডবার স্ক্রোলবার স্টাইল */
 .channel-list::-webkit-scrollbar {
     width: 6px;
     background-color: #1a1a1a;
@@ -82,12 +82,18 @@
     background-color: #333333; 
 }
 
-/* 📱 মোবাইল ও ট্যাবলেটের জন্য রেসপনসিভ ভিউ */
+/* 📱 মোবাইল ও বড় ট্যাবলেটের জন্য রেসপনসিভ কনফিগারেশন */
 @media (max-width: 1199px) {
     .channel-list { height: 425px; }
 }
 
 @media (max-width: 990px) {
+    /* 📱 মোবাইলের জন্য ভিডিও প্লেয়ারের উপরে আগের মতো টপ গ্যাপ ফাঁকা জায়গা */
+    .tv-area { 
+        margin-top: 35px !important; /* প্লেয়ারের উপরে ৩৫ পিক্সেল নিখুঁত ফাকা জায়গা */
+        padding-top: 5px !important;
+    }
+    
     .channel-list { 
         padding: 10px 15px; 
         height: auto !important; 
@@ -122,4 +128,4 @@
     .thumbnail-slider li img { 
         height: 48px; 
     }
-    }
+}
