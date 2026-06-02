@@ -16,17 +16,9 @@
 
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/mD1VCt2C/RS-Live.png">
     <link href="bootstrap.min.css" rel="stylesheet">
-    <link href="style.css?v=7.0" rel="stylesheet">
+    <link href="style.css?v=8.0" rel="stylesheet">
 
     <style>
-        body {
-            background: #000;
-            overflow-x: hidden;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-
         /* 🎬 "Welcome To RS Live TV" ইন্тро লোডার */
         #intro-loader {
             position: fixed;
@@ -98,11 +90,6 @@
 
         @keyframes fadeInText { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes dotPulse { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
-
-        #channel-container li:focus,
-        .thumbnail-slider li:focus {
-            outline: none !important;
-        }
 
         .tv-view .embed-responsive {
             border: 1px solid #222;
@@ -309,7 +296,7 @@
                     <iframe name="player" class="embed-responsive-item" allowfullscreen src="channel.html"></iframe>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-2 channel-list">
+            <div class="col-xs-12 col-md-2 channel-list" id="scroll-wrapper">
                 <ul class="thumbnail-slider" id="channel-container"></ul>
             </div>
         </div>
@@ -371,9 +358,9 @@
         </div>
     </footer>
 
-    <script src="script.js?v=7.0"></script>
+    <script src="script.js?v=8.0"></script>
     <script>
-        // ১. ইন্ট্রো লোডার স্ক্রিপ্ট (কোনো এরর ছাড়াই ১.৫ সেকেন্ড পর স্মুথলি কেটে যাবে)
+        // ১. লোডিং ইন্ট্রো স্ক্রিন রিমুভার
         window.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 const loader = document.getElementById('intro-loader');
@@ -382,70 +369,40 @@
                     loader.style.visibility = 'hidden';
                     setTimeout(() => { loader.remove(); }, 500);
                 }
-            }, 1500); 
+            }, 1200); 
         });
 
-        // ২. 🎮 ইন্টারনাল ট্র্যাকিং রিমোট ইঞ্জিন (চ্যানেল জাম্প বা এলোমেলো হওয়া সম্পূর্ণ বন্ধের ফিক্স)
-        let currentFocusedIndex = 0; 
-
-        document.addEventListener('keydown', function(event) {
-            const items = Array.from(document.querySelectorAll('#channel-container li'));
-            if (items.length === 0) return;
-
-            if (event.keyCode === 38 || event.keyCode === 40 || event.keyCode === 13) {
-                event.preventDefault();
-                event.stopImmediatePropagation();
-            }
-
-            switch(event.keyCode) {
-                case 38: // 🔼 Up Button
-                    if (currentFocusedIndex > 0) {
-                        currentFocusedIndex--;
-                    } else {
-                        currentFocusedIndex = items.length - 1; 
-                    }
-                    updateRemoteFocus(items);
-                    break;
-                    
-                case 40: // 🔽 Down Button
-                    if (currentFocusedIndex < items.length - 1) {
-                        currentFocusedIndex++;
-                    } else {
-                        currentFocusedIndex = 0; 
-                    }
-                    updateRemoteFocus(items);
-                    break;
-                    
-                case 13: // 🔘 OK Button
-                    if (items[currentFocusedIndex]) {
-                        items[currentFocusedIndex].click(); 
-                    }
-                    break;
-            }
-        });
-
-        // ৩. নিখুঁত স্ক্রোল ও ফোকাস মেইনটেইনার ফাংশন
-        function updateRemoteFocus(items) {
-            items.forEach(item => item.blur()); 
-            const activeItem = items[currentFocusedIndex];
-            if (activeItem) {
-                activeItem.focus(); 
-                activeItem.scrollIntoView({
-                    block: 'center',
+        // ২. 🎮 অ্যান্ড্রয়েড স্মার্ট টিভি ও অ্যাপ রিমোটের জন্য ন্যাটিভ ফোকাস লিসেনার 
+        // (ব্রাউজারের স্বাভাবিক স্ক্রোলিং লক না করে এটি রিমোটের ন্যাটিভ সিলেকশনকে ট্র্যাক করবে)
+        document.addEventListener('focusin', function(event) {
+            if (event.target && event.target.tagName === 'LI') {
+                event.target.scrollIntoView({
+                    block: 'nearest',
                     inline: 'nearest',
                     behavior: 'smooth'
                 });
             }
-        }
+        });
 
-        // ৪. প্রথম ফোকাস সেট করার গ্লোবাল ফাংশন (যা script.js থেকে ডেটা আসার পর কল হবে)
-        function initTVFocus() {
-            const items = Array.from(document.querySelectorAll('#channel-container li'));
-            if (items.length > 0) {
-                currentFocusedIndex = 0;
-                items[0].focus();
-                items[0].scrollIntoView({ block: 'center' });
+        // কিবোর্ড এন্টার বা রিমোট ওকের (OK) ব্যাকআপ লজিক
+        document.addEventListener('keydown', function(event) {
+            if (event.keyCode === 13) {
+                const activeElement = document.activeElement;
+                if (activeElement && activeElement.tagName === 'LI') {
+                    event.preventDefault();
+                    activeElement.click();
+                }
             }
+        });
+
+        // অটোমেটিক প্রথম চ্যানেলে ফোকাস নিয়ে যাওয়ার মেথড
+        function initTVFocus() {
+            setTimeout(() => {
+                const firstChannel = document.querySelector('#channel-container li');
+                if (firstChannel) {
+                    firstChannel.focus();
+                }
+            }, 300);
         }
 
         document.addEventListener('contextmenu', event => event.preventDefault());
