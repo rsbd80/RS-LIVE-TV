@@ -1,8 +1,9 @@
 // =====================================================================
-// 🔒 ১. Solo Browser & AppCreator24 ব্লকিং প্রোটেকশন
+// 🔒 ১. Solo Browser & AppCreator24 ব্লকিং প্রোটেকশন (সার্ভার লোডের সাথে সাথেই ব্লক করবে)
 // =====================================================================
 (function() {
     const ua = navigator.userAgent || navigator.vendor || window.opera;
+    // সোলো ব্রাউজার বা অ্যাপক্রিয়েটর দিয়ে ঢুকলে পেজ ফাঁকা করে দেবে
     if (ua.includes("Solo") || ua.includes("Solo Browser") || ua.includes("AppCreator24")) {
         document.documentElement.innerHTML = "<h1 style='color:white; text-align:center; margin-top:20%; font-family:sans-serif; background:#000;'>This browser or application is not supported! Please use Google Chrome or Microsoft Edge.</h1>";
         window.location.href = "about:blank";
@@ -15,6 +16,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('channel-container');
 
+    // প্লেলিস্ট লোড করা হচ্ছে
     fetch('playlist.json?t=' + Date.now())
         .then(response => response.json())
         .then(data => {
@@ -33,12 +35,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 `;
 
-                // চ্যানেল ক্লিক করলে সরাসরি আইফ্রেমের src চেঞ্জ হবে
+                // চ্যানেল ক্লিক ইভেন্ট
                 li.addEventListener('click', function() {
-                    const iframe = document.getElementById('tv-player-iframe');
-                    if (iframe) {
-                        // সরাসরি channel.html ফাইলে প্যারামিটার পাঠানো হচ্ছে
-                        iframe.src = "channel.html?url=" + encodeURIComponent(channel.url);
+                    // সরাসরি সঠিক ফরম্যাটে আইফ্রেমে লিঙ্ক পাঠানো হচ্ছে যাতে প্লেয়ার চালু হয়
+                    const targetUrl = "channel.html?url=" + encodeURIComponent(channel.url);
+                    
+                    if (window.frames['player']) {
+                        window.frames['player'].location.href = targetUrl;
+                    } else {
+                        const iframe = document.querySelector('iframe[name="player"]');
+                        if (iframe) {
+                            iframe.src = targetUrl;
+                        }
                     }
                 });
                 
