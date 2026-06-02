@@ -1,22 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Rambla:400i');
 
-body {
-    background: #121212;
-    color: #fff;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
-
-a {
-    color: #ffffff;
-    text-decoration: none;
-    cursor: pointer;
-    font-size: 15px;
-}
-
-.tv-area { margin-top: 50px; }
-
 /* 📺 ডেক্সটপ ও ল্যাপটপে সাইডবার কন্টেইনার */
 .channel-list { 
     padding-left: 0; 
@@ -35,7 +18,7 @@ a {
     display: block;
 }
 
-/* 🖼️ প্রতিটি চ্যানেল কার্ডের বক্স */
+/* 🖼️ প্রতিটি চ্যানেল কার্ডের বক্স (বর্ডার যেন না কাটে সেজন্য মার্জিন অ্যাডজাস্টেড) */
 .thumbnail-slider li { 
     list-style: none; 
     margin: 6px 12px 12px 12px; 
@@ -46,7 +29,9 @@ a {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    content-visibility: auto; /* ডেক্সটপে দ্রুত স্ক্রোলিং ও রেন্ডারিং এর জন্য */
+    cursor: pointer;
+    outline: none !important;
+    content-visibility: auto; /* ডেক্সটপে ফাস্ট রেন্ডার হওয়ার জন্য */
 }
 
 /* ⚠️ লোগো ইমেজ সেটিংস */
@@ -76,10 +61,12 @@ a {
     text-overflow: ellipsis; 
 }
 
-/* 🎮 মাউস হোভার ইফেক্ট */
-.thumbnail-slider li:hover {
-    border-color: #444444 !important; 
+/* 🎮 মাউস হোভার বা রিমোট সিলেক্টেড বর্ডার কালার (একদম হালকা চোখ-বান্ধব গ্রে) */
+.thumbnail-slider li:hover, .thumbnail-slider li:focus {
+    outline: none !important;
+    border-color: #444444 !important; /* উজ্জ্বল ব্লু সম্পূর্ণ বাদ, এটি একদম হালকা ও স্মুথ গ্রে */
     background: #222222 !important; 
+    box-shadow: none !important; /* কোনো এক্সট্রা চোখে লাগার মতো গ্লো নেই */
 }
 
 /* 📜 সাইডবার স্ক্রোলবার স্টাইল */
@@ -133,23 +120,3 @@ a {
         height: 48px; 
     }
 }
-
-
-/* ==========================================================================
-   🎮 রিমোট কন্ট্রোল এবং ডিফল্ট ব্রাউজার ফোকাস জোরপূর্বক ওভাররাইড করার মাস্টার কোড
-   ========================================================================== */
-
-/* রিমোটের কারণে তৈরি হওয়া অতিরিক্ত উজ্জ্বল নীল বর্ডার বা আউটলাইন সম্পূর্ণ বন্ধ */
-:focus, 
-.focused, 
-.active, 
-.selected,
-[tabindex]:focus,
-.thumbnail-slider li:focus,
-.thumbnail-slider li.focused,
-.thumbnail-slider li a:focus {
-    outline: none !important;
-    border-color: #444444 !important; /* উজ্জ্বল কালার বদলে একদম হালকা ও চোখ-বান্ধব মেটালিক গ্রে বর্ডার */
-    box-shadow: none !important; /* অতিরিক্ত কোনো গ্লো বা উজ্জ্বল নিয়ন আলো থাকবে না */
-    background-color: #222222 !important; /* সিলেক্টেড কার্ডের ব্যাকগ্রাউন্ড হালকা উন্নত হবে */
-        }
