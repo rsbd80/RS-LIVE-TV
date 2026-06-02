@@ -84,7 +84,7 @@ width:100% !important;
 
 /* ফিক্সড: জুম হবে না, ভিডিওর কোনো অংশ কাটবে না */
 .jw-video {
-object-fit: fill !important; /* fill দেওয়ার কারণে ভিডিও কাটা পড়বে না */
+object-fit: fill !important; 
 width: 100vw !important;
 height: 100vh !important;
 }
@@ -115,13 +115,13 @@ if (window.self === window.top) {
 document.addEventListener('contextmenu', event => event.preventDefault());
 
 document.onkeydown = function(e) {
-    if (e.keyCode == 123) { return false; } // F12
-    if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; } // Ctrl+Shift+I
-    if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; } // Ctrl+Shift+J
-    if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; } // Ctrl+U
+    if (e.keyCode == 123) { return false; } 
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; } 
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; } 
+    if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; } 
 }
 
-// 🔥 ৩. এন্টি-ডেভেলপার টুলস ডিটেক্টর (ব্রাউজার মেনু থেকে ইন্সপেক্ট খুললেই পেজ ব্ল্যাঙ্ক হবে)
+// 🔥 ৩. এন্টি-ডেভেলপার টুলস ডিটেক্টর
 setInterval(function() {
     const startTime = +new Date();
     debugger; 
@@ -131,15 +131,25 @@ setInterval(function() {
     }
 }, 100);
 
-// --- প্লেয়ারের আসল লজিক শুরু ---
+// --- 🛠️ প্রথম ধাপ: আপডেট করা ইউআরএল ফাংশন (Base64 ডিকোড লজিক) ---
 function getStreamUrl() {
     const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('url');
+    const encodedUrl = urlParams.get('url');
+    if (encodedUrl) {
+        try {
+            // এনক্রিপ্ট করা হিজিবিজি লিংকটিকে প্লেয়ারের ভেতর এখানে আনলক করা হচ্ছে
+            return atob(encodedUrl); 
+        } catch(e) {
+            return encodedUrl;
+        }
+    }
+    return null;
 }
 
 const streamUrl = getStreamUrl();
 const player = jwplayer("player");
 
+// ডিফোল্ট লিংকটিও এনক্রিপ্ট করে ব্যবহার করতে পারেন, আপাতত আগেরটি রাখা হলো
 const defaultStream = "https://cdn.jsdelivr.net/gh/nurmd2006/empty@main/stream/by/your-abbu/srktv.m3u8";
 const finalStream = streamUrl ? streamUrl : defaultStream;
 
@@ -160,7 +170,7 @@ aspectratio:"16:9",
 autostart:true,
 mute:false,
 primary:"html5",
-stretching:"fill", /* প্লেয়ার লেভেলেও স্ট্রেচিং fill রাখা হলো */
+stretching:"fill", 
 controls:true
 });
 
@@ -172,7 +182,6 @@ player.on("fullscreen", function(event){
                 console.log("Orientation lock ignored: ", error);
             });
         }
-        // ফুলস্ক্রিনেও অবজেক্ট ফিট 'fill' নিশ্চিত করা
         setTimeout(() => {
             const videoEl = document.querySelector('.jw-video');
             if(videoEl) videoEl.style.setProperty('object-fit', 'fill', 'important');
