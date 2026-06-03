@@ -362,11 +362,9 @@
                         <span class="live-glow">LIVE</span>
                         <span class="neon-tv-tag">TV</span>
                     </div>
-                    <!-- ডানদিকের স্লিম কিউট সার্চ বক্স (ঝাঁকি প্রতিরোধক ফর্ম সহ) -->
+                    <!-- ডানদিকের স্লিম কিউট সার্চ বক্স (ঝাঁকি প্রতিরোধক করতে form বাদ দেওয়া হয়েছে) -->
                     <div class="channel-search-box-premium">
-                        <form action="" onsubmit="event.preventDefault(); return false;" style="margin:0; padding:0; display:inline-block;">
-                            <input type="text" id="channelSearch" placeholder="Search channel..." autocomplete="off">
-                        </form>
+                        <input type="text" id="channelSearch" placeholder="Search channel..." autocomplete="off">
                         <span class="search-icon-inside">🔍</span>
                     </div>
                 </div>
@@ -441,7 +439,7 @@
         </div>
     </footer>
 
-    <!-- 🎮 スマート TV রিমোট, সার্চ ও সলিড সিকিউরিটি স্ক্রিপ্ট -->
+    <!-- 🎮 スマート TV রিমোট, লাইভ ফিল্টার সার্চ ও সলিড সিকিউরিটি স্ক্রিপ্ট -->
     <script src="script.js?v=12.0"></script>
     <script>
         // 🔒 ১. মাউস রাইট-ক্লিক সম্পূর্ণ ব্লক
@@ -477,29 +475,39 @@
             }, 1200); 
         });
 
-        // 🎮 スマート TV রিমোট কন্ট্রোল কি লজিক (ঝাঁকি ও লাফানো চিরতরে বন্ধ সংস্করন ২.০)
-        let isSearchingEnter = false; // সার্চ এন্টার ট্র্যাকার ফ্ল্যাগ
+        // 🔍 ১টি কি-ওয়ার্ড বা অক্ষর লিখলেই সাথে সাথে চ্যানেল ফিল্টারিং করার ইনস্ট্যান্ট লজিক
+        document.getElementById('channelSearch').addEventListener('input', function() {
+            let filter = this.value.toUpperCase();
+            let ul = document.getElementById("channel-container");
+            let li = ul.getElementsByTagName('li');
+            
+            for (let i = 0; i < li.length; i++) {
+                // আপনার চ্যানেলের ভেতরের নাম বা টেক্সট চেক করবে
+                let textValue = li[i].textContent || li[i].innerText;
+                if (textValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = ""; // কি-ওয়ার্ড মিললে শো করবে
+                } else {
+                    li[i].style.display = "none"; // না মিললে হাইড করে দেবে
+                }
+            }
+        });
 
+        // 🎮 スマート TV রিমোট ও কিবোর্ড এন্টার কন্ট্রোল (ঝাঁকি খাওয়া সম্পূর্ণ ফিক্সড সংস্করণ)
         document.addEventListener('keydown', function(event) {
             const items = Array.from(document.querySelectorAll('#channel-container li:not([style*="display: none"])')); 
             const active = document.activeElement;
             const searchInput = document.getElementById('channelSearch');
 
-            // ১. ফোকাস সার্চবক্সে থাকা অবস্থায় রিমোট বা কিবোর্ডের এন্টার (Enter) হ্যান্ডলিং
+            // ফোকাস সার্চবক্সে থাকা অবস্থায় রিমোট বা কিবোর্ডের এন্টার (Enter) হ্যান্ডলিং
             if (active === searchInput) {
                 if (event.keyCode === 13 || event.key === "Enter") {
-                    event.preventDefault();
-                    event.stopPropagation();
+                    event.preventDefault(); // 🚫 ব্রাউজারের পেজ বা উইন্ডো লাফানো সম্পূর্ণ ব্লক
                     
                     if (items.length > 0) {
-                        isSearchingEnter = true; // ঝাঁকি দেওয়া স্ক্রোল ইফেক্ট সাময়িক বন্ধ করার সিগন্যাল
-                        items[0].click(); // প্রথম চ্যানেলটি প্লে করবে
-                        
-                        // ৩২০ মিলিমেকেন্ড পর ট্র্যাকার আবার নরমাল করে দেবে
-                        setTimeout(() => { isSearchingEnter = false; }, 320);
+                        items[0].click(); // ফিল্টার হওয়া প্রথম চ্যানেলটি প্লে করবে
                     }
                     
-                    searchInput.blur(); // ইনপুট ফিল্ড থেকে ফোকাস সরিয়ে আউট করা হলো
+                    searchInput.blur(); // সার্চ ইনপুট থেকে ফোকাস সরিয়ে আউট করবে যাতে স্ক্রিন স্থির থাকে
                     return false;
                 }
                 
@@ -515,7 +523,7 @@
             if (items.length === 0) return;
             let index = items.indexOf(active);
 
-            // ২. চ্যানেলের তালিকায় নেভিগেশন
+            // চ্যানেলের তালিকায় রিমোটের আপ/ডাউন নেভিগেশন
             if (event.keyCode === 40 || event.key === "ArrowDown") {
                 event.preventDefault();
                 let nextIndex = index + 1;
@@ -536,12 +544,8 @@
             }
         });
 
-        // ফোকাস করার সময় অটো-স্ক্রোল করার মেকানিজম (সার্চ এন্টার মারলে এই স্ক্রোলিং হবে না, ফলে ঝাঁকি বন্ধ থাকবে)
+        // ফোকাস করার সময় স্ক্রোল করার সেটিং (স্মুথ রাখা হয়েছে ঝাঁকি এড়াতে)
         window.addEventListener('focus', function(event) {
-            if (isSearchingEnter) {
-                event.preventDefault();
-                return; // সার্চবারের এন্টার থেকে কল আসলে স্ক্রোল করাবে না
-            }
             if (event.target && event.target.tagName === 'LI') {
                 event.target.scrollIntoView({ block: 'center', behavior: 'smooth' });
             }
