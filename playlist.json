@@ -71,7 +71,7 @@
   },
   {
     "name": "Cricket Gold",
-    "image": "https://s3.aynaott.com/storage/7d20b575edc4e4b5276faa8c246e72a4",
+    "image": "https://prod98.togglestatic.com/shain/v1/dataservice/ResizeImage/$value?Format=%27png%27&Quality=85&ImageId=%279268121%27&EntityType=%27Item%27&EntityId=%27557763%27&Width=1920&Height=1080",
     "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen6.aynaott.com/CricketGold/index.m3u8?e=1779283786&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=7c79e4f07ef8bf05e35ecffd9e056652"
   },
   {
@@ -81,7 +81,7 @@
   },
   {
     "name": "Bleav Football",
-    "image": "https://s3.aynaott.com/storage/030ec528e912afb9a2ec3b4c5167a928",
+    "image": "https://i.podnews.network/dir/co/1/184.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://linear-493.frequency.stream/dist/glewedtv/493/hls/master/playlist.m3u8"
   },
   {
