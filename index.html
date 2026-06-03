@@ -301,17 +301,14 @@
     </div>
 
     <div class="container tv-area">
-        <!-- 💎 প্রিমিয়াম হেডার: বামে কালারফুল ব্র্যান্ড নেম, ডানে কিউট ছোট সার্চকার্ড -->
         <div class="row">
             <div class="col-xs-12 col-md-10">
                 <div class="top-bar-wrapper">
-                    <!-- বামদিকের আকর্ষণীয় কালারফুল ব্র্যান্ড লোগো -->
                     <div class="brand-title-neon">
                         RS LIVE <span class="neon-tv-tag">TV</span>
                     </div>
-                    <!-- ডানদিকের স্লিম কিউট সার্চ বক্স -->
                     <div class="channel-search-box-premium">
-                        <input type="text" id="channelSearch" placeholder="চ্যানেল খুঁজুন...">
+                        <input type="text" id="channelSearch" placeholder="Search channel...">
                         <span class="search-icon-inside">🔍</span>
                     </div>
                 </div>
@@ -386,7 +383,6 @@
         </div>
     </footer>
 
-    <!-- 🎮 スマート TV রিমোট, সার্চ ও সলিড সিকিউরিটি স্ক্রিপ্ট -->
     <script src="script.js?v=12.0"></script>
     <script>
         // 🔒 ১. মাউস রাইট-ক্লিক সম্পূর্ণ ব্লক
@@ -422,13 +418,23 @@
             }, 1200); 
         });
 
-        // 🎮 スマート TV রিমোট কন্ট্রোল কি লজিক
+        // 🎮 スマート TV রিমোট কন্ট্রোল কি লজিক (ঝাঁকি ও লাফানো সম্পূর্ণ ফিক্সড)
         document.addEventListener('keydown', function(event) {
             const items = Array.from(document.querySelectorAll('#channel-container li:not([style*="display: none"])')); 
             const active = document.activeElement;
             const searchInput = document.getElementById('channelSearch');
 
+            // ১. ফোকাস সার্চবক্সে থাকা অবস্থায় রিমোট বা কিবোর্ডের এন্টার (Enter) হ্যান্ডলিং
             if (active === searchInput) {
+                if (event.keyCode === 13 || event.key === "Enter") {
+                    event.preventDefault(); // 🚫 ব্রাউজারের ডিফল্ট লাফানো বা ঝাঁকি মারা সম্পূর্ণ বন্ধ করবে
+                    
+                    if (items.length > 0) {
+                        items[0].click(); // সার্চে আসা প্রথম চ্যানেলটি সরাসরি প্লে করবে (ক্লিক লজিকে অটো-ক্লিয়ার স্ক্রিপ্ট আছে)
+                    }
+                    return;
+                }
+                
                 if (event.keyCode === 40 || event.key === "ArrowDown") {
                     event.preventDefault();
                     if (items.length > 0) {
@@ -441,6 +447,7 @@
             if (items.length === 0) return;
             let index = items.indexOf(active);
 
+            // ২. চ্যানেলের তালিকায় নেভিগেশন
             if (event.keyCode === 40 || event.key === "ArrowDown") {
                 event.preventDefault();
                 let nextIndex = index + 1;
