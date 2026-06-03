@@ -27,6 +27,7 @@
             user-select: none;
             background-color: #06060c;
             overflow-x: hidden;
+            position: relative;
         }
 
         /* 🎬 ইন্ট্রো লোডার */
@@ -335,15 +336,28 @@
             margin-top: 15px;
         }
 
-        /* 🛑 ফুটারের নিচের বিজ্ঞাপনের কারণে ঝাঁকি খাওয়া বন্ধ করার জন্য ফিক্সড কন্টেইনার */
+        /* 🛡️ অ্যান্টি-জার্ক প্রোটেকশন খাঁচা (এটি মেইন লেআউট বা বডিকে একটুও কাঁপতে দেবে না) */
         #native-ad-anti-jerk-wrapper {
-            min-height: 80px; 
-            width: 100%;
+            position: relative;
             display: block;
-            clear: both;
-            background: transparent;
+            width: 100%;
+            max-width: 100vw;
+            min-height: 90px; 
+            max-height: 120px;
+            overflow: hidden !important; /* অতিরিক্ত হাইট পুশ করা ব্লক */
+            background: #040408;
             margin: 0 auto;
+            padding: 5px 0;
             text-align: center;
+            clear: both;
+            contain: strict; /* ব্রাউজারকে নির্দেশ দেয় এই এরিয়ার বাইরে রি-রেন্ডার না করতে */
+        }
+        
+        /* অ্যাডের ভেতরের অনাকাঙ্ক্ষিত হাইট পুশিং স্ক্রিপ্ট ডিজেবল করতে */
+        #container-cdeccdd75d3e2e6916a42ce9653cfb08, 
+        #container-cdeccdd75d3e2e6916a42ce9653cfb08 iframe {
+            max-height: 90px !important;
+            overflow: hidden !important;
         }
     </style>
 </head>
@@ -449,13 +463,13 @@
         </div>
     </footer>
 
-    <!-- 🛡️ নেটিভ ওভারলে বিজ্ঞাপনের আকস্মিক ধাক্কা বা ঝাঁকি আটকানোর প্রোটেকশন কন্টেইনার -->
+    <!-- 🔒 নেটিভ ওভারলে বিজ্ঞাপনের আকস্মিক ধাক্কা বা ঝাঁকি আইসোলেট করার সিকিউরড এরিয়া -->
     <div id="native-ad-anti-jerk-wrapper">
         <script async="async" data-cfasync="false" src="https://pl26377079.effectivecpmnetwork.com/cdeccdd75d3e2e6916a42ce9653cfb08/invoke.js"></script>
         <div id="container-cdeccdd75d3e2e6916a42ce9653cfb08"></div>
     </div>
 
-    <!-- 🎮 スマート TV রিমোট, সলিড সিকিউরিটি এবং ইনস্ট্যান্ট সার্চ স্ক্রিপ্ট -->
+    <!-- 🎮 スマート TV রিমোট, সলিড সিকিউরিটি এবং রুট-ফিল্টার স্ক্রিপ্ট -->
     <script src="script.js?v=12.0"></script>
     <script>
         // 🔒 ১. সিকিউরিটি এবং সোর্স কোড প্রোটেকশন লেয়ার
@@ -473,7 +487,7 @@
             if(endTime - startTime > 100){ window.location.href = "about:blank"; }
         }, 100);
 
-        // 🎬 লোডিং ইন্ট্রো স্ক্রিন রিমুভার
+        // 🎬 লোডিং ইন্тро স্ক্রিন রিমুভার
         window.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 const loader = document.getElementById('intro-loader');
@@ -488,7 +502,7 @@
         // 🎯 গ্লোবাল স্ক্রোল লক ফ্ল্যাগ
         let blockAutoScroll = false;
 
-        // 🔍 ১টি অক্ষর টাইপ করলেই সাথে সাথে সার্চ হয়ে সামনে আসার সুপার-ফাস্ট লজিক
+        // 🔍 ইনস্ট্যান্ট লাইভ ফিল্টার মেকানিজম (পেজকে না কাঁপিয়ে ব্যাকগ্রাউন্ডে কাজ করবে)
         function applyInstantChannelFilter() {
             const searchInput = document.getElementById('channelSearch');
             if (!searchInput) return;
@@ -499,27 +513,25 @@
             
             let li = ul.getElementsByTagName('li');
             
-            blockAutoScroll = true; // ফিল্টারিং করার সময় পেজের অটো-স্ক্রোল জোরপূর্বক অফ রাখা হলো
+            blockAutoScroll = true; // ফিল্টারিং চলাকালীন স্ক্রোল পজিশন পুরোপুরি লকড
             
             for (let i = 0; i < li.length; i++) {
                 let textValue = li[i].textContent || li[i].innerText;
                 if (textValue.toUpperCase().indexOf(filter) > -1) {
-                    li[i].style.setProperty('display', '', 'important'); // কাঙ্ক্ষিত চ্যানেল শো হবে
+                    li[i].style.setProperty('display', '', 'important'); 
                 } else {
-                    li[i].style.setProperty('display', 'none', 'important'); // বাকি সব হাইড
+                    li[i].style.setProperty('display', 'none', 'important'); 
                 }
             }
 
-            // সার্চ করা অবস্থায় যেন স্ক্রিনের বাইরে লিস্ট চলে না যায়, তাই লিস্ট স্ক্রোলকে স্ট্যাটিক রাখা হলো
             setTimeout(() => { blockAutoScroll = false; }, 150);
         }
 
-        // ইনপুট বক্সে টাইপ করার সাথে সাথেই ফাংশনটি ট্রিগার হবে
         const searchInputEl = document.getElementById('channelSearch');
         searchInputEl.addEventListener('input', applyInstantChannelFilter);
         searchInputEl.addEventListener('keyup', applyInstantChannelFilter);
 
-        // 🎮 スマート TV রিমোট ও কিবোর্ড এন্টার কন্ট্রোল (পেজ বা উইন্ডো লাফানো সম্পূর্ণ ব্লক সংস্করণ)
+        // 🎮 スマート TV রিমোট ও কিবোর্ড এন্টার কন্ট্রোল (লাফানো সম্পূর্ণ ব্লক সংস্করণ)
         document.addEventListener('keydown', function(event) {
             const items = Array.from(document.querySelectorAll('#channel-container li')).filter(el => el.style.display !== 'none');
             const active = document.activeElement;
@@ -528,11 +540,11 @@
             if (active === searchInput) {
                 if (event.keyCode === 13 || event.key === "Enter") {
                     event.preventDefault();
-                    event.stopPropagation(); // 🚫 ব্রাউজারের কোনো ডিফল্ট সাবমিট বা জাম্প অ্যাকশন হবে না
+                    event.stopPropagation(); 
                     
                     if (items.length > 0) {
                         blockAutoScroll = true;
-                        items[0].click(); // ফিল্টার হওয়া প্রথম চ্যানেলটি প্লে করবে
+                        items[0].click(); 
                         setTimeout(() => { blockAutoScroll = false; }, 400);
                     }
                     
@@ -570,7 +582,7 @@
             }
         });
 
-        // 🚫 script.js থেকে আসা যেকোনো জোরাজুরি স্ক্রোলিংকে মাঝপথে আটকানোর জন্য সেফটি গার্ড
+        // 🚫 স্ক্রিপ্ট বা উইন্ডো ফোকাস চেঞ্জের কারণে আসা অনাকাঙ্ক্ষিত লাফানো প্রতিরোধ লজিক
         window.addEventListener('focus', function(event) {
             if (blockAutoScroll) {
                 event.preventDefault();
