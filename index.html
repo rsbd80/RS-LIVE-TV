@@ -101,7 +101,7 @@
         @keyframes fadeInText { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes dotPulse { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
 
-        /* ✨ নতুন আল্ট্রা-প্রিমিয়াম গ্লোয়িং লোগো এবং টপ বার */
+        /* ✨ আল্ট্রা-প্রিমিয়াম গ্লোয়িং লোগো এবং টপ বার */
         .top-bar-wrapper {
             display: flex;
             justify-content: space-between;
@@ -213,7 +213,7 @@
                 to right,
                 rgba(255,255,255,0) 0%,
                 rgba(255,255,255,0.2) 50%,
-                rgba(255,255,255,0) 100 orientation
+                rgba(255,255,255,0) 100%
             );
             transform: skewX(-25deg);
             animation: smoke-shine 4s infinite;
@@ -362,9 +362,9 @@
                         <span class="live-glow">LIVE</span>
                         <span class="neon-tv-tag">TV</span>
                     </div>
-                    <!-- ডানদিকের স্লিম কিউট সার্চ বক্স (ঝাঁকি প্রতিরোধক ইভেন্ট সহ) -->
+                    <!-- ডানদিকের স্লিম কিউট সার্চ বক্স (ঝাঁকি প্রতিরোধক ফর্ম সহ) -->
                     <div class="channel-search-box-premium">
-                        <form action="" onsubmit="event.preventDefault();" style="margin:0; padding:0; display:inline-block;">
+                        <form action="" onsubmit="event.preventDefault(); return false;" style="margin:0; padding:0; display:inline-block;">
                             <input type="text" id="channelSearch" placeholder="Search channel..." autocomplete="off">
                         </form>
                         <span class="search-icon-inside">🔍</span>
@@ -455,7 +455,7 @@
             if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; } 
         };
         
-        // 🔒 ৩. ডেভটুলস ট্র্যাপ প্রোটেকশন (ইন্সপেক্ট ওপেন করলেই পেজ ক্র্যাশ/ব্ল্যাঙ্ক হয়ে যাবে)
+        // 🔒 ৩. ডেভটুলস ট্র্যাপ প্রোটেকশন
         setInterval(function(){
             const startTime = +new Date();
             debugger;
@@ -477,7 +477,9 @@
             }, 1200); 
         });
 
-        // 🎮 スマート TV রিমোট কন্ট্রোল কি লজিক (ঝাঁকি ও লাফানো চিরতরে বন্ধ সংস্করণ)
+        // 🎮 スマート TV রিমোট কন্ট্রোল কি লজিক (ঝাঁকি ও লাফানো চিরতরে বন্ধ সংস্করন ২.০)
+        let isSearchingEnter = false; // সার্চ এন্টার ট্র্যাকার ফ্ল্যাগ
+
         document.addEventListener('keydown', function(event) {
             const items = Array.from(document.querySelectorAll('#channel-container li:not([style*="display: none"])')); 
             const active = document.activeElement;
@@ -486,13 +488,18 @@
             // ১. ফোকাস সার্চবক্সে থাকা অবস্থায় রিমোট বা কিবোর্ডের এন্টার (Enter) হ্যান্ডলিং
             if (active === searchInput) {
                 if (event.keyCode === 13 || event.key === "Enter") {
-                    event.preventDefault(); // 🚫 ব্রাউজারের কোনো ডিফল্ট লাফানো অ্যাকশন এক্সিকিউট হতে দেবে না
+                    event.preventDefault();
+                    event.stopPropagation();
                     
                     if (items.length > 0) {
-                        items[0].click(); // সার্চে পাওয়া প্রথম চ্যানেলটি প্লে করবে
+                        isSearchingEnter = true; // ঝাঁকি দেওয়া স্ক্রোল ইফেক্ট সাময়িক বন্ধ করার সিগন্যাল
+                        items[0].click(); // প্রথম চ্যানেলটি প্লে করবে
+                        
+                        // ৩২০ মিলিমেকেন্ড পর ট্র্যাকার আবার নরমাল করে দেবে
+                        setTimeout(() => { isSearchingEnter = false; }, 320);
                     }
                     
-                    searchInput.blur(); // 🛑 ইন্টার প্রেসের সাথে সাথে সার্চবার থেকে ফোকাস সরিয়ে নেবে যাতে কোনো ঝাঁকি না মারে
+                    searchInput.blur(); // ইনপুট ফিল্ড থেকে ফোকাস সরিয়ে আউট করা হলো
                     return false;
                 }
                 
@@ -529,7 +536,12 @@
             }
         });
 
+        // ফোকাস করার সময় অটো-স্ক্রোল করার মেকানিজম (সার্চ এন্টার মারলে এই স্ক্রোলিং হবে না, ফলে ঝাঁকি বন্ধ থাকবে)
         window.addEventListener('focus', function(event) {
+            if (isSearchingEnter) {
+                event.preventDefault();
+                return; // সার্চবারের এন্টার থেকে কল আসলে স্ক্রোল করাবে না
+            }
             if (event.target && event.target.tagName === 'LI') {
                 event.target.scrollIntoView({ block: 'center', behavior: 'smooth' });
             }
