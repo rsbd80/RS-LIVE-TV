@@ -1,9 +1,4 @@
 [
- {
-    "name": "Real Madrid",
-    "image": "https://static.wikia.nocookie.net/logopedia/images/9/91/RM2019.png/revision/latest/scale-to-width-down/288?cb=20191224175551",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://rmtv.akamaized.net/hls/live/2043154/rmtv-en-web/bitrate_3.m3u8"
-  },
   {
     "name": "FIFA Plus English",
     "image": "https://www.cancunairporttransportations.com/blog/wp-content/uploads/FIFA-world-cup-2026.webp",
@@ -21,7 +16,7 @@
   },
   {
     "name": "Real Madrid",
-    "image": "https://static.wikia.nocookie.net/logopedia/images/9/91/RM2019.png/revision/latest/scale-to-width-down/288?cb=20191224175551",
+    "image": "https://images.seeklogo.com/logo-png/26/2/real-madrid-logo-png_seeklogo-264405.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://rmtv.akamaized.net/hls/live/2043154/rmtv-en-web/bitrate_3.m3u8"
   },
   {
