@@ -26,6 +26,7 @@
             -ms-user-select: none;
             user-select: none;
             background-color: #06060c;
+            overflow-x: hidden;
         }
 
         /* 🎬 ইন্ট্রো লোডার */
@@ -100,6 +101,56 @@
         @keyframes fadeInText { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes dotPulse { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
 
+        /* ✨ নতুন আল্ট্রা-প্রিমিয়াম গ্লোয়িং লোগো এবং টপ বার */
+        .top-bar-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 10px;
+            background: linear-gradient(180deg, rgba(13,13,21,0.6) 0%, rgba(6,6,12,0) 100%);
+            margin-bottom: 10px;
+        }
+
+        .brand-title-neon {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .brand-title-neon .rs-glow {
+            background: linear-gradient(135deg, #fff 30%, #a3b8cc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-title-neon .live-glow {
+            color: #ff0055;
+            text-shadow: 0 0 15px rgba(255, 0, 85, 0.6), 0 0 30px rgba(255, 0, 85, 0.3);
+            animation: pulseGlow 2s infinite alternate;
+        }
+
+        .neon-tv-tag {
+            background: linear-gradient(90deg, #00f0ff, #0072ff);
+            color: #040406;
+            font-size: 14px;
+            font-weight: 800;
+            padding: 2px 10px;
+            border-radius: 6px;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes pulseGlow {
+            0% { text-shadow: 0 0 10px rgba(255, 0, 85, 0.5); }
+            100% { text-shadow: 0 0 25px rgba(255, 0, 85, 0.9), 0 0 10px rgba(255, 0, 85, 0.4); }
+        }
+
         .tv-view .embed-responsive {
             border: 1px solid #1f2029;
             border-radius: 12px;
@@ -162,7 +213,7 @@
                 to right,
                 rgba(255,255,255,0) 0%,
                 rgba(255,255,255,0.2) 50%,
-                rgba(255,255,255,0) 100%
+                rgba(255,255,255,0) 100 orientation
             );
             transform: skewX(-25deg);
             animation: smoke-shine 4s infinite;
@@ -301,14 +352,21 @@
     </div>
 
     <div class="container tv-area">
+        <!-- 💎 প্রিমিয়াম হেডার: বামে আল্ট্রা-সুন্দর ব্র্যান্ড লোগো, ডানে সার্চকার্ড -->
         <div class="row">
             <div class="col-xs-12 col-md-10">
                 <div class="top-bar-wrapper">
+                    <!-- বামদিকের নতুন স্টাইলিশ গ্লোয়িং লোগো -->
                     <div class="brand-title-neon">
-                        RS LIVE <span class="neon-tv-tag">TV</span>
+                        <span class="rs-glow">RS</span>
+                        <span class="live-glow">LIVE</span>
+                        <span class="neon-tv-tag">TV</span>
                     </div>
+                    <!-- ডানদিকের স্লিম কিউট সার্চ বক্স (ঝাঁকি প্রতিরোধক ইভেন্ট সহ) -->
                     <div class="channel-search-box-premium">
-                        <input type="text" id="channelSearch" placeholder="Search channel...">
+                        <form action="" onsubmit="event.preventDefault();" style="margin:0; padding:0; display:inline-block;">
+                            <input type="text" id="channelSearch" placeholder="Search channel..." autocomplete="off">
+                        </form>
                         <span class="search-icon-inside">🔍</span>
                     </div>
                 </div>
@@ -383,6 +441,7 @@
         </div>
     </footer>
 
+    <!-- 🎮 スマート TV রিমোট, সার্চ ও সলিড সিকিউরিটি স্ক্রিপ্ট -->
     <script src="script.js?v=12.0"></script>
     <script>
         // 🔒 ১. মাউস রাইট-ক্লিক সম্পূর্ণ ব্লক
@@ -418,7 +477,7 @@
             }, 1200); 
         });
 
-        // 🎮 スマート TV রিমোট কন্ট্রোল কি লজিক (ঝাঁকি ও লাফানো সম্পূর্ণ ফিক্সড)
+        // 🎮 スマート TV রিমোট কন্ট্রোল কি লজিক (ঝাঁকি ও লাফানো চিরতরে বন্ধ সংস্করণ)
         document.addEventListener('keydown', function(event) {
             const items = Array.from(document.querySelectorAll('#channel-container li:not([style*="display: none"])')); 
             const active = document.activeElement;
@@ -427,12 +486,14 @@
             // ১. ফোকাস সার্চবক্সে থাকা অবস্থায় রিমোট বা কিবোর্ডের এন্টার (Enter) হ্যান্ডলিং
             if (active === searchInput) {
                 if (event.keyCode === 13 || event.key === "Enter") {
-                    event.preventDefault(); // 🚫 ব্রাউজারের ডিফল্ট লাফানো বা ঝাঁকি মারা সম্পূর্ণ বন্ধ করবে
+                    event.preventDefault(); // 🚫 ব্রাউজারের কোনো ডিফল্ট লাফানো অ্যাকশন এক্সিকিউট হতে দেবে না
                     
                     if (items.length > 0) {
-                        items[0].click(); // সার্চে আসা প্রথম চ্যানেলটি সরাসরি প্লে করবে (ক্লিক লজিকে অটো-ক্লিয়ার স্ক্রিপ্ট আছে)
+                        items[0].click(); // সার্চে পাওয়া প্রথম চ্যানেলটি প্লে করবে
                     }
-                    return;
+                    
+                    searchInput.blur(); // 🛑 ইন্টার প্রেসের সাথে সাথে সার্চবার থেকে ফোকাস সরিয়ে নেবে যাতে কোনো ঝাঁকি না মারে
+                    return false;
                 }
                 
                 if (event.keyCode === 40 || event.key === "ArrowDown") {
