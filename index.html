@@ -27,6 +27,9 @@
             user-select: none;
             background-color: #06060c;
             overflow-x: hidden;
+            /* 🚫 স্ক্রোল জাম্প বা ঝাঁকি আটকানোর মূল প্রোটেকশন */
+            scroll-behavior: auto !important; 
+            overscroll-behavior-y: contain;
         }
 
         /* 🎬 ইন্ট্রো লোডার */
@@ -352,7 +355,6 @@
     </div>
 
     <div class="container tv-area">
-        <!-- 💎 প্রিমিয়াম হেডার -->
         <div class="row">
             <div class="col-xs-12 col-md-10">
                 <div class="top-bar-wrapper">
@@ -361,7 +363,6 @@
                         <span class="live-glow">LIVE</span>
                         <span class="neon-tv-tag">TV</span>
                     </div>
-                    <!-- 🔍 ইনস্ট্যান্ট লাইভ ফিল্টার সার্চ বক্স -->
                     <div class="channel-search-box-premium">
                         <input type="text" id="channelSearch" placeholder="Search channel..." autocomplete="off">
                         <span class="search-icon-inside">🔍</span>
@@ -438,7 +439,6 @@
         </div>
     </footer>
 
-    <!-- 🎮 スマート TV রিমোট, সলিড সিকিউরিটি এবং রুট-ফিল্টার স্ক্রিপ্ট -->
     <script src="script.js?v=12.0"></script>
     <script>
         // 🔒 ১. সিকিউরিটি এবং সোর্স কোড প্রোটেকশন লেয়ার
@@ -456,7 +456,7 @@
             if(endTime - startTime > 100){ window.location.href = "about:blank"; }
         }, 100);
 
-        // 🎬 লোডিং ইন্тро স্ক্রিন রিমুভার
+        // 🎬 লোডিং ইন্ট্রো স্ক্রিন রিমুভার
         window.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 const loader = document.getElementById('intro-loader');
@@ -468,13 +468,14 @@
             }, 1200); 
         });
 
-        // 🎯 গ্লোবাল স্ক্রোল লক ফ্ল্যাগ
-        let blockAutoScroll = false;
-
-        // 🔍 ইনস্ট্যান্ট লাইভ ফিল্টার মেকানিজম
+        // 🔍 🛑 অ্যান্টি-জার্ক (ঝাঁকি মুক্ত) ইনস্ট্যান্ট ফিল্টার লজিক
         function applyInstantChannelFilter() {
             const searchInput = document.getElementById('channelSearch');
             if (!searchInput) return;
+
+            // কারেন্ট উইন্ডোর স্ক্রোল পজিশন লক করে রাখা হলো যেন এক পিক্সেলও পেজ না নড়ে
+            const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
+            const scrollY = window.pageYOffset || document.documentElement.scrollTop;
 
             let filter = searchInput.value.toUpperCase();
             let ul = document.getElementById("channel-container");
@@ -482,25 +483,27 @@
             
             let li = ul.getElementsByTagName('li');
             
-            blockAutoScroll = true; // ফিল্টারিং চলাকালীন স্ক্রোল পজিশন লকড
-            
             for (let i = 0; i < li.length; i++) {
                 let textValue = li[i].textContent || li[i].innerText;
                 if (textValue.toUpperCase().indexOf(filter) > -1) {
-                    li[i].style.setProperty('display', '', 'important'); 
+                    // display চেঞ্জ করার সময় ব্রাউজারকে জাম্প করতে না দেওয়ার জন্য সেফ প্রপার্টি
+                    li[i].style.display = ''; 
                 } else {
-                    li[i].style.setProperty('display', 'none', 'important'); 
+                    li[i].style.display = 'none'; 
                 }
             }
 
-            setTimeout(() => { blockAutoScroll = false; }, 150);
+            // জোর করে স্ক্রোলকে আগের জায়গায় আটকে রাখা হলো (ঝাঁকি পুরোপুরি ভ্যানিশ)
+            window.scrollTo(scrollX, scrollY);
         }
 
         const searchInputEl = document.getElementById('channelSearch');
-        searchInputEl.addEventListener('input', applyInstantChannelFilter);
-        searchInputEl.addEventListener('keyup', applyInstantChannelFilter);
+        if (searchInputEl) {
+            searchInputEl.addEventListener('input', applyInstantChannelFilter);
+            searchInputEl.addEventListener('keyup', applyInstantChannelFilter);
+        }
 
-        // 🎮 スマート TV রিমোট ও কিবোর্ড এন্টার কন্ট্রোল
+        // 🎮 スマート TV রিমোট ও কিবোর্ড কন্ট্রোল (কোনো প্রকার ফোকাস জাম্প করবে না)
         document.addEventListener('keydown', function(event) {
             const items = Array.from(document.querySelectorAll('#channel-container li')).filter(el => el.style.display !== 'none');
             const active = document.activeElement;
@@ -509,18 +512,12 @@
             if (active === searchInput) {
                 if (event.keyCode === 13 || event.key === "Enter") {
                     event.preventDefault();
-                    event.stopPropagation(); 
-                    
                     if (items.length > 0) {
-                        blockAutoScroll = true;
                         items[0].click(); 
-                        setTimeout(() => { blockAutoScroll = false; }, 400);
                     }
-                    
                     searchInput.blur(); 
                     return false;
                 }
-                
                 if (event.keyCode === 40 || event.key === "ArrowDown") {
                     event.preventDefault();
                     if (items.length > 0) { items[0].focus(); }
@@ -551,22 +548,25 @@
             }
         });
 
-        // 🚫 অনাকাঙ্ক্ষিত লাফানো প্রতিরোধ লজিক
+        // 🚫 script.js এর জোরপূর্বক অটো-স্ক্রোল করার মেকানিজমকে ব্লক ও শান্ত করার ওভাররাইড লজিক
         window.addEventListener('focus', function(event) {
-            if (blockAutoScroll) {
+            // যদি টাইপ করা অবস্থায় বা রিমোট কন্ট্রোল চলাকালীন উইন্ডো ফোকাস নেয়, তবে লাফানো বন্ধ করবে
+            if (document.activeElement && document.activeElement.id === 'channelSearch') {
                 event.preventDefault();
                 event.stopPropagation();
-                return; 
+                return false;
             }
             if (event.target && event.target.tagName === 'LI') {
-                event.target.scrollIntoView({ block: 'center', behavior: 'smooth' });
+                event.target.scrollIntoView({ block: 'nearest', behavior: 'auto' });
             }
         }, true); 
 
         function initTVFocus() {
             setTimeout(() => {
                 const firstChannel = document.querySelector('#channel-container li');
-                if (firstChannel) { firstChannel.focus(); }
+                if (firstChannel && document.activeElement !== searchInputEl) { 
+                    firstChannel.focus(); 
+                }
             }, 600);
         }
     </script>
