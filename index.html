@@ -103,28 +103,35 @@
         @keyframes fadeInText { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes dotPulse { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
 
-        /* ✨ টপ বার ফ্লেক্সবক্স ফিক্স (লোগো এবং সার্চ বার এক লাইনে রাখার জন্য) */
+        /* ✨ টপ বার এবং লোগো এরিয়া (গ্যাপ কমানো হয়েছে) */
         .top-bar-wrapper {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 10px;
+            padding: 10px 8px;
             background: linear-gradient(180deg, rgba(13,13,21,0.6) 0%, rgba(6,6,12,0) 100%);
-            margin-bottom: 10px;
+            margin-bottom: 2px; /* প্লেয়ারের উপরের বিশাল গ্যাপ দূর করার মূল ফিক্স */
             width: 100%;
             box-sizing: border-box;
+        }
+
+        /* লোগো ক্লিক লিংক স্টাইল */
+        .logo-link {
+            text-decoration: none !important;
+            display: inline-flex;
+            align-items: center;
         }
 
         .brand-title-neon {
             font-size: 20px;
             font-weight: 900;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             color: #ffffff;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
             font-family: 'Poppins', sans-serif;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             flex-shrink: 0;
         }
 
@@ -152,7 +159,7 @@
             color: #040406;
             font-size: 11px;
             font-weight: 800;
-            padding: 2px 6px;
+            padding: 2px 5px;
             border-radius: 5px;
             box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
             letter-spacing: 0.5px;
@@ -171,29 +178,30 @@
             100% { text-shadow: 0 0 25px rgba(255, 0, 85, 0.9), 0 0 10px rgba(255, 0, 85, 0.4); }
         }
 
-        /* 🔍 সার্চ বক্স রেসপন্সিভ সাইজিং ফিক্স */
+        /* 🔍 সার্চ বক্স স্ক্রিনশট ১ এর মতো ওভারল্যাপ হওয়া ফিক্স */
         .channel-search-box-premium {
             position: relative;
-            width: 140px; /* মোবাইলে একদম পারফেক্ট চওড়া সাইজ */
+            width: 140px; 
             display: flex;
             align-items: center;
+            flex-shrink: 0;
         }
 
         @media (min-width: 768px) {
             .channel-search-box-premium {
-                width: 200px; /* ডেক্সটপে একটু বড় সাইজ */
+                width: 200px; 
             }
         }
 
         .channel-search-box-premium input {
             width: 100%;
-            height: 34px;
-            padding: 0 30px 0 12px;
+            height: 32px;
+            padding: 0 30px 0 10px;
             background: #111118;
             border: 1px solid rgba(0, 240, 255, 0.3);
             border-radius: 6px;
             color: #fff;
-            font-size: 12px;
+            font-size: 11px;
             outline: none;
             transition: all 0.2s ease;
             box-sizing: border-box;
@@ -210,10 +218,20 @@
             right: 10px;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 12px;
+            font-size: 11px;
             color: #00f0ff;
             pointer-events: none;
             line-height: 1;
+        }
+
+        /* প্লেয়ার এরিয়া মার্জিন ফিক্স */
+        .tv-area {
+            margin-top: 0px !important;
+            padding-top: 0px !important;
+        }
+
+        .tv-view {
+            margin-bottom: 5px !important;
         }
 
         .tv-view .embed-responsive {
@@ -230,7 +248,7 @@
             height: 100%;
         }
 
-        /* 🔒 ফাঁকা জায়গা এবং ওভারফ্লো কন্ট্রোল */
+        /* 🔒 চ্যানেল লিস্ট ও ফাঁকা জায়গা হ্যান্ডলার */
         .channel-list {
             max-height: 360px !important;
             overflow-y: auto !important;
@@ -253,7 +271,7 @@
             align-items: center;
             border-top: 1px solid #1a1b26;
             border-bottom: 1px solid #1a1b26;
-            margin-top: 15px;
+            margin-top: 10px;
             clear: both;
         }
 
@@ -456,16 +474,16 @@
     </div>
 
     <div class="container tv-area">
-        <!-- 🛠️ গ্রিড ফিক্স: মেইন কন্টেইনারের উইডথ রেসপন্সিভ করা হলো যাতে বুটস্ট্র্যাপে ব্রেক না করে -->
         <div class="row">
             <div class="col-xs-12 col-md-12">
                 <div class="top-bar-wrapper">
-                    <div class="brand-title-neon">
-                        <span class="rs-glow">RS</span>
-                        <span class="live-glow">LIVE</span>
-                        <span class="neon-tv-tag">TV</span>
-                    </div>
-                    <!-- 🔍 সার্চ বার একদম পারফেক্ট গ্রিড পজিশনে লকড -->
+                    <a href="https://rslivetv.vercel.app" class="logo-link">
+                        <div class="brand-title-neon">
+                            <span class="rs-glow">RS</span>
+                            <span class="live-glow">LIVE</span>
+                            <span class="neon-tv-tag">TV</span>
+                        </div>
+                    </a>
                     <div class="channel-search-box-premium">
                         <input type="text" id="channelSearch" placeholder="Search channel..." autocomplete="off">
                         <span class="search-icon-inside">🔍</span>
@@ -602,7 +620,7 @@
             searchInputEl.addEventListener('keyup', applyInstantChannelFilter);
         }
 
-        // 🎮 スマート TV রিমোট ও কিবোর্ড কন্ট্রোল
+        // 🎮 スマート TV রিমোট ও কিবোর্ড কন্ট্রোল (🛑 ইন্টার দিলে নাড়াচাড়া করা সম্পূর্ণ ফিক্সড)
         document.addEventListener('keydown', function(event) {
             const items = Array.from(document.querySelectorAll('#channel-container li')).filter(el => el.style.display !== 'none');
             const active = document.activeElement;
@@ -610,8 +628,11 @@
 
             if (active === searchInput) {
                 if (event.keyCode === 13 || event.key === "Enter") {
-                    event.preventDefault();
-                    if (items.length > 0) { items[0].click(); }
+                    event.preventDefault(); // ফর্ম সাবমিট হওয়া বা পেজ রিফ্রেশ হওয়া আটকাবে
+                    event.stopPropagation();
+                    if (items.length > 0) { 
+                        items[0].click(); 
+                    }
                     searchInput.blur(); 
                     return false;
                 }
