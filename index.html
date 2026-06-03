@@ -103,19 +103,18 @@
         @keyframes fadeInText { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes dotPulse { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
 
-        /* ✨ টপ বার এবং লোগো এরিয়া (গ্যাপ কমানো হয়েছে) */
+        /* ✨ টপ বার এবং লোগো এরিয়া */
         .top-bar-wrapper {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 10px 8px;
             background: linear-gradient(180deg, rgba(13,13,21,0.6) 0%, rgba(6,6,12,0) 100%);
-            margin-bottom: 2px; /* প্লেয়ারের উপরের বিশাল গ্যাপ দূর করার মূল ফিক্স */
+            margin-bottom: 8px;
             width: 100%;
             box-sizing: border-box;
         }
 
-        /* লোগো ক্লিক লিংক স্টাইল */
         .logo-link {
             text-decoration: none !important;
             display: inline-flex;
@@ -178,7 +177,7 @@
             100% { text-shadow: 0 0 25px rgba(255, 0, 85, 0.9), 0 0 10px rgba(255, 0, 85, 0.4); }
         }
 
-        /* 🔍 সার্চ বক্স স্ক্রিনশট ১ এর মতো ওভারল্যাপ হওয়া ফিক্স */
+        /* 🔍 সার্চ বক্স এবং প্রিমিয়াম সার্চ আইকন ফিক্স */
         .channel-search-box-premium {
             position: relative;
             width: 140px; 
@@ -196,7 +195,7 @@
         .channel-search-box-premium input {
             width: 100%;
             height: 32px;
-            padding: 0 30px 0 10px;
+            padding: 0 32px 0 10px;
             background: #111118;
             border: 1px solid rgba(0, 240, 255, 0.3);
             border-radius: 6px;
@@ -213,18 +212,19 @@
             background: #141422;
         }
 
+        /* 🔍 নতুন স্টাইলিশ সার্চ আইকন (SVG দিয়ে তৈরি যাতে ব্লাড বা ফেটে না যায়) */
         .search-icon-inside {
             position: absolute;
             right: 10px;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 11px;
-            color: #00f0ff;
+            width: 13px;
+            height: 13px;
+            display: block;
             pointer-events: none;
-            line-height: 1;
         }
 
-        /* প্লেয়ার এরিয়া মার্জিন ফিক্স */
+        /* প্লেয়ার এরিয়া মার্জিন */
         .tv-area {
             margin-top: 0px !important;
             padding-top: 0px !important;
@@ -248,7 +248,7 @@
             height: 100%;
         }
 
-        /* 🔒 চ্যানেল লিস্ট ও ফাঁকা জায়গা হ্যান্ডলার */
+        /* 🔒 চ্যানেল লিস্ট ও স্পষ্ট স্ক্রোলবার (লম্বা দাগ) ফিক্স */
         .channel-list {
             max-height: 360px !important;
             overflow-y: auto !important;
@@ -262,7 +262,29 @@
             }
         }
 
-        /* ⚡ নোটিশ বার পজিশনিং */
+        /* 👑 স্ক্রোলবারটি মোটা এবং স্পষ্ট করার মূল কোড (রিমোট ও মাউস ফ্রেন্ডলি) */
+        .channel-list::-webkit-scrollbar {
+            width: 8px !important; /* দাগটি আরও চওড়া বা মোটা করা হলো */
+        }
+        
+        .channel-list::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.03) !important;
+            border-radius: 10px;
+        }
+        
+        .channel-list::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #00f0ff 0%, #0072ff 100%) !important; /* গ্লোয়িং নিয়ন কালার */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.8) !important;
+            border: 1px solid rgba(0, 4, 6, 0.5);
+        }
+        
+        .channel-list::-webkit-scrollbar-thumb:hover {
+            background: #ff0055 !important; /* মাউস হোভার করলে কালার চেঞ্জ হবে */
+            box-shadow: 0 0 12px rgba(255, 0, 85, 1) !important;
+        }
+
+        /* ⚡ নোটিশ বার সেটিংস */
         .marquee-container {
             background: #0d0d13;
             color: #ffffff;
@@ -272,6 +294,7 @@
             border-top: 1px solid #1a1b26;
             border-bottom: 1px solid #1a1b26;
             margin-top: 10px;
+            margin-bottom: 15px; 
             clear: both;
         }
 
@@ -289,11 +312,11 @@
 
         .footer-premium {
             background: #040408;
-            padding: 20px 0 30px 0;
+            padding: 5px 0 25px 0;
             text-align: center;
         }
 
-        /* 📸 অরিজিনাল ব্যানার */
+        /* 📸 অরিজিনাল ব্যানার পজিশন (নোটিশ এবং টেলিগ্রামের মাঝে লকড) */
         .tio-style-banner-fixed {
             width: 320px;
             height: 50px;
@@ -305,7 +328,7 @@
             font-family: 'Segoe UI', Roboto, sans-serif;
             display: flex;
             align-items: center;
-            margin: 10px auto;
+            margin: 0 auto 15px auto; /* মার্জিন এডজাস্টমেন্ট */
         }
 
         .tio-style-banner-fixed::after {
@@ -425,7 +448,7 @@
             border: 1px solid #1a1b26;
             display: block;
             width: 320px;
-            margin: 15px auto;
+            margin: 0 auto 15px auto;
         }
 
         .telegram-btn {
@@ -486,7 +509,10 @@
                     </a>
                     <div class="channel-search-box-premium">
                         <input type="text" id="channelSearch" placeholder="Search channel..." autocomplete="off">
-                        <span class="search-icon-inside">🔍</span>
+                        <svg class="search-icon-inside" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z" stroke="#00f0ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M22 22L20 20" stroke="#00f0ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </div>
                 </div>
             </div>
@@ -516,6 +542,7 @@
 
     <footer class="footer-premium">
         <div class="container">
+            
             <div class="tio-style-banner-fixed">
                 <div class="banner-overlay"></div>
                 <div class="content-wrapper">
@@ -620,7 +647,7 @@
             searchInputEl.addEventListener('keyup', applyInstantChannelFilter);
         }
 
-        // 🎮 スマート TV রিমোট ও কিবোর্ড কন্ট্রোল (🛑 ইন্টার দিলে নাড়াচাড়া করা সম্পূর্ণ ফিক্সড)
+        // 🎮 スマート TV রিমোট ও কিবোর্ড কন্ট্রোল
         document.addEventListener('keydown', function(event) {
             const items = Array.from(document.querySelectorAll('#channel-container li')).filter(el => el.style.display !== 'none');
             const active = document.activeElement;
@@ -628,7 +655,7 @@
 
             if (active === searchInput) {
                 if (event.keyCode === 13 || event.key === "Enter") {
-                    event.preventDefault(); // ফর্ম সাবমিট হওয়া বা পেজ রিফ্রেশ হওয়া আটকাবে
+                    event.preventDefault(); 
                     event.stopPropagation();
                     if (items.length > 0) { 
                         items[0].click(); 
