@@ -27,7 +27,7 @@
             user-select: none;
             background-color: #06060c;
             overflow-x: hidden;
-            /* 🚫 স্ক্রোল জাম্প বা ঝাঁকি আটকানোর মূল প্রোটেকশন */
+            /* 🔒 স্ক্রোল জাম্প বা ঝাঁকি আটকানোর মূল প্রোটেকশন */
             scroll-behavior: auto !important; 
             overscroll-behavior-y: contain;
         }
@@ -235,6 +235,20 @@
             width: 100%;
             height: 100%;
         }
+
+        /* 🔒 চ্যানেল লিস্টের জন্য অ্যান্টি-ঝাঁকি ফিক্সড হাইট সিএসএস */
+        .channel-list {
+            height: 350px !important; /* মোবাইলে লিস্টের হাইট ফিক্সড করা হলো যেন সার্চে উধাও হলেও পেজ না লাফায় */
+            overflow-y: auto !important;
+            box-sizing: border-box;
+        }
+
+        @media (min-width: 768px) {
+            .channel-list {
+                height: 450px !important; /* ডেক্সটপের জন্য হাইট */
+            }
+        }
+
         .marquee-container {
             background: #0d0d13;
             color: #ffffff;
@@ -536,11 +550,12 @@
             }, 1200); 
         });
 
-        // 🔍 🛑 অ্যান্টি-জার্ক (ঝাঁকি মুক্ত) ইনস্ট্যান্ট ফিল্টার লজিক
-        function applyInstantChannelFilter() {
+        // 🔍 🛑 আল্ট্রা অ্যান্টি-জার্ক (ঝাঁকি মুক্ত) হার্ড-লক ফিল্টার লজিক
+        function applyInstantChannelFilter(event) {
             const searchInput = document.getElementById('channelSearch');
             if (!searchInput) return;
 
+            // 🔒 ট্রিক ১: টাইপ করার ঠিক আগের মুহূর্তে মেইন স্ক্রোলের সঠিক পিক্সেল মেমরিতে ধরে রাখা
             const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
             const scrollY = window.pageYOffset || document.documentElement.scrollTop;
 
@@ -558,6 +573,8 @@
                     li[i].style.display = 'none'; 
                 }
             }
+
+            // 🔒 ট্রিক ২: চ্যানেল হাইড/শো হওয়ার সাথে সাথে ব্রাউজার যাতে স্ক্রিন সরাতে না পারে, তাই হার্ড লক করা
             window.scrollTo(scrollX, scrollY);
         }
 
@@ -610,7 +627,7 @@
             }
         });
 
-        // 🚫 স্ক্রোল লাফালাফি করা ওভাররাইড লজিক লক
+        // 🚫 মোবাইলে কিবোর্ড ফোকাস করার কারণে অটো-স্ক্রোল হওয়া চিরতরে ব্লক করা হলো
         window.addEventListener('focus', function(event) {
             if (document.activeElement && document.activeElement.id === 'channelSearch') {
                 event.preventDefault();
