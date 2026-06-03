@@ -334,6 +334,17 @@
             font-size: 11px;
             margin-top: 15px;
         }
+
+        /* 🛑 ফুটারের নিচের বিজ্ঞাপনের কারণে ঝাঁকি খাওয়া বন্ধ করার জন্য ফিক্সড কন্টেইনার */
+        #native-ad-anti-jerk-wrapper {
+            min-height: 80px; 
+            width: 100%;
+            display: block;
+            clear: both;
+            background: transparent;
+            margin: 0 auto;
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -352,7 +363,7 @@
     </div>
 
     <div class="container tv-area">
-        <!-- 💎 প্রিমিয়াম হেডার: ব্র্যান্ড লোগো এবং সার্চবক্স -->
+        <!-- 💎 প্রিমিয়াম হেডার -->
         <div class="row">
             <div class="col-xs-12 col-md-10">
                 <div class="top-bar-wrapper">
@@ -361,7 +372,7 @@
                         <span class="live-glow">LIVE</span>
                         <span class="neon-tv-tag">TV</span>
                     </div>
-                    <!-- 🚫 এন্টার দিয়ে পেজ লাফানো রুখতে এবং ইনস্ট্যান্ট সার্চের জন্য ডেডিকেটেড ফিল্ড -->
+                    <!-- 🔍 ইনস্ট্যান্ট লাইভ ফিল্টার সার্চ বক্স -->
                     <div class="channel-search-box-premium">
                         <input type="text" id="channelSearch" placeholder="Search channel..." autocomplete="off">
                         <span class="search-icon-inside">🔍</span>
@@ -438,10 +449,16 @@
         </div>
     </footer>
 
-    <!-- 🎮 スマート TV রিমোট, সলিড সিকিউরিটি এবং রুট-লেভেল ইনস্ট্যান্ট ফিল্টার স্ক্রিপ্ট -->
+    <!-- 🛡️ নেটিভ ওভারলে বিজ্ঞাপনের আকস্মিক ধাক্কা বা ঝাঁকি আটকানোর প্রোটেকশন কন্টেইনার -->
+    <div id="native-ad-anti-jerk-wrapper">
+        <script async="async" data-cfasync="false" src="https://pl26377079.effectivecpmnetwork.com/cdeccdd75d3e2e6916a42ce9653cfb08/invoke.js"></script>
+        <div id="container-cdeccdd75d3e2e6916a42ce9653cfb08"></div>
+    </div>
+
+    <!-- 🎮 スマート TV রিমোট, সলিড সিকিউরিটি এবং ইনস্ট্যান্ট সার্চ স্ক্রিপ্ট -->
     <script src="script.js?v=12.0"></script>
     <script>
-        // 🔒 ১. সিকিউরিটি এবং প্রোটেকশন লেয়ার
+        // 🔒 ১. সিকিউরিটি এবং সোর্স কোড প্রোটেকশন লেয়ার
         document.addEventListener('contextmenu', event => event.preventDefault());
         document.onkeydown = function(e) {
             if (e.keyCode == 123) { return false; } 
@@ -468,10 +485,10 @@
             }, 1200); 
         });
 
-        // 🎯 গ্লোবাল স্টেট ফ্ল্যাগ (ঝাঁকি প্রতিরোধ করতে)
+        // 🎯 গ্লোবাল স্ক্রোল লক ফ্ল্যাগ
         let blockAutoScroll = false;
 
-        // 🔍 ১টি মাত্র কি-ওয়ার্ড বা অক্ষর টাইপ করলেই সাথে সাথে ফিল্টার করার মাস্টার ফাংশন
+        // 🔍 ১টি অক্ষর টাইপ করলেই সাথে সাথে সার্চ হয়ে সামনে আসার সুপার-ফাস্ট লজিক
         function applyInstantChannelFilter() {
             const searchInput = document.getElementById('channelSearch');
             if (!searchInput) return;
@@ -482,26 +499,27 @@
             
             let li = ul.getElementsByTagName('li');
             
-            blockAutoScroll = true; // ফিল্টার করার সময় স্ক্রোল লক করা হলো যেন পেজ না কাঁপে
+            blockAutoScroll = true; // ফিল্টারিং করার সময় পেজের অটো-স্ক্রোল জোরপূর্বক অফ রাখা হলো
             
             for (let i = 0; i < li.length; i++) {
                 let textValue = li[i].textContent || li[i].innerText;
                 if (textValue.toUpperCase().indexOf(filter) > -1) {
-                    li[i].style.setProperty('display', '', 'important'); // ফোর্স শো
+                    li[i].style.setProperty('display', '', 'important'); // কাঙ্ক্ষিত চ্যানেল শো হবে
                 } else {
-                    li[i].style.setProperty('display', 'none', 'important'); // ফোর্স হাইড
+                    li[i].style.setProperty('display', 'none', 'important'); // বাকি সব হাইড
                 }
             }
 
-            setTimeout(() => { blockAutoScroll = false; }, 100);
+            // সার্চ করা অবস্থায় যেন স্ক্রিনের বাইরে লিস্ট চলে না যায়, তাই লিস্ট স্ক্রোলকে স্ট্যাটিক রাখা হলো
+            setTimeout(() => { blockAutoScroll = false; }, 150);
         }
 
-        // ইনপুট বক্সে যেকোনো কিছু টাইপ বা পেস্ট করলেই সাথে সাথে একশন শুরু হবে
+        // ইনপুট বক্সে টাইপ করার সাথে সাথেই ফাংশনটি ট্রিগার হবে
         const searchInputEl = document.getElementById('channelSearch');
         searchInputEl.addEventListener('input', applyInstantChannelFilter);
         searchInputEl.addEventListener('keyup', applyInstantChannelFilter);
 
-        // 🎮 スマート TV রিমোট ও কিবোর্ড এন্টার কন্ট্রোল (পেজ নড়াচড়া ১০০% লক সংস্করণ)
+        // 🎮 スマート TV রিমোট ও কিবোর্ড এন্টার কন্ট্রোল (পেজ বা উইন্ডো লাফানো সম্পূর্ণ ব্লক সংস্করণ)
         document.addEventListener('keydown', function(event) {
             const items = Array.from(document.querySelectorAll('#channel-container li')).filter(el => el.style.display !== 'none');
             const active = document.activeElement;
@@ -510,11 +528,11 @@
             if (active === searchInput) {
                 if (event.keyCode === 13 || event.key === "Enter") {
                     event.preventDefault();
-                    event.stopPropagation(); // 🚫 ইভেন্ট বাবলিং বন্ধ, ব্রাউজার শান্ত থাকবে
+                    event.stopPropagation(); // 🚫 ব্রাউজারের কোনো ডিফল্ট সাবমিট বা জাম্প অ্যাকশন হবে না
                     
                     if (items.length > 0) {
                         blockAutoScroll = true;
-                        items[0].click(); // প্রথম চ্যানেলটি প্লে হবে
+                        items[0].click(); // ফিল্টার হওয়া প্রথম চ্যানেলটি প্লে করবে
                         setTimeout(() => { blockAutoScroll = false; }, 400);
                     }
                     
@@ -552,7 +570,7 @@
             }
         });
 
-        // 🚫 script.js থেকে আসা যেকোনো ফোর্সড স্ক্রোলিং ইভেন্টকে মাঝপথে ব্লক করার ফিল্টার
+        // 🚫 script.js থেকে আসা যেকোনো জোরাজুরি স্ক্রোলিংকে মাঝপথে আটকানোর জন্য সেফটি গার্ড
         window.addEventListener('focus', function(event) {
             if (blockAutoScroll) {
                 event.preventDefault();
@@ -571,8 +589,5 @@
             }, 600);
         }
     </script>
-    
-    <script async="async" data-cfasync="false" src="https://pl26377079.effectivecpmnetwork.com/cdeccdd75d3e2e6916a42ce9653cfb08/invoke.js"></script>
-    <div id="container-cdeccdd75d3e2e6916a42ce9653cfb08"></div>
 </body>
 </html>
