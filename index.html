@@ -352,17 +352,16 @@
     </div>
 
     <div class="container tv-area">
-        <!-- 💎 প্রিমিয়াম হেডার: বামে আল্ট্রা-সুন্দর ব্র্যান্ড লোগো, ডানে সার্চকার্ড -->
+        <!-- 💎 প্রিমিয়াম হেডার: ব্র্যান্ড লোগো এবং সার্চবক্স -->
         <div class="row">
             <div class="col-xs-12 col-md-10">
                 <div class="top-bar-wrapper">
-                    <!-- বামদিকের নতুন স্টাইলিশ গ্লোয়িং লোগো -->
                     <div class="brand-title-neon">
                         <span class="rs-glow">RS</span>
                         <span class="live-glow">LIVE</span>
                         <span class="neon-tv-tag">TV</span>
                     </div>
-                    <!-- ডানদিকের স্লিম কিউট সার্চ বক্স (ঝাঁকি প্রতিরোধক করতে form বাদ দেওয়া হয়েছে) -->
+                    <!-- 🚫 এন্টার দিয়ে পেজ লাফানো রুখতে এবং ইনস্ট্যান্ট সার্চের জন্য ডেডিকেটেড ফিল্ড -->
                     <div class="channel-search-box-premium">
                         <input type="text" id="channelSearch" placeholder="Search channel..." autocomplete="off">
                         <span class="search-icon-inside">🔍</span>
@@ -439,28 +438,22 @@
         </div>
     </footer>
 
-    <!-- 🎮 スマート TV রিমোট, লাইভ ফিল্টার সার্চ ও সলিড সিকিউরিটি স্ক্রিপ্ট -->
+    <!-- 🎮 スマート TV রিমোট, সলিড সিকিউরিটি এবং রুট-লেভেল ইনস্ট্যান্ট ফিল্টার স্ক্রিপ্ট -->
     <script src="script.js?v=12.0"></script>
     <script>
-        // 🔒 ১. মাউস রাইট-ক্লিক সম্পূর্ণ ব্লক
+        // 🔒 ১. সিকিউরিটি এবং প্রোটেকশন লেয়ার
         document.addEventListener('contextmenu', event => event.preventDefault());
-
-        // 🔒 ২. কিবোর্ড সোর্স কোড দেখার শর্টকাট (F12, Ctrl+U, Ctrl+Shift+I/J) ব্লক
         document.onkeydown = function(e) {
             if (e.keyCode == 123) { return false; } 
             if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; } 
             if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; } 
             if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; } 
         };
-        
-        // 🔒 ৩. ডেভটুলস ট্র্যাপ প্রোটেকশন
         setInterval(function(){
             const startTime = +new Date();
             debugger;
             const endTime = +new Date();
-            if(endTime - startTime > 100){
-                window.location.href = "about:blank";
-            }
+            if(endTime - startTime > 100){ window.location.href = "about:blank"; }
         }, 100);
 
         // 🎬 লোডিং ইন্ট্রো স্ক্রিন রিমুভার
@@ -475,47 +468,63 @@
             }, 1200); 
         });
 
-        // 🔍 ১টি কি-ওয়ার্ড বা অক্ষর লিখলেই সাথে সাথে চ্যানেল ফিল্টারিং করার ইনস্ট্যান্ট লজিক
-        document.getElementById('channelSearch').addEventListener('input', function() {
-            let filter = this.value.toUpperCase();
+        // 🎯 গ্লোবাল স্টেট ফ্ল্যাগ (ঝাঁকি প্রতিরোধ করতে)
+        let blockAutoScroll = false;
+
+        // 🔍 ১টি মাত্র কি-ওয়ার্ড বা অক্ষর টাইপ করলেই সাথে সাথে ফিল্টার করার মাস্টার ফাংশন
+        function applyInstantChannelFilter() {
+            const searchInput = document.getElementById('channelSearch');
+            if (!searchInput) return;
+
+            let filter = searchInput.value.toUpperCase();
             let ul = document.getElementById("channel-container");
+            if (!ul) return;
+            
             let li = ul.getElementsByTagName('li');
             
+            blockAutoScroll = true; // ফিল্টার করার সময় স্ক্রোল লক করা হলো যেন পেজ না কাঁপে
+            
             for (let i = 0; i < li.length; i++) {
-                // আপনার চ্যানেলের ভেতরের নাম বা টেক্সট চেক করবে
                 let textValue = li[i].textContent || li[i].innerText;
                 if (textValue.toUpperCase().indexOf(filter) > -1) {
-                    li[i].style.display = ""; // কি-ওয়ার্ড মিললে শো করবে
+                    li[i].style.setProperty('display', '', 'important'); // ফোর্স শো
                 } else {
-                    li[i].style.display = "none"; // না মিললে হাইড করে দেবে
+                    li[i].style.setProperty('display', 'none', 'important'); // ফোর্স হাইড
                 }
             }
-        });
 
-        // 🎮 スマート TV রিমোট ও কিবোর্ড এন্টার কন্ট্রোল (ঝাঁকি খাওয়া সম্পূর্ণ ফিক্সড সংস্করণ)
+            setTimeout(() => { blockAutoScroll = false; }, 100);
+        }
+
+        // ইনপুট বক্সে যেকোনো কিছু টাইপ বা পেস্ট করলেই সাথে সাথে একশন শুরু হবে
+        const searchInputEl = document.getElementById('channelSearch');
+        searchInputEl.addEventListener('input', applyInstantChannelFilter);
+        searchInputEl.addEventListener('keyup', applyInstantChannelFilter);
+
+        // 🎮 スマート TV রিমোট ও কিবোর্ড এন্টার কন্ট্রোল (পেজ নড়াচড়া ১০০% লক সংস্করণ)
         document.addEventListener('keydown', function(event) {
-            const items = Array.from(document.querySelectorAll('#channel-container li:not([style*="display: none"])')); 
+            const items = Array.from(document.querySelectorAll('#channel-container li')).filter(el => el.style.display !== 'none');
             const active = document.activeElement;
             const searchInput = document.getElementById('channelSearch');
 
-            // ফোকাস সার্চবক্সে থাকা অবস্থায় রিমোট বা কিবোর্ডের এন্টার (Enter) হ্যান্ডলিং
             if (active === searchInput) {
                 if (event.keyCode === 13 || event.key === "Enter") {
-                    event.preventDefault(); // 🚫 ব্রাউজারের পেজ বা উইন্ডো লাফানো সম্পূর্ণ ব্লক
+                    event.preventDefault();
+                    event.stopPropagation(); // 🚫 ইভেন্ট বাবলিং বন্ধ, ব্রাউজার শান্ত থাকবে
                     
                     if (items.length > 0) {
-                        items[0].click(); // ফিল্টার হওয়া প্রথম চ্যানেলটি প্লে করবে
+                        blockAutoScroll = true;
+                        items[0].click(); // প্রথম চ্যানেলটি প্লে হবে
+                        setTimeout(() => { blockAutoScroll = false; }, 400);
                     }
                     
-                    searchInput.blur(); // সার্চ ইনপুট থেকে ফোকাস সরিয়ে আউট করবে যাতে স্ক্রিন স্থির থাকে
+                    searchInput.blur(); 
                     return false;
                 }
                 
                 if (event.keyCode === 40 || event.key === "ArrowDown") {
                     event.preventDefault();
-                    if (items.length > 0) {
-                        items[0].focus(); 
-                    }
+                    if (items.length > 0) { items[0].focus(); }
                 }
                 return;
             }
@@ -523,7 +532,6 @@
             if (items.length === 0) return;
             let index = items.indexOf(active);
 
-            // চ্যানেলের তালিকায় রিমোটের আপ/ডাউন নেভিগেশন
             if (event.keyCode === 40 || event.key === "ArrowDown") {
                 event.preventDefault();
                 let nextIndex = index + 1;
@@ -544,8 +552,13 @@
             }
         });
 
-        // ফোকাস করার সময় স্ক্রোল করার সেটিং (স্মুথ রাখা হয়েছে ঝাঁকি এড়াতে)
+        // 🚫 script.js থেকে আসা যেকোনো ফোর্সড স্ক্রোলিং ইভেন্টকে মাঝপথে ব্লক করার ফিল্টার
         window.addEventListener('focus', function(event) {
+            if (blockAutoScroll) {
+                event.preventDefault();
+                event.stopPropagation();
+                return; 
+            }
             if (event.target && event.target.tagName === 'LI') {
                 event.target.scrollIntoView({ block: 'center', behavior: 'smooth' });
             }
