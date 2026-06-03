@@ -26,6 +26,9 @@
             -ms-user-select: none;
             user-select: none;
             background-color: #06060c;
+            overflow-x: hidden;
+            scroll-behavior: auto !important; 
+            overscroll-behavior-y: contain;
         }
 
         /* 🎬 ইন্ট্রো লোডার */
@@ -100,6 +103,56 @@
         @keyframes fadeInText { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes dotPulse { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
 
+        /* ✨ আল্ট্রা-প্রিমিয়াম হেডার */
+        .top-bar-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 10px;
+            background: linear-gradient(180deg, rgba(13,13,21,0.6) 0%, rgba(6,6,12,0) 100%);
+            margin-bottom: 10px;
+        }
+
+        .brand-title-neon {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .brand-title-neon .rs-glow {
+            background: linear-gradient(135deg, #fff 30%, #a3b8cc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-title-neon .live-glow {
+            color: #ff0055;
+            text-shadow: 0 0 15px rgba(255, 0, 85, 0.6), 0 0 30px rgba(255, 0, 85, 0.3);
+            animation: pulseGlow 2s infinite alternate;
+        }
+
+        .neon-tv-tag {
+            background: linear-gradient(90deg, #00f0ff, #0072ff);
+            color: #040406;
+            font-size: 14px;
+            font-weight: 800;
+            padding: 2px 10px;
+            border-radius: 6px;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes pulseGlow {
+            0% { text-shadow: 0 0 10px rgba(255, 0, 85, 0.5); }
+            100% { text-shadow: 0 0 25px rgba(255, 0, 85, 0.9), 0 0 10px rgba(255, 0, 85, 0.4); }
+        }
+
         .tv-view .embed-responsive {
             border: 1px solid #1f2029;
             border-radius: 12px;
@@ -113,6 +166,66 @@
             width: 100%;
             height: 100%;
         }
+
+        /* 🔍 প্রিমিয়াম মডার্ন সার্চ বক্স লেআউট */
+        .channel-search-box-premium {
+            position: relative;
+            width: 100%;
+            margin-bottom: 12px;
+        }
+
+        .channel-search-box-premium input {
+            width: 100%;
+            padding: 10px 40px 10px 15px;
+            background: #111118;
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .channel-search-box-premium input:focus {
+            border-color: #00f0ff;
+            box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+            background: #141420;
+        }
+
+        .search-icon-inside {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            color: #888899;
+            pointer-events: none;
+            transition: color 0.3s ease;
+        }
+
+        .channel-search-box-premium input:focus + .search-icon-inside {
+            color: #00f0ff;
+        }
+
+        /* ডেক্সটপ এবং মোবাইল রেসপন্সিভ সার্চ বক্স হ্যান্ডলিং */
+        .desktop-search-wrapper {
+            display: block;
+        }
+        .header-search-wrapper {
+            display: none;
+        }
+
+        @media (max-width: 767px) {
+            .desktop-search-wrapper {
+                display: none;
+            }
+            .header-search-wrapper {
+                display: block;
+                width: 160px;
+            }
+        }
+
         .marquee-container {
             background: #0d0d13;
             color: #ffffff;
@@ -138,49 +251,43 @@
             padding: 20px 0 30px 0;
             text-align: center;
         }
+
+        /* 🌌 প্রিমিয়াম ডার্ক থিম নিয়ঁ গ্লো-ব্যানার */
         .tio-style-banner-fixed {
             width: 320px;
-            height: 50px;
-            background: url('https://png.pngtree.com/background/20250208/original/pngtree-smooth-gradient-chaotic-texture-in-abstract-dark-background-with-black-shade-picture-image_15219959.jpg') center/cover;
+            height: 52px;
+            background: linear-gradient(135deg, #090a10 0%, #121420 100%);
             position: relative;
             overflow: hidden;
-            border-radius: 6px;
-            border: 1px solid #333;
-            font-family: 'Segoe UI', Roboto, sans-serif;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 240, 255, 0.25);
+            font-family: 'Poppins', sans-serif;
             display: flex;
             align-items: center;
-            margin: 10px auto;
+            margin: 15px auto;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.15), inset 0 0 10px rgba(0, 0, 0, 0.8);
         }
         .tio-style-banner-fixed::after {
             content: '';
             position: absolute;
             top: 0;
             left: -150%;
-            width: 60%;
+            width: 50%;
             height: 100%;
             background: linear-gradient(
                 to right,
-                rgba(255,255,255,0) 0%,
-                rgba(255,255,255,0.2) 50%,
-                rgba(255,255,255,0) 100%
+                rgba(0, 240, 255, 0) 0%,
+                rgba(0, 240, 255, 0.25) 50%,
+                rgba(0, 240, 255, 0) 100%
             );
             transform: skewX(-25deg);
-            animation: smoke-shine 4s infinite;
+            animation: cyber-shine 4.5s infinite ease-in-out;
             z-index: 3;
         }
-        @keyframes smoke-shine {
+        @keyframes cyber-shine {
             0% { left: -150%; }
-            40% { left: 150%; }
+            30% { left: 150%; }
             100% { left: 150%; }
-        }
-        .banner-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,210,255,0.1) 100%);
-            z-index: 1;
         }
         .content-wrapper {
             position: relative;
@@ -188,66 +295,80 @@
             display: flex;
             align-items: center;
             width: 100%;
-            padding: 0 10px;
+            padding: 0 12px;
             justify-content: space-between;
         }
         .brand-logo-fixed {
             font-weight: 900;
             font-size: 13px;
-            font-style: italic;
             white-space: nowrap;
             flex-shrink: 0;
+            letter-spacing: 0.5px;
         }
-        .rs-live { color: #fff; }
-        .tv-text { color: #ff9100; text-shadow: 0 0 5px #ff9100; }
+        .rs-live { color: #ffffff; text-shadow: 0 0 5px rgba(255,255,255,0.3); }
+        .tv-text { color: #00f0ff; text-shadow: 0 0 10px rgba(0, 240, 255, 0.6); }
+        
         .text-section-fixed {
             flex-grow: 1;
             text-align: center;
             display: flex;
             flex-direction: column;
-            gap: 2px;
+            gap: 1px;
         }
         .main-tags {
             display: flex;
             justify-content: center;
-            gap: 4px;
+            gap: 5px;
             font-size: 7.5px;
             font-weight: 800;
             text-transform: uppercase;
+            letter-spacing: 0.3px;
         }
-        .tag-cricket { color: #FFD700; }
-        .tag-football { color: #00FF00; }
-        .tag-tv { color: #00D2FF; }
+        .tag-cricket { color: #ff0055; }
+        .tag-football { color: #00ff66; }
+        .tag-tv { color: #ffb700; }
+        
         .sub-text {
-            font-size: 9px;
-            color: #ffffff;
+            font-size: 9.5px;
+            color: #a4a8b4;
             margin: 0;
-            font-weight: bold;
-            text-shadow: 1px 1px 2px #000;
+            font-weight: 600;
         }
         .live-circle {
-            background: #ff0000;
+            background: linear-gradient(135deg, #ff0055, #b3003b);
             color: white;
             font-size: 8px;
-            font-weight: bold;
-            padding: 2px 6px;
-            border-radius: 12px;
+            font-weight: 800;
+            padding: 3px 7px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             gap: 4px;
             flex-shrink: 0;
+            box-shadow: 0 0 10px rgba(255, 0, 85, 0.4);
         }
         .pulse {
             width: 5px;
             height: 5px;
             background: white;
             border-radius: 50%;
-            animation: pulse-animation 1s infinite;
+            animation: pulse-animation 1.2s infinite;
         }
         @keyframes pulse-animation {
-            0% { transform: scale(0.95); opacity: 1; }
-            100% { transform: scale(1.5); opacity: 0; }
+            0% { transform: scale(0.9); opacity: 1; }
+            100% { transform: scale(1.6); opacity: 0; }
         }
+
+        .native-banner-container-premium {
+            width: 320px;
+            margin: 15px auto;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 0, 85, 0.2);
+            box-shadow: 0 0 15px rgba(255, 0, 85, 0.1);
+            background: #090a10;
+        }
+
         .tg-card {
             background: #111116;
             padding: 15px;
@@ -301,49 +422,58 @@
     </div>
 
     <div class="container tv-area">
-        <!-- 💎 প্রিমিয়াম হেডার: বামে কালারফুল ব্র্যান্ড নেম, ডানে কিউট ছোট সার্চকার্ড -->
+        <!-- 💎 প্রিমিয়াম হেডার বার -->
         <div class="row">
-            <div class="col-xs-12 col-md-10">
+            <div class="col-xs-12 col-md-12">
                 <div class="top-bar-wrapper">
-                    <!-- বামদিকের আকর্ষণীয় কালারফুল ব্র্যান্ড লোগো -->
                     <div class="brand-title-neon">
-                        RS LIVE <span class="neon-tv-tag">TV</span>
+                        <span class="rs-glow">RS</span>
+                        <span class="live-glow">LIVE</span>
+                        <span class="neon-tv-tag">TV</span>
                     </div>
-                    <!-- ডানদিকের স্লিম কিউট সার্চ বক্স -->
-                    <div class="channel-search-box-premium">
-                        <input type="text" id="channelSearch" placeholder="চ্যানেল খুঁজুন...">
-                        <span class="search-icon-inside">🔍</span>
+                    <!-- 🔍 মোবাইল মোডের জন্য হেডার সার্চ বক্স -->
+                    <div class="channel-search-box-premium header-search-wrapper">
+                        <input type="text" class="channelSearchClass" placeholder="Search..." autocomplete="off">
+                        <svg class="search-icon-inside" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="row">
+            <!-- মেইন ভিডিও প্লেয়ার -->
             <div class="col-xs-12 col-md-10 tv-view">
                 <div class="embed-responsive embed-responsive-16by9">
                     <iframe id="tv-player-iframe" name="player" class="embed-responsive-item" allowfullscreen src="channel.html"></iframe>
                 </div>
             </div>
+            
+            <!-- সাইডবার চ্যানেল এরিয়া -->
             <div class="col-xs-12 col-md-2 channel-list" id="scroll-wrapper">
+                <!-- 🔍 ডেক্সটপ মোডে চ্যানেল কার্ডের ঠিক ওপরে সুন্দরভাবে দেখানোর সার্চ বক্স -->
+                <div class="channel-search-box-premium desktop-search-wrapper">
+                    <input type="text" class="channelSearchClass" placeholder="Search channel..." autocomplete="off">
+                    <svg class="search-icon-inside" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </div>
+                
                 <ul class="thumbnail-slider" id="channel-container"></ul>
             </div>
         </div>
     </div>
 
+    <!-- 📢 নতুন ও দীর্ঘায়িত লম্বা নোটিস টেক্সট -->
     <div class="marquee-container">
         <div class="notice-label">NOTICE</div>
-        <marquee scrollamount="6" onmouseover="this.stop()" onmouseout="this.start()">
-            ⚠️ বর্তমানে আমাদের ওয়েব সাইট আপডেট চলছে, আপডেট চলাকালীন সময় কিছু চ্যানেল ডাউন হতে পারে। 
-            <span style="color: aqua; font-weight: bold;">টিভি চ্যানেল প্লে হতে ৫ থেকে ১০ সেকেন্ড টাইম নিতে পারে।</span> 
-            💡 বিরক্তিকর বিজ্ঞাপন ছাড়া টিভি দেখতে ভিডিও প্লেয়ারের নিচে ডান কোণায় ক্লিক করে 
-            <span style="color: #00FF00; font-weight: bold;">"Full Screen" মুডে ভিডিও দেখুন</span>, তাহলে কোনো অ্যাড আপনার সামনে আসবে না! ধন্যবাদ ⛔
+        <marquee scrollamount="5" onmouseover="this.stop()" onmouseout="this.start()">
+            ⚠️ আমাদের সিস্টেমে ব্যাকএন্ড সার্ভার আপগ্রেডেশনের কাজ সফলভাবে চলছে। এই রক্ষণাবেক্ষণ প্রক্রিয়ার সময় সাময়িকভাবে কিছু প্রিমিয়াম স্পোর্টস এবং এন্টারটেইনমেন্ট চ্যানেল বাফার করতে পারে অথবা সাময়িক ডাউন থাকতে পারে। কোনো চ্যানেল প্লে হতে সমস্যা হলে অনুগ্রহ করে ৫ থেকে ১০ সেকেন্ড অপেক্ষা করুন, প্লেয়ারটি নিজে থেকেই স্ট্রিম সোর্স রিলোড করে নেবে। 💡 বিরক্তিকর পপ-আপ কিংবা কোনো অনাকাঙ্ক্ষিত থার্ড পার্টি বিজ্ঞাপন ছাড়া একদম নিরবচ্ছিন্ন ও ফ্রেশ মুডে খেলা দেখতে চাইলে, আমাদের ভিডিও প্লেয়ারের নিচে ঠিক ডান কোণায় থাকা "Full Screen" আইকনটিতে ক্লিক করে ফুল স্ক্রিন মুডে প্লে করুন। ফুল স্ক্রিন মুড একটিভ থাকলে কোনো অ্যাড বা ব্যানার আপনার সামনে এসে ডিস্টার্ব করবে না! যেকোনো জরুরি আপডেট, নতুন চ্যানেল রিকোয়েস্ট অথবা যেকোনো সমস্যা সরাসরি জানাতে নিচের অফিশিয়াল টেলিগ্রাম বাটনে ক্লিক করে আমাদের কমিউনিটি গ্রুপে যুক্ত হোন। সাথে থাকার জন্য ধন্যবাদ! ⛔
         </marquee>
     </div>
 
     <footer class="footer-premium">
         <div class="container">
+            
+            <!-- 🪐 গ্লোয়িং ডার্ক ব্যানার -->
             <div class="tio-style-banner-fixed">
-                <div class="banner-overlay"></div>
                 <div class="content-wrapper">
                     <div class="brand-logo-fixed">
                         <span class="rs-live">RS Live</span>
@@ -353,12 +483,26 @@
                         <div class="main-tags">
                             <span class="tag-cricket">CRICKET 🏏</span>
                             <span class="tag-football">FOOTBALL ⚽</span>
-                            <span class="tag-tv">TV SHOWS 📺</span>
+                            <span class="tag-tv">SHOWS 📺</span>
                         </div>
-                        <p class="sub-text">সব পাবেন একদম ফ্রিতে!</p>
+                        <p class="sub-text">সব চ্যানেল একদম ফ্রিতে!</p>
                     </div>
                     <div class="live-circle"><span class="pulse"></span>LIVE</div>
                 </div>
+            </div>
+
+            <!-- 📥 নেটিভ থার্ড পার্টি অ্যাড কন্টেইনার -->
+            <div class="native-banner-container-premium">
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : 'e75df42b03fa790753046754bc9cf9fe',
+                        'format' : 'iframe',
+                        'height' : 50,
+                        'width' : 320,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="//www.effectivecpmnetwork.com/e75df42b03fa790753046754bc9cf9fe/invoke.js"></script>
             </div>
 
             <div class="tg-card">
@@ -386,31 +530,24 @@
         </div>
     </footer>
 
-    <!-- 🎮 スマート TV রিমোট, সার্চ ও সলিড সিকিউরিটি স্ক্রিপ্ট -->
     <script src="script.js?v=12.0"></script>
     <script>
-        // 🔒 ১. মাউস রাইট-ক্লিক সম্পূর্ণ ব্লক
+        // 🔒 ১. সিকিউরিটি এবং সোর্স কোড প্রোটেকশন
         document.addEventListener('contextmenu', event => event.preventDefault());
-
-        // 🔒 ২. কিবোর্ড সোর্স কোড দেখার শর্টকাট (F12, Ctrl+U, Ctrl+Shift+I/J) ব্লক
         document.onkeydown = function(e) {
             if (e.keyCode == 123) { return false; } 
             if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; } 
             if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; } 
             if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; } 
         };
-        
-        // 🔒 ৩. ডেভটুলস ট্র্যাপ প্রোটেকশন (ইন্সপেক্ট ওপেন করলেই পেজ ক্র্যাশ/ব্ল্যাঙ্ক হয়ে যাবে)
         setInterval(function(){
             const startTime = +new Date();
             debugger;
             const endTime = +new Date();
-            if(endTime - startTime > 100){
-                window.location.href = "about:blank";
-            }
+            if(endTime - startTime > 100){ window.location.href = "about:blank"; }
         }, 100);
 
-        // 🎬 লোডিং ইন্ট্রো স্ক্রিন রিমুভার
+        // 🎬 লোডিং ইন্ট্রো স্ক্রিন
         window.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 const loader = document.getElementById('intro-loader');
@@ -422,18 +559,61 @@
             }, 1200); 
         });
 
-        // 🎮 スマート TV রিমোট কন্ট্রোল কি লজিক
-        document.addEventListener('keydown', function(event) {
-            const items = Array.from(document.querySelectorAll('#channel-container li:not([style*="display: none"])')); 
-            const active = document.activeElement;
-            const searchInput = document.getElementById('channelSearch');
+        // 🔍 🛑 দোন সার্চ বক্সের জন্য সিঙ্কড অ্যান্টি-জার্ক ফিল্টার লজিক
+        function applyInstantChannelFilter(event) {
+            const currentInput = event.target;
+            const allSearchInputs = document.querySelectorAll('.channelSearchClass');
+            
+            // দুইটা সার্চ বক্সের টেক্সট একসাথে সিঙ্ক রাখার জন্য
+            allSearchInputs.forEach(input => {
+                if(input !== currentInput) {
+                    input.value = currentInput.value;
+                }
+            });
 
-            if (active === searchInput) {
+            const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
+            const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+            let filter = currentInput.value.toUpperCase();
+            let ul = document.getElementById("channel-container");
+            if (!ul) return;
+            
+            let li = ul.getElementsByTagName('li');
+            
+            for (let i = 0; i < li.length; i++) {
+                let textValue = li[i].textContent || li[i].innerText;
+                if (textValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = ''; 
+                } else {
+                    li[i].style.display = 'none'; 
+                }
+            }
+
+            window.scrollTo(scrollX, scrollY);
+        }
+
+        const searchInputs = document.querySelectorAll('.channelSearchClass');
+        searchInputs.forEach(input => {
+            input.addEventListener('input', applyInstantChannelFilter);
+            input.addEventListener('keyup', applyInstantChannelFilter);
+        });
+
+        // 🎮 スマート TV রিমোট ও কিবোর্ড কন্ট্রোল
+        document.addEventListener('keydown', function(event) {
+            const items = Array.from(document.querySelectorAll('#channel-container li')).filter(el => el.style.display !== 'none');
+            const active = document.activeElement;
+            const isSearching = active && active.classList.contains('channelSearchClass');
+
+            if (isSearching) {
+                if (event.keyCode === 13 || event.key === "Enter") {
+                    event.preventDefault();
+                    if (items.length > 0) { items[0].click(); }
+                    active.blur(); 
+                    return false;
+                }
                 if (event.keyCode === 40 || event.key === "ArrowDown") {
                     event.preventDefault();
-                    if (items.length > 0) {
-                        items[0].focus(); 
-                    }
+                    if (items.length > 0) { items[0].focus(); }
                 }
                 return;
             }
@@ -450,8 +630,9 @@
                 let prevIndex = index - 1;
                 if (prevIndex >= 0) { 
                     items[prevIndex].focus(); 
-                } else if (prevIndex === -1 && searchInput) {
-                    searchInput.focus(); 
+                } else if (prevIndex === -1) {
+                    const visibleSearch = document.querySelector('.channelSearchClass:not([style*="display: none"])');
+                    if (visibleSearch) visibleSearch.focus();
                 }
             } else if (event.keyCode === 13 || event.key === "Enter") {
                 if (active && active.tagName === 'LI') {
@@ -461,21 +642,17 @@
             }
         });
 
+        // 🚫 স্ক্রোল লাফানো প্রতিরোধ ওভাররাইড
         window.addEventListener('focus', function(event) {
+            if (document.activeElement && document.activeElement.classList.contains('channelSearchClass')) {
+                event.preventDefault();
+                event.stopPropagation();
+                return false;
+            }
             if (event.target && event.target.tagName === 'LI') {
-                event.target.scrollIntoView({ block: 'center', behavior: 'smooth' });
+                event.target.scrollIntoView({ block: 'nearest', behavior: 'auto' });
             }
         }, true); 
-
-        function initTVFocus() {
-            setTimeout(() => {
-                const firstChannel = document.querySelector('#channel-container li');
-                if (firstChannel) { firstChannel.focus(); }
-            }, 600);
-        }
     </script>
-    
-    <script async="async" data-cfasync="false" src="https://pl26377079.effectivecpmnetwork.com/cdeccdd75d3e2e6916a42ce9653cfb08/invoke.js"></script>
-    <div id="container-cdeccdd75d3e2e6916a42ce9653cfb08"></div>
 </body>
 </html>
