@@ -26,10 +26,6 @@
             -ms-user-select: none;
             user-select: none;
             background-color: #06060c;
-            overflow-x: hidden;
-            /* 🔒 স্ক্রোল জাম্প বা ঝাঁকি আটকানোর মূল প্রোটেকশন */
-            scroll-behavior: auto !important; 
-            overscroll-behavior-y: contain;
         }
 
         /* 🎬 ইন্ট্রো লোডার */
@@ -104,124 +100,6 @@
         @keyframes fadeInText { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes dotPulse { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
 
-        /* ✨ আল্ট্রা-প্রিমিয়াম গ্লোয়িং লোগো এবং টপ বার */
-        .top-bar-wrapper {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 10px;
-            background: linear-gradient(180deg, rgba(13,13,21,0.6) 0%, rgba(6,6,12,0) 100%);
-            margin-bottom: 10px;
-            box-sizing: border-box;
-            width: 100%;
-        }
-
-        .brand-title-neon {
-            font-size: 22px;
-            font-weight: 900;
-            letter-spacing: 1px;
-            color: #ffffff;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-            font-family: 'Poppins', sans-serif;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            flex-shrink: 0;
-        }
-
-        @media (min-width: 768px) {
-            .brand-title-neon {
-                font-size: 26px;
-                gap: 8px;
-            }
-        }
-
-        .brand-title-neon .rs-glow {
-            background: linear-gradient(135deg, #fff 30%, #a3b8cc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .brand-title-neon .live-glow {
-            color: #ff0055;
-            text-shadow: 0 0 15px rgba(255, 0, 85, 0.6), 0 0 30px rgba(255, 0, 85, 0.3);
-            animation: pulseGlow 2s infinite alternate;
-        }
-
-        .neon-tv-tag {
-            background: linear-gradient(90deg, #00f0ff, #0072ff);
-            color: #040406;
-            font-size: 11px;
-            font-weight: 800;
-            padding: 2px 6px;
-            border-radius: 5px;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
-            letter-spacing: 0.5px;
-        }
-
-        @media (min-width: 768px) {
-            .neon-tv-tag {
-                font-size: 14px;
-                padding: 2px 10px;
-                border-radius: 6px;
-            }
-        }
-
-        @keyframes pulseGlow {
-            0% { text-shadow: 0 0 10px rgba(255, 0, 85, 0.5); }
-            100% { text-shadow: 0 0 25px rgba(255, 0, 85, 0.9), 0 0 10px rgba(255, 0, 85, 0.4); }
-        }
-
-        /* 🔍 ফিক্সড এবং অ্যান্টি-ঝাঁকি প্রিমিয়াম সার্চ বক্স */
-        .channel-search-box-premium {
-            position: relative;
-            width: 130px;
-            max-width: 40%;
-            display: flex;
-            align-items: center;
-            box-sizing: border-box;
-        }
-
-        @media (min-width: 768px) {
-            .channel-search-box-premium {
-                width: 180px;
-            }
-        }
-
-        .channel-search-box-premium input {
-            width: 100%;
-            height: 32px;
-            padding: 0 28px 0 10px;
-            background: #111118;
-            border: 1px solid rgba(0, 240, 255, 0.25);
-            border-radius: 6px;
-            color: #fff;
-            font-size: 11px;
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
-            outline: none;
-            box-sizing: border-box;
-        }
-
-        .channel-search-box-premium input:focus {
-            border-color: #00f0ff;
-            box-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
-            background: #141422;
-        }
-
-        .search-icon-inside {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 11px;
-            color: #00f0ff;
-            pointer-events: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1;
-        }
-
         .tv-view .embed-responsive {
             border: 1px solid #1f2029;
             border-radius: 12px;
@@ -235,20 +113,6 @@
             width: 100%;
             height: 100%;
         }
-
-        /* 🔒 চ্যানেল লিস্টের জন্য অ্যান্টি-ঝাঁকি ফিক্সড হাইট সিএসএস */
-        .channel-list {
-            height: 350px !important; /* মোবাইলে লিস্টের হাইট ফিক্সড করা হলো যেন সার্চে উধাও হলেও পেজ না লাফায় */
-            overflow-y: auto !important;
-            box-sizing: border-box;
-        }
-
-        @media (min-width: 768px) {
-            .channel-list {
-                height: 450px !important; /* ডেক্সটপের জন্য হাইট */
-            }
-        }
-
         .marquee-container {
             background: #0d0d13;
             color: #ffffff;
@@ -437,16 +301,17 @@
     </div>
 
     <div class="container tv-area">
+        <!-- 💎 প্রিমিয়াম হেডার: বামে কালারফুল ব্র্যান্ড নেম, ডানে কিউট ছোট সার্চকার্ড -->
         <div class="row">
             <div class="col-xs-12 col-md-10">
                 <div class="top-bar-wrapper">
+                    <!-- বামদিকের আকর্ষণীয় কালারফুল ব্র্যান্ড লোগো -->
                     <div class="brand-title-neon">
-                        <span class="rs-glow">RS</span>
-                        <span class="live-glow">LIVE</span>
-                        <span class="neon-tv-tag">TV</span>
+                        RS LIVE <span class="neon-tv-tag">TV</span>
                     </div>
+                    <!-- ডানদিকের স্লিম কিউট সার্চ বক্স -->
                     <div class="channel-search-box-premium">
-                        <input type="text" id="channelSearch" placeholder="Search channel..." autocomplete="off">
+                        <input type="text" id="channelSearch" placeholder="চ্যানেল খুঁজুন...">
                         <span class="search-icon-inside">🔍</span>
                     </div>
                 </div>
@@ -521,21 +386,28 @@
         </div>
     </footer>
 
+    <!-- 🎮 スマート TV রিমোট, সার্চ ও সলিড সিকিউরিটি স্ক্রিপ্ট -->
     <script src="script.js?v=12.0"></script>
     <script>
-        // 🔒 ১. সিকিউরিটি এবং সোর্স কোড প্রোটেকশন লেয়ার
+        // 🔒 ১. মাউস রাইট-ক্লিক সম্পূর্ণ ব্লক
         document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // 🔒 ২. কিবোর্ড সোর্স কোড দেখার শর্টকাট (F12, Ctrl+U, Ctrl+Shift+I/J) ব্লক
         document.onkeydown = function(e) {
             if (e.keyCode == 123) { return false; } 
             if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; } 
             if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; } 
             if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; } 
         };
+        
+        // 🔒 ৩. ডেভটুলস ট্র্যাপ প্রোটেকশন (ইন্সপেক্ট ওপেন করলেই পেজ ক্র্যাশ/ব্ল্যাঙ্ক হয়ে যাবে)
         setInterval(function(){
             const startTime = +new Date();
             debugger;
             const endTime = +new Date();
-            if(endTime - startTime > 100){ window.location.href = "about:blank"; }
+            if(endTime - startTime > 100){
+                window.location.href = "about:blank";
+            }
         }, 100);
 
         // 🎬 লোডিং ইন্ট্রো স্ক্রিন রিমুভার
@@ -550,56 +422,18 @@
             }, 1200); 
         });
 
-        // 🔍 🛑 আল্ট্রা অ্যান্টি-জার্ক (ঝাঁকি মুক্ত) হার্ড-লক ফিল্টার লজিক
-        function applyInstantChannelFilter(event) {
-            const searchInput = document.getElementById('channelSearch');
-            if (!searchInput) return;
-
-            // 🔒 ট্রিক ১: টাইপ করার ঠিক আগের মুহূর্তে মেইন স্ক্রোলের সঠিক পিক্সেল মেমরিতে ধরে রাখা
-            const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
-            const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-
-            let filter = searchInput.value.toUpperCase();
-            let ul = document.getElementById("channel-container");
-            if (!ul) return;
-            
-            let li = ul.getElementsByTagName('li');
-            
-            for (let i = 0; i < li.length; i++) {
-                let textValue = li[i].textContent || li[i].innerText;
-                if (textValue.toUpperCase().indexOf(filter) > -1) {
-                    li[i].style.display = ''; 
-                } else {
-                    li[i].style.display = 'none'; 
-                }
-            }
-
-            // 🔒 ট্রিক ২: চ্যানেল হাইড/শো হওয়ার সাথে সাথে ব্রাউজার যাতে স্ক্রিন সরাতে না পারে, তাই হার্ড লক করা
-            window.scrollTo(scrollX, scrollY);
-        }
-
-        const searchInputEl = document.getElementById('channelSearch');
-        if (searchInputEl) {
-            searchInputEl.addEventListener('input', applyInstantChannelFilter);
-            searchInputEl.addEventListener('keyup', applyInstantChannelFilter);
-        }
-
-        // 🎮 スマート TV রিমোট ও কিবোর্ড কন্ট্রোল
+        // 🎮 スマート TV রিমোট কন্ট্রোল কি লজিক
         document.addEventListener('keydown', function(event) {
-            const items = Array.from(document.querySelectorAll('#channel-container li')).filter(el => el.style.display !== 'none');
+            const items = Array.from(document.querySelectorAll('#channel-container li:not([style*="display: none"])')); 
             const active = document.activeElement;
             const searchInput = document.getElementById('channelSearch');
 
             if (active === searchInput) {
-                if (event.keyCode === 13 || event.key === "Enter") {
-                    event.preventDefault();
-                    if (items.length > 0) { items[0].click(); }
-                    searchInput.blur(); 
-                    return false;
-                }
                 if (event.keyCode === 40 || event.key === "ArrowDown") {
                     event.preventDefault();
-                    if (items.length > 0) { items[0].focus(); }
+                    if (items.length > 0) {
+                        items[0].focus(); 
+                    }
                 }
                 return;
             }
@@ -627,27 +461,21 @@
             }
         });
 
-        // 🚫 মোবাইলে কিবোর্ড ফোকাস করার কারণে অটো-স্ক্রোল হওয়া চিরতরে ব্লক করা হলো
         window.addEventListener('focus', function(event) {
-            if (document.activeElement && document.activeElement.id === 'channelSearch') {
-                event.preventDefault();
-                event.stopPropagation();
-                return false;
-            }
             if (event.target && event.target.tagName === 'LI') {
-                event.target.scrollIntoView({ block: 'nearest', behavior: 'auto' });
+                event.target.scrollIntoView({ block: 'center', behavior: 'smooth' });
             }
         }, true); 
 
         function initTVFocus() {
             setTimeout(() => {
                 const firstChannel = document.querySelector('#channel-container li');
-                const searchInput = document.getElementById('channelSearch');
-                if (firstChannel && document.activeElement !== searchInput) { 
-                    firstChannel.focus(); 
-                }
+                if (firstChannel) { firstChannel.focus(); }
             }, 600);
         }
     </script>
+    
+    <script async="async" data-cfasync="false" src="https://pl26377079.effectivecpmnetwork.com/cdeccdd75d3e2e6916a42ce9653cfb08/invoke.js"></script>
+    <div id="container-cdeccdd75d3e2e6916a42ce9653cfb08"></div>
 </body>
 </html>
