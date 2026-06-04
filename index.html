@@ -12,7 +12,7 @@
       gtag('config', 'G-DRBZH98TKH');
     </script>
 
-    <title>Live TV Player</title>
+    <title>RS Live TV</title>
 
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/mD1VCt2C/RS-Live.png">
     <link href="bootstrap.min.css" rel="stylesheet">
@@ -103,49 +103,116 @@
         @keyframes fadeInText { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes dotPulse { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
 
-        /* 🔍 টপ বার কন্টেইনার (সার্চ বামে এবং টেলিগ্রাম ডানে রাখার জন্য স্পেস-বিটউইন) */
-        .top-action-wrapper {
+        /* ✨ টপ বার এবং লোগো এরিয়া */
+        .top-bar-wrapper {
             display: flex;
-            justify-content: space-between; /* সার্চ বামে, টেলিগ্রাম ডানে */
+            justify-content: space-between;
             align-items: center;
-            padding: 12px 4px 8px 4px;
+            padding: 10px 8px;
+            background: linear-gradient(180deg, rgba(13,13,21,0.6) 0%, rgba(6,6,12,0) 100%);
+            margin-bottom: 8px;
             width: 100%;
             box-sizing: border-box;
         }
 
-        .channel-search-box-premium {
-            position: relative;
-            width: 100%; 
-            max-width: 180px; 
+        .logo-link {
+            text-decoration: none !important;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .brand-title-neon {
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            font-family: 'Poppins', sans-serif;
             display: flex;
             align-items: center;
+            gap: 5px;
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 768px) {
+            .brand-title-neon {
+                font-size: 26px;
+                gap: 8px;
+            }
+        }
+
+        .brand-title-neon .rs-glow {
+            background: linear-gradient(135deg, #fff 30%, #a3b8cc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-title-neon .live-glow {
+            color: #ff0055;
+            text-shadow: 0 0 15px rgba(255, 0, 85, 0.6), 0 0 30px rgba(255, 0, 85, 0.3);
+            animation: pulseGlow 2s infinite alternate;
+        }
+
+        .neon-tv-tag {
+            background: linear-gradient(90deg, #00f0ff, #0072ff);
+            color: #040406;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 2px 5px;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+            letter-spacing: 0.5px;
+        }
+
+        @media (min-width: 768px) {
+            .neon-tv-tag {
+                font-size: 14px;
+                padding: 2px 10px;
+                border-radius: 6px;
+            }
+        }
+
+        @keyframes pulseGlow {
+            0% { text-shadow: 0 0 10px rgba(255, 0, 85, 0.5); }
+            100% { text-shadow: 0 0 25px rgba(255, 0, 85, 0.9), 0 0 10px rgba(255, 0, 85, 0.4); }
+        }
+
+        /* 🔍 সার্চ বক্স এবং প্রিমিয়াম সার্চ আইকন ফিক্স */
+        .channel-search-box-premium {
+            position: relative;
+            width: 140px; 
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 768px) {
+            .channel-search-box-premium {
+                width: 200px; 
+            }
         }
 
         .channel-search-box-premium input {
             width: 100%;
-            height: 34px; 
-            padding: 0 32px 0 12px;
-            background: #12121a; 
-            border: none !important; 
-            border-radius: 6px; 
+            height: 32px;
+            padding: 0 32px 0 10px;
+            background: #111118;
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            border-radius: 6px;
             color: #fff;
-            font-size: 11.5px;
+            font-size: 11px;
             outline: none;
-            transition: all 0.25s ease;
+            transition: all 0.2s ease;
             box-sizing: border-box;
-            text-align: left;
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.25);
         }
 
         .channel-search-box-premium input:focus {
-            background: #181826;
-            box-shadow: 0 0 14px rgba(0, 240, 255, 0.5); 
+            border-color: #00f0ff;
+            box-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+            background: #141422;
         }
 
-        .channel-search-box-premium input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
+        /* 🔍 নতুন স্টাইলিশ সার্চ আইকন (SVG দিয়ে তৈরি যাতে ব্লাড বা ফেটে না যায়) */
         .search-icon-inside {
             position: absolute;
             right: 10px;
@@ -155,52 +222,6 @@
             height: 13px;
             display: block;
             pointer-events: none;
-        }
-
-        /* ✈️ প্লেয়ারের ডান কর্নারে শর্ট বাংলা লেখা সহ টেলিগ্রাম বাটন */
-        .header-telegram-btn-wrapper {
-            display: flex;
-            align-items: center;
-            text-decoration: none !important;
-            background: rgba(0, 136, 204, 0.15); /* হালকা ডার্ক গ্লেজ ব্যাকগ্রাউন্ড */
-            border: 1px solid rgba(0, 136, 204, 0.4);
-            padding: 0 4px 0 12px; /* বামে টেক্সটের জন্য বেশি স্পেস */
-            height: 34px;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-            box-shadow: 0 0 10px rgba(0, 136, 204, 0.2);
-            cursor: pointer;
-        }
-
-        .header-telegram-btn-wrapper:hover {
-            background: rgba(0, 136, 204, 0.3);
-            border-color: #0088cc;
-            transform: translateY(-1px);
-            box-shadow: 0 0 14px rgba(0, 136, 204, 0.5);
-        }
-
-        .telegram-btn-text {
-            color: #00f0ff; /* উজ্জ্বল ডার্ক মোড কালার */
-            font-size: 11px;
-            font-weight: bold;
-            margin-right: 8px; /* টেক্সট থেকে লোগোর গ্যাপ */
-            letter-spacing: 0.3px;
-        }
-
-        .telegram-icon-box {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 26px;
-            height: 26px;
-            background: #0088cc;
-            border-radius: 4px;
-        }
-
-        .telegram-icon-box svg {
-            width: 14px;
-            height: 14px;
-            fill: #fff;
         }
 
         /* প্লেয়ার এরিয়া মার্জিন */
@@ -227,7 +248,7 @@
             height: 100%;
         }
 
-        /* 🔒 চ্যানেল লিস্ট ও স্পষ্ট স্ক্রোলবার ফিক্স */
+        /* 🔒 চ্যানেল লিস্ট ও স্পষ্ট স্ক্রোলবার (লম্বা দাগ) ফিক্স */
         .channel-list {
             max-height: 360px !important;
             overflow-y: auto !important;
@@ -241,8 +262,9 @@
             }
         }
 
+        /* 👑 স্ক্রোলবারটি মোটা এবং স্পষ্ট করার মূল কোড (রিমোট ও মাউস ফ্রেন্ডলি) */
         .channel-list::-webkit-scrollbar {
-            width: 8px !important; 
+            width: 8px !important; /* দাগটি আরও চওড়া বা মোটা করা হলো */
         }
         
         .channel-list::-webkit-scrollbar-track {
@@ -251,14 +273,14 @@
         }
         
         .channel-list::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #00f0ff 0%, #0072ff 100%) !important; 
+            background: linear-gradient(180deg, #00f0ff 0%, #0072ff 100%) !important; /* গ্লোয়িং নিয়ন কালার */
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 240, 255, 0.8) !important;
             border: 1px solid rgba(0, 4, 6, 0.5);
         }
         
         .channel-list::-webkit-scrollbar-thumb:hover {
-            background: #ff0055 !important; 
+            background: #ff0055 !important; /* মাউস হোভার করলে কালার চেঞ্জ হবে */
             box-shadow: 0 0 12px rgba(255, 0, 85, 1) !important;
         }
 
@@ -294,7 +316,7 @@
             text-align: center;
         }
 
-        /* 📸 অরিজিনাল ব্যানার পজিশন */
+        /* 📸 অরিজিনাল ব্যানার পজিশন (নোটিশ এবং টেলিগ্রামের মাঝে লকড) */
         .tio-style-banner-fixed {
             width: 320px;
             height: 50px;
@@ -306,7 +328,7 @@
             font-family: 'Segoe UI', Roboto, sans-serif;
             display: flex;
             align-items: center;
-            margin: 0 auto 15px auto; 
+            margin: 0 auto 15px auto; /* মার্জিন এডজাস্টমেন্ট */
         }
 
         .tio-style-banner-fixed::after {
@@ -419,6 +441,30 @@
             100% { transform: scale(1.5); opacity: 0; }
         }
 
+        .tg-card {
+            background: #111116;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #1a1b26;
+            display: block;
+            width: 320px;
+            margin: 0 auto 15px auto;
+        }
+
+        .telegram-btn {
+            display: inline-block;
+            background: #0088cc;
+            color: #fff !important;
+            padding: 8px 25px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none !important;
+            margin-top: 10px;
+            font-size: 13px;
+            font-family: 'Courier New', Courier, monospace;
+            font-style: italic;
+        }
+
         .ad-box {
             margin: 15px auto;
             width: 320px;
@@ -441,7 +487,7 @@
     <div id="intro-loader">
         <div class="loader-content">
             <div class="welcome-text">Welcome To</div>
-            <h1 class="brand-text">Live <span>TV</span></h1>
+            <h1 class="brand-text">RS Live <span>TV</span></h1>
             <div class="loading-dots">
                 <span></span>
                 <span></span>
@@ -451,11 +497,16 @@
     </div>
 
     <div class="container tv-area">
-        <!-- 🔍 অ্যাকশন বার লেআউট: বামে সার্চবার এবং ডানে লেখা সহ টেলিগ্রাম বাটন -->
         <div class="row">
             <div class="col-xs-12 col-md-12">
-                <div class="top-action-wrapper">
-                    <!-- সার্চ বক্স (বামে এবং বর্ডার ছাড়া প্রিমিয়াম ডার্ক মোড লুক) -->
+                <div class="top-bar-wrapper">
+                    <a href="https://rslivetv.vercel.app" class="logo-link">
+                        <div class="brand-title-neon">
+                            <span class="rs-glow">RS</span>
+                            <span class="live-glow">LIVE</span>
+                            <span class="neon-tv-tag">TV</span>
+                        </div>
+                    </a>
                     <div class="channel-search-box-premium">
                         <input type="text" id="channelSearch" placeholder="Search channel..." autocomplete="off">
                         <svg class="search-icon-inside" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -463,16 +514,6 @@
                             <path d="M22 22L20 20" stroke="#00f0ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
-                    
-                    <!-- ✈️ প্লেয়ারের ডান কর্নারে সেট করা নতুন টেলিগ্রাম বাটন -->
-                    <a href="https://t.me/rslivetv" target="_blank" class="header-telegram-btn-wrapper" title="Join Telegram Group">
-                        <span class="telegram-btn-text">টেলিগ্রামে যুক্ত হন</span>
-                        <div class="telegram-icon-box">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-1-.65-.35-1 .22-1.62.15-.15 2.7-2.46 2.75-2.68.01-.03.01-.14-.06-.2-.07-.06-.17-.04-.25-.02-.11.02-1.83 1.16-5.16 3.42-.49.34-.93.51-1.33.5-.44-.01-1.29-.25-1.92-.45-.77-.25-1.39-.39-1.34-.83.03-.23.35-.46.97-.71 3.82-1.66 6.37-2.75 7.66-3.28 3.66-1.48 4.42-1.74 4.92-1.75.11 0 .35.03.5.16.13.11.17.29.19.41-.02.11-.02.24-.02.28z"/>
-                            </svg>
-                        </div>
-                    </a>
                 </div>
             </div>
         </div>
@@ -506,7 +547,7 @@
                 <div class="banner-overlay"></div>
                 <div class="content-wrapper">
                     <div class="brand-logo-fixed">
-                        <span class="rs-live">Live</span>
+                        <span class="rs-live">RS Live</span>
                         <span class="tv-text">TV</span>
                     </div>
                     <div class="text-section-fixed">
@@ -519,6 +560,12 @@
                     </div>
                     <div class="live-circle"><span class="pulse"></span>LIVE</div>
                 </div>
+            </div>
+
+            <div class="tg-card">
+                <h5 style="color:#fff; margin-bottom:5px; font-size:16px;">সাপোর্ট প্রয়োজন?</h5>
+                <p style="color:#777; font-size:11px; margin-bottom:5px;">আপডেট ও চ্যানেল রিকোয়েস্টের জন্য আমাদের টেলিগ্রাম গ্রুপে যোগ দিন।</p>
+                <a href="https://t.me/rslivetv" target="_blank" class="telegram-btn">JOIN TELEGRAM</a>
             </div>
 
             <div class="ad-box">
@@ -535,7 +582,7 @@
             </div>
 
             <div class="copyright">
-                © 2026 LIVE TV | All Rights Reserved
+                © 2026 RS LIVE TV | All Rights Reserved
             </div>
         </div>
     </footer>
