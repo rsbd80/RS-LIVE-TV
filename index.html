@@ -18,6 +18,7 @@
     <link href="bootstrap.min.css" rel="stylesheet">
     <link href="style.css?v=12.0" rel="stylesheet">
 
+    <!-- 🌟 Google Fonts থেকে প্রফেশনাল ফন্ট যুক্ত করা হলো -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Poppins:wght@700;900&display=swap" rel="stylesheet">
 
     <style>
@@ -32,8 +33,6 @@
             scroll-behavior: auto !important; 
             overscroll-behavior-y: contain;
             font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0;
         }
 
         /* 🎬 ইন্ট্রো লোডার */
@@ -108,27 +107,16 @@
         @keyframes fadeInText { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes dotPulse { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
 
-        /* ✨ টপ বার এবং লোগো এরিয়া */
+        /* ✨ টপ বার এবং লোগো এরিয়া (প্রিমিয়াম রিমডেলিং) */
         .top-bar-wrapper {
             display: flex;
-            flex-direction: row; 
-            align-items: center;
             justify-content: space-between;
-            padding: 4px 6px 6px 6px; 
-            background: linear-gradient(180deg, rgba(16,16,28,0.8) 0%, rgba(6,6,12,0) 100%);
-            margin-top: 0px;  
-            margin-bottom: 4px; 
+            align-items: center;
+            padding: 12px 10px;
+            background: linear-gradient(180deg, rgba(16,16,28,0.7) 0%, rgba(6,6,12,0) 100%);
+            margin-bottom: 8px;
             width: 100%;
             box-sizing: border-box;
-            gap: 8px;
-        }
-
-        @media (min-width: 768px) {
-            .top-bar-wrapper {
-                padding: 10px 15px;
-                margin-bottom: 8px;
-                gap: 20px;
-            }
         }
 
         .logo-link {
@@ -136,33 +124,80 @@
             display: inline-flex;
             align-items: center;
             transition: transform 0.2s ease;
-            flex-shrink: 0;
         }
         
         .logo-link:hover {
             transform: scale(1.02);
         }
 
-        /* 🖼️ লোগো সাইজ সর্বোচ্চ বড় করা হলো */
-        .brand-logo-image {
-            height: 52px; /* মোবাইলে লোগো আরও বড় করা হয়েছে */
-            width: auto;
-            display: block;
-            object-fit: contain;
-            filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.5));
+        /* 👑 মডার্ন গ্লাস লোগো ইন্টারফেস */
+        .brand-title-neon {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 900;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 4px 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: inset 0 1px 1px rgba(255,255,255,0.1);
         }
 
         @media (min-width: 768px) {
-            .brand-logo-image {
-                height: 66px; 
+            .brand-title-neon {
+                font-size: 24px;
+                gap: 8px;
+                padding: 6px 14px;
             }
         }
 
-        /* 🔍 সার্চ বক্স সাইজ কমানো হলো */
+        .brand-title-neon .rs-glow {
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffffff 40%, #a6b4c9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-title-neon .live-glow {
+            color: #ff0055;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 12px rgba(255, 0, 85, 0.5);
+            animation: pulseGlow 1.5s infinite alternate;
+        }
+
+        .neon-tv-tag {
+            background: linear-gradient(135deg, #00f0ff 0%, #0072ff 100%);
+            color: #030305;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 1px 5px;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+            letter-spacing: 0.5px;
+        }
+
+        @media (min-width: 768px) {
+            .neon-tv-tag {
+                font-size: 12px;
+                padding: 2px 7px;
+            }
+        }
+
+        @keyframes pulseGlow {
+            0% { opacity: 0.8; text-shadow: 0 0 8px rgba(255, 0, 85, 0.4); }
+            100% { opacity: 1; text-shadow: 0 0 18px rgba(255, 0, 85, 0.8), 0 0 5px rgba(255, 0, 85, 0.4); }
+        }
+
+        /* 🔍 প্রিমিয়াম আল্ট্রা-মডার্ন সার্চ বক্স */
         .channel-search-box-premium {
             position: relative;
-            width: 38%; /* সার্চবার ছোট করে লোগোকে জায়গা দেওয়া হয়েছে */
-            max-width: 130px;
+            width: 150px; 
             display: flex;
             align-items: center;
             flex-shrink: 0;
@@ -171,19 +206,18 @@
         @media (min-width: 768px) {
             .channel-search-box-premium {
                 width: 220px; 
-                max-width: none;
             }
         }
 
         .channel-search-box-premium input {
             width: 100%;
-            height: 34px; 
-            padding: 0 24px 0 8px;
+            height: 34px;
+            padding: 0 36px 0 12px;
             background: #0b0b11;
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 8px;
             color: #fff;
-            font-size: 10px; 
+            font-size: 12px;
             font-family: 'Inter', sans-serif;
             outline: none;
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -191,39 +225,25 @@
             box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
         }
 
-        @media (min-width: 768px) {
-            .channel-search-box-premium input {
-                height: 40px;
-                font-size: 13px;
-                padding: 0 38px 0 14px;
-            }
-        }
-
+        /* সার্চ বারে ক্লিক করলে যে স্টাইলিশ ইফেক্ট আসবে */
         .channel-search-box-premium input:focus {
             border-color: rgba(0, 240, 255, 0.8);
             box-shadow: 0 0 12px rgba(0, 240, 255, 0.25), inset 0 1px 2px rgba(0,0,0,0.8);
             background: #10101a;
         }
 
+        /* সার্চ আইকন চেঞ্জ (SVG পাথ অ্যানিমেশন ম্যাচ করা) */
         .search-icon-inside {
             position: absolute;
-            right: 8px;
+            right: 12px;
             top: 50%;
             transform: translateY(-50%);
-            width: 11px;
-            height: 11px;
+            width: 14px;
+            height: 14px;
             display: block;
             pointer-events: none;
             transition: all 0.25s ease;
             opacity: 0.5;
-        }
-
-        @media (min-width: 768px) {
-            .search-icon-inside {
-                right: 12px;
-                width: 16px;
-                height: 16px;
-            }
         }
 
         .channel-search-box-premium input:focus + .search-icon-inside {
@@ -236,13 +256,13 @@
         }
         
         .channel-search-box-premium input:focus + .search-icon-inside path {
-            stroke: #00f0ff; 
+            stroke: #00f0ff; /* ফোকাস করলে আইকন কালার সায়ান নিয়ন হয়ে যাবে */
         }
 
-        /* 📺 প্লেয়ার এরিয়া মার্জিন */
+        /* প্লেয়ার এরিয়া মার্জিন */
         .tv-area {
             margin-top: 0px !important;
-            padding-top: 2px !important; 
+            padding-top: 0px !important;
         }
 
         .tv-view {
@@ -263,7 +283,7 @@
             height: 100%;
         }
 
-        /* 🔒 চ্যানেল লিস্ট ও স্ক্রোলবার */
+        /* 🔒 চ্যানেল লিস্ট ও স্পষ্ট স্ক্রোলবার */
         .channel-list {
             max-height: 360px !important;
             overflow-y: auto !important;
@@ -298,7 +318,7 @@
             box-shadow: 0 0 12px rgba(255, 0, 85, 1) !important;
         }
 
-        /* ⚡ নোটিশ বার */
+        /* ⚡ নোটিশ বার সেটিংস */
         .marquee-container {
             background: #0d0d13;
             color: #ffffff;
@@ -330,20 +350,19 @@
             text-align: center;
         }
 
-        /* 📸 ফিক্সড প্রিমিয়াম ব্র্যান্ড ব্যানার (ব্যাকগ্রাউন্ড লিঙ্ক ইস্যু সমাধান করা হয়েছে) */
+        /* 📸 ব্যানার */
         .tio-style-banner-fixed {
             width: 320px;
             height: 50px;
-            background: linear-gradient(135deg, #0f0f18 0%, #171725 100%);
+            background: url('https://png.pngtree.com/background/20250208/original/pngtree-smooth-gradient-chaotic-texture-in-abstract-dark-background-with-black-shade-picture-image_15219959.jpg') center/cover;
             position: relative;
             overflow: hidden;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+            border: 1px solid #333;
             font-family: 'Segoe UI', Roboto, sans-serif;
             display: flex;
             align-items: center;
             margin: 0 auto 15px auto; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
 
         .tio-style-banner-fixed::after {
@@ -356,7 +375,7 @@
             background: linear-gradient(
                 to right,
                 rgba(255,255,255,0) 0%,
-                rgba(255,255,255,0.15) 50%,
+                rgba(255,255,255,0.2) 50%,
                 rgba(255,255,255,0) 100%
             );
             transform: skewX(-25deg);
@@ -376,7 +395,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,240,255,0.05) 100%);
+            background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,210,255,0.1) 100%);
             z-index: 1;
         }
 
@@ -386,7 +405,7 @@
             display: flex;
             align-items: center;
             width: 100%;
-            padding: 0 12px;
+            padding: 0 10px;
             justify-content: space-between;
         }
 
@@ -399,7 +418,7 @@
         }
 
         .rs-live { color: #fff; }
-        .tv-text { color: #00f0ff; text-shadow: 0 0 8px rgba(0, 240, 255, 0.6); }
+        .tv-text { color: #ff9100; text-shadow: 0 0 5px #ff9100; }
 
         .text-section-fixed {
             flex-grow: 1;
@@ -441,7 +460,6 @@
             align-items: center;
             gap: 4px;
             flex-shrink: 0;
-            box-shadow: 0 0 8px rgba(255,0,0,0.5);
         }
 
         .pulse {
@@ -516,12 +534,18 @@
         <div class="row">
             <div class="col-xs-12 col-md-12">
                 <div class="top-bar-wrapper">
+                    <!-- 🔗 নতুন প্রফেশনাল গ্লাস-মরফিজম লোগো -->
                     <a href="https://rslivetv.vercel.app" class="logo-link">
-                        <img src="https://i.postimg.cc/mkmhJV1Q/file-00000000fd447209b84f90d95d3f9762.png" alt="RS Live TV Logo" class="brand-logo-image">
+                        <div class="brand-title-neon">
+                            <span class="rs-glow">RS</span>
+                            <span class="live-glow">LIVE</span>
+                            <span class="neon-tv-tag">TV</span>
+                        </div>
                     </a>
-                    
+                    <!-- 🔍 নতুন প্রফেশনাল সার্চ বার এবং ভেক্টর আইকন -->
                     <div class="channel-search-box-premium">
                         <input type="text" id="channelSearch" placeholder="Search channel..." autocomplete="off">
+                        <!-- 🎨 মিনিমাল লাক্সারি সার্চ আইকন SVG (যা ফোকাস স্টেট এর সাথে রেসপন্স করবে) -->
                         <svg class="search-icon-inside" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="rgba(255,255,255,0.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M21 21L16.65 16.65" stroke="rgba(255,255,255,0.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -543,6 +567,7 @@
         </div>
     </div>
 
+    <!-- ⚡ নোটিশ বার -->
     <div class="marquee-container">
         <div class="notice-label">NOTICE</div>
         <marquee scrollamount="6" onmouseover="this.stop()" onmouseout="this.start()">
@@ -575,19 +600,6 @@
                 </div>
             </div>
 
-            <div class="ad-box">
-                <script type="text/javascript">
-                    atOptions = {
-                        'key' : '774c0e371455f6476668178b5faae5ab',
-                        'format' : 'iframe',
-                        'height' : 50,
-                        'width' : 320,
-                        'params' : {}
-                    };
-                </script>
-                <script type="text/javascript" src="//www.highperformanceformat.com/774c0e371455f6476668178b5faae5ab/indigo.js"></script>
-            </div>
-
             <div class="tg-card">
                 <h5 style="color:#fff; margin-bottom:5px; font-size:16px;">সাপোর্ট প্রয়োজন?</h5>
                 <p style="color:#777; font-size:11px; margin-bottom:5px;">আপডেট ও চ্যানেল রিকোয়েস্টের জন্য আমাদের টেলিগ্রাম গ্রুপে যোগ দিন।</p>
@@ -615,7 +627,7 @@
 
     <script src="script.js?v=12.0"></script>
     <script>
-        // 🔒 সোর্স কোড প্রোটেকশন (রাইট ক্লিক ও শর্টকাট ব্লক)
+        // 🔒 সোর্স কোড প্রোটেকশন
         document.addEventListener('contextmenu', event => event.preventDefault());
         document.onkeydown = function(e) {
             if (e.keyCode == 123) { return false; } 
@@ -623,8 +635,14 @@
             if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; } 
             if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; } 
         };
+        setInterval(function(){
+            const startTime = +new Date();
+            debugger;
+            const endTime = +new Date();
+            if(endTime - startTime > 100){ window.location.href = "about:blank"; }
+        }, 100);
 
-        // 🎬 লোডিং স্ক্রিন সরানোর ফাংশন
+        // 🎬 লোডিং ইন্ট্রো স্ক্রিন
         window.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 const loader = document.getElementById('intro-loader');
@@ -636,7 +654,7 @@
             }, 1200); 
         });
 
-        // 🔍 চ্যানেল ফিল্টার লজিক
+        // 🔍 অ্যান্টি-জার্ক ইনস্ট্যান্ট ফিল্টার লজিক
         function applyInstantChannelFilter() {
             const searchInput = document.getElementById('channelSearch');
             if (!searchInput) return;
@@ -667,7 +685,7 @@
             searchInputEl.addEventListener('keyup', applyInstantChannelFilter);
         }
 
-        // 🎮 কিবোর্ড কন্ট্রোল
+        // 🎮 スマート TV রিমোট ও কিবোর্ড কন্ট্রোল
         document.addEventListener('keydown', function(event) {
             const items = Array.from(document.querySelectorAll('#channel-container li')).filter(el => el.style.display !== 'none');
             const active = document.activeElement;
@@ -713,6 +731,7 @@
             }
         });
 
+        // 🚫 স্ক্রোল লাফালাফি করা ওভাররাইড লজিক লক
         window.addEventListener('focus', function(event) {
             if (document.activeElement && document.activeElement.id === 'channelSearch') {
                 event.preventDefault();
@@ -723,6 +742,16 @@
                 event.target.scrollIntoView({ block: 'nearest', behavior: 'auto' });
             }
         }, true); 
+
+        function initTVFocus() {
+            setTimeout(() => {
+                const firstChannel = document.querySelector('#channel-container li');
+                const searchInput = document.getElementById('channelSearch');
+                if (firstChannel && document.activeElement !== searchInput) { 
+                    firstChannel.focus(); 
+                }
+            }, 600);
+        }
     </script>
 </body>
 </html>
