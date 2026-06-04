@@ -103,12 +103,12 @@
         @keyframes fadeInText { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes dotPulse { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
 
-        /* 🔍 নতুন সেন্ট্রাল সার্চ বার এরিয়া (লোগো বাদ দিয়ে মাঝখানে বসানো) */
-        .search-bar-container {
+        /* 🔍 টপ বার কন্টেইনার (সার্চ বামে এবং টেলিগ্রাম ডানে রাখার জন্য স্পেস-বিটউইন) */
+        .top-action-wrapper {
             display: flex;
-            justify-content: center;
+            justify-content: space-between; /* সার্চ বামে, টেলিগ্রাম ডানে */
             align-items: center;
-            padding: 15px 8px 10px 8px;
+            padding: 12px 4px 8px 4px;
             width: 100%;
             box-sizing: border-box;
         }
@@ -116,51 +116,91 @@
         .channel-search-box-premium {
             position: relative;
             width: 100%; 
-            max-width: 450px; /* বড় স্ক্রিনে সার্চবারটি যেন অতিরিক্ত বড় না হয় */
+            max-width: 180px; 
             display: flex;
             align-items: center;
         }
 
         .channel-search-box-premium input {
             width: 100%;
-            height: 38px; /* একটু বড় ও প্রিমিয়াম লুক দেওয়া হয়েছে */
-            padding: 0 40px 0 15px;
-            background: #111118;
-            border: 1px solid rgba(0, 240, 255, 0.4);
-            border-radius: 20px; /* ওভাল শেপ যাতে প্রফেশনাল লাগে */
+            height: 34px; 
+            padding: 0 32px 0 12px;
+            background: #12121a; 
+            border: none !important; 
+            border-radius: 6px; 
             color: #fff;
-            font-size: 13px;
+            font-size: 11.5px;
             outline: none;
-            transition: all 0.2s ease;
+            transition: all 0.25s ease;
             box-sizing: border-box;
-            text-align: center; /* ভেতরের টেক্সট সেন্টারে থাকবে */
+            text-align: left;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.25);
         }
 
         .channel-search-box-premium input:focus {
-            border-color: #00f0ff;
-            box-shadow: 0 0 12px rgba(0, 240, 255, 0.5);
-            background: #141422;
-        }
-
-        /* সার্চ ইনপুট ফোকাস হলে প্লেসহোল্ডার টেক্সট ডানে সরানোর জন্য */
-        .channel-search-box-premium input:focus::placeholder {
-            color: transparent;
+            background: #181826;
+            box-shadow: 0 0 14px rgba(0, 240, 255, 0.5); 
         }
 
         .channel-search-box-premium input::placeholder {
             color: rgba(255, 255, 255, 0.5);
-            transition: color 0.2s ease;
         }
 
         .search-icon-inside {
             position: absolute;
-            right: 15px;
+            right: 10px;
             top: 50%;
             transform: translateY(-50%);
-            width: 16px;
-            height: 16px;
+            width: 13px;
+            height: 13px;
             display: block;
             pointer-events: none;
+        }
+
+        /* ✈️ প্লেয়ারের ডান কর্নারে শর্ট বাংলা লেখা সহ টেলিগ্রাম বাটন */
+        .header-telegram-btn-wrapper {
+            display: flex;
+            align-items: center;
+            text-decoration: none !important;
+            background: rgba(0, 136, 204, 0.15); /* হালকা ডার্ক গ্লেজ ব্যাকগ্রাউন্ড */
+            border: 1px solid rgba(0, 136, 204, 0.4);
+            padding: 0 4px 0 12px; /* বামে টেক্সটের জন্য বেশি স্পেস */
+            height: 34px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            box-shadow: 0 0 10px rgba(0, 136, 204, 0.2);
+            cursor: pointer;
+        }
+
+        .header-telegram-btn-wrapper:hover {
+            background: rgba(0, 136, 204, 0.3);
+            border-color: #0088cc;
+            transform: translateY(-1px);
+            box-shadow: 0 0 14px rgba(0, 136, 204, 0.5);
+        }
+
+        .telegram-btn-text {
+            color: #00f0ff; /* উজ্জ্বল ডার্ক মোড কালার */
+            font-size: 11px;
+            font-weight: bold;
+            margin-right: 8px; /* টেক্সট থেকে লোগোর গ্যাপ */
+            letter-spacing: 0.3px;
+        }
+
+        .telegram-icon-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+            background: #0088cc;
+            border-radius: 4px;
+        }
+
+        .telegram-icon-box svg {
+            width: 14px;
+            height: 14px;
+            fill: #fff;
         }
 
         /* প্লেয়ার এরিয়া মার্জিন */
@@ -254,7 +294,7 @@
             text-align: center;
         }
 
-        /* 📸 অরিজিনাল ব্যানার পজিশন (নোটিশ এবং টেলিগ্রামের মাঝে লকড) */
+        /* 📸 অরিজিনাল ব্যানার পজিশন */
         .tio-style-banner-fixed {
             width: 320px;
             height: 50px;
@@ -379,30 +419,6 @@
             100% { transform: scale(1.5); opacity: 0; }
         }
 
-        .tg-card {
-            background: #111116;
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid #1a1b26;
-            display: block;
-            width: 320px;
-            margin: 0 auto 15px auto;
-        }
-
-        .telegram-btn {
-            display: inline-block;
-            background: #0088cc;
-            color: #fff !important;
-            padding: 8px 25px;
-            border-radius: 6px;
-            font-weight: bold;
-            text-decoration: none !important;
-            margin-top: 10px;
-            font-size: 13px;
-            font-family: 'Courier New', Courier, monospace;
-            font-style: italic;
-        }
-
         .ad-box {
             margin: 15px auto;
             width: 320px;
@@ -435,17 +451,28 @@
     </div>
 
     <div class="container tv-area">
-        <!-- 🔍 সার্চবার প্লেয়ারের উপর সেন্টার পজিশনে নেওয়া হলো -->
+        <!-- 🔍 অ্যাকশন বার লেআউট: বামে সার্চবার এবং ডানে লেখা সহ টেলিগ্রাম বাটন -->
         <div class="row">
             <div class="col-xs-12 col-md-12">
-                <div class="search-bar-container">
+                <div class="top-action-wrapper">
+                    <!-- সার্চ বক্স (বামে এবং বর্ডার ছাড়া প্রিমিয়াম ডার্ক মোড লুক) -->
                     <div class="channel-search-box-premium">
-                        <input type="text" id="channelSearch" placeholder="Search your channel..." autocomplete="off">
+                        <input type="text" id="channelSearch" placeholder="Search channel..." autocomplete="off">
                         <svg class="search-icon-inside" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z" stroke="#00f0ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M22 22L20 20" stroke="#00f0ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
+                    
+                    <!-- ✈️ প্লেয়ারের ডান কর্নারে সেট করা নতুন টেলিগ্রাম বাটন -->
+                    <a href="https://t.me/rslivetv" target="_blank" class="header-telegram-btn-wrapper" title="Join Telegram Group">
+                        <span class="telegram-btn-text">টেলিগ্রামে যুক্ত হন</span>
+                        <div class="telegram-icon-box">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-1-.65-.35-1 .22-1.62.15-.15 2.7-2.46 2.75-2.68.01-.03.01-.14-.06-.2-.07-.06-.17-.04-.25-.02-.11.02-1.83 1.16-5.16 3.42-.49.34-.93.51-1.33.5-.44-.01-1.29-.25-1.92-.45-.77-.25-1.39-.39-1.34-.83.03-.23.35-.46.97-.71 3.82-1.66 6.37-2.75 7.66-3.28 3.66-1.48 4.42-1.74 4.92-1.75.11 0 .35.03.5.16.13.11.17.29.19.41-.02.11-.02.24-.02.28z"/>
+                            </svg>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -492,12 +519,6 @@
                     </div>
                     <div class="live-circle"><span class="pulse"></span>LIVE</div>
                 </div>
-            </div>
-
-            <div class="tg-card">
-                <h5 style="color:#fff; margin-bottom:5px; font-size:16px;">সাপোর্ট প্রয়োজন?</h5>
-                <p style="color:#777; font-size:11px; margin-bottom:5px;">আপডেট ও চ্যানেল রিকোয়েস্টের জন্য আমাদের টেলিগ্রাম গ্রুপে যোগ দিন।</p>
-                <a href="https://t.me/rslivetv" target="_blank" class="telegram-btn">JOIN TELEGRAM</a>
             </div>
 
             <div class="ad-box">
