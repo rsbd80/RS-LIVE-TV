@@ -12,14 +12,11 @@
       gtag('config', 'G-DRBZH98TKH');
     </script>
 
-    <title>RS Live TV</title>
+    <title>Live TV Player</title>
 
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/mD1VCt2C/RS-Live.png">
     <link href="bootstrap.min.css" rel="stylesheet">
     <link href="style.css?v=12.0" rel="stylesheet">
-
-    <!-- 🌟 Google Fonts থেকে প্রফেশনাল ফন্ট যুক্ত করা হলো -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Poppins:wght@700;900&display=swap" rel="stylesheet">
 
     <style>
         /* 🚫 টেক্সট সিলেক্ট বা কপি করা বন্ধ করার CSS */
@@ -32,7 +29,6 @@
             overflow-x: hidden;
             scroll-behavior: auto !important; 
             overscroll-behavior-y: contain;
-            font-family: 'Inter', sans-serif;
         }
 
         /* 🎬 ইন্ট্রো লোডার */
@@ -107,156 +103,64 @@
         @keyframes fadeInText { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes dotPulse { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
 
-        /* ✨ টপ বার এবং লোগো এরিয়া (প্রিমিয়াম রিমডেলিং) */
-        .top-bar-wrapper {
+        /* 🔍 নতুন সেন্ট্রাল সার্চ বার এরিয়া (লোগো বাদ দিয়ে মাঝখানে বসানো) */
+        .search-bar-container {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            padding: 12px 10px;
-            background: linear-gradient(180deg, rgba(16,16,28,0.7) 0%, rgba(6,6,12,0) 100%);
-            margin-bottom: 8px;
+            padding: 15px 8px 10px 8px;
             width: 100%;
             box-sizing: border-box;
         }
 
-        .logo-link {
-            text-decoration: none !important;
-            display: inline-flex;
-            align-items: center;
-            transition: transform 0.2s ease;
-        }
-        
-        .logo-link:hover {
-            transform: scale(1.02);
-        }
-
-        /* 👑 মডার্ন গ্লাস লোগো ইন্টারফেস */
-        .brand-title-neon {
-            font-family: 'Poppins', sans-serif;
-            font-size: 18px;
-            font-weight: 900;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            flex-shrink: 0;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 4px 10px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: inset 0 1px 1px rgba(255,255,255,0.1);
-        }
-
-        @media (min-width: 768px) {
-            .brand-title-neon {
-                font-size: 24px;
-                gap: 8px;
-                padding: 6px 14px;
-            }
-        }
-
-        .brand-title-neon .rs-glow {
-            font-weight: 900;
-            background: linear-gradient(135deg, #ffffff 40%, #a6b4c9 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -0.5px;
-        }
-
-        .brand-title-neon .live-glow {
-            color: #ff0055;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            text-shadow: 0 0 12px rgba(255, 0, 85, 0.5);
-            animation: pulseGlow 1.5s infinite alternate;
-        }
-
-        .neon-tv-tag {
-            background: linear-gradient(135deg, #00f0ff 0%, #0072ff 100%);
-            color: #030305;
-            font-size: 10px;
-            font-weight: 800;
-            padding: 1px 5px;
-            border-radius: 4px;
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
-            letter-spacing: 0.5px;
-        }
-
-        @media (min-width: 768px) {
-            .neon-tv-tag {
-                font-size: 12px;
-                padding: 2px 7px;
-            }
-        }
-
-        @keyframes pulseGlow {
-            0% { opacity: 0.8; text-shadow: 0 0 8px rgba(255, 0, 85, 0.4); }
-            100% { opacity: 1; text-shadow: 0 0 18px rgba(255, 0, 85, 0.8), 0 0 5px rgba(255, 0, 85, 0.4); }
-        }
-
-        /* 🔍 প্রিমিয়াম আল্ট্রা-মডার্ন সার্চ বক্স */
         .channel-search-box-premium {
             position: relative;
-            width: 150px; 
+            width: 100%; 
+            max-width: 450px; /* বড় স্ক্রিনে সার্চবারটি যেন অতিরিক্ত বড় না হয় */
             display: flex;
             align-items: center;
-            flex-shrink: 0;
-        }
-
-        @media (min-width: 768px) {
-            .channel-search-box-premium {
-                width: 220px; 
-            }
         }
 
         .channel-search-box-premium input {
             width: 100%;
-            height: 34px;
-            padding: 0 36px 0 12px;
-            background: #0b0b11;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 8px;
+            height: 38px; /* একটু বড় ও প্রিমিয়াম লুক দেওয়া হয়েছে */
+            padding: 0 40px 0 15px;
+            background: #111118;
+            border: 1px solid rgba(0, 240, 255, 0.4);
+            border-radius: 20px; /* ওভাল শেপ যাতে প্রফেশনাল লাগে */
             color: #fff;
-            font-size: 12px;
-            font-family: 'Inter', sans-serif;
+            font-size: 13px;
             outline: none;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.2s ease;
             box-sizing: border-box;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+            text-align: center; /* ভেতরের টেক্সট সেন্টারে থাকবে */
         }
 
-        /* সার্চ বারে ক্লিক করলে যে স্টাইলিশ ইফেক্ট আসবে */
         .channel-search-box-premium input:focus {
-            border-color: rgba(0, 240, 255, 0.8);
-            box-shadow: 0 0 12px rgba(0, 240, 255, 0.25), inset 0 1px 2px rgba(0,0,0,0.8);
-            background: #10101a;
+            border-color: #00f0ff;
+            box-shadow: 0 0 12px rgba(0, 240, 255, 0.5);
+            background: #141422;
         }
 
-        /* সার্চ আইকন চেঞ্জ (SVG পাথ অ্যানিমেশন ম্যাচ করা) */
+        /* সার্চ ইনপুট ফোকাস হলে প্লেসহোল্ডার টেক্সট ডানে সরানোর জন্য */
+        .channel-search-box-premium input:focus::placeholder {
+            color: transparent;
+        }
+
+        .channel-search-box-premium input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+            transition: color 0.2s ease;
+        }
+
         .search-icon-inside {
             position: absolute;
-            right: 12px;
+            right: 15px;
             top: 50%;
             transform: translateY(-50%);
-            width: 14px;
-            height: 14px;
+            width: 16px;
+            height: 16px;
             display: block;
             pointer-events: none;
-            transition: all 0.25s ease;
-            opacity: 0.5;
-        }
-
-        .channel-search-box-premium input:focus + .search-icon-inside {
-            opacity: 1;
-            transform: translateY(-50%) scale(1.1);
-        }
-        
-        .search-icon-inside path {
-            transition: stroke 0.25s ease;
-        }
-        
-        .channel-search-box-premium input:focus + .search-icon-inside path {
-            stroke: #00f0ff; /* ফোকাস করলে আইকন কালার সায়ান নিয়ন হয়ে যাবে */
         }
 
         /* প্লেয়ার এরিয়া মার্জিন */
@@ -283,7 +187,7 @@
             height: 100%;
         }
 
-        /* 🔒 চ্যানেল লিস্ট ও স্পষ্ট স্ক্রোলবার */
+        /* 🔒 চ্যানেল লিস্ট ও স্পষ্ট স্ক্রোলবার ফিক্স */
         .channel-list {
             max-height: 360px !important;
             overflow-y: auto !important;
@@ -350,7 +254,7 @@
             text-align: center;
         }
 
-        /* 📸 ব্যানার */
+        /* 📸 অরিজিনাল ব্যানার পজিশন (নোটিশ এবং টেলিগ্রামের মাঝে লকড) */
         .tio-style-banner-fixed {
             width: 320px;
             height: 50px;
@@ -521,7 +425,7 @@
     <div id="intro-loader">
         <div class="loader-content">
             <div class="welcome-text">Welcome To</div>
-            <h1 class="brand-text">RS Live <span>TV</span></h1>
+            <h1 class="brand-text">Live <span>TV</span></h1>
             <div class="loading-dots">
                 <span></span>
                 <span></span>
@@ -531,24 +435,15 @@
     </div>
 
     <div class="container tv-area">
+        <!-- 🔍 সার্চবার প্লেয়ারের উপর সেন্টার পজিশনে নেওয়া হলো -->
         <div class="row">
             <div class="col-xs-12 col-md-12">
-                <div class="top-bar-wrapper">
-                    <!-- 🔗 নতুন প্রফেশনাল গ্লাস-মরফিজম লোগো -->
-                    <a href="https://rslivetv.vercel.app" class="logo-link">
-                        <div class="brand-title-neon">
-                            <span class="rs-glow">RS</span>
-                            <span class="live-glow">LIVE</span>
-                            <span class="neon-tv-tag">TV</span>
-                        </div>
-                    </a>
-                    <!-- 🔍 নতুন প্রফেশনাল সার্চ বার এবং ভেক্টর আইকন -->
+                <div class="search-bar-container">
                     <div class="channel-search-box-premium">
-                        <input type="text" id="channelSearch" placeholder="Search channel..." autocomplete="off">
-                        <!-- 🎨 মিনিমাল লাক্সারি সার্চ আইকন SVG (যা ফোকাস স্টেট এর সাথে রেসপন্স করবে) -->
+                        <input type="text" id="channelSearch" placeholder="Search your channel..." autocomplete="off">
                         <svg class="search-icon-inside" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="rgba(255,255,255,0.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M21 21L16.65 16.65" stroke="rgba(255,255,255,0.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z" stroke="#00f0ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M22 22L20 20" stroke="#00f0ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
                 </div>
@@ -567,7 +462,6 @@
         </div>
     </div>
 
-    <!-- ⚡ নোটিশ বার -->
     <div class="marquee-container">
         <div class="notice-label">NOTICE</div>
         <marquee scrollamount="6" onmouseover="this.stop()" onmouseout="this.start()">
@@ -585,7 +479,7 @@
                 <div class="banner-overlay"></div>
                 <div class="content-wrapper">
                     <div class="brand-logo-fixed">
-                        <span class="rs-live">RS Live</span>
+                        <span class="rs-live">Live</span>
                         <span class="tv-text">TV</span>
                     </div>
                     <div class="text-section-fixed">
@@ -620,7 +514,7 @@
             </div>
 
             <div class="copyright">
-                © 2026 RS LIVE TV | All Rights Reserved
+                © 2026 LIVE TV | All Rights Reserved
             </div>
         </div>
     </footer>
