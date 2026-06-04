@@ -114,7 +114,7 @@
             flex-direction: row; 
             align-items: center;
             justify-content: space-between;
-            padding: 4px 4px 6px 4px; 
+            padding: 4px 6px 6px 6px; 
             background: linear-gradient(180deg, rgba(16,16,28,0.8) 0%, rgba(6,6,12,0) 100%);
             margin-top: 0px;  
             margin-bottom: 4px; 
@@ -143,9 +143,9 @@
             transform: scale(1.02);
         }
 
-        /* 🖼️ লোগো সাইজ সেটিংস */
+        /* 🖼️ লোগো সাইজ সর্বোচ্চ বড় করা হলো */
         .brand-logo-image {
-            height: 48px; 
+            height: 52px; /* মোবাইলে লোগো আরও বড় করা হয়েছে */
             width: auto;
             display: block;
             object-fit: contain;
@@ -154,15 +154,15 @@
 
         @media (min-width: 768px) {
             .brand-logo-image {
-                height: 62px; 
+                height: 66px; 
             }
         }
 
-        /* 🔍 সার্চ বক্স */
+        /* 🔍 সার্চ বক্স সাইজ কমানো হলো */
         .channel-search-box-premium {
             position: relative;
-            width: 45%; 
-            max-width: 165px;
+            width: 38%; /* সার্চবার ছোট করে লোগোকে জায়গা দেওয়া হয়েছে */
+            max-width: 130px;
             display: flex;
             align-items: center;
             flex-shrink: 0;
@@ -170,20 +170,20 @@
 
         @media (min-width: 768px) {
             .channel-search-box-premium {
-                width: 250px; 
+                width: 220px; 
                 max-width: none;
             }
         }
 
         .channel-search-box-premium input {
             width: 100%;
-            height: 36px; 
-            padding: 0 28px 0 10px;
+            height: 34px; 
+            padding: 0 24px 0 8px;
             background: #0b0b11;
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 8px;
             color: #fff;
-            font-size: 11px; 
+            font-size: 10px; 
             font-family: 'Inter', sans-serif;
             outline: none;
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -193,7 +193,7 @@
 
         @media (min-width: 768px) {
             .channel-search-box-premium input {
-                height: 42px;
+                height: 40px;
                 font-size: 13px;
                 padding: 0 38px 0 14px;
             }
@@ -210,8 +210,8 @@
             right: 8px;
             top: 50%;
             transform: translateY(-50%);
-            width: 13px;
-            height: 13px;
+            width: 11px;
+            height: 11px;
             display: block;
             pointer-events: none;
             transition: all 0.25s ease;
@@ -330,19 +330,20 @@
             text-align: center;
         }
 
-        /* 📸 ব্যানার */
+        /* 📸 ফিক্সড প্রিমিয়াম ব্র্যান্ড ব্যানার (ব্যাকগ্রাউন্ড লিঙ্ক ইস্যু সমাধান করা হয়েছে) */
         .tio-style-banner-fixed {
             width: 320px;
             height: 50px;
-            background: url('https://png.pngtree.com/background/20250208/original/pngtree-smooth-gradient-chaotic-texture-in-abstract-dark-background-with-black-shade-picture-image_15219959.jpg') center/cover;
+            background: linear-gradient(135deg, #0f0f18 0%, #171725 100%);
             position: relative;
             overflow: hidden;
-            border-radius: 6px;
-            border: 1px solid #333;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
             font-family: 'Segoe UI', Roboto, sans-serif;
             display: flex;
             align-items: center;
             margin: 0 auto 15px auto; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
 
         .tio-style-banner-fixed::after {
@@ -355,7 +356,7 @@
             background: linear-gradient(
                 to right,
                 rgba(255,255,255,0) 0%,
-                rgba(255,255,255,0.2) 50%,
+                rgba(255,255,255,0.15) 50%,
                 rgba(255,255,255,0) 100%
             );
             transform: skewX(-25deg);
@@ -375,7 +376,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,210,255,0.1) 100%);
+            background: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,240,255,0.05) 100%);
             z-index: 1;
         }
 
@@ -385,7 +386,7 @@
             display: flex;
             align-items: center;
             width: 100%;
-            padding: 0 10px;
+            padding: 0 12px;
             justify-content: space-between;
         }
 
@@ -398,7 +399,7 @@
         }
 
         .rs-live { color: #fff; }
-        .tv-text { color: #ff9100; text-shadow: 0 0 5px #ff9100; }
+        .tv-text { color: #00f0ff; text-shadow: 0 0 8px rgba(0, 240, 255, 0.6); }
 
         .text-section-fixed {
             flex-grow: 1;
@@ -440,6 +441,7 @@
             align-items: center;
             gap: 4px;
             flex-shrink: 0;
+            box-shadow: 0 0 8px rgba(255,0,0,0.5);
         }
 
         .pulse {
