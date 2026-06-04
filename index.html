@@ -18,7 +18,6 @@
     <link href="bootstrap.min.css" rel="stylesheet">
     <link href="style.css?v=12.0" rel="stylesheet">
 
-    <!-- 🌟 Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Poppins:wght@700;900&display=swap" rel="stylesheet">
 
     <style>
@@ -33,6 +32,8 @@
             scroll-behavior: auto !important; 
             overscroll-behavior-y: contain;
             font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
         /* 🎬 ইন্ট্রো লোডার */
@@ -107,15 +108,16 @@
         @keyframes fadeInText { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes dotPulse { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
 
-        /* ✨ টপ বার এবং লোগো এরিয়া (এক লাইনে সর্বোচ্চ স্পেস পাওয়ার জন্য অপ্টিমাইজড) */
+        /* ✨ টপ বার এবং লোগো এরিয়া */
         .top-bar-wrapper {
             display: flex;
             flex-direction: row; 
             align-items: center;
             justify-content: space-between;
-            padding: 10px 4px; /* প্যাডিং কমিয়ে স্পেস বাড়ানো হয়েছে */
+            padding: 4px 4px 6px 4px; 
             background: linear-gradient(180deg, rgba(16,16,28,0.8) 0%, rgba(6,6,12,0) 100%);
-            margin-bottom: 8px;
+            margin-top: 0px;  
+            margin-bottom: 4px; 
             width: 100%;
             box-sizing: border-box;
             gap: 8px;
@@ -123,8 +125,8 @@
 
         @media (min-width: 768px) {
             .top-bar-wrapper {
-                padding: 14px 15px;
-                margin-bottom: 10px;
+                padding: 10px 15px;
+                margin-bottom: 8px;
                 gap: 20px;
             }
         }
@@ -141,25 +143,25 @@
             transform: scale(1.02);
         }
 
-        /* 🖼️ লোগো সাইজ সর্বোচ্চ বড় করা হলো (মোবাইল ও ডেক্সটপ) */
+        /* 🖼️ লোগো সাইজ সেটিংস */
         .brand-logo-image {
-            height: 44px; /* মোবাইলে এক লাইনের মধ্যে সর্বোচ্চ বড় সাইজ */
+            height: 48px; 
             width: auto;
             display: block;
             object-fit: contain;
-            filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.45));
+            filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.5));
         }
 
         @media (min-width: 768px) {
             .brand-logo-image {
-                height: 58px; /* ডেক্সটপ স্ক্রিনের জন্য প্রিমিয়াম বড় সাইজ */
+                height: 62px; 
             }
         }
 
-        /* 🔍 সার্চ বক্স এরিয়া সাইজ ম্যানেজমেন্ট */
+        /* 🔍 সার্চ বক্স */
         .channel-search-box-premium {
             position: relative;
-            width: 46%; /* লোগোকে বেশি জায়গা দিতে উইডথ কিছুটা কমানো হলো */
+            width: 45%; 
             max-width: 165px;
             display: flex;
             align-items: center;
@@ -175,13 +177,13 @@
 
         .channel-search-box-premium input {
             width: 100%;
-            height: 35px; /* লোগোর সাথে ম্যাচ করে হাইট সেট করা */
+            height: 36px; 
             padding: 0 28px 0 10px;
             background: #0b0b11;
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 8px;
             color: #fff;
-            font-size: 11px; /* মোবাইল স্ক্রিনে টেক্সট ফিট করার জন্য */
+            font-size: 11px; 
             font-family: 'Inter', sans-serif;
             outline: none;
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -237,10 +239,10 @@
             stroke: #00f0ff; 
         }
 
-        /* প্লেয়ার এরিয়া মার্জিন */
+        /* 📺 প্লেয়ার এরিয়া মার্জিন */
         .tv-area {
             margin-top: 0px !important;
-            padding-top: 0px !important;
+            padding-top: 2px !important; 
         }
 
         .tv-view {
@@ -261,7 +263,7 @@
             height: 100%;
         }
 
-        /* 🔒 চ্যানেল লিস্ট ও স্পষ্ট স্ক্রোলবার */
+        /* 🔒 চ্যানেল লিস্ট ও স্ক্রোলবার */
         .channel-list {
             max-height: 360px !important;
             overflow-y: auto !important;
@@ -296,7 +298,7 @@
             box-shadow: 0 0 12px rgba(255, 0, 85, 1) !important;
         }
 
-        /* ⚡ নোটিশ বার সেটিংস */
+        /* ⚡ নোটিশ বার */
         .marquee-container {
             background: #0d0d13;
             color: #ffffff;
@@ -512,12 +514,10 @@
         <div class="row">
             <div class="col-xs-12 col-md-12">
                 <div class="top-bar-wrapper">
-                    <!-- 🔗 লোগো লিংক -->
                     <a href="https://rslivetv.vercel.app" class="logo-link">
                         <img src="https://i.postimg.cc/mkmhJV1Q/file-00000000fd447209b84f90d95d3f9762.png" alt="RS Live TV Logo" class="brand-logo-image">
                     </a>
                     
-                    <!-- 🔍 সার্চ বার -->
                     <div class="channel-search-box-premium">
                         <input type="text" id="channelSearch" placeholder="Search channel..." autocomplete="off">
                         <svg class="search-icon-inside" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -541,7 +541,6 @@
         </div>
     </div>
 
-    <!-- ⚡ নোটিশ বার -->
     <div class="marquee-container">
         <div class="notice-label">NOTICE</div>
         <marquee scrollamount="6" onmouseover="this.stop()" onmouseout="this.start()">
@@ -555,7 +554,6 @@
     <footer class="footer-premium">
         <div class="container">
             
-            <!-- 📸 RS Live TV ব্র্যান্ড ব্যানার -->
             <div class="tio-style-banner-fixed">
                 <div class="banner-overlay"></div>
                 <div class="content-wrapper">
@@ -575,7 +573,6 @@
                 </div>
             </div>
 
-            <!-- 💰 ব্যানার অ্যাড বক্স ১ -->
             <div class="ad-box">
                 <script type="text/javascript">
                     atOptions = {
@@ -589,14 +586,12 @@
                 <script type="text/javascript" src="//www.highperformanceformat.com/774c0e371455f6476668178b5faae5ab/indigo.js"></script>
             </div>
 
-            <!-- ✈️ টেলিগ্রাম সাপোর্ট কার্ড -->
             <div class="tg-card">
                 <h5 style="color:#fff; margin-bottom:5px; font-size:16px;">সাপোর্ট প্রয়োজন?</h5>
                 <p style="color:#777; font-size:11px; margin-bottom:5px;">আপডেট ও চ্যানেল রিকোয়েস্টের জন্য আমাদের টেলিগ্রাম গ্রুপে যোগ দিন।</p>
                 <a href="https://t.me/rslivetv" target="_blank" class="telegram-btn">JOIN TELEGRAM</a>
             </div>
 
-            <!-- 💰 ব্যানার অ্যাড বক্স ২ -->
             <div class="ad-box">
                 <script type="text/javascript">
                     atOptions = {
@@ -627,7 +622,7 @@
             if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; } 
         };
 
-        // 🎬 লোডিং ইন্ট্রো স্ক্রিন
+        // 🎬 লোডিং স্ক্রিন সরানোর ফাংশন
         window.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 const loader = document.getElementById('intro-loader');
@@ -726,16 +721,6 @@
                 event.target.scrollIntoView({ block: 'nearest', behavior: 'auto' });
             }
         }, true); 
-
-        function initTVFocus() {
-            setTimeout(() => {
-                const firstChannel = document.querySelector('#channel-container li');
-                const searchInput = document.getElementById('channelSearch');
-                if (firstChannel && document.activeElement !== searchInput) { 
-                    firstChannel.focus(); 
-                }
-            }, 600);
-        }
     </script>
 </body>
-    </html>
+</html>
