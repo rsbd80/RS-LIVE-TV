@@ -40,26 +40,6 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen5.aynaott.com/willowhd/index.m3u8"
   },
   {
-    "name": "SONY TEN SPORTS 1 HD",
-    "image": "https://tvassets.roarzone.net/images/sony_sports_1_hd.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://bestiptv.bestiptv-pro.workers.dev/?url=http://sm-monirul.top/SM/live/sony_sports_1_hd.m3u8"
-  },
-  {
-    "name": "SONY TEN SPORTS 2 HD",
-    "image": "https://tvassets.roarzone.net/images/sony_sports_2_hd.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://bestiptv.bestiptv-pro.workers.dev/?url=http://sm-monirul.top/SM/live/sony_sports_2_hd.m3u8"
-  },
-  {
-    "name": "SONY TEN SPORTS 5 HD",
-    "image": "https://tvassets.roarzone.net/images/sony_sports_5_hd.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://bestiptv.bestiptv-pro.workers.dev/?url=http://sm-monirul.top/SM/live/sony_sports_5_hd.m3u8."
-  },
-  {
-    "name": "SONY TEN CRICKET",
-    "image": "https://tvassets.roarzone.net/images/ten_cricket.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://edge2.roarzone.net:8447/roarzone/edge3/ten_cricket/index.m3u8?token=e7d764a26d2ef815b3cb52c1108a3f2187ef4bd9-80709dfea4d0658b614aebc530e317b6-1779392133-1779381333"
-  },
-  {
     "name": "PTV Sports",
     "image": "https://s3.aynaott.com/storage/9d9d7cbfba5a8ceea648bbd963ad1014",
     "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen5.aynaott.com/PtvSports/index.m3u8?e=1779283784&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=db1789e36c278bf538489fac263e0ffb"
