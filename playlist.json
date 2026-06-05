@@ -1,4 +1,5 @@
 [
+  // ===== SPORTS =====
   {
     "name": "FIFA Plus English",
     "image": "https://a.espncdn.com/combiner/i?img=/i/leaguelogos/soccer/500/4.png",
@@ -249,6 +250,7 @@
     "image": "https://imglink.cc/cdn/859KM3TbQb.jpg",
     "url": "https://rs-player.netlify.app/jw-player?url=http://maxotts.maxdigitaltv.com/x-media/C64/master.m3u8"
   },
+  // ===== KOLKATA =====
   {
     "name": "Star Jalsha",
     "image": "https://raw.githubusercontent.com/Rakib49/Rakibiptv/main/images%20(9).jpeg",
