@@ -30,11 +30,6 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen7.aynaott.com/tsports-hd/index.m3u8?e=1779283784&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=3b4c5a2cfa872fa7f91ffbfb4aa0f658"
   },
   {
-    "name": "Sony Ten 1",
-    "logo": "https://tvassets.roarzone.net/images/sony_sports_1_hd.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://ottbanglaplatform.com/tv/toffee/live.php?id=sony_sports_1_hd&e=.m3u8"
-  },
-  {
     "name": "Btv FIFA",
     "image": "https://ssl.com.bd/sites/default/files/BTV%20Logo%20Gallery.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8"
