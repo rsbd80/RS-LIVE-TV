@@ -1,10 +1,5 @@
 [
   {
-    "name": "9XM",
-    "image": "https://yt3.googleusercontent.com/a5SfL3aMu1G_MufbVoDv0wPz4gcyn_pYtsR3BAMH08B368gh-ytxzBWgPpdmKyWemwCGF0Ql=s900-c-k-c0x00ffffff-no-rj",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://wiselp.wiseplayout.com/9XM/master.m3u8"
-  },
-  {
     "name": "BAN vs AUS",
     "image": "https://i.postimg.cc/HWRx03rc/20260607-232004.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen7.aynaott.com/tsportsfhd/index.m3u8"
@@ -1098,5 +1093,10 @@
     "name": "Yrf Nusic",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCIkm2nIJw9C43IcSBUici5QZMpApbgDzIB7qCntb-sA&s=10",
     "url": "https://rs-player.netlify.app/jw-player?url=https://amg01412-xiaomiasia-yrfmusic-xiaomi-1rmk2.amagi.tv/playlist/amg01412-xiaomiasia-yrfmusic-xiaomi/playlist.m3u8"
+  },
+  {
+    "name": "9XM",
+    "image": "https://yt3.googleusercontent.com/a5SfL3aMu1G_MufbVoDv0wPz4gcyn_pYtsR3BAMH08B368gh-ytxzBWgPpdmKyWemwCGF0Ql=s900-c-k-c0x00ffffff-no-rj",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://wiselp.wiseplayout.com/9XM/master.m3u8"
   }
 ]
