@@ -280,11 +280,6 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://live-bangla.akamaized.net/liveabr/playlist.m3u8"
   },
   {
-    "name": "Sangeet Bangla",
-    "image": "https://s3.aynaott.com/storage/80424ce0682e14e7d51e28de33d5f380",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://cdn-4.pishow.tv/live/1143/master.m3u8"
-  },
-  {
     "name": "SONY AATH",
     "image": "https://tvassets.roarzone.net/images/33.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://edge2.roarzone.net:8447/roarzone/edge3/sonyaath/index.m3u8?token=571cbfa1fa2e6d2ce7d53975a8ae77afb5189d20-eb13b2ccb090084878804fb0e801091a-1780020920-1780010120"
@@ -1093,6 +1088,11 @@
     "name": "Yrf Nusic",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCIkm2nIJw9C43IcSBUici5QZMpApbgDzIB7qCntb-sA&s=10",
     "url": "https://rs-player.netlify.app/jw-player?url=https://amg01412-xiaomiasia-yrfmusic-xiaomi-1rmk2.amagi.tv/playlist/amg01412-xiaomiasia-yrfmusic-xiaomi/playlist.m3u8"
+  },
+  {
+    "name": "Sangeet Bangla",
+    "image": "https://s3.aynaott.com/storage/80424ce0682e14e7d51e28de33d5f380",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://cdn-4.pishow.tv/live/1143/master.m3u8"
   },
   {
     "name": "9XM",
