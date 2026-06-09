@@ -130,6 +130,11 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://streams2.sofast.tv/v1/master/611d79b11b77e2f571934fd80ca1413453772ac7/e0b81a5c-6ab5-48cd-aaa9-f82de4ab5bf9/manifest.m3u8"
   },
   {
+    "name": "Sangeet Bangla",
+    "image": "https://s3.aynaott.com/storage/80424ce0682e14e7d51e28de33d5f380",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://cdn-4.pishow.tv/live/1143/master.m3u8"
+  },
+  {
     "name": "Bloomberg TV",
     "image": "https://s3.aynaott.com/storage/253dcc8b5951160d6aa26bc5ac65ddb8",
     "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen6.aynaott.com/bloombergtv/index.m3u8?e=1779283799&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=ecba4c0cf6ffc82d2d0dfc78f69c1061"
@@ -1083,11 +1088,6 @@
     "name": "B4U MUSIC",
     "image": "https://tvassets.roarzone.net/images/b4umusic.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://edge2.roarzone.net:8447/roarzone/edge3/b4u_music/index.m3u8?token=c8e1b3ce4fc9be68c84c9bba76eef808a3d55290-236586535b0196bd8ca943fe94d83b05-1780020920-1780010120"
-  },
-  {
-    "name": "Sangeet Bangla",
-    "image": "https://s3.aynaott.com/storage/80424ce0682e14e7d51e28de33d5f380",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://cdn-4.pishow.tv/live/1143/master.m3u8"
   },
   {
     "name": "Yrf Nusic",
