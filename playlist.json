@@ -1,13 +1,13 @@
 [
   {
-    "name": "Sony Ten 1",
-    "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/channel/d775ae813cdc8095ee6b82b227a986cd.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://ottbanglaplatform.com/tv/toffee/live.php?id=sony_sports_1_hd&e=.m3u8"
-  },
-  {
     "name": "BAN vs AUS",
     "image": "https://i.postimg.cc/HWRx03rc/20260607-232004.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen7.aynaott.com/tsportsfhd/index.m3u8"
+  },
+  {
+    "name": "Sony Ten 1",
+    "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/channel/d775ae813cdc8095ee6b82b227a986cd.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://ottbanglaplatform.com/tv/toffee/live.php?id=sony_sports_1_hd&e=.m3u8"
   },
   {
     "name": "FIFA Plus B",
