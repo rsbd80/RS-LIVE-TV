@@ -15,11 +15,6 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://a62dad94.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWV1X0ZJRkFQbHVzRW5nbGlzaF9ITFM/playlist.m3u8"
   },
   {
-    "name": "Sony Ten 1",
-    "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/channel/d775ae813cdc8095ee6b82b227a986cd.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://ottbanglaplatform.com/tv/toffee/live.php?id=sony_sports_1_hd&e=.m3u8"
-  },
-  {
     "name": "Fox Sports 2 - (FIFA)",
     "image": "https://assets.goal.com/images/v3/bltdfff24b5ace5cddf/fox-sports-2%20logo.jpg?auto=webp&format=pjpg&width=3840&quality=60",
     "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen7.aynaott.com/foxsports2/index.m3u8?e=1779283790&amp;u=78be6644-0a65-48ec-81a4-089ac65a2619&amp;token=cbb7f40b4af7be51a91e0629a5ac7238"
@@ -28,6 +23,11 @@
     "name": "Real Madrid",
     "image": "https://images.seeklogo.com/logo-png/26/2/real-madrid-logo-png_seeklogo-264405.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://rmtv.akamaized.net/hls/live/2043154/rmtv-en-web/bitrate_3.m3u8"
+  },
+  {
+    "name": "Sony Ten 1",
+    "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/channel/d775ae813cdc8095ee6b82b227a986cd.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://ottbanglaplatform.com/tv/toffee/live.php?id=sony_sports_1_hd&e=.m3u8"
   },
   {
     "name": "T Sports HD",
