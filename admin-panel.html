@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>অ্যাডমিন প্যানেল - RS TV</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #0a0a0f;
+            font-family: Arial, sans-serif;
+            color: white;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1300px;
+            margin: auto;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #2a3a4a;
+        }
+        .header h2 {
+            color: #00f0ff;
+        }
+        .logout-btn {
+            background: #ff4466;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .tabs {
+            margin-bottom: 20px;
+        }
+        .tab {
+            display: inline-block;
+            padding: 10px 25px;
+            background: #1a1a2a;
+            cursor: pointer;
+            border-radius: 10px 10px 0 0;
+            margin-right: 5px;
+        }
+        .tab.active {
+            background: #00f0ff;
+            color: black;
+            font-weight: bold;
+        }
+        .page {
+            display: none;
+        }
+        .card {
+            background: #1a1a2a;
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid #2a3a4a;
+        }
+        .card h3 {
+            margin-bottom: 20px;
+            color: #00f0ff;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: #2a2a3a;
+            border: none;
+            color: white;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .btn-save {
+            background: #00f0ff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn-edit {
+            background: #2a5a8a;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .btn-delete {
+            background: #8a2a3a;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #2a3a4a;
+        }
+        th {
+            background: #111118;
+        }
+        .channel-img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            background: white;
+            border-radius: 5px;
+        }
+        .empty-msg {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h2>🔐 RS Live TV - অ্যাডমিন প্যানেল</h2>
+        <button class="logout-btn" onclick="logout()">🚪 লগআউট</button>
+    </div>
+
+    <div class="tabs">
+        <span class="tab active" onclick="showPage('channels')">📺 চ্যানেল লিস্ট</span>
+        <span class="tab" onclick="showPage('add')">➕ নতুন চ্যানেল যোগ করুন</span>
+    </div>
+
+    <!-- চ্যানেল লিস্ট পেজ -->
+    <div id="channelsPage" class="page" style="display:block">
+        <div class="card">
+            <h3>সকল চ্যানেল</h3>
+            <div id="channelList"></div>
+        </div>
+    </div>
+
+    <!-- নতুন চ্যানেল যোগ করার পেজ -->
+    <div id="addPage" class="page">
+        <div class="card">
+            <h3>➕ নতুন চ্যানেল যোগ করুন</h3>
+            <input type="text" id="channelName" placeholder="📺 চ্যানেলের নাম (যেমন: T Sports)">
+            <input type="url" id="channelImage" placeholder="🖼️ লোগো URL (ছবির লিংক)">
+            <input type="url" id="channelUrl" placeholder="🔗 স্ট্রিম URL (m3u8 লিংক)">
+            <button class="btn-save" onclick="addChannel()">✅ চ্যানেল সংরক্ষণ করুন</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script>
+    let allChannels = [];
+
+    // লগইন চেক
+    auth.onAuthStateChanged(user => {
+        if (!user) {
+            window.location.href = 'admin.html';
+        } else {
+            loadChannels();
+        }
+    });
+
+    function logout() {
+        auth.signOut();
+        window.location.href = 'admin.html';
+    }
+
+    function showPage(page) {
+        document.getElementById('channelsPage').style.display = page === 'channels' ? 'block' : 'none';
+        document.getElementById('addPage').style.display = page === 'add' ? 'block' : 'none';
+        
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        if (page === 'channels') {
+            document.querySelector('.tab').classList.add('active');
+        } else {
+            document.querySelectorAll('.tab')[1].classList.add('active');
+        }
+        
+        if (page === 'channels') {
+            loadChannels();
+        }
+    }
+
+    // চ্যানেল লোড করা
+    async function loadChannels() {
+        const snapshot = await database.ref('channels').once('value');
+        const data = snapshot.val();
+        allChannels = [];
+        if (data) {
+            for (let key in data) {
+                allChannels.push({ id: key, ...data[key] });
+            }
+        }
+        displayChannels();
+    }
+
+    // চ্যানেল দেখানো
+    function displayChannels() {
+        const div = document.getElementById('channelList');
+        
+        if (allChannels.length === 0) {
+            div.innerHTML = '<div class="empty-msg">📭 কোনো চ্যানেল নেই। নতুন চ্যানেল যোগ করুন।</div>';
+            return;
+        }
+        
+        let html = '<div style="overflow-x: auto;"><table><thead><tr>';
+        html += '<th>#</th><th>লোগো</th><th>নাম</th><th>স্ট্রিম URL</th><th>অ্যাকশন</th>';
+        html += '</tr></thead><tbody>';
+        
+        allChannels.forEach((ch, index) => {
+            html += `<tr>
+                <td>${index + 1}</td>
+                <td><img src="${ch.image}" class="channel-img" onerror="this.src='https://via.placeholder.com/40?text=No+Image'"></td>
+                <td><strong>${ch.name}</strong></td>
+                <td><small style="color:#888">${ch.url.substring(0, 60)}${ch.url.length > 60 ? '...' : ''}</small></td>
+                <td>
+                    <button class="btn-edit" onclick="editChannel('${ch.id}')">✏️ এডিট</button>
+                    <button class="btn-delete" onclick="deleteChannel('${ch.id}')">🗑️ ডিলিট</button>
+                </td>
+            </tr>`;
+        });
+        
+        html += '</tbody></table></div>';
+        div.innerHTML = html;
+        
+        // প্লেলিস্ট আপডেট
+        updatePlaylistInFirebase();
+    }
+
+    // নতুন চ্যানেল যোগ
+    async function addChannel() {
+        const name = document.getElementById('channelName').value.trim();
+        const image = document.getElementById('channelImage').value.trim();
+        const url = document.getElementById('channelUrl').value.trim();
+        
+        if (!name || !image || !url) {
+            alert('⚠️ সব ফিল্ড পূরণ করুন!');
+            return;
+        }
+        
+        await database.ref('channels').push({ 
+            name: name, 
+            image: image, 
+            url: url 
+        });
+        
+        document.getElementById('channelName').value = '';
+        document.getElementById('channelImage').value = '';
+        document.getElementById('channelUrl').value = '';
+        
+        alert('✅ চ্যানেল যোগ হয়েছে!');
+        loadChannels();
+    }
+
+    // চ্যানেল এডিট
+    async function editChannel(id) {
+        const channel = allChannels.find(c => c.id === id);
+        
+        const newName = prompt('নতুন নাম লিখুন:', channel.name);
+        if (!newName) return;
+        
+        const newImage = prompt('নতুন লোগো URL লিখুন:', channel.image);
+        if (!newImage) return;
+        
+        const newUrl = prompt('নতুন স্ট্রিম URL লিখুন:', channel.url);
+        if (!newUrl) return;
+        
+        await database.ref(`channels/${id}`).set({ 
+            name: newName, 
+            image: newImage, 
+            url: newUrl 
+        });
+        
+        alert('✅ চ্যানেল আপডেট হয়েছে!');
+        loadChannels();
+    }
+
+    // চ্যানেল ডিলিট
+    async function deleteChannel(id) {
+        const confirmDelete = confirm('⚠️ এই চ্যানেলটি মুছে ফেলতে চান?');
+        if (confirmDelete) {
+            await database.ref(`channels/${id}`).remove();
+            alert('✅ চ্যানেল মুছে ফেলা হয়েছে!');
+            loadChannels();
+        }
+    }
+
+    // প্লেলিস্ট Firebase এ আপডেট
+    async function updatePlaylistInFirebase() {
+        const playlist = allChannels.map(ch => ({
+            name: ch.name,
+            image: ch.image,
+            url: `https://rs-player.netlify.app/jw-player?url=${encodeURIComponent(ch.url)}`
+        }));
+        await database.ref('playlist').set(playlist);
+        console.log('Playlist আপডেট হয়েছে!');
+    }
+</script>
+</body>
+  </html>
