@@ -3,13 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="description" content="সর্বশেষ স্পোর্টস, লাইভ টিভি ও বিনোদন দেখুন আরএস লাইভ টিভিতে।">
 
+    <!-- Google Analytics (ডায়নামিকভাবে আপডেট হবে) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DRBZH98TKH"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-DRBZH98TKH');
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DRBZH98TKH');
     </script>
 
     <title>RS Live TV</title>
@@ -177,7 +179,7 @@
             100% { text-shadow: 0 0 25px rgba(255, 0, 85, 0.9), 0 0 10px rgba(255, 0, 85, 0.4); }
         }
 
-        /* 🔍 সার্চ বক্স এবং প্রিমিয়াম সার্চ আইকন ফিক্স */
+        /* 🔍 সার্চ বক্স */
         .channel-search-box-premium {
             position: relative;
             width: 140px; 
@@ -212,7 +214,6 @@
             background: #141422;
         }
 
-        /* 🔍 নতুন স্টাইলিশ সার্চ আইকন (SVG দিয়ে তৈরি যাতে ব্লাড বা ফেটে না যায়) */
         .search-icon-inside {
             position: absolute;
             right: 10px;
@@ -224,7 +225,7 @@
             pointer-events: none;
         }
 
-        /* প্লেয়ার এরিয়া মার্জিন */
+        /* প্লেয়ার এরিয়া */
         .tv-area {
             margin-top: 0px !important;
             padding-top: 0px !important;
@@ -248,7 +249,7 @@
             height: 100%;
         }
 
-        /* 🔒 চ্যানেল লিস্ট ও স্পষ্ট স্ক্রোলবার (লম্বা দাগ) ফিক্স */
+        /* চ্যানেল লিস্ট */
         .channel-list {
             max-height: 360px !important;
             overflow-y: auto !important;
@@ -262,29 +263,25 @@
             }
         }
 
-        /* 👑 স্ক্রোলবারটি মোটা এবং স্পষ্ট করার মূল কোড (রিমোট ও মাউস ফ্রেন্ডলি) */
         .channel-list::-webkit-scrollbar {
             width: 8px !important;
         }
-        
         .channel-list::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.03) !important;
             border-radius: 10px;
         }
-        
         .channel-list::-webkit-scrollbar-thumb {
             background: linear-gradient(180deg, #00f0ff 0%, #0072ff 100%) !important;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 240, 255, 0.8) !important;
             border: 1px solid rgba(0, 4, 6, 0.5);
         }
-        
         .channel-list::-webkit-scrollbar-thumb:hover {
             background: #ff0055 !important;
             box-shadow: 0 0 12px rgba(255, 0, 85, 1) !important;
         }
 
-        /* ⚡ নোটিশ বার সেটিংস */
+        /* নোটিশ বার */
         .marquee-container {
             background: #0d0d13;
             color: #ffffff;
@@ -316,7 +313,6 @@
             text-align: center;
         }
 
-        /* 📸 অরিজিনাল ব্যানার পজিশন (নোটিশ এবং টেলিগ্রামের মাঝে লকড) */
         .tio-style-banner-fixed {
             width: 320px;
             height: 50px;
@@ -325,12 +321,10 @@
             overflow: hidden;
             border-radius: 6px;
             border: 1px solid #333;
-            font-family: 'Segoe UI', Roboto, sans-serif;
             display: flex;
             align-items: center;
             margin: 0 auto 15px auto;
         }
-
         .tio-style-banner-fixed::after {
             content: '';
             position: absolute;
@@ -338,23 +332,16 @@
             left: -150%;
             width: 60%;
             height: 100%;
-            background: linear-gradient(
-                to right,
-                rgba(255,255,255,0) 0%,
-                rgba(255,255,255,0.2) 50%,
-                rgba(255,255,255,0) 100%
-            );
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
             transform: skewX(-25deg);
             animation: smoke-smoke 4s infinite;
             z-index: 3;
         }
-
         @keyframes smoke-smoke {
             0% { left: -150%; }
             40% { left: 150%; }
             100% { left: 150%; }
         }
-
         .banner-overlay {
             position: absolute;
             top: 0;
@@ -364,7 +351,6 @@
             background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,210,255,0.1) 100%);
             z-index: 1;
         }
-
         .content-wrapper {
             position: relative;
             z-index: 2;
@@ -374,7 +360,6 @@
             padding: 0 10px;
             justify-content: space-between;
         }
-
         .brand-logo-fixed {
             font-weight: 900;
             font-size: 13px;
@@ -382,10 +367,8 @@
             white-space: nowrap;
             flex-shrink: 0;
         }
-
         .rs-live { color: #fff; }
         .tv-text { color: #ff9100; text-shadow: 0 0 5px #ff9100; }
-
         .text-section-fixed {
             flex-grow: 1;
             text-align: center;
@@ -393,7 +376,6 @@
             flex-direction: column;
             gap: 2px;
         }
-
         .main-tags {
             display: flex;
             justify-content: center;
@@ -402,11 +384,9 @@
             font-weight: 800;
             text-transform: uppercase;
         }
-
         .tag-cricket { color: #FFD700; }
         .tag-football { color: #00FF00; }
         .tag-tv { color: #00D2FF; }
-
         .sub-text {
             font-size: 9px;
             color: #ffffff;
@@ -414,7 +394,6 @@
             font-weight: bold;
             text-shadow: 1px 1px 2px #000;
         }
-
         .live-circle {
             background: #ff0000;
             color: white;
@@ -427,7 +406,6 @@
             gap: 4px;
             flex-shrink: 0;
         }
-
         .pulse {
             width: 5px;
             height: 5px;
@@ -435,12 +413,10 @@
             border-radius: 50%;
             animation: pulse-animation 1s infinite;
         }
-
         @keyframes pulse-animation {
             0% { transform: scale(0.95); opacity: 1; }
             100% { transform: scale(1.5); opacity: 0; }
         }
-
         .tg-card {
             background: #111116;
             padding: 15px;
@@ -450,7 +426,6 @@
             width: 320px;
             margin: 0 auto 15px auto;
         }
-
         .telegram-btn {
             display: inline-block;
             background: #0088cc;
@@ -464,7 +439,6 @@
             font-family: 'Courier New', Courier, monospace;
             font-style: italic;
         }
-
         .ad-box {
             margin: 15px auto;
             width: 320px;
@@ -473,7 +447,6 @@
             justify-content: center;
             overflow: hidden;
         }
-
         .copyright {
             color: #444;
             font-size: 11px;
@@ -481,7 +454,6 @@
         }
     </style>
 </head>
-
 <body>
 
     <div id="intro-loader">
@@ -532,7 +504,7 @@
 
     <div class="marquee-container">
         <div class="notice-label">NOTICE</div>
-        <marquee scrollamount="6" onmouseover="this.stop()" onmouseout="this.start()">
+        <marquee scrollamount="6" onmouseover="this.stop()" onmouseout="this.start()" id="noticeMarquee">
             ⚠️ বর্তমানে আমাদের ওয়েব সাইট আপডেট চলছে, আপডেট চলাকালীন সময় কিছু চ্যানেল ডাউন হতে পারে। 
             <span style="color: aqua; font-weight: bold;">টিভি চ্যানেল প্লে হতে ৫ থেকে ১০ সেকেন্ড টাইম নিতে পারে।</span> 
             💡 বিরক্তিকর বিজ্ঞাপন ছাড়া টিভি দেখতে ভিডিও প্লেয়ারের নিচে ডান কোণায় ক্লিক করে 
@@ -542,7 +514,6 @@
 
     <footer class="footer-premium">
         <div class="container">
-            
             <div class="tio-style-banner-fixed">
                 <div class="banner-overlay"></div>
                 <div class="content-wrapper">
@@ -565,20 +536,11 @@
             <div class="tg-card">
                 <h5 style="color:#fff; margin-bottom:5px; font-size:16px;">সাপোর্ট প্রয়োজন?</h5>
                 <p style="color:#777; font-size:11px; margin-bottom:5px;">আপডেট ও চ্যানেল রিকোয়েস্টের জন্য আমাদের টেলিগ্রাম গ্রুপে যোগ দিন।</p>
-                <a href="https://t.me/rslivetv" target="_blank" class="telegram-btn">JOIN TELEGRAM</a>
+                <a href="https://t.me/rslivetv" target="_blank" class="telegram-btn" id="telegramBtn">JOIN TELEGRAM</a>
             </div>
 
-            <div class="ad-box">
-                <script type="text/javascript">
-                    atOptions = {
-                        'key' : '774c0e371455f6476668178b5faae5ab',
-                        'format' : 'iframe',
-                        'height' : 50,
-                        'width' : 320,
-                        'params' : {}
-                    };
-                </script>
-                <script type="text/javascript" src="//www.highperformanceformat.com/774c0e371455f6476668178b5faae5ab/invoke.js"></script>
+            <div class="ad-box" id="adContainer">
+                <!-- ডায়নামিক বিজ্ঞাপন এখানে লোড হবে -->
             </div>
 
             <div class="copyright">
@@ -587,148 +549,221 @@
         </div>
     </footer>
 
-    <!-- ============================================= -->
-    <!-- 🔥 FIREBASE CONNECTION (যোগ করা হয়েছে) 🔥 -->
-    <!-- ============================================= -->
+    <!-- Firebase Scripts -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
-    <script src="firebase-config.js"></script>
-
-    <!-- সবার শেষে script.js লোড করুন -->
-    <script src="script.js?v=12.0"></script>
     
     <script>
-        // 🔒 সোর্স কোড প্রোটেকশন
-        document.addEventListener('contextmenu', event => event.preventDefault());
-        document.onkeydown = function(e) {
-            if (e.keyCode == 123) { return false; } 
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; } 
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; } 
-            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; } 
+        // Firebase কনফিগারেশন (এখানে সরাসরি দিন)
+        const firebaseConfig = {
+            apiKey: "AIzaSyBW7EtBSaGq4BO4QuSy2unTJrMobQ3lIfU",
+            authDomain: "rs-tv-admin.firebaseapp.com",
+            databaseURL: "https://rs-tv-admin-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "rs-tv-admin",
+            storageBucket: "rs-tv-admin.firebasestorage.app",
+            appId: "1:619060422153:web:610a287d0a0dae0299fad8"
         };
-        
-        // ডিবাগার প্রোটেকশন (শুধুমাত্র যদি কনসোল খোলা থাকে)
-        (function() {
-            var startTime = +new Date();
-            debugger;
-            var endTime = +new Date();
-            if(endTime - startTime > 100) {
-                // ডিবাগার খোলা থাকলে কিছু করবেন না, ওয়েবসাইট রিস্টার্ট করবেন না
-                console.log("Debugger detected but site continues normally");
-            }
-        })();
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
 
-        // 🎬 লোডিং ইন্ট্রো স্ক্রিন
-        window.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
+        // সব ডাটা লোড ও রেন্ডার করার ফাংশন
+        async function loadAll() {
+            await loadChannels();
+            await loadSiteSettings();
+            await loadAdSettings();
+        }
+
+        // চ্যানেল লোড
+        async function loadChannels() {
+            const snapshot = await database.ref('playlist').once('value');
+            let playlist = snapshot.val();
+            if (!playlist || !playlist.length) {
+                // ব্যাকআপ লোকাল ফাইল
+                try {
+                    const res = await fetch('playlist.json?t=' + Date.now());
+                    playlist = await res.json();
+                } catch(e) { console.log('প্লেলিস্ট পাওয়া যায়নি'); return; }
+            }
+            renderChannels(playlist);
+        }
+
+        function renderChannels(data) {
+            const container = document.getElementById('channel-container');
+            if (!container) return;
+            container.innerHTML = '';
+            data.forEach(ch => {
+                const li = document.createElement('li');
+                li.setAttribute('tabindex', '0');
+                li.innerHTML = `<div style="display:block; pointer-events:none;">
+                    <img src="${ch.image}" alt="${ch.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/100x85?text=No+Logo'">
+                    <div class="channel-info-box"><p class="channel-title">${escapeHtml(ch.name)}</p></div>
+                </div>`;
+                li.addEventListener('click', () => {
+                    const iframe = document.getElementById('tv-player-iframe');
+                    if (iframe) iframe.src = ch.url;
+                    // সার্চ বক্স ক্লিয়ার
+                    const searchInput = document.getElementById('channelSearch');
+                    if (searchInput) {
+                        searchInput.value = '';
+                        document.querySelectorAll('#channel-container li').forEach(i => i.style.display = '');
+                    }
+                });
+                container.appendChild(li);
+            });
+            // ফোকাস প্রথম চ্যানেলে
+            setTimeout(() => {
+                const first = document.querySelector('#channel-container li');
+                if (first && document.activeElement !== document.getElementById('channelSearch')) first.focus();
+            }, 500);
+        }
+
+        // সাইট সেটিংস (টাইটেল, ফেভিকন, মেটা, নোটিশ, টেলিগ্রাম)
+        async function loadSiteSettings() {
+            const snap = await database.ref('siteSettings').once('value');
+            const s = snap.val() || {};
+            if (s.siteTitle) document.title = s.siteTitle;
+            if (s.faviconUrl) {
+                const link = document.querySelector("link[rel*='shortcut icon']") || document.createElement('link');
+                link.rel = 'shortcut icon';
+                link.type = 'image/x-icon';
+                link.href = s.faviconUrl;
+                document.head.appendChild(link);
+            }
+            if (s.metaDesc) {
+                let meta = document.querySelector('meta[name="description"]');
+                if (!meta) { meta = document.createElement('meta'); meta.name = 'description'; document.head.appendChild(meta); }
+                meta.content = s.metaDesc;
+            }
+            if (s.noticeText) {
+                const marquee = document.getElementById('noticeMarquee');
+                if (marquee) marquee.innerHTML = s.noticeText;
+            }
+            if (s.telegramLink) {
+                const tgBtn = document.getElementById('telegramBtn');
+                if (tgBtn) tgBtn.href = s.telegramLink;
+            }
+            if (s.telegramText) {
+                const tgBtn = document.getElementById('telegramBtn');
+                if (tgBtn) tgBtn.innerText = s.telegramText;
+            }
+            // গুগল অ্যানালিটিক্স আইডি আপডেট (যদি আলাদা হয়)
+            if (s.gaId && s.gaId !== 'G-DRBZH98TKH') {
+                gtag('config', s.gaId);
+            }
+        }
+
+        // বিজ্ঞাপন সেটিংস লোড
+        async function loadAdSettings() {
+            const snap = await database.ref('adSettings').once('value');
+            const ad = snap.val() || {};
+            const container = document.getElementById('adContainer');
+            if (!container) return;
+            container.innerHTML = ''; // পুরনো বিজ্ঞাপন সরান
+            
+            if (ad.scriptUrl && ad.containerId) {
+                // কন্টেইনার আইডি অনুযায়ী ডিভ তৈরি করুন (যদি আগে না থাকে)
+                let adDiv = document.getElementById(ad.containerId);
+                if (!adDiv) {
+                    adDiv = document.createElement('div');
+                    adDiv.id = ad.containerId;
+                    container.appendChild(adDiv);
+                }
+                // স্ক্রিপ্ট যোগ করুন
+                const script = document.createElement('script');
+                script.src = ad.scriptUrl;
+                script.async = true;
+                script.setAttribute('data-cfasync', 'false');
+                if (ad.atOptions) {
+                    // atOptions গ্লোবাল ভেরিয়েবল হিসেবে সেট করুন
+                    window.atOptions = ad.atOptions;
+                }
+                document.body.appendChild(script);
+            } else {
+                // ডিফল্ট বিজ্ঞাপন (যদি কিছু না থাকে)
+                container.innerHTML = '<div style="color:#444; font-size:10px;">বিজ্ঞাপন লোড হয়নি</div>';
+            }
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+        }
+
+        // ইন্ট্রো লোডার সরান
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
                 const loader = document.getElementById('intro-loader');
                 if (loader) {
                     loader.style.opacity = '0';
                     loader.style.visibility = 'hidden';
-                    setTimeout(() => { loader.remove(); }, 500);
+                    setTimeout(() => loader.remove(), 500);
                 }
-            }, 1200); 
+            }, 1200);
+            loadAll();
         });
 
-        // 🔍 অ্যান্টি-জার্ক ইনস্ট্যান্ট ফিল্টার লজিক
-        function applyInstantChannelFilter() {
-            const searchInput = document.getElementById('channelSearch');
-            if (!searchInput) return;
-
-            const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
-            const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-
-            let filter = searchInput.value.toUpperCase();
-            let ul = document.getElementById("channel-container");
-            if (!ul) return;
-            
-            let li = ul.getElementsByTagName('li');
-            
-            for (let i = 0; i < li.length; i++) {
-                let textValue = li[i].textContent || li[i].innerText;
-                if (textValue.toUpperCase().indexOf(filter) > -1) {
-                    li[i].style.display = ''; 
-                } else {
-                    li[i].style.display = 'none'; 
-                }
-            }
-            window.scrollTo(scrollX, scrollY);
+        // সার্চ ফিল্টার
+        const searchInput = document.getElementById('channelSearch');
+        if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                const filter = this.value.toLowerCase();
+                const items = document.querySelectorAll('#channel-container li');
+                items.forEach(item => {
+                    const title = item.querySelector('.channel-title')?.innerText.toLowerCase() || '';
+                    item.style.display = title.includes(filter) ? '' : 'none';
+                });
+            });
         }
 
-        const searchInputEl = document.getElementById('channelSearch');
-        if (searchInputEl) {
-            searchInputEl.addEventListener('input', applyInstantChannelFilter);
-            searchInputEl.addEventListener('keyup', applyInstantChannelFilter);
-        }
-
-        // 🎮 スマート TV রিমোট ও কিবোর্ড কন্ট্রোল
-        document.addEventListener('keydown', function(event) {
+        // কীবোর্ড নেভিগেশন (রিমোট/টিভি)
+        document.addEventListener('keydown', function(e) {
             const items = Array.from(document.querySelectorAll('#channel-container li')).filter(el => el.style.display !== 'none');
             const active = document.activeElement;
-            const searchInput = document.getElementById('channelSearch');
-
-            if (active === searchInput) {
-                if (event.keyCode === 13 || event.key === "Enter") {
-                    event.preventDefault(); 
-                    event.stopPropagation();
-                    if (items.length > 0) { 
-                        items[0].click(); 
-                    }
-                    searchInput.blur(); 
-                    return false;
-                }
-                if (event.keyCode === 40 || event.key === "ArrowDown") {
-                    event.preventDefault();
-                    if (items.length > 0) { items[0].focus(); }
+            const search = document.getElementById('channelSearch');
+            if (active === search) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (items[0]) items[0].click();
+                    search.blur();
+                } else if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    if (items[0]) items[0].focus();
                 }
                 return;
             }
-
-            if (items.length === 0) return;
             let index = items.indexOf(active);
-
-            if (event.keyCode === 40 || event.key === "ArrowDown") {
-                event.preventDefault();
-                let nextIndex = index + 1;
-                if (nextIndex < items.length) { items[nextIndex].focus(); }
-            } else if (event.keyCode === 38 || event.key === "ArrowUp") {
-                event.preventDefault();
-                let prevIndex = index - 1;
-                if (prevIndex >= 0) { 
-                    items[prevIndex].focus(); 
-                } else if (prevIndex === -1 && searchInput) {
-                    searchInput.focus(); 
-                }
-            } else if (event.keyCode === 13 || event.key === "Enter") {
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                let next = index + 1;
+                if (next < items.length) items[next].focus();
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                let prev = index - 1;
+                if (prev >= 0) items[prev].focus();
+                else if (prev === -1 && search) search.focus();
+            } else if (e.key === 'Enter') {
                 if (active && active.tagName === 'LI') {
-                    event.preventDefault();
-                    active.click(); 
+                    e.preventDefault();
+                    active.click();
                 }
             }
         });
 
-        // 🚫 স্ক্রোল লাফালাফি করা ওভাররাইড লজিক লক
-        window.addEventListener('focus', function(event) {
-            if (document.activeElement && document.activeElement.id === 'channelSearch') {
-                event.preventDefault();
-                event.stopPropagation();
-                return false;
-            }
-            if (event.target && event.target.tagName === 'LI') {
-                event.target.scrollIntoView({ block: 'nearest', behavior: 'auto' });
-            }
-        }, true); 
-
-        function initTVFocus() {
-            setTimeout(() => {
-                const firstChannel = document.querySelector('#channel-container li');
-                const searchInput = document.getElementById('channelSearch');
-                if (firstChannel && document.activeElement !== searchInput) { 
-                    firstChannel.focus(); 
-                }
-            }, 600);
-        }
+        // কপি ও ডিবাগার প্রোটেকশন (আগের মতো)
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.onkeydown = function(e) {
+            if (e.keyCode === 123) return false;
+            if (e.ctrlKey && e.shiftKey && e.keyCode === 73) return false;
+            if (e.ctrlKey && e.keyCode === 85) return false;
+        };
     </script>
+
+    <!-- অতিরিক্ত স্ক্রিপ্ট (যদি আগে থেকে থাকে) -->
     <script async="async" data-cfasync="false" src="https://pl26377079.effectivecpmnetwork.com/cdeccdd75d3e2e6916a42ce9653cfb08/invoke.js"></script>
     <div id="container-cdeccdd75d3e2e6916a42ce9653cfb08"></div>
 </body>
