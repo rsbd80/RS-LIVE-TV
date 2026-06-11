@@ -264,7 +264,7 @@
 
         /* 👑 স্ক্রোলবারটি মোটা এবং স্পষ্ট করার মূল কোড (রিমোট ও মাউস ফ্রেন্ডলি) */
         .channel-list::-webkit-scrollbar {
-            width: 8px !important; /* দাগটি আরও চওড়া বা মোটা করা হলো */
+            width: 8px !important;
         }
         
         .channel-list::-webkit-scrollbar-track {
@@ -273,14 +273,14 @@
         }
         
         .channel-list::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #00f0ff 0%, #0072ff 100%) !important; /* গ্লোয়িং নিয়ন কালার */
+            background: linear-gradient(180deg, #00f0ff 0%, #0072ff 100%) !important;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 240, 255, 0.8) !important;
             border: 1px solid rgba(0, 4, 6, 0.5);
         }
         
         .channel-list::-webkit-scrollbar-thumb:hover {
-            background: #ff0055 !important; /* মাউস হোভার করলে কালার চেঞ্জ হবে */
+            background: #ff0055 !important;
             box-shadow: 0 0 12px rgba(255, 0, 85, 1) !important;
         }
 
@@ -328,7 +328,7 @@
             font-family: 'Segoe UI', Roboto, sans-serif;
             display: flex;
             align-items: center;
-            margin: 0 auto 15px auto; /* মার্জিন এডজাস্টমেন্ট */
+            margin: 0 auto 15px auto;
         }
 
         .tio-style-banner-fixed::after {
@@ -587,7 +587,16 @@
         </div>
     </footer>
 
+    <!-- ============================================= -->
+    <!-- 🔥 FIREBASE CONNECTION (যোগ করা হয়েছে) 🔥 -->
+    <!-- ============================================= -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    <script src="firebase-config.js"></script>
+
+    <!-- সবার শেষে script.js লোড করুন -->
     <script src="script.js?v=12.0"></script>
+    
     <script>
         // 🔒 সোর্স কোড প্রোটেকশন
         document.addEventListener('contextmenu', event => event.preventDefault());
@@ -597,12 +606,17 @@
             if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; } 
             if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; } 
         };
-        setInterval(function(){
-            const startTime = +new Date();
+        
+        // ডিবাগার প্রোটেকশন (শুধুমাত্র যদি কনসোল খোলা থাকে)
+        (function() {
+            var startTime = +new Date();
             debugger;
-            const endTime = +new Date();
-            if(endTime - startTime > 100){ window.location.href = "about:blank"; }
-        }, 100);
+            var endTime = +new Date();
+            if(endTime - startTime > 100) {
+                // ডিবাগার খোলা থাকলে কিছু করবেন না, ওয়েবসাইট রিস্টার্ট করবেন না
+                console.log("Debugger detected but site continues normally");
+            }
+        })();
 
         // 🎬 লোডিং ইন্ট্রো স্ক্রিন
         window.addEventListener('DOMContentLoaded', function() {
@@ -715,7 +729,7 @@
             }, 600);
         }
     </script>
-<script async="async" data-cfasync="false" src="https://pl26377079.effectivecpmnetwork.com/cdeccdd75d3e2e6916a42ce9653cfb08/invoke.js"></script>
-<div id="container-cdeccdd75d3e2e6916a42ce9653cfb08"></div>
+    <script async="async" data-cfasync="false" src="https://pl26377079.effectivecpmnetwork.com/cdeccdd75d3e2e6916a42ce9653cfb08/invoke.js"></script>
+    <div id="container-cdeccdd75d3e2e6916a42ce9653cfb08"></div>
 </body>
 </html>
