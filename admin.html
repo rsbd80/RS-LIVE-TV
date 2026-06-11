@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>অ্যাডমিন লগইন - RS TV</title>
+    <style>
+        body {
+            background: #0a0a0f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial;
+            margin: 0;
+        }
+        .login-box {
+            background: #1a1a2a;
+            padding: 30px;
+            border-radius: 15px;
+            width: 320px;
+            text-align: center;
+            border: 1px solid #00f0ff;
+        }
+        .login-box h3 {
+            color: #00f0ff;
+            margin-bottom: 5px;
+        }
+        .login-box p {
+            color: #888;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: #2a2a3a;
+            border: none;
+            color: white;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            background: #00f0ff;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .error {
+            color: #ff4466;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="login-box">
+    <h3>🔐 RS Live TV</h3>
+    <p>অ্যাডমিন প্যানেল লগইন</p>
+    <input type="email" id="email" placeholder="ইমেইল">
+    <input type="password" id="password" placeholder="পাসওয়ার্ড">
+    <button onclick="login()">লগইন করুন</button>
+    <div id="error" class="error"></div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script>
+    async function login() {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const errorDiv = document.getElementById('error');
+        
+        if (!email || !password) {
+            errorDiv.innerText = 'ইমেইল এবং পাসওয়ার্ড দিন!';
+            return;
+        }
+        
+        try {
+            await auth.signInWithEmailAndPassword(email, password);
+            window.location.href = 'admin-panel.html';
+        } catch(err) {
+            errorDiv.innerText = 'লগইন ব্যর্থ! ইমেইল ও পাসওয়ার্ড চেক করুন।';
+        }
+    }
+</script>
+</body>
+</html>
