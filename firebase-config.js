@@ -1,4 +1,3 @@
-// Firebase কনফিগারেশন - আপনার ডাটাবেসের সাথে সংযোগ করবে
 const firebaseConfig = {
     apiKey: "AIzaSyBW7EtBSaGq4BO4QuSy2unTJrMobQ3lIfU",
     authDomain: "rs-tv-admin.firebaseapp.com",
@@ -8,7 +7,6 @@ const firebaseConfig = {
     appId: "1:619060422153:web:610a287d0a0dae0299fad8"
 };
 
-// Firebase Initialize
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const database = firebase.database();
