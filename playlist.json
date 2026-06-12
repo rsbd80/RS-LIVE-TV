@@ -98,27 +98,6 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen6.aynaott.com/asports/index.m3u8?e=1779283785&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=356b906bf972b824782bb58c1ce0bb22"
   },
   {
-    "id": "ch-16",
-    "name": "Golf Channel",
-    "category": "BANGLA",
-    "image": "https://s3.aynaott.com/storage/edb73991516696dfd53efbd32d80ca58",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen6.aynaott.com/golfchannel/index.m3u8?e=1779283789&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=56943a1262fd47843d1dbaaaf88363bc"
-  },
-  {
-    "id": "ch-17",
-    "name": "Bleav Football",
-    "category": "Sports",
-    "image": "https://i.podnews.network/dir/co/1/184.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://linear-493.frequency.stream/dist/glewedtv/493/hls/master/playlist.m3u8"
-  },
-  {
-    "id": "ch-18",
-    "name": "Fox Sports 2",
-    "category": "Sports",
-    "image": "https://s3.aynaott.com/storage/da4282cd107cc3d40efadae488b187e5",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen7.aynaott.com/foxsports2/index.m3u8?e=1779283790&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=cbb7f40b4af7be51a91e0629a5ac7238"
-  },
-  {
     "id": "ch-19",
     "name": "Espn",
     "category": "BANGLA",
