@@ -1372,13 +1372,6 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen6.aynaott.com/travelxp/index.m3u8?e=1779283876&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=61edf9ea37355b98aa9524cacb226e3b"
   },
   {
-    "id": "ch-204",
-    "name": "WEATHER CHANNEL",
-    "category": "BANGLA",
-    "image": "https://s3.aynaott.com/storage/67e08c23033802b4443baf81d1b048bf",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen6.aynaott.com/TheWeatherChannel/index.m3u8?e=1779283877&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=bff83cb7a2fcd3dbef83a9a3c7b969c4"
-  },
-  {
     "id": "ch-205",
     "name": "CP 24",
     "category": "BANGLA",
