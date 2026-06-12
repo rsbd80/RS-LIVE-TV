@@ -25,6 +25,51 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://ottbanglaplatform.com/tv/toffee/live.php?id=sony_sports_5_hd&e=.m3u8"
   },
   {
+    "name": "Star Jalsha",
+    "image": "https://raw.githubusercontent.com/Rakib49/Rakibiptv/main/images%20(9).jpeg",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen7.aynaott.com/sjhdbd/index.m3u8"
+  },
+  {
+    "name": "Colors Bangla",
+    "image": "https://dl.dropbox.com/s/44vdhjj6fja02co/CBHD.jpg",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://yupptvcatchupire.yuppcdn.net/preview/colorsbanglahd/800.m3u8"
+  },
+  {
+    "name": "ZEE BANGLA",
+    "image": "https://tvassets.roarzone.net/images/34.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://yupptvcatchupire.yuppcdn.net/preview/zeebangla/2500.m3u8"
+  },
+  {
+    "name": "ZEE BANGLA CINEMA",
+    "image": "https://tvassets.roarzone.net/images/29.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://edge2.roarzone.net:8447/roarzone/edge3/zee_bangla_cinema/index.m3u8?token=33eb90cb5993505e7adebcdc9fe5a680f5ff40b4-89433e784e249e183a59446474d0fff1-1780020920-1780010120"
+  },
+  {
+    "name": "Zee 24 Ghanta",
+    "image": "https://s3.aynaott.com/storage/fea79ac5193dd9fb80aa1996f2adc1e2",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen6.aynaott.com/zee24/index.m3u8?e=1779283836&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=40021614a85616c858c5a6839f22dcc6"
+  },
+  {
+    "name": "Enter 10 Bangla",
+    "image": "https://s3.aynaott.com/storage/2b00567c538d392c8050124f0064c4a1",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://live-bangla.akamaized.net/liveabr/playlist.m3u8"
+  },
+  {
+    "name": "SONY AATH",
+    "image": "https://tvassets.roarzone.net/images/33.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://edge2.roarzone.net:8447/roarzone/edge3/sonyaath/index.m3u8?token=571cbfa1fa2e6d2ce7d53975a8ae77afb5189d20-eb13b2ccb090084878804fb0e801091a-1780020920-1780010120"
+  },
+  {
+    "name": "Republic Bangla",
+    "image": "https://s3.aynaott.com/storage/18cb20e8e53eb27249c62d3aedf51241",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen5.aynaott.com/R_Bangla/index.m3u8?e=1779283835&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=fd3c370d04fa673a7faa815a98ef3ed9"
+  },
+  {
+    "name": "DD Bangla",
+    "image": "https://s3.aynaott.com/storage/e5117c508d18adf0a3f2475eb1fd5a9d",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/7ff57cc9046b4c188b51a0d506f36e7f/index_3.m3u8"
+  },
+  {
     "name": "BTV National",
     "image": "https://d38ll44lbmt52p.cloudfront.net/cms/channel_poster/1677040358634_BTVogo.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8"
