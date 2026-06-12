@@ -98,13 +98,6 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen6.aynaott.com/asports/index.m3u8?e=1779283785&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=356b906bf972b824782bb58c1ce0bb22"
   },
   {
-    "id": "ch-19",
-    "name": "Espn",
-    "category": "BANGLA",
-    "image": "https://s3.aynaott.com/storage/b46df1959322aa48d270a6b163234c76",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen5.aynaott.com/espn/index.m3u8?e=1779283793&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=cf2b4cb8b6c96ab86daee4299c792295"
-  },
-  {
     "id": "ch-20",
     "name": "TSN 2",
     "category": "BANGLA",
@@ -124,20 +117,6 @@
     "category": "BANGLA",
     "image": "https://s3.aynaott.com/storage/b54495ee3cdd53ddaa19d1f98120f488",
     "url": "https://rs-player.netlify.app/jw-player?url=https://kwtsplta.cdn.mangomolo.com/spl/smil:spl.stream.smil/chunklist.m3u8"
-  },
-  {
-    "id": "ch-23",
-    "name": "SPORTS FIRST TV",
-    "category": "Sports",
-    "image": "https://s3.aynaott.com/storage/748d28752dcf95740561f1ac39e15fc3",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://d4ddgdmj1cvnm.cloudfront.net/scheduler/scheduleMaster/409.m3u8"
-  },
-  {
-    "id": "ch-24",
-    "name": "Marquee Sports Network",
-    "category": "Sports",
-    "image": "https://s3.aynaott.com/storage/66bdaa21aba96de6d32a3515715f7502",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen6.aynaott.com/MarqueeSportsNetwork/index.m3u8?e=1779283796&u=78be6644-0a65-48ec-81a4-089ac65a2619&token=a91e537a0eb1a24ed472a508e90fefcc"
   },
   {
     "id": "ch-25",
