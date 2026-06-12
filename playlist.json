@@ -1,112 +1,117 @@
 [
   {
-    "name": "Independent TV",
-    "image": "https://raw.githubusercontent.com/saif99php/BDsaif07/main/logo/independent.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1704/output/index.m3u8"
+    "name": "BTV National",
+    "image": "https://d38ll44lbmt52p.cloudfront.net/cms/channel_poster/1677040358634_BTVogo.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8"
   },
   {
-    "name": "Channel 24",
-    "image": "https://raw.githubusercontent.com/saif99php/BDsaif07/main/logo/channel24.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1703/output/index.m3u8"
-  },
-  {
-    "name": "News 24",
-    "image": "https://raw.githubusercontent.com/saif99php/BDsaif07/main/logo/news24.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1708/output/index.m3u8"
-  },
-  {
-    "name": "Somoy TV",
-    "image": "https://raw.githubusercontent.com/saif99php/BDsaif07/main/logo/somoytv.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1702/output/index.m3u8"
-  },
-  {
-    "name": "Ekattor TV",
-    "image": "https://raw.githubusercontent.com/saif99php/BDsaif07/main/logo/ekattor.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1705/output/index.m3u8"
+    "name": "Channel 1 News",
+    "image": "https://raw.githubusercontent.com/subirkumarpaul/Logo/refs/heads/main/Channel%201.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/channel1bd.stream/tracks-v1a1/mono.m3u8"
   },
   {
     "name": "Jamuna TV",
-    "image": "https://raw.githubusercontent.com/saif99php/BDsaif07/main/logo/jamunatv.png",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1735560213832.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1701/output/index.m3u8"
   },
   {
-    "name": "DBC News",
-    "image": "https://raw.githubusercontent.com/saif99php/BDsaif07/main/logo/dbcnews.png",
+    "name": "DBC News HD",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1770186306600.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1728/output/index.m3u8"
   },
   {
-    "name": "ATN News",
-    "image": "https://raw.githubusercontent.com/saif99php/BDsaif07/main/logo/atnnews.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1706/output/index.m3u8"
-  },
-  {
-    "name": "Channel I",
-    "image": "https://raw.githubusercontent.com/saif99php/BDsaif07/main/logo/channeli.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1723/output/index.m3u8"
-  },
-  {
-    "name": "Channel 9",
-    "image": "https://raw.githubusercontent.com/saif99php/BDsaif07/main/logo/channel9.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1729/output/index.m3u8"
-  },
-  {
     "name": "Maasranga TV",
-    "image": "https://raw.githubusercontent.com/saif99php/BDsaif07/main/logo/maasranga.png",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1773680325498.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1722/output/index.m3u8"
   },
   {
-    "name": "BanglaVision",
-    "image": "https://raw.githubusercontent.com/saif99php/BDsaif07/main/logo/banglavision.png",
+    "name": "ATN News",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1739962961772.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1706/output/index.m3u8"
+  },
+  {
+    "name": "News 24 HD",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1770186895850.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1708/output/index.m3u8"
+  },
+  {
+    "name": "Islamic TV",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1772728412891.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1724/output/index.m3u8"
+  },
+  {
+    "name": "Deepto TV HD",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1742713000749.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1711/output/index.m3u8"
+  },
+  {
+    "name": "SRK TV",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1746005940155.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://srknowapp.ncare.live/srktvhlswodrm/srktv.stream/playlist.m3u8"
+  },
+  {
+    "name": "Bangla Vision",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1735561344354.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1715/output/index.m3u8"
   },
   {
     "name": "NTV",
-    "image": "https://raw.githubusercontent.com/saif99php/BDsaif07/main/logo/ntv.png",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1735560841094.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1716/output/index.m3u8"
   },
   {
     "name": "BTV",
-    "image": "https://raw.githubusercontent.com/saif99php/BDsaif07/main/logo/btv.png",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1778082545894.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8"
   },
   {
-    "name": "SATV",
-    "image": "https://raw.githubusercontent.com/saif99php/BDsaif07/main/logo/satv.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1720/output/index.m3u8"
-  },
-  {
-    "name": "Ekhon TV",
-    "image": "https://raw.githubusercontent.com/saif99php/BDsaif07/main/logo/ekhontv.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1713/output/index.m3u8"
-  },
-  {
-    "name": "Islamic TV",
-    "image": "https://raw.githubusercontent.com/saif99php/BDsaif07/main/logo/islamictv.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1724/output/index.m3u8"
-  },
-  {
-    "name": "Deepto TV",
-    "image": "https://raw.githubusercontent.com/saif99php/BDsaif07/main/logo/deeptotv.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1711/output/index.m3u8"
-  },
-  {
-    "name": "Akash DTH 1",
-    "image": "https://raw.githubusercontent.com/saif99php/BDsaif07/main/logo/akashdigital.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1730/output/master.m3u8"
-  },
-  {
-    "name": "Akash DTH 2",
-    "image": "https://raw.githubusercontent.com/saif99php/BDsaif07/main/logo/akashdigital.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1731/output/master.m3u8"
+    "name": "Independent TV",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1778087037971.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1704/output/index.m3u8"
   },
   {
     "name": "Star News",
-    "image": "https://raw.githubusercontent.com/saif99php/BDsaif07/main/logo/starnews.png",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1770189826301.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1710/output/index.m3u8"
   },
   {
-    "name": "Al Jazeera English",
-    "image": "https://raw.githubusercontent.com/saif99php/BDsaif07/main/logo/aljazeera.png",
+    "name": "Al Jazeera",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1777454219313.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1721/output/index.m3u8"
+  },
+  {
+    "name": "Drama 24",
+    "image": "https://raw.githubusercontent.com/BadhanStrom/img/refs/heads/main/G-Series_Logo.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=http://vods2.aynascope.net/gseriesDrama/index.m3u8"
+  },
+  {
+    "name": "Channel 1",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/c/c3/%E0%A6%9A%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%A8%E0%A7%87%E0%A6%B2_%E0%A6%93%E0%A6%AF%E0%A6%BC%E0%A6%BE%E0%A6%A8%E0%A7%87%E0%A6%B0_%E0%A6%B2%E0%A7%8B%E0%A6%97%E0%A7%8B.svg",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1702/output/index.m3u8"
+  },
+  {
+    "name": "Ekattor HD",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-cntent/1739963327549.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1705/output/index.m3u8"
+  },
+  {
+    "name": "Channel 24 HD",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1735556516924.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1703/output/index.m3u8"
+  },
+  {
+    "name": "Channel 9 HD",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1770188008067.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1729/output/index.m3u8"
+  },
+  {
+    "name": "Channel I HD",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1740567626692.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1723/output/index.m3u8"
+  },
+  {
+    "name": "Al Quran",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1778086065071.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1713/output/index.m3u8"
   }
 ]
