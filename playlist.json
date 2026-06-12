@@ -10,6 +10,21 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://premierleagpl23.akamaized.net/hls/live/2107108/TapAds777/master.m3u8"
   },
   {
+    "name": "Sony Ten 1",
+    "image": "https://tvassets.roarzone.net/images/sony_sports_1_hd.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://ottbanglaplatform.com/tv/toffee/live.php?id=sony_sports_1_hd&e=.m3u8"
+  },
+  {
+    "name": "Sony Ten 2",
+    "image": "https://tvassets.roarzone.net/images/sony_sports_2_hd.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://ottbanglaplatform.com/tv/toffee/live.php?id=sony_sports_2_hd&e=.m3u8"
+  },
+  {
+    "name": "Sony Ten 5",
+    "image": "https://tvassets.roarzone.net/images/sony_sports_5_hd.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://ottbanglaplatform.com/tv/toffee/live.php?id=sony_sports_5_hd&e=.m3u8"
+  },
+  {
     "name": "BTV National",
     "image": "https://d38ll44lbmt52p.cloudfront.net/cms/channel_poster/1677040358634_BTVogo.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8"
