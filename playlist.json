@@ -133,5 +133,45 @@
     "name": "Al Quran",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1778086065071.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1713/output/index.m3u8"
+  },
+  {
+    "name": "Discover English",
+    "image": "https://jiotvimages.cdn.jio.com/dare_images/images/channel/0116263a14aa056e0105b013dbeb9cf9.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://cdn.jsdelivr.net/gh/nurmd2006/empty@main/stream/by/your-abbu/nurmd2006/offline-channels/discoverysd.m3u8"
+  },
+  {
+    "name": "Animal Planet HD",
+    "image": "https://s3.aynaott.com/storage/18d95033c5d53fc3b159141a842fdeac",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://tiger-hub.vercel.app@vodzong.mjunoon.tv:8087/streamtest/Animal-Planet-158-3/playlist.m3u8"
+  },
+  {
+    "name": "Sangeet Bangla",
+    "image": "https://s3.aynaott.com/storage/80424ce0682e14e7d51e28de33d5f380",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://cdn-4.pishow.tv/live/1143/master.m3u8"
+  },
+  {
+    "name": "B4U MUSIC",
+    "image": "https://tvassets.roarzone.net/images/b4umusic.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://edge2.roarzone.net:8447/roarzone/edge3/b4u_music/index.m3u8?token=c8e1b3ce4fc9be68c84c9bba76eef808a3d55290-236586535b0196bd8ca943fe94d83b05-1780020920-1780010120"
+  },
+  {
+    "name": "Yrf Nusic",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCIkm2nIJw9C43IcSBUici5QZMpApbgDzIB7qCntb-sA&s=10",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://amg01412-xiaomiasia-yrfmusic-xiaomi-1rmk2.amagi.tv/playlist/amg01412-xiaomiasia-yrfmusic-xiaomi/playlist.m3u8"
+  },
+  {
+    "name": "9XM",
+    "image": "https://yt3.googleusercontent.com/a5SfL3aMu1G_MufbVoDv0wPz4gcyn_pYtsR3BAMH08B368gh-ytxzBWgPpdmKyWemwCGF0Ql=s900-c-k-c0x00ffffff-no-rj",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://wiselp.wiseplayout.com/9XM/master.m3u8"
+  },
+  {
+    "name": "Music India ",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfbZBiX-2AZHX2MvJSII4mTZTM7d-oaRhZC4O5nL0xtg&s=10",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://cdn-2.pishow.tv/live/226/master.m3u8"
+  },
+  {
+    "name": "Zoom",
+    "image": "https://i1.sndcdn.com/avatars-000120257144-5fcxjn-t240x240.jpg",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://dai.google.com/linear/hls/pb/event/JCAm25qkRXiKcK1AJMlvKQ/stream/bcad2178-bf64-4c56-ac2a-a15c12e69f0b:TPE2/master.m3u8"
   }
 ]
