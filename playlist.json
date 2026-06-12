@@ -1,5 +1,10 @@
 [
   {
+    "name": "Sonar Bangla",
+    "image": "",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://d1g8wgjurz8via.cloudfront.net/bpk-tv/Zeebanglacinema/default/manifest.mpd?5"
+  },
+  {
     "name": "FIFA WORLD CUP LIVE",
     "image": "https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/f64bc1250131057.6a17b080da2ef.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://dfr80qz435crc.cloudfront.net/MNOP/Amagi/Caze/Caze_TV_BR/Caze_TV.m3u8"
