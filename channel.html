@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RS LIVE TV</title>     
-  <!-- আপডেটেড Shaka Player লাইব্রেরি -->
+  <title>RS LIVE TV - Web Fix</title>     
   <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.11.1/shaka-player.ui.min.js" crossorigin="anonymous"></script>    
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.11.1/controls.min.css" crossorigin="anonymous">
   
@@ -13,64 +12,59 @@
     html, body { background: #000; height: 100vh; width: 100vw; overflow: hidden; }      
     .shaka-video-container { position: absolute; inset: 0; width: 100%; height: 100%; }      
     video { width: 100%; height: 100%; background: #000; object-fit: contain; }      
-    /* বাফারিং স্পিনার সুন্দর করার জন্য */
     .shaka-spinner-container { display: flex !important; }
   </style>  
 </head>
 <body>    
 
   <div class="shaka-video-container" id="video-container" data-shaka-player-container="" shaka-controls="true">      
-    <!-- মিউটেড এবং অটো-প্লে প্রপার্টি যুক্ত করা হয়েছে ব্রাউজার ব্লকিং এড়াতে -->
     <video autoplay playsinline id="video" class="shaka-video" muted></video>  
   </div>
        
   <script>      
     document.addEventListener('DOMContentLoaded', async () => {        
-      // পলিফিল ইনস্টল
       shaka.polyfill.installAll();        
-      if (!shaka.Player.isBrowserSupported()) {
-          console.error('এই ব্রাউজারে প্লেয়ারটি সাপোর্ট করছে না!');
-          return;
-      }          
+      if (!shaka.Player.isBrowserSupported()) return;          
 
       const video = document.getElementById('video');
       const container = document.getElementById('video-container');      
       const player = new shaka.Player(video);        
       
-      // UI কন্ট্রোল প্যানেল সেটআপ
       const ui = new shaka.ui.Overlay(player, container, video);        
       ui.configure({          
         controlPanelElements: ['play_pause', 'mute', 'volume', 'spacer', 'quality', 'fullscreen']
       });  
 
-      // ডোমেইন বা ওয়েবসাইটের DRM ক্লিয়ারেন্স সেটিংস
       player.configure({         
         drm: { 
           clearKeys: { 
             "549ab7cd35a64bb6bb479ecead04d69d": "829799ed534d11fcadeb4b192467e050" 
           } 
-        },
-        manifest: {
-          dash: {
-            clockSyncUri: ''
-          }
         }
       });          
       
-      // লাইভ স্ট্রিম লোড করা
-      try {          
-          await player.load("https://qp-pldt-live-bpk-ucd-prod.akamaized.net/bpk-tv/ch299/default/index.mpd");
-          console.log('চ্যানেল সফলভাবে লোড হয়েছে!');
-          
-          // ব্রাউজারের সিকিউরিটি পলিসি মেনে ভিডিও লোড হওয়ার পর সাউন্ড অন করার চেষ্টা
-          setTimeout(() => {
-              video.muted = false;
-              video.volume = 1.0;
-          }, 1000);
+      // ডোমেন ব্লকিং বা CORS এরর এড়াতে পাবলিক প্রক্সি ব্যবহার করা হয়েছে
+      const originalLink = "https://qp-pldt-live-bpk-ucd-prod.akamaized.net/bpk-tv/ch299/default/index.mpd";
+      const proxyLink = "https://cors-anywhere.herokuapp.com/" + originalLink;
 
+      try {          
+          // প্রথমে প্রক্সি লিংক দিয়ে ট্রাই করবে, ব্লক হলে ডিরেক্ট লিংক ট্রাই করবে
+          await player.load(proxyLink);
+          console.log('Proxy Load Success!');
       } catch (error) { 
-          console.error('প্লে হতে সমস্যা হচ্ছে। এরর কোড:', error.code, error); 
+          console.log('Proxy failed, trying direct link...');
+          try {
+              await player.load(originalLink);
+          } catch (e) {
+              console.error('সব উপায়েই ব্লক দেখাচ্ছে। এরর:', e);
+          }
       }      
+
+      // অটো-প্লে এবং আনমিউট পলিসি
+      setTimeout(() => {
+          video.muted = false;
+          video.volume = 1.0;
+      }, 1500);
     });    
   </script>
 </body>
