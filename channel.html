@@ -1,89 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover">
-<title>Player</title>
-
-<script src="https://content.jwplatform.com/libraries/IDzF9Zmk.js"></script>
-<script>
-jwplayer.key="Khpp2dHxlBJHC8MCmLnBuV2jK/DwDnJMniwF6EO9HC/riJ712ZmbHg==";
-</script>
-
-<style>
-*{ margin:0; padding:0; box-sizing:border-box; }
-html,body{ width:100%; height:100%; background:#000; overflow:hidden; font-family:sans-serif; -webkit-user-select: none; user-select: none; }
-#player{ width:100% !important; height:100% !important; position: absolute; top: 0; left: 0; }
-#loader { position:fixed; top:0; left:0; width:100%; height:100%; background:#000; display:flex; justify-content:center; align-items:center; z-index:9999; flex-direction:column; transition: opacity 0.3s ease; }
-.spinner { width: 50px; height: 50px; border: 3px solid rgba(255, 255, 255, 0.1); border-radius: 50%; border-top-color: #fff; animation: spin 0.8s linear infinite; }
-@keyframes spin { to { transform: rotate(360deg); } }
-#loader p { margin-top: 15px; color: #eee; font-size: 15px; }
-.jwplayer { height:100% !important; width:100% !important; }
-.jw-video { object-fit: fill !important; width: 100vw !important; height: 100vh !important; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rlive Player</title>     
+  <!-- Shaka Player CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.11/shaka-player.ui.min.js" crossorigin="anonymous"></script>    
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.11/controls.min.css" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  
+  <style>      
+    * { margin: 0; padding: 0; box-sizing: border-box; }      
+    html, body { background: #000; height: 100vh; width: 100vw; overflow: hidden; font-family: sans-serif; }      
+    .shaka-video-container { position: absolute; inset: 0; width: 100%; height: 100%; }      
+    video { width: 100%; height: 100%; background: #000; object-fit: contain; }      
+    .shaka-spinner-container { display: none !important; }
+    .ratio-menu { position: absolute; top: 50%; right: 20px; transform: translateY(-50%); background: rgba(0, 0, 0, 0.9); padding: 10px; border-radius: 8px; display: none; flex-direction: column; gap: 8px; z-index: 1000; border: 1px solid rgba(255,255,255,0.2); }
+    .ratio-menu.active { display: flex; }
+    .ratio-btn { background: rgba(255, 255, 255, 0.1); color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-size: 13px; }
+    .ratio-btn.selected { background: #e74c3c; }
+    .custom-icon-btn { background: none; border: none; padding: 0 5px; color: white; cursor: pointer; display: flex; align-items: center; }
+  </style>  
 </head>
-<body>
+<body>    
 
-<div id="loader">
-<div class="spinner"></div>
-<p id="loader-text">Loading Stream...</p>
-</div>
+  <div class="shaka-video-container" id="video-container" data-shaka-player-container="" shaka-controls="true">      
+    <!-- পোস্টার ইমেজ লিংক পরিবর্তন করতে পারেন এখানে -->
+    <video autoplay playsinline id="video" poster="https://ibb.co.com/dWQ9Hnb" class="shaka-video"></video>  
+    
+    <!-- এসপেক্ট রেশিও মেনু (Original, Stretch, Zoom) -->
+    <div class="ratio-menu" id="ratioMenu">
+        <button class="ratio-btn selected" onclick="changeRatio('contain', this)">Original</button>
+        <button class="ratio-btn" onclick="changeRatio('fill', this)">Stretch</button>             
+        <button class="ratio-btn" onclick="changeRatio('cover', this)">Fill (Zoom)</button>
+    </div>  
+  </div>
+       
+  <script>      
+    const video = document.getElementById('video');
+    const ratioMenu = document.getElementById('ratioMenu');
 
-<div id="player"></div>
-
-<script>
-// আইফ্রেম প্রোটেকশন
-if (window.self === window.top) { window.location.href = "index.html"; }
-document.addEventListener('contextmenu', event => event.preventDefault());
-
-// মেইন পেজ থেকে আসা ইউআরএল সঠিকভাবে রিড করার ফাংশন
-function getStreamUrl() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const rawUrl = urlParams.get('url');
-    if (rawUrl) {
-        return decodeURIComponent(rawUrl);
+    function changeRatio(mode, btn) {
+        document.querySelectorAll('.ratio-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        video.style.objectFit = mode;
+        ratioMenu.classList.remove('active'); 
     }
-    return null;
-}
 
-const streamUrl = getStreamUrl();
-const player = jwplayer("player");
+    document.addEventListener('DOMContentLoaded', async () => {        
+      shaka.polyfill.installAll();        
+      if (!shaka.Player.isBrowserSupported()) return;          
+      const container = document.getElementById('video-container');      
+      const player = new shaka.Player(video);        
+      const ui = new shaka.ui.Overlay(player, container, video);        
+      const controls = ui.getControls();
 
-// ব্যাকআপ লিঙ্ক যদি কোনো লিঙ্ক না পাওয়া যায়
-const defaultStream = "https://srknowapp.ncare.live/srktvhlswodrm/srktv.stream/playlist.m3u8";
-const finalStream = streamUrl ? streamUrl : defaultStream;
+      ui.configure({          
+        controlPanelElements: ['play_pause', 'mute', 'volume', 'spacer', 'language' , 'quality', 'fullscreen'],
+        volumeBarColors: { base: 'rgba(255, 255, 255, 0.3)', level: 'rgb(255, 255, 255)' },          
+        seekBarColors: { base: 'rgba(255, 255, 255, 0.3)', buffered: 'rgba(255, 255, 255, 0.5)', played: 'rgb(255, 0, 0)' }
+      });  
 
-player.setup({
-    playlist:[{ sources:[{ file: finalStream, type: "hls" }] }],
-    width:"100%",
-    height:"100%",
-    autostart:true,
-    controls:true,
-    stretching:"fill"
-});
+      container.addEventListener('click', () => {
+          if (ratioMenu.classList.contains('active')) ratioMenu.classList.remove('active');
+          else controls.showControls();
+      });
 
-// ফুলস্ক্রিন ও রোটেশন লজিক
-player.on("fullscreen", function(event){
-    if(event.fullscreen) {
-        if (screen.orientation && screen.orientation.lock) {
-            screen.orientation.lock("landscape").catch(function(e){});
-        }
-        setTimeout(() => {
-            const videoEl = document.querySelector('.jw-video');
-            if(videoEl) videoEl.style.setProperty('object-fit', 'fill', 'important');
-        }, 100);
-    }
-});
+      const fullscreenBtn = document.querySelector('.shaka-fullscreen-button');
+      
+      // পিকচার-ইন-পিকচার বাটন তৈরি
+      const pipIcon = document.createElement('button');
+      pipIcon.innerHTML = '<i class="material-icons-round" style="font-size:24px;">picture_in_picture</i>';
+      pipIcon.classList.add('custom-icon-btn');
+      fullscreenBtn.parentNode.insertBefore(pipIcon, fullscreenBtn);
+      pipIcon.onclick = (e) => { e.stopPropagation(); video.requestPictureInPicture(); };
 
-player.on("ready", function(){ fadeAndHideLoader(); });
-player.on("play", function(){ fadeAndHideLoader(); });
-player.on("buffer", function(){ document.getElementById("loader").style.display="flex"; document.getElementById("loader-text").innerText = "Buffering..."; });
-player.on("error", function(){ document.getElementById("loader").style.display="flex"; document.getElementById("loader-text").innerHTML = "<span style='color:red;'>Stream Failed!</span>"; });
+      // রেশিও চেঞ্জার বাটন তৈরি
+      const ratioIcon = document.createElement('button');
+      ratioIcon.innerHTML = '<i class="material-icons-round" style="font-size:24px;">aspect_ratio</i>';
+      ratioIcon.classList.add('custom-icon-btn');
+      fullscreenBtn.parentNode.insertBefore(ratioIcon, fullscreenBtn);
+      ratioIcon.onclick = (e) => { e.stopPropagation(); ratioMenu.classList.toggle('active'); };
 
-function fadeAndHideLoader() {
-    document.getElementById("loader").style.opacity="0";
-    setTimeout(() => { document.getElementById("loader").style.display="none"; }, 300);
-}
-</script>
+      // ========================================================
+      // ১. DRM CONFIGURATION (যদি ফ্রি চ্যানেল হয় তবে এই অংশটি কেটে দিতে পারেন)
+      // ========================================================
+      player.configure({         
+        drm: { 
+          clearKeys: { 
+            "549ab7cd35a64bb6bb479ecead04d69d": "829799ed534d11fcadeb4b192467e050" 
+          } 
+        }       
+      });          
+      
+      // ========================================================
+      // ২. চ্যানল লিংক লোড করা
+      // ========================================================
+      try {          
+          await player.load("https://qp-pldt-live-bpk-ucd-prod.akamaized.net/bpk-tv/ch299/default/index.mpd");
+          video.muted = false;
+          video.volume = 1.0;
+      } catch (error) { 
+          console.error('লাইভ স্ট্রিম লোড করতে সমস্যা হয়েছে:', error); 
+      }      
+    });    
+  </script>
+
+  <!-- অ্যান্টি-ডেভটুল স্ক্রিপ্ট (ভিজিটররা যাতে সোর্স কোড দেখতে না পারে) -->
+  <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
 </body>
 </html>
