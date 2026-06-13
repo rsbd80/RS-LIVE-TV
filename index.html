@@ -2,6 +2,7 @@
 <html lang="bn">
 <head>
     <meta charset="utf-8">
+    <!-- 📱 viewport-fit=cover দেওয়া হয়েছে যাতে ক্যামেরার নচসহ পুরো স্ক্রিন ভিডিও কভার করতে পারে -->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DRBZH98TKH"></script>
@@ -212,7 +213,7 @@
             background: #141422;
         }
 
-        /* 🔍 নতুন স্টাইলিশ সার্চ আইকন (SVG দিয়ে তৈরি যাতে ব্লাড বা ফেটে না যায়) */
+        /* 🔍 সার্চ আইকন */
         .search-icon-inside {
             position: absolute;
             right: 10px;
@@ -241,6 +242,8 @@
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.7);
         }
+        
+        /* 🎬 আইফ্রেম কাস্টমাইজেশন */
         iframe {
             border: 0 !important;
             display: block;
@@ -248,7 +251,7 @@
             height: 100%;
         }
 
-        /* 🔒 চ্যানেল লিস্ট ও স্পষ্ট স্ক্রোলবার (লম্বা দাগ) ফিক্স */
+        /* 🔒 চ্যানেল লিস্ট ও স্পষ্ট স্ক্রোলবার ফিক্স */
         .channel-list {
             max-height: 360px !important;
             overflow-y: auto !important;
@@ -262,9 +265,9 @@
             }
         }
 
-        /* 👑 স্ক্রোলবারটি মোটা এবং স্পষ্ট করার মূল কোড (রিমোট ও মাউস ফ্রেন্ডলি) */
+        /* স্ক্রোলবার কোড */
         .channel-list::-webkit-scrollbar {
-            width: 8px !important; /* দাগটি আরও চওড়া বা মোটা করা হলো */
+            width: 8px !important; 
         }
         
         .channel-list::-webkit-scrollbar-track {
@@ -273,14 +276,14 @@
         }
         
         .channel-list::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #00f0ff 0%, #0072ff 100%) !important; /* গ্লোয়িং নিয়ন কালার */
+            background: linear-gradient(180deg, #00f0ff 0%, #0072ff 100%) !important; 
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 240, 255, 0.8) !important;
             border: 1px solid rgba(0, 4, 6, 0.5);
         }
         
         .channel-list::-webkit-scrollbar-thumb:hover {
-            background: #ff0055 !important; /* মাউস হোভার করলে কালার চেঞ্জ হবে */
+            background: #ff0055 !important; 
             box-shadow: 0 0 12px rgba(255, 0, 85, 1) !important;
         }
 
@@ -316,7 +319,7 @@
             text-align: center;
         }
 
-        /* 📸 অরিজিনাল ব্যানার পজিশন (নোটিশ এবং টেলিগ্রামের মাঝে লকড) */
+        /* 📸 অরিজিনাল ব্যানার পজিশন */
         .tio-style-banner-fixed {
             width: 320px;
             height: 50px;
@@ -328,7 +331,7 @@
             font-family: 'Segoe UI', Roboto, sans-serif;
             display: flex;
             align-items: center;
-            margin: 0 auto 15px auto; /* মার্জিন এডজাস্টমেন্ট */
+            margin: 0 auto 15px auto; 
         }
 
         .tio-style-banner-fixed::after {
@@ -521,7 +524,15 @@
         <div class="row">
             <div class="col-xs-12 col-md-10 tv-view">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe id="tv-player-iframe" name="player" class="embed-responsive-item" allowfullscreen src="channel.html"></iframe>
+                    <!-- 🛡️ এখানে আইফ্রেম ট্যাগে allow="autoplay; encrypted-media; fullscreen;" পারমিশন ও কাস্টম সোর্স বসানো হয়েছে -->
+                    <iframe 
+                        id="tv-player-iframe" 
+                        name="player" 
+                        class="embed-responsive-item" 
+                        src="https://shakplayer.vercel.app/index.html?url=https://1nyaler.streamhostingcdn.top/stream/32/index.m3u8" 
+                        allow="autoplay; encrypted-media; fullscreen;" 
+                        allowfullscreen>
+                    </iframe>
                 </div>
             </div>
             <div class="col-xs-12 col-md-2 channel-list" id="scroll-wrapper">
