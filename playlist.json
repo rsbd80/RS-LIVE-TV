@@ -73,7 +73,7 @@
           drm: "clearkey",
           key_id: "433ffba670963e70857859a9dff4be04",
           key_value: "51ede3a821229fe81e71282c8eff80e3"
-  },
+       },
   {
     "name": "Sony Ten 1",
     "image": "https://tvassets.roarzone.net/images/sony_sports_1_hd.png",
