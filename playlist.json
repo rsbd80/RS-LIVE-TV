@@ -1,5 +1,10 @@
 [
   {
+    "name": "Caze Tv Fifa World Cup ",
+    "image": "https://i.ibb.co.com/9JJ04g9/1000284076.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://dfr80qz435crc.cloudfront.net/MNOP/Amagi/Caze/Caze_TV_BR/Caze_TV.m3u8"
+  },
+  {
     "name": "India vs Afghanistan",
     "image": "https://d34080pnh6e62j.cloudfront.net/images/channels/mobile_large/17812505331020x576.jpg",
     "url": "https://rs-player.netlify.app/jw-player?url=https://premierleagpl23.akamaized.net/hls/live/2107108/vertical-backup312/master.m3u8"
