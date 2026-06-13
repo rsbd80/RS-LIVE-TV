@@ -20,12 +20,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 `;
 
-                // 🎯 ক্লিক করলে প্লে হবে এবং সার্চবক্স অটো-ক্লিয়ার হয়ে যাবে
+                // 🎯 ক্লিক করলে আপনার নতুন Shaka Player-এর মাধ্যমে ভিডিও প্লে হবে
                 li.addEventListener('click', function() {
+                    // 🚀 চ্যানেল লিংকটিকে আপনার ভার্সেল প্লেয়ারের ফরম্যাটে রূপান্তর করা হলো
+                    const playerWithUrl = "https://shakplayer.vercel.app/index.html?url=" + encodeURIComponent(channel.url);
+
                     if (window.frames['player']) {
-                        window.frames['player'].location.href = channel.url;
+                        window.frames['player'].location.href = playerWithUrl;
                     } else {
-                        player.location.href = channel.url;
+                        const playerIframe = document.getElementById('tv-player-iframe');
+                        if (playerIframe) {
+                            playerIframe.src = playerWithUrl;
+                        }
                     }
 
                     // ✨ ম্যাজিক লজিক: চ্যানেল প্লে হওয়ার সাথে সাথে সার্চবক্স একদম ফাকা হয়ে যাবে
