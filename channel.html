@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rlive Player</title>     
-  <!-- Shaka Player CDN -->
+  <title>Rs Live Tv</title>     
   <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.11/shaka-player.ui.min.js" crossorigin="anonymous"></script>    
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.11/controls.min.css" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
@@ -25,10 +24,8 @@
 <body>    
 
   <div class="shaka-video-container" id="video-container" data-shaka-player-container="" shaka-controls="true">      
-    <!-- পোস্টার ইমেজ লিংক পরিবর্তন করতে পারেন এখানে -->
-    <video autoplay playsinline id="video" poster="https://ibb.co.com/dWQ9Hnb" class="shaka-video"></video>  
+    <video autoplay playsinline id="video" class="shaka-video"></video>  
     
-    <!-- এসপেক্ট রেশিও মেনু (Original, Stretch, Zoom) -->
     <div class="ratio-menu" id="ratioMenu">
         <button class="ratio-btn selected" onclick="changeRatio('contain', this)">Original</button>
         <button class="ratio-btn" onclick="changeRatio('fill', this)">Stretch</button>             
@@ -56,7 +53,7 @@
       const controls = ui.getControls();
 
       ui.configure({          
-        controlPanelElements: ['play_pause', 'mute', 'volume', 'spacer', 'language' , 'quality', 'fullscreen'],
+        controlPanelElements: ['play_pause', 'mute', 'volume', 'spacer', 'quality', 'fullscreen'],
         volumeBarColors: { base: 'rgba(255, 255, 255, 0.3)', level: 'rgb(255, 255, 255)' },          
         seekBarColors: { base: 'rgba(255, 255, 255, 0.3)', buffered: 'rgba(255, 255, 255, 0.5)', played: 'rgb(255, 0, 0)' }
       });  
@@ -68,23 +65,14 @@
 
       const fullscreenBtn = document.querySelector('.shaka-fullscreen-button');
       
-      // পিকচার-ইন-পিকচার বাটন তৈরি
-      const pipIcon = document.createElement('button');
-      pipIcon.innerHTML = '<i class="material-icons-round" style="font-size:24px;">picture_in_picture</i>';
-      pipIcon.classList.add('custom-icon-btn');
-      fullscreenBtn.parentNode.insertBefore(pipIcon, fullscreenBtn);
-      pipIcon.onclick = (e) => { e.stopPropagation(); video.requestPictureInPicture(); };
-
-      // রেশিও চেঞ্জার বাটন তৈরি
+      // রেশিও চেঞ্জার বাটন
       const ratioIcon = document.createElement('button');
       ratioIcon.innerHTML = '<i class="material-icons-round" style="font-size:24px;">aspect_ratio</i>';
       ratioIcon.classList.add('custom-icon-btn');
       fullscreenBtn.parentNode.insertBefore(ratioIcon, fullscreenBtn);
       ratioIcon.onclick = (e) => { e.stopPropagation(); ratioMenu.classList.toggle('active'); };
 
-      // ========================================================
-      // ১. DRM CONFIGURATION (যদি ফ্রি চ্যানেল হয় তবে এই অংশটি কেটে দিতে পারেন)
-      // ========================================================
+      // DRM সেটিংস
       player.configure({         
         drm: { 
           clearKeys: { 
@@ -93,20 +81,15 @@
         }       
       });          
       
-      // ========================================================
-      // ২. চ্যানল লিংক লোড করা
-      // ========================================================
+      // চ্যানেল লিংক লোড
       try {          
           await player.load("https://qp-pldt-live-bpk-ucd-prod.akamaized.net/bpk-tv/ch299/default/index.mpd");
           video.muted = false;
           video.volume = 1.0;
       } catch (error) { 
-          console.error('লাইভ স্ট্রিম লোড করতে সমস্যা হয়েছে:', error); 
+          console.error('Error loading stream:', error); 
       }      
     });    
   </script>
-
-  <!-- অ্যান্টি-ডেভটুল স্ক্রিপ্ট (ভিজিটররা যাতে সোর্স কোড দেখতে না পারে) -->
-  <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
 </body>
 </html>
