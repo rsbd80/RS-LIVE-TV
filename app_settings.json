@@ -3,6 +3,6 @@
   "telegram": "https://t.me/rslivetvgroup",
   "version": "1.0",
   "updateLink": "https://drive.google.com/uc?export=download&id=YOUR_APK_ID",
-  "maintenance": "OFF",
+  "maintenance": "ON",
   "adCode": ""
 }
