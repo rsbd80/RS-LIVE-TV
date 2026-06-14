@@ -1,5 +1,11 @@
 [
   {
+    "name": "Somoy TV",
+    "image": "https://assets-prod.services.toffeelive.com//f_webp,w_1600,q_75/Xi_Ga5oBNnOkwJLWkhKP/posters/ef2899d5-1ae0-4fee-aee5-45f9b0b3ba80.png",
+    "link": "https://bldcmprod-cdn.toffeelive.com/cdn/live/somoy_tv/playlist.m3u8",
+    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9ibGRjbXByb2QtY2RuLnRvZmZlZWxpdmUuY29t:Expires=1781636904:KeyName=prod_linear:Signature=N15nFD1s5SZHs0sxQbnEQMPxnrsJG0nM1K7lczFWI2IBlz7TXDYruqVoCf42-GS65Z6EFFEwGdRzYriexYL5DA"
+  },
+  {
     "name": "FIFA World Cup",
     "image": "https://i.postimg.cc/rmhF9bpb/IMG-20260615-031817-159.jpg",
     "url": "https://rs-player.netlify.app/jw-player?url=https://1nyaler.streamhostingcdn.top/stream/94/index.m3u8"
