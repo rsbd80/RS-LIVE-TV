@@ -1,6 +1,7 @@
 [
   {
-    "name": "FIFA World Cup 2026",
+    "name": "FIFA World Cup",
+    "category": "World Cup 2026",
     "image": "https://i.postimg.cc/CMcvsT8H/file-00000000d7dc7208a7bd78cb3e2253a2.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://premierleagpl23.akamaized.net/hls/live/2107108/tapmad-P2s6L_FiN@L-UrU/level_0.m3u8"
   },
