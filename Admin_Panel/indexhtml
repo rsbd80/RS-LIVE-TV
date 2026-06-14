@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPTV JSON Pro Admin</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* কাস্টম স্ক্রলবার */
+        .overflow-y-auto::-webkit-scrollbar { width: 6px; }
+        .overflow-y-auto::-webkit-scrollbar-track { background: #1e293b; border-radius: 4px; }
+        .overflow-y-auto::-webkit-scrollbar-thumb { background: #10b981; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-slate-950 text-white p-4 md:p-8 font-sans relative min-h-screen">
+
+    <!-- লগিন ওভারলে -->
+    <div id="loginOverlay" class="fixed inset-0 bg-slate-950/95 backdrop-blur-md z-[100] flex items-center justify-center p-4">
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 w-full max-w-sm shadow-2xl text-center space-y-4">
+            <div class="text-4xl">🔒</div>
+            <h2 class="text-xl font-black">Admin Panel</h2>
+            <p class="text-xs text-slate-500">পাসওয়ার্ড দিন</p>
+            <input type="password" id="adminPassword" placeholder="Password" class="w-full p-3 bg-slate-800 border border-slate-700 rounded-xl text-center">
+            <p id="loginError" class="text-red-400 text-xs hidden">❌ ভুল পাসওয়ার্ড</p>
+            <button onclick="checkPassword()" class="w-full bg-emerald-500 text-slate-950 font-black py-3 rounded-xl">প্রবেশ</button>
+        </div>
+    </div>
+
+    <!-- অ্যাডমিন প্যানেল (লগিনের পর দেখাবে) -->
+    <div id="adminContent" class="max-w-6xl mx-auto space-y-6 filter blur-md pointer-events-none transition-all">
+        
+        <!-- হেডার -->
+        <div class="flex justify-between items-center border-b border-slate-800 pb-4">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-black bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">Admin Panel</h1>
+                <p class="text-xs text-slate-500">IPTV JSON Pro Management</p>
+            </div>
+            <button onclick="toggleGlobalSettings()" class="bg-slate-900 border border-slate-800 px-4 py-2 rounded-xl text-emerald-400 text-sm font-bold hover:bg-slate-800 transition">⚙️ গ্লোবাল সেটিংস</button>
+        </div>
+
+        <!-- গ্লোবাল সেটিংস বক্স (শুরুতে লুকানো) -->
+        <div id="globalSettingsBox" class="bg-slate-900 p-5 rounded-2xl border border-slate-800 space-y-4 hidden">
+            <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                <h3 class="text-emerald-400 font-bold">📢 গ্লোবাল কনফিগারেশন</h3>
+                <div class="flex gap-2 items-center bg-slate-800 px-3 py-1 rounded-full text-xs">
+                    <span>মেইনটেনেন্স মোড:</span>
+                    <select id="globalMaintenance" class="bg-transparent text-emerald-400 font-bold">
+                        <option value="OFF">OFF (সচল)</option>
+                        <option value="ON">ON (বন্ধ)</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <label class="block text-xs text-slate-400 uppercase font-bold">স্ক্রোল নোটিশ (বাংলা)</label>
+                <input type="text" id="globalNotice" class="w-full mt-1 p-3 bg-slate-800 border border-slate-700 rounded-xl text-white">
+            </div>
+            <div>
+                <label class="block text-xs text-slate-400 uppercase font-bold">টেলিগ্রাম লিংক</label>
+                <input type="url" id="globalTelegram" class="w-full mt-1 p-3 bg-slate-800 border border-slate-700 rounded-xl">
+            </div>
+            <div>
+                <label class="block text-xs text-slate-400 uppercase font-bold">অ্যাপ ভার্সন</label>
+                <input type="text" id="globalVersion" class="w-full mt-1 p-3 bg-slate-800 border border-slate-700 rounded-xl">
+            </div>
+            <div>
+                <label class="block text-xs text-slate-400 uppercase font-bold">আপডেট লিংক (APK)</label>
+                <input type="url" id="globalUpdateLink" class="w-full mt-1 p-3 bg-slate-800 border border-slate-700 rounded-xl">
+            </div>
+            <div>
+                <label class="block text-xs text-slate-400 uppercase font-bold">অ্যাডস্টেরা অ্যাড কোড</label>
+                <textarea id="globalAdCode" rows="3" class="w-full mt-1 p-3 bg-slate-800 border border-slate-700 rounded-xl font-mono text-xs"></textarea>
+            </div>
+            <div class="flex justify-end gap-3">
+                <button onclick="toggleGlobalSettings()" class="bg-slate-700 px-4 py-2 rounded-xl text-xs">বন্ধ করুন</button>
+                <button onclick="saveGlobalSettings()" id="btnSaveGlobal" class="bg-emerald-500 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs">💾 সেভ করুন</button>
+            </div>
+        </div>
+
+        <!-- চ্যানেল ম্যানেজমেন্ট এলাকা -->
+        <div id="mainChannelsArea" class="space-y-4">
+            <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 flex flex-wrap justify-between items-center gap-3">
+                <div class="relative">
+                    <span class="absolute left-3 top-2.5 text-slate-400">🔍</span>
+                    <input type="text" id="searchBox" oninput="filterChannels()" placeholder="চ্যানেল খুঁজুন..." class="pl-9 pr-4 py-2 bg-slate-800 border border-slate-700 rounded-xl text-sm w-full sm:w-64">
+                </div>
+                <div class="flex gap-2">
+                    <span id="channelCount" class="bg-slate-800 px-3 py-2 rounded-xl text-xs">মোট: 0</span>
+                    <button onclick="loadChannels()" class="bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded-xl text-xs transition">🔄 রিফ্রেশ</button>
+                    <button onclick="openFormModal()" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs transition">➕ নতুন চ্যানেল</button>
+                </div>
+            </div>
+            <div id="channelList" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 overflow-y-auto max-h-[70vh] pr-1">
+                <p class="text-slate-500 text-center col-span-full py-12">চ্যানেল লোড হচ্ছে...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- অ্যাড/এডিট মোডাল -->
+    <div id="formModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 p-6 rounded-2xl w-full max-w-md border border-slate-800">
+            <h2 id="formTitle" class="text-xl font-bold text-emerald-400 mb-4">📺 চ্যানেল যোগ করুন</h2>
+            <form id="iptvForm" class="space-y-4">
+                <input type="hidden" id="editIndex">
+                <input type="text" id="name" placeholder="চ্যানেলের নাম" required class="w-full p-3 bg-slate-800 rounded-xl border border-slate-700">
+                <input type="url" id="logo" placeholder="লোগো URL (ঐচ্ছিক)" class="w-full p-3 bg-slate-800 rounded-xl border border-slate-700">
+                <input type="url" id="streamUrl" placeholder="স্ট্রিম URL" required class="w-full p-3 bg-slate-800 rounded-xl border border-slate-700">
+                <div class="flex gap-2">
+                    <button type="submit" class="flex-1 bg-emerald-500 text-slate-950 font-bold py-2 rounded-xl">সংরক্ষণ</button>
+                    <button type="button" onclick="closeFormModal()" class="flex-1 bg-slate-700 py-2 rounded-xl">বাতিল</button>
+                </div>
+            </form>
+            <p id="status" class="text-center text-sm mt-3"></p>
+        </div>
+    </div>
+
+    <!-- টোস্ট মেসেজ -->
+    <div id="globalStatus" class="fixed bottom-5 right-5 bg-slate-900 border border-slate-700 px-4 py-2 rounded-xl text-xs font-bold shadow-2xl hidden z-50"></div>
+
+    <script>
+        const ADMIN_PASSWORD = "rubel3137";
+        const PLAYER_PREFIX = "https://rs-player.netlify.app/jw-player?url=";
+
+        // ========= গিটহাব কনফিগারেশন =========
+        let config = {
+            owner: "tv-bdxxx",
+            repo: "RS-LIVE-TV",
+            token: "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",
+            path: "playlist.json"
+        };
+
+        let channels = [];
+        let globalSettings = { notice: "", telegram: "", version: "1.0", updateLink: "", maintenance: "OFF", adCode: "" };
+        let playlistSha = "", settingsSha = "";
+
+        // ***** সঠিক ইউনিকোড এনকোডিং/ডিকোডিং (বাংলার জন্য) *****
+        function utf8ToBase64(str) {
+            return btoa(unescape(encodeURIComponent(str)));
+        }
+        function base64ToUtf8(base64) {
+            return decodeURIComponent(escape(atob(base64)));
+        }
+
+        // লগইন চেক
+        document.getElementById("adminPassword").addEventListener("keypress", function(e) {
+            if (e.key === "Enter") checkPassword();
+        });
+        function checkPassword() {
+            if (document.getElementById("adminPassword").value === ADMIN_PASSWORD) {
+                document.getElementById("loginOverlay").classList.add("hidden");
+                document.getElementById("adminContent").classList.remove("filter", "blur-md", "pointer-events-none");
+                initializeApp();
+            } else {
+                document.getElementById("loginError").classList.remove("hidden");
+                setTimeout(() => document.getElementById("loginError").classList.add("hidden"), 1500);
+                document.getElementById("adminPassword").value = "";
+            }
+        }
+
+        function initializeApp() {
+            loadChannels();
+            loadGlobalSettings();
+        }
+
+        // গ্লোবাল সেটিংস টগল
+        function toggleGlobalSettings() {
+            const box = document.getElementById('globalSettingsBox');
+            const area = document.getElementById('mainChannelsArea');
+            box.classList.toggle('hidden');
+            area.classList.toggle('hidden');
+        }
+
+        // চ্যানেল লোড (ইউনিকোড সাপোর্ট)
+        async function loadChannels() {
+            const listDiv = document.getElementById('channelList');
+            listDiv.innerHTML = "<p class='text-slate-400 text-center col-span-full'>লোড হচ্ছে...</p>";
+            try {
+                const url = `https://api.github.com/repos/${config.owner}/${config.repo}/contents/${config.path}?t=${Date.now()}`;
+                const res = await fetch(url, { headers: { 'Authorization': `token ${config.token}` } });
+                if (res.ok) {
+                    const file = await res.json();
+                    playlistSha = file.sha;
+                    const decoded = base64ToUtf8(file.content);
+                    channels = JSON.parse(decoded || "[]");
+                    renderChannels(channels);
+                } else throw new Error();
+            } catch(e) {
+                listDiv.innerHTML = "<p class='text-red-400 text-center col-span-full'>❌ গিটহাব থেকে লোড করতে ব্যর্থ</p>";
+            }
+        }
+
+        // গ্লোবাল সেটিংস লোড
+        async function loadGlobalSettings() {
+            try {
+                const url = `https://api.github.com/repos/${config.owner}/${config.repo}/contents/app_settings.json?t=${Date.now()}`;
+                const res = await fetch(url, { headers: { 'Authorization': `token ${config.token}` } });
+                if (res.ok) {
+                    const file = await res.json();
+                    settingsSha = file.sha;
+                    const decoded = base64ToUtf8(file.content);
+                    globalSettings = JSON.parse(decoded);
+                }
+            } catch(e) { console.log("নতুন সেটিংস তৈরি হবে"); }
+            // UI তে মান বসান
+            document.getElementById('globalNotice').value = globalSettings.notice || "";
+            document.getElementById('globalTelegram').value = globalSettings.telegram || "";
+            document.getElementById('globalVersion').value = globalSettings.version || "1.0";
+            document.getElementById('globalUpdateLink').value = globalSettings.updateLink || "";
+            document.getElementById('globalMaintenance').value = globalSettings.maintenance || "OFF";
+            document.getElementById('globalAdCode').value = globalSettings.adCode || "";
+        }
+
+        // গ্লোবাল সেটিংস সেভ
+        async function saveGlobalSettings() {
+            const btn = document.getElementById('btnSaveGlobal');
+            btn.innerText = "⏳ সংরক্ষণ...";
+            globalSettings = {
+                notice: document.getElementById('globalNotice').value,
+                telegram: document.getElementById('globalTelegram').value,
+                version: document.getElementById('globalVersion').value,
+                updateLink: document.getElementById('globalUpdateLink').value,
+                maintenance: document.getElementById('globalMaintenance').value,
+                adCode: document.getElementById('globalAdCode').value
+            };
+            await pushToGitHub("app_settings.json", globalSettings, settingsSha);
+            btn.innerText = "💾 সেভ করুন";
+            showToast("✅ গ্লোবাল সেটিংস সেভ হয়েছে", "text-emerald-400");
+        }
+
+        // জেনেরিক গিটহাব পুশ (ইউনিকোড সেফ)
+        async function pushToGitHub(path, data, currentSha) {
+            const content = utf8ToBase64(JSON.stringify(data, null, 2));
+            const url = `https://api.github.com/repos/${config.owner}/${config.repo}/contents/${path}`;
+            let sha = currentSha;
+            // সর্বশেষ sha নিন
+            try {
+                const getRes = await fetch(url, { headers: { 'Authorization': `token ${config.token}` } });
+                if (getRes.ok) {
+                    const getData = await getRes.json();
+                    sha = getData.sha;
+                }
+            } catch(e) {}
+            const res = await fetch(url, {
+                method: 'PUT',
+                headers: { 'Authorization': `token ${config.token}`, 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: `Update ${path}`, content: content, sha: sha })
+            });
+            if (res.ok) {
+                const newData = await res.json();
+                if (path === config.path) playlistSha = newData.content.sha;
+                else settingsSha = newData.content.sha;
+                return true;
+            } else {
+                const err = await res.text();
+                throw new Error(err);
+            }
+        }
+
+        // চ্যানেল রেন্ডার (পজিশন নম্বর ও সেট বাটন সহ)
+        function renderChannels(channelsToRender) {
+            const container = document.getElementById('channelList');
+            const totalSpan = document.getElementById('channelCount');
+            totalSpan.innerText = `মোট: ${channelsToRender.length}`;
+            if (!channelsToRender.length) {
+                container.innerHTML = "<p class='text-slate-500 text-center col-span-full'>কোনো চ্যানেল নেই</p>";
+                return;
+            }
+            container.innerHTML = channelsToRender.map((ch, idx) => {
+                // আসল ইন্ডেক্স বের করা (যদিও ফিল্টারড লিস্টে idx ভিন্ন, আমরা মূল অ্যারের রেফারেন্স ব্যবহার করব)
+                const originalIndex = channels.findIndex(c => c === ch);
+                const name = ch.name || "নামহীন";
+                const logo = ch.image || "";
+                const streamUrl = (ch.url || "").replace(PLAYER_PREFIX, "");
+                return `
+                    <div class="bg-slate-900 rounded-xl border border-slate-800 p-3 hover:border-emerald-500/50 transition-all">
+                        <div class="flex flex-col items-center text-center">
+                            <img src="${logo}" class="w-16 h-16 rounded-full object-cover bg-slate-800 mb-2" onerror="this.src='https://i.imgur.com/8Km9tLL.png'">
+                            <h4 class="font-bold text-sm truncate w-full">${escapeHtml(name)}</h4>
+                            <p class="text-[10px] text-slate-400 truncate w-full mt-1">${escapeHtml(streamUrl)}</p>
+                            
+                            <!-- পজিশন পরিবর্তন অংশ -->
+                            <div class="flex items-center gap-1 mt-2 bg-slate-800 p-1 rounded-full w-full">
+                                <input type="number" id="pos-${originalIndex}" min="1" max="${channels.length}" value="${originalIndex+1}" class="w-12 text-center bg-slate-950 border border-slate-700 rounded-lg text-xs py-1 text-white focus:outline-none focus:border-emerald-500">
+                                <button onclick="jumpToPosition(${originalIndex})" class="bg-emerald-500/20 text-emerald-300 text-xs px-2 py-1 rounded-lg hover:bg-emerald-500 hover:text-slate-950 transition">সেট</button>
+                            </div>
+                            
+                            <div class="flex gap-1 mt-2 w-full">
+                                <button onclick="startEdit(${originalIndex})" class="flex-1 bg-yellow-500/20 text-yellow-300 text-xs py-1 rounded-lg hover:bg-yellow-500 hover:text-slate-950 transition">এডিট</button>
+                                <button onclick="deleteChannel(${originalIndex})" class="flex-1 bg-red-500/20 text-red-300 text-xs py-1 rounded-lg hover:bg-red-500 hover:text-white transition">ডিলিট</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+        }
+
+        // পজিশন পরিবর্তন
+        async function jumpToPosition(fromIndex) {
+            const inputElem = document.getElementById(`pos-${fromIndex}`);
+            if (!inputElem) return;
+            let toPosition = parseInt(inputElem.value) - 1;
+            if (isNaN(toPosition) || toPosition < 0 || toPosition >= channels.length || toPosition === fromIndex) return;
+            const channel = channels.splice(fromIndex, 1)[0];
+            channels.splice(toPosition, 0, channel);
+            renderChannels(channels);
+            showToast("⏳ গিটহাবে সাজানো হচ্ছে...", "text-yellow-400");
+            await pushToGitHub(config.path, channels, playlistSha);
+            showToast("✅ পজিশন আপডেট হয়েছে", "text-emerald-400");
+            loadChannels(); // SHA রিফ্রেশের জন্য পুনরায় লোড
+        }
+
+        // সার্চ ফিল্টার
+        function filterChannels() {
+            const query = document.getElementById('searchBox').value.toLowerCase();
+            const filtered = channels.filter(ch => (ch.name || "").toLowerCase().includes(query));
+            renderChannels(filtered);
+        }
+
+        // মোডাল খোলা/বন্ধ
+        function openFormModal() { document.getElementById('formModal').classList.remove('hidden'); }
+        function closeFormModal() { document.getElementById('formModal').classList.add('hidden'); resetForm(); }
+        function resetForm() {
+            document.getElementById('iptvForm').reset();
+            document.getElementById('editIndex').value = "";
+            document.getElementById('formTitle').innerHTML = "📺 চ্যানেল যোগ করুন";
+        }
+
+        function startEdit(index) {
+            document.getElementById('formTitle').innerHTML = "✏️ চ্যানেল সম্পাদনা";
+            document.getElementById('editIndex').value = index;
+            const ch = channels[index];
+            document.getElementById('name').value = ch.name || "";
+            document.getElementById('logo').value = ch.image || "";
+            document.getElementById('streamUrl').value = (ch.url || "").replace(PLAYER_PREFIX, "");
+            openFormModal();
+        }
+
+        async function deleteChannel(index) {
+            if (confirm("চ্যানেলটি মুছে ফেলবেন?")) {
+                channels.splice(index, 1);
+                await pushToGitHub(config.path, channels, playlistSha);
+                renderChannels(channels);
+                showToast("✅ চ্যানেল মুছে ফেলা হয়েছে", "text-emerald-400");
+                loadChannels();
+            }
+        }
+
+        // ফর্ম সাবমিট (নতুন/এডিট)
+        document.getElementById('iptvForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const idx = document.getElementById('editIndex').value;
+            let stream = document.getElementById('streamUrl').value.trim();
+            if (!stream.startsWith(PLAYER_PREFIX)) stream = PLAYER_PREFIX + stream;
+            const newChannel = {
+                name: document.getElementById('name').value.trim(),
+                image: document.getElementById('logo').value.trim(),
+                url: stream
+            };
+            if (idx === "") channels.unshift(newChannel);
+            else channels[idx] = newChannel;
+            
+            const statusP = document.getElementById('status');
+            statusP.innerText = "⏳ সংরক্ষণ করা হচ্ছে...";
+            statusP.className = "text-yellow-400 text-center text-sm mt-3";
+            await pushToGitHub(config.path, channels, playlistSha);
+            statusP.innerHTML = "✅ সফলভাবে সংরক্ষিত!";
+            statusP.className = "text-emerald-400 text-center text-sm mt-3";
+            setTimeout(() => {
+                closeFormModal();
+                renderChannels(channels);
+                statusP.innerText = "";
+            }, 1000);
+        });
+
+        // টোস্ট মেসেজ
+        function showToast(msg, colorClass) {
+            const toast = document.getElementById('globalStatus');
+            toast.className = `fixed bottom-5 right-5 bg-slate-900 border border-slate-700 px-4 py-2 rounded-xl text-xs font-bold shadow-2xl z-50 ${colorClass}`;
+            toast.innerText = msg;
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 2500);
+        }
+    </script>
+</body>
+</html>
