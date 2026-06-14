@@ -4,5 +4,6 @@
   "version": "1.0",
   "updateLink": "https://drive.google.com/uc?export=download&id=YOUR_APK_ID",
   "maintenance": "OFF",
-  "adCode": ""
+  "adCodeBanner": "",
+  "adCodePopunder": ""
 }
