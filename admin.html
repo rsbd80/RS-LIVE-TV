@@ -3,419 +3,353 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IPTV JSON Ultimate Admin Pro</title>
-    
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    
+    <title>RS Live TV - Smart Control Center</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#10b981">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
-<body class="bg-slate-950 text-white p-4 md:p-12 font-sans select-none">
+<body class="bg-slate-950 text-white p-4 md:p-8 font-sans relative min-h-screen">
 
-    <div id="loginScreen" class="fixed inset-0 bg-slate-950 z-[100] flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 p-6 md:p-8 rounded-2xl w-full max-w-sm text-center shadow-2xl">
-            <div class="w-16 h-16 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-emerald-500/20 text-3xl">🔐</div>
-            <h2 class="text-xl font-black uppercase tracking-wide bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">Admin Authentication</h2>
-            <p class="text-xs text-slate-500 font-bold mt-1 uppercase tracking-wider">IPTV Secure Control Panel</p>
-            <input type="password" id="adminPassword" placeholder="Enter Access Password" class="w-full mt-6 p-3 bg-slate-950 border border-slate-800 rounded-xl text-center font-bold tracking-widest focus:outline-none focus:border-emerald-500 text-white placeholder-slate-600 transition-all text-sm">
-            <button onclick="checkLogin()" class="w-full mt-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black p-3 rounded-xl transition-all shadow-lg shadow-emerald-500/20 text-sm uppercase tracking-wider">Unlock Panel</button>
-            <p id="loginError" class="text-red-400 text-xs font-bold mt-3 min-h-[16px]"></p>
+    <div id="loginOverlay" class="fixed inset-0 bg-slate-950/95 backdrop-blur-md z-[100] flex items-center justify-center p-4">
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 w-full max-w-sm text-center space-y-4 shadow-2xl">
+            <div class="inline-flex p-3 bg-slate-950 rounded-xl border border-slate-800 text-emerald-400 mb-2">🔒</div>
+            <div>
+                <h2 class="text-lg font-black tracking-wide text-white uppercase">Admin Panel</h2>
+                <p class="text-xs text-slate-500 font-medium mt-1">অ্যাডমিন প্যানেলে প্রবেশ করতে পাসওয়ার্ড দিন</p>
+            </div>
+            <input type="password" id="adminPassword" placeholder="Enter Password..." class="w-full p-3 bg-slate-800 border border-slate-700 rounded-xl text-center text-sm font-bold tracking-widest text-white focus:outline-none focus:border-emerald-500">
+            <p id="loginError" class="text-xs text-red-400 font-bold hidden">❌ ভুল পাসওয়ার্ড!</p>
+            <button onclick="checkPassword()" class="w-full bg-emerald-500 text-slate-950 font-black p-3 rounded-xl hover:bg-emerald-400 text-sm uppercase tracking-wider transition-all">Login</button>
         </div>
     </div>
 
-    <div id="mainPanel" class="max-w-6xl mx-auto space-y-6 hidden">
+    <div id="adminContent" class="max-w-6xl mx-auto space-y-6 filter blur-md pointer-events-none transition-all duration-750">
         
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 py-2 border-b border-slate-900 pb-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-2 border-b border-slate-900 pb-4">
             <div class="flex items-center gap-3">
-                <div class="p-2.5 bg-slate-900 rounded-xl border border-slate-800 text-emerald-400 flex items-center justify-center shadow-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-7 h-7">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127c.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.43l-1.003.767c-.3.23-.452.617-.431.996a4.522 4.522 0 0 1 0 .26c-.021.379.13.767.431.996l1.003.767a1.125 1.125 0 0 1 .26 1.43l-1.296 2.247a1.125 1.125 0 0 1-1.37.49l-1.216-.456a1.125 1.125 0 0 0-1.076.124a6.57 6.57 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281a1.125 1.125 0 0 0-.646-.87a3.955 3.955 0 0 1-.22-.127a1.125 1.125 0 0 0-1.074-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.43l1.004-.767c.301-.23.452.617.43-.996a4.448 4.448 0 0 1 0-.26c.023-.379-.128-.767-.43-.996l-1.004-.767a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.49l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128c.332-.183.582-.495.644-.869l.214-1.28Z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                    </svg>
+                <div class="p-2.5 bg-slate-900 rounded-xl border border-slate-800 text-emerald-400 text-xl">⚡</div>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-black bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent uppercase">RS Live TV Control Panel</h1>
+                    <p class="text-[10px] md:text-xs text-slate-500 font-bold tracking-widest uppercase mt-0.5">Dual-Sync Cloud Manager (No Client-Code Change Needed)</p>
+                </div>
+            </div>
+            <button onclick="location.reload()" class="bg-red-500/10 text-red-400 hover:bg-red-500 hover:text-white border border-red-500/20 px-4 py-2 rounded-xl text-xs font-bold transition-all">🔒 Logout</button>
+        </div>
+
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <h3 class="text-sm font-black uppercase text-emerald-400 tracking-wider flex items-center gap-2">📢 Global Settings (নোটিশ, আপডেট ও মেইনটেইন্যান্স)</h3>
+                <div class="flex items-center gap-2 bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800">
+                    <span class="text-[11px] font-bold text-slate-400 uppercase">Maintenance Mode:</span>
+                    <select id="globalMaintenance" class="bg-transparent text-xs font-black text-emerald-400 focus:outline-none cursor-pointer">
+                        <option value="OFF" class="bg-slate-900 text-white">OFF (সচল)</option>
+                        <option value="ON" class="bg-slate-900 text-red-400">ON (বন্ধ)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="md:col-span-2">
+                    <label class="block text-xs font-bold text-slate-400 uppercase">App Scroll Notice (স্ক্রোল নোটিশ)</label>
+                    <input type="text" id="globalNotice" class="mt-1.5 w-full p-3 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500" placeholder="চলমান নোটিশ এখানে লিখুন...">
                 </div>
                 <div>
-                    <h1 class="text-2xl font-black tracking-wide bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent uppercase">Ultimate Admin Panel</h1>
-                    <p class="text-xs text-slate-500 font-bold tracking-widest uppercase mt-0.5">Complete Project Control Hub</p>
+                    <label class="block text-xs font-bold text-slate-400 uppercase">Telegram Group Link</label>
+                    <input type="url" id="globalTelegram" class="mt-1.5 w-full p-3 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500" placeholder="https://t.me/yourgroup">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase">App Version Control</label>
+                    <input type="text" id="globalVersion" class="mt-1.5 w-full p-3 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500" placeholder="E.g., 1.0">
+                </div>
+                <div class="md:col-span-2 lg:col-span-4">
+                    <label class="block text-xs font-bold text-slate-400 uppercase">App / APK Update Link</label>
+                    <input type="url" id="globalUpdateLink" class="mt-1.5 w-full p-3 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500" placeholder="https://drive.google.com/.../app.apk">
                 </div>
             </div>
-            <div class="flex bg-slate-900 p-1.5 rounded-xl border border-slate-800 gap-1 self-start md:self-auto overflow-x-auto w-full md:w-auto">
-                <button onclick="switchTab('channels')" id="tabBtn-channels" class="px-4 py-2 text-xs font-black uppercase tracking-wider rounded-lg transition-all bg-emerald-500 text-slate-950">📺 Channels</button>
-                <button onclick="switchTab('notice')" id="tabBtn-notice" class="px-4 py-2 text-xs font-black uppercase tracking-wider rounded-lg transition-all text-slate-400 hover:text-white">📢 Notice Board</button>
-                <button onclick="switchTab('settings')" id="tabBtn-settings" class="px-4 py-2 text-xs font-black uppercase tracking-wider rounded-lg transition-all text-slate-400 hover:text-white">⚙️ Global Settings</button>
+            <div class="flex justify-end pt-2">
+                <button onclick="saveGlobalSettings()" id="btnSaveGlobal" class="bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-black px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider hover:opacity-90 transition-all shadow-md">💾 Save Configuration</button>
+            </div>
+        </div>
+        
+        <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 flex flex-col lg:flex-row gap-4 items-center justify-between shadow-xl">
+            <div class="relative w-full lg:w-72">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500">🔍</span>
+                <input type="text" id="searchBox" oninput="filterChannels()" placeholder="Search channel or category..." class="w-full pl-9 pr-4 py-2.5 bg-slate-800 border border-slate-700 rounded-xl text-sm focus:outline-none focus:border-emerald-500 text-white placeholder-slate-500">
+            </div>
+            <div class="flex flex-wrap items-center gap-2 w-full lg:w-auto justify-between lg:justify-end">
+                <span id="channelCount" class="text-xs font-bold text-slate-400 bg-slate-800 px-3 py-2.5 rounded-xl border border-slate-700">Total: 0</span>
+                <button onclick="loadChannels()" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-bold px-3 py-2.5 rounded-xl transition-all">🔄 Refresh</button>
+                <button onclick="openFormModal()" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-black px-4 py-2.5 rounded-xl transition-all shadow-lg flex items-center gap-1">➕ Add New Channel</button>
             </div>
         </div>
 
-        <div id="tabContent-channels" class="tab-content space-y-4">
-            <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 flex flex-col sm:flex-row gap-4 items-center justify-between shadow-xl">
-                <div class="relative w-full sm:w-72">
-                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500">🔍</span>
-                    <input type="text" id="searchBox" oninput="filterChannels()" placeholder="Search channel name..." class="w-full pl-9 pr-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm focus:outline-none focus:border-emerald-500 text-white placeholder-slate-600 font-medium">
-                </div>
-                <div class="flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-end">
-                    <span id="channelCount" class="text-xs font-bold text-slate-400 bg-slate-950 px-3 py-2.5 rounded-xl border border-slate-800">Total: 0</span>
-                    <button onclick="loadChannels()" class="bg-slate-950 hover:bg-slate-800 border border-slate-800 text-xs font-bold px-3 py-2.5 rounded-xl transition-all">🔄 Refresh</button>
-                    <button onclick="openFormModal()" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-black px-4 py-2.5 rounded-xl transition-all shadow-lg shadow-emerald-500/20 flex items-center gap-1">➕ Add Channel</button>
-                </div>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 overflow-y-auto max-h-[65vh] pr-1" id="channelList">
-                <p class="text-slate-500 text-center py-12 col-span-full font-medium">Loading channels...</p>
-            </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 overflow-y-auto max-h-[50vh] pr-1" id="channelList">
+            <p class="text-slate-500 text-center py-12 col-span-full font-medium">Please login first...</p>
         </div>
-
-        <div id="tabContent-notice" class="tab-content space-y-4 hidden">
-            <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl max-w-2xl mx-auto">
-                <h3 class="text-lg font-bold text-emerald-400 mb-4 flex items-center gap-2">📢 Notice & Scrolling Text Config</h3>
-                <form id="noticeForm" onsubmit="saveNotice(event)" class="space-y-4">
-                    <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-400">Main Banner Notice</label>
-                        <textarea id="mainNotice" rows="3" class="mt-1 w-full p-3 bg-slate-950 border border-slate-800 rounded-xl text-white focus:outline-none focus:border-emerald-500 font-medium" placeholder="Welcome to our IPTV..."></textarea>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-400">Ticker/Scrolling Text</label>
-                        <input type="text" id="scrollNotice" class="mt-1 w-full p-3 bg-slate-950 border border-slate-800 rounded-xl text-white focus:outline-none focus:border-emerald-500 font-medium" placeholder="Breaking news or updates here...">
-                    </div>
-                    <div class="flex items-center gap-3 bg-slate-950 p-3 rounded-xl border border-slate-800">
-                        <input type="checkbox" id="showNotice" class="w-4 h-4 accent-emerald-500 rounded">
-                        <label for="showNotice" class="text-xs font-bold uppercase tracking-wider text-slate-300 cursor-pointer">Show Notice Alert On App Start</label>
-                    </div>
-                    <button type="submit" class="w-full bg-emerald-500 text-slate-950 font-black p-3 rounded-xl hover:bg-emerald-400 transition-all shadow-lg text-sm uppercase tracking-wider">Save Notice Board</button>
-                </form>
-            </div>
-        </div>
-
-        <div id="tabContent-settings" class="tab-content space-y-4 hidden">
-            <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl max-w-2xl mx-auto">
-                <h3 class="text-lg font-bold text-emerald-400 mb-4 flex items-center gap-2">⚙️ Global Website Settings</h3>
-                <form id="settingsForm" onsubmit="saveSettings(event)" class="space-y-4">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400">Website / App Name</label>
-                            <input type="text" id="siteName" required class="mt-1 w-full p-3 bg-slate-950 border border-slate-800 rounded-xl text-white focus:outline-none focus:border-emerald-500 font-medium">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400">App Brand Logo URL</label>
-                            <input type="url" id="siteLogo" class="mt-1 w-full p-3 bg-slate-950 border border-slate-800 rounded-xl text-white focus:outline-none focus:border-emerald-500 font-medium">
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400">Primary Theme Color</label>
-                            <input type="color" id="themeColor" class="mt-1 w-full h-12 p-1 bg-slate-950 border border-slate-800 rounded-xl cursor-pointer">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400">Telegram / Support Link</label>
-                            <input type="url" id="supportLink" class="mt-1 w-full p-3 bg-slate-950 border border-slate-800 rounded-xl text-white focus:outline-none focus:border-emerald-500 font-medium" placeholder="https://t.me/...">
-                        </div>
-                    </div>
-                    <div class="bg-red-950/20 p-4 rounded-xl border border-red-900/30 flex items-center justify-between">
-                        <div>
-                            <h4 class="text-xs font-black uppercase tracking-wider text-red-400">⚠️ Maintenance Mode</h4>
-                            <p class="text-[10px] text-slate-400 font-medium mt-0.5">Turn this on to temporarily lock the front-end website.</p>
-                        </div>
-                        <input type="checkbox" id="maintenanceMode" class="w-5 h-5 accent-red-500 rounded">
-                    </div>
-                    <button type="submit" class="w-full bg-emerald-500 text-slate-950 font-black p-3 rounded-xl hover:bg-emerald-400 transition-all shadow-lg text-sm uppercase tracking-wider">Save Global Settings</button>
-                </form>
-            </div>
-        </div>
-
     </div>
 
-    <div id="formModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden transition-all duration-300">
-        <div class="bg-slate-900 p-6 rounded-2xl shadow-2xl border border-slate-800 w-full max-w-md scale-95 transition-all duration-300">
+    <div id="formModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 p-6 rounded-2xl shadow-2xl border border-slate-800 w-full max-w-md">
             <div class="flex justify-between items-center mb-6">
-                <h2 id="formTitle" class="text-xl font-black text-emerald-400 flex items-center gap-2">📺 Add New Channel</h2>
-                <button onclick="closeFormModal()" class="text-slate-400 hover:text-white bg-slate-950 p-1.5 rounded-lg text-sm border border-slate-800">✕</button>
+                <h2 id="formTitle" class="text-xl font-black text-emerald-400">📺 Add New Channel</h2>
+                <button onclick="closeFormModal()" class="text-slate-400 hover:text-white bg-slate-800 p-1.5 rounded-lg text-sm">✕</button>
             </div>
             <form id="iptvForm" class="space-y-4">
                 <input type="hidden" id="editIndex">
                 <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-400">Channel Name</label>
-                    <input type="text" id="name" required class="mt-1 w-full p-3 bg-slate-950 border border-slate-800 rounded-xl text-white focus:outline-none focus:border-emerald-500 font-medium">
+                    <label class="block text-xs font-bold uppercase text-slate-400">Channel Name</label>
+                    <input type="text" id="name" required class="mt-1 w-full p-3 bg-slate-800 border border-slate-700 rounded-xl text-white focus:outline-none focus:border-emerald-500" placeholder="E.g., T Sports HD">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-400">Logo Image URL</label>
-                    <input type="url" id="logo" class="mt-1 w-full p-3 bg-slate-950 border border-slate-800 rounded-xl text-white focus:outline-none focus:border-emerald-500 font-medium">
+                    <label class="block text-xs font-bold uppercase text-slate-400">Category / ক্যাট</label>
+                    <input type="text" id="category" required class="mt-1 w-full p-3 bg-slate-800 border border-slate-700 rounded-xl text-white focus:outline-none focus:border-emerald-500" placeholder="E.g., Sports">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-400">Stream URL</label>
-                    <input type="url" id="streamUrl" required class="mt-1 w-full p-3 bg-slate-950 border border-slate-800 rounded-xl text-white focus:outline-none focus:border-emerald-500 font-medium" placeholder="https://...">
+                    <label class="block text-xs font-bold uppercase text-slate-400">Logo Image URL</label>
+                    <input type="url" id="logo" required class="mt-1 w-full p-3 bg-slate-800 border border-slate-700 rounded-xl text-white focus:outline-none focus:border-emerald-500" placeholder="https://image-link.png">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-400">Stream URL (HLS / m3u8)</label>
+                    <input type="text" id="streamUrl" required class="mt-1 w-full p-3 bg-slate-800 border border-slate-700 rounded-xl text-white focus:outline-none focus:border-emerald-500" placeholder="https://.../index.m3u8">
                 </div>
                 <div class="flex space-x-2 pt-4">
-                    <button type="submit" id="submitBtn" class="w-full bg-emerald-500 text-slate-950 font-black p-3 rounded-xl hover:bg-emerald-400 transition-all text-sm uppercase tracking-wider">Save Channel</button>
-                    <button type="button" onclick="closeFormModal()" class="w-1/2 bg-slate-950 text-slate-400 font-bold p-3 rounded-xl hover:bg-slate-800 transition-all text-sm border border-slate-800 uppercase tracking-wider">Cancel</button>
+                    <button type="submit" id="submitBtn" class="w-full bg-emerald-500 text-slate-950 font-black p-3 rounded-xl hover:bg-emerald-400 text-sm">Save Channel</button>
+                    <button type="button" onclick="closeFormModal()" class="w-1/2 bg-slate-800 text-slate-300 font-bold p-3 rounded-xl text-sm border border-slate-700">Cancel</button>
                 </div>
             </form>
             <p id="status" class="mt-4 text-center text-sm font-bold min-h-[20px]"></p>
         </div>
     </div>
 
-    <div id="globalStatus" class="fixed bottom-4 right-4 bg-slate-900 border border-slate-800 p-4 rounded-xl shadow-2xl text-xs font-bold hidden z-[110]"></div>
+    <div id="globalStatus" class="fixed bottom-4 right-4 bg-slate-900 border border-slate-800 p-4 rounded-xl shadow-2xl text-xs font-bold hidden z-50"></div>
 
     <script>
-        let config = {};
-        let channels = [];
-        let fileSha = "";
-        
-        // এখানে আপনার এডমিন প্যানেলের সিক্রেট পাসওয়ার্ডটি দিন
-        const SECRET_PASS = "admin123"; 
+        const ADMIN_PASSWORD = "rubel3137"; 
         const PLAYER_PREFIX = "https://rs-player.netlify.app/jw-player?url=";
+        
+        let GITHUB_CONFIG = {}; 
+        let globalSettings = { notice: "", telegram: "", version: "1.0", updateLink: "", maintenance: "OFF" };
+        let channels = [];
+        let playlistSha = "";
+        let settingsSha = "";
 
-        // LOGIN GUARD SYSTEM
-        function checkLogin() {
-            const passInput = document.getElementById('adminPassword').value;
-            const errEl = document.getElementById('loginError');
-            if(passInput === SECRET_PASS) {
-                document.getElementById('loginScreen').classList.add('hidden');
-                document.getElementById('mainPanel').classList.remove('hidden');
-                initAdmin();
+        document.getElementById("adminPassword").addEventListener("keypress", function(e) { if (e.key === "Enter") checkPassword(); });
+
+        function checkPassword() {
+            if (document.getElementById("adminPassword").value === ADMIN_PASSWORD) {
+                document.getElementById("loginOverlay").classList.add("hidden");
+                document.getElementById("adminContent").classList.remove("filter", "blur-md", "pointer-events-none");
+                initializeApp();
             } else {
-                errEl.innerText = "❌ Invalid Admin Password! Try Again.";
-                setTimeout(() => errEl.innerText = "", 2000);
+                document.getElementById("loginError").classList.remove("hidden");
             }
         }
 
-        // INITIALIZE CONFIG
-        async function initAdmin() {
+        async function initializeApp() {
             try {
-                const res = await fetch(`/api/config?t=${new Date().getTime()}`);
-                config = await res.json();
-                if(!config.token) {
-                    alert("Error: Environment Variables (GitHub Token) not found!");
-                    return;
-                }
-                loadChannels(); 
+                const res = await fetch(`/api/config?t=${Date.now()}`);
+                GITHUB_CONFIG = await res.json();
+                loadChannels();
+                loadGlobalSettings();
             } catch (e) {
-                console.error("Config fetch failed, using fallback or prompt console.");
-                // ডেমো বা লোকাল ডেভেলপমেন্ট টেস্টের জন্য ব্যাকআপ ডামি ডাটা কনফিগ
-                config = { owner: "YOUR_GITHUB_USERNAME", repo: "YOUR_REPO_NAME", token: "" };
+                document.getElementById('channelList').innerHTML = "<p class='text-red-400 text-center col-span-full font-bold'>❌ Config Load Error!</p>";
             }
         }
 
-        // TAB SWITCHER SYSTEM
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            document.getElementById(`tabContent-${tabId}`).classList.remove('hidden');
-            
-            document.querySelectorAll('[id^="tabBtn-"]').forEach(btn => {
-                btn.className = "px-4 py-2 text-xs font-black uppercase tracking-wider rounded-lg transition-all text-slate-400 hover:text-white";
-            });
-            document.getElementById(`tabBtn-${tabId}`).className = "px-4 py-2 text-xs font-black uppercase tracking-wider rounded-lg transition-all bg-emerald-500 text-slate-950 shadow-lg";
-
-            if(tabId === 'notice') loadNoticeData();
-            if(tabId === 'settings') loadSettingsData();
-        }
-
-        // GITHUB API GENERIC FETCH FUNCTION
-        async function fetchFromGitHub(fileName) {
-            const url = `https://api.github.com/repos/${config.owner}/${config.repo}/contents/${fileName}?t=${new Date().getTime()}`;
-            const res = await fetch(url, { headers: { 'Authorization': `token ${config.token}` } });
-            if (res.status === 200) {
-                const data = await res.json();
-                const content = decodeURIComponent(atob(data.content).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
-                return { sha: data.sha, content: JSON.parse(content) };
-            }
-            return { sha: "", content: null };
-        }
-
-        // GITHUB API GENERIC SAVE FUNCTION
-        async function saveToGitHubDirect(fileName, dataObj, targetSha) {
-            const url = `https://api.github.com/repos/${config.owner}/${config.repo}/contents/${fileName}`;
-            const jsonString = JSON.stringify(dataObj, null, 2);
-            const base64Content = btoa(unescape(encodeURIComponent(jsonString)));
-            
-            let currentSha = targetSha;
-            if(!currentSha) {
-                const check = await fetch(url, { headers: { 'Authorization': `token ${config.token}` } });
-                if(check.ok) { const d = await check.json(); currentSha = d.sha; }
-            }
-
-            const res = await fetch(url, {
-                method: 'PUT',
-                headers: { 'Authorization': `token ${config.token}`, 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: `📝 Updated ${fileName} via Management Panel`, content: base64Content, sha: currentSha })
-            });
-            return res.ok;
-        }
-
-        // ==================== TAB 1 CORE: CHANNELS CODE ====================
         async function loadChannels() {
             const listDiv = document.getElementById('channelList');
-            listDiv.innerHTML = "<p class='text-center text-slate-500 py-12 col-span-full font-medium'>Fetching Channels from GitHub...</p>";
+            listDiv.innerHTML = "<p class='text-center text-slate-400 py-12 col-span-full font-medium animate-pulse'>⚡ Syncing Playlist with GitHub...</p>";
             try {
-                const data = await fetchFromGitHub("playlist.json");
-                fileSha = data.sha;
-                channels = Array.isArray(data.content) ? data.content : [];
-                renderChannels(channels);
-            } catch (err) {
-                listDiv.innerHTML = "<p class='text-center text-red-400 py-12 col-span-full font-bold'>❌ Error Loading Playlist.json</p>";
-            }
+                const url = `https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/${GITHUB_CONFIG.path}?t=${Date.now()}`;
+                const res = await fetch(url, { headers: { 'Authorization': `token ${GITHUB_CONFIG.token}` } });
+                if (res.ok) {
+                    const data = await res.json();
+                    playlistSha = data.sha;
+                    const text = decodeURIComponent(atob(data.content).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+                    const parsed = JSON.parse(text || "[]");
+                    // যদি অবজেক্ট ফরমেটে চলে আসে ভুলে, সেটাকে হ্যান্ডেল করবে
+                    channels = Array.isArray(parsed) ? parsed : (parsed.channels || []);
+                    renderChannels(channels);
+                }
+            } catch (err) { listDiv.innerHTML = "<p class='text-center text-red-400 col-span-full'>❌ Playlist loading error!</p>"; }
         }
 
-        function renderChannels(arr) {
+        async function loadGlobalSettings() {
+            try {
+                const url = `https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/app_settings.json?t=${Date.now()}`;
+                const res = await fetch(url, { headers: { 'Authorization': `token ${GITHUB_CONFIG.token}` } });
+                if (res.ok) {
+                    const data = await res.json();
+                    settingsSha = data.sha;
+                    const text = atob(data.content);
+                    globalSettings = JSON.parse(text || "{}");
+                    
+                    document.getElementById('globalNotice').value = globalSettings.notice || "";
+                    document.getElementById('globalTelegram').value = globalSettings.telegram || "";
+                    document.getElementById('globalVersion').value = globalSettings.version || "1.0";
+                    document.getElementById('globalUpdateLink').value = globalSettings.updateLink || "";
+                    document.getElementById('globalMaintenance').value = globalSettings.maintenance || "OFF";
+                }
+            } catch (e) { console.log("No custom settings file found, using defaults."); }
+        }
+
+        function renderChannels(list) {
+            document.getElementById('channelCount').innerText = `Total: ${list.length}`;
             const listDiv = document.getElementById('channelList');
-            document.getElementById('channelCount').innerText = `Total: ${arr.length}`;
-            if (arr.length === 0) {
-                listDiv.innerHTML = "<p class='text-center text-slate-600 py-12 col-span-full font-medium'>No channels found.</p>";
-                return;
-            }
-            listDiv.innerHTML = arr.map((ch, idx) => {
+            if (list.length === 0) { listDiv.innerHTML = "<p class='text-center text-slate-500 py-12 col-span-full font-medium'>No channels found.</p>"; return; }
+
+            listDiv.innerHTML = list.map((ch, index) => {
                 const origIdx = channels.indexOf(ch);
-                const name = ch.name || ch.title || "Untitled";
-                const rawUrl = ch.url || ch.streamUrl || ch.link || "";
-                const logo = ch.image || ch.logo || ch.logoUrl || "";
                 return `
-                    <div class="bg-slate-900 rounded-2xl p-3 border border-slate-800 flex flex-col justify-between gap-3 text-xs relative shadow-xl">
-                        <div class="flex items-center justify-between bg-slate-950 p-1.5 rounded-xl border border-slate-800">
-                            <span class="font-bold text-emerald-400 ml-1 font-mono">#${origIdx+1}</span>
-                            <div class="flex items-center gap-1 w-20">
-                                <input type="number" id="pos-${origIdx}" value="${origIdx+1}" class="w-full text-center bg-slate-900 border border-slate-800 rounded-lg py-0.5 text-xs font-bold">
-                                <button onclick="movePosition(${origIdx})" class="bg-emerald-500 text-slate-950 font-black px-2 py-0.5 rounded-md text-[10px]">Go</button>
+                    <div class="bg-slate-900 rounded-2xl p-4 border border-slate-800 flex flex-col justify-between gap-4">
+                        <div class="flex items-center justify-between bg-slate-950 p-2 rounded-xl border border-slate-800 gap-3">
+                            <span class="text-xs font-black text-emerald-400 font-mono pl-1">POS: #${origIdx + 1}</span>
+                            <div class="flex items-center gap-1.5 w-32">
+                                <input type="number" id="posInput-${origIdx}" min="1" max="${channels.length}" value="${origIdx + 1}" class="w-full text-center bg-slate-800 border border-slate-700 rounded-lg py-1 text-xs font-bold text-white focus:outline-none">
+                                <button onclick="jumpToPosition(${origIdx})" class="bg-emerald-500 text-slate-950 font-black px-2.5 py-1 rounded-lg text-[10px] uppercase transition-all">Move</button>
                             </div>
                         </div>
-                        <div class="flex flex-col items-center text-center">
-                            <div class="w-14 h-14 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-center overflow-hidden mb-1">
-                                ${logo ? `<img src="${logo}" class="w-full h-full object-contain" onerror="this.src=''; this.innerHTML='📺';">` : `<span>📺</span>`}
+                        <div class="flex items-center gap-3">
+                            <div class="w-14 h-14 rounded-xl bg-white border border-slate-800 flex items-center justify-center overflow-hidden shrink-0 p-1">
+                                <img src="${ch.image}" class="w-full h-full object-contain" onerror="this.src='https://i.postimg.cc/mD1VCt2C/RS-Live.png';">
                             </div>
-                            <h4 class="font-bold text-white truncate w-full">${name}</h4>
+                            <div class="truncate flex-1">
+                                <div class="flex items-center gap-2">
+                                    <h4 class="font-bold text-sm text-white truncate">${ch.name}</h4>
+                                    <span class="text-[9px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-1.5 py-0.5 rounded font-bold">${ch.category || 'General'}</span>
+                                </div>
+                                <p class="text-[10px] text-slate-400 truncate mt-1 bg-slate-950 p-1.5 rounded-lg font-mono">${(ch.url || "").replace(PLAYER_PREFIX, "")}</p>
+                            </div>
                         </div>
-                        <div class="flex gap-1.5 border-t border-slate-950 pt-2">
-                            <button onclick="startEdit(${origIdx})" class="w-full bg-yellow-500/10 text-yellow-400 text-[10px] py-1 rounded-lg font-bold border border-yellow-500/10">✏️ Edit</button>
-                            <button onclick="deleteChannel(${origIdx})" class="w-full bg-red-500/10 text-red-400 text-[10px] py-1 rounded-lg font-bold border border-red-500/10">🗑️ Del</button>
+                        <div class="flex space-x-2 border-t border-slate-800/60 pt-2.5">
+                            <button onclick="startEdit(${origIdx})" class="w-full bg-yellow-500/10 text-yellow-400 hover:bg-yellow-500 hover:text-slate-950 text-xs py-2 rounded-xl font-bold">✏️ Edit</button>
+                            <button onclick="deleteChannel(${origIdx})" class="w-full bg-red-600/10 text-red-400 hover:bg-red-600 hover:text-white text-xs py-2 rounded-xl font-bold">🗑️ Delete</button>
                         </div>
                     </div>
                 `;
             }).join('');
         }
 
-        async function movePosition(fromIndex) {
-            let pos = parseInt(document.getElementById(`pos-${fromIndex}`).value);
-            if(isNaN(pos) || pos < 1 || pos > channels.length) return;
-            const target = pos - 1;
+        async function saveGlobalSettings() {
+            const btn = document.getElementById('btnSaveGlobal');
+            btn.innerText = "⏳ Saving...";
+            
+            globalSettings.notice = document.getElementById('globalNotice').value.trim();
+            globalSettings.telegram = document.getElementById('globalTelegram').value.trim();
+            globalSettings.version = document.getElementById('globalVersion').value.trim();
+            globalSettings.updateLink = document.getElementById('globalUpdateLink').value.trim();
+            globalSettings.maintenance = document.getElementById('globalMaintenance').value;
+
+            await pushFileToGitHub("app_settings.json", globalSettings, settingsSha, true);
+            btn.innerHTML = "💾 Save Configuration";
+        }
+
+        async function jumpToPosition(fromIndex) {
+            const toPos = parseInt(document.getElementById(`posInput-${fromIndex}`).value) - 1;
+            if (isNaN(toPos) || toPos < 0 || toPos >= channels.length || fromIndex === toPos) return;
             const item = channels.splice(fromIndex, 1)[0];
-            channels.splice(target, 0, item);
+            channels.splice(toPos, 0, item);
             renderChannels(channels);
-            showToast("⏳ Live shifting positions...", "text-yellow-400");
-            const ok = await saveToGitHubDirect("playlist.json", channels, fileSha);
-            if(ok) showToast("✅ Sequence Saved!", "text-emerald-400");
+            await pushFileToGitHub(GITHUB_CONFIG.path, channels, playlistSha, true);
         }
 
         function filterChannels() {
-            const q = document.getElementById('searchBox').value.toLowerCase().trim();
-            renderChannels(channels.filter(c => (c.name || c.title || "").toLowerCase().includes(q)));
+            const query = document.getElementById('searchBox').value.toLowerCase().trim();
+            const filtered = channels.filter(ch => (ch.name || "").toLowerCase().includes(query) || (ch.category || "").toLowerCase().includes(query));
+            renderChannels(filtered);
         }
 
         function openFormModal() { document.getElementById('formModal').classList.remove('hidden'); }
         function closeFormModal() { document.getElementById('formModal').classList.add('hidden'); resetForm(); }
-        function resetForm() { document.getElementById('iptvForm').reset(); document.getElementById('editIndex').value = ""; }
 
         function startEdit(idx) {
-            document.getElementById('formTitle').innerText = "✏️ Edit Channel";
+            document.getElementById('formTitle').innerText = "✏️ Edit Channel Info";
             document.getElementById('editIndex').value = idx;
             const ch = channels[idx];
-            document.getElementById('name').value = ch.name || ch.title || "";
-            document.getElementById('logo').value = ch.image || ch.logo || ch.logoUrl || "";
-            document.getElementById('streamUrl').value = (ch.url || ch.streamUrl || ch.link || "").replace(PLAYER_PREFIX, "");
+            document.getElementById('name').value = ch.name || "";
+            document.getElementById('category').value = ch.category || "General";
+            document.getElementById('logo').value = ch.image || "";
+            document.getElementById('streamUrl').value = (ch.url || "").replace(PLAYER_PREFIX, "");
+            document.getElementById('submitBtn').innerText = "Update Channel";
             openFormModal();
+        }
+
+        function resetForm() {
+            document.getElementById('iptvForm').reset();
+            document.getElementById('editIndex').value = "";
+            document.getElementById('submitBtn').innerText = "Save Channel";
         }
 
         document.getElementById('iptvForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            showToast("⏳ Saving Channel...", "text-yellow-400");
-            const idx = document.getElementById('editIndex').value;
-            let stream = document.getElementById('streamUrl').value.trim();
-            if(!stream.startsWith(PLAYER_PREFIX)) stream = PLAYER_PREFIX + stream;
-            
-            const payload = { name: document.getElementById('name').value, image: document.getElementById('logo').value, url: stream };
-            
-            if(idx === "") channels.unshift(payload);
-            else channels[idx] = payload;
+            const status = document.getElementById('status');
+            status.className = "mt-4 text-center text-sm font-bold text-yellow-400 animate-pulse";
+            status.innerText = "⏳ Cloud এ ডাটা পাঠানো হচ্ছে...";
 
-            const ok = await saveToGitHubDirect("playlist.json", channels, fileSha);
-            if(ok) { showToast("✅ Playlist JSON Updated!", "text-emerald-400"); closeFormModal(); loadChannels(); }
+            const idx = document.getElementById('editIndex').value;
+            let inputUrl = document.getElementById('streamUrl').value.trim();
+            if (!inputUrl.startsWith(PLAYER_PREFIX) && !inputUrl.includes("amagi.tv") && !inputUrl.includes("rs-player.netlify.app")) {
+                inputUrl = PLAYER_PREFIX + inputUrl;
+            }
+
+            const channelObj = { 
+                name: document.getElementById('name').value.trim(), 
+                category: document.getElementById('category').value.trim(), 
+                image: document.getElementById('logo').value.trim(), 
+                url: inputUrl 
+            };
+
+            if (idx === "") channels.unshift(channelObj);
+            else channels[idx] = channelObj;
+
+            await pushFileToGitHub(GITHUB_CONFIG.path, channels, playlistSha, false);
         });
 
         async function deleteChannel(idx) {
-            if(confirm("Delete this channel permanently?")) {
+            if (confirm(`আপনি কি নিশ্চিত ডিলিট করতে চান?`)) {
                 channels.splice(idx, 1);
-                showToast("⏳ Syncing Deletion...", "text-yellow-400");
-                if(await saveToGitHubDirect("playlist.json", channels, fileSha)) loadChannels();
+                renderChannels(channels);
+                await pushFileToGitHub(GITHUB_CONFIG.path, channels, playlistSha, true);
             }
         }
 
+        async function pushFileToGitHub(path, dataObj, currentSha, isBackground) {
+            const status = document.getElementById('status');
+            const fileUrl = `https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/${path}`;
+            let sha = currentSha;
 
-        // ==================== TAB 2 CORE: NOTICE BOARD ====================
-        let noticeSha = "";
-        async function loadNoticeData() {
-            showToast("⏳ Loading Notice Data...", "text-yellow-400");
-            const data = await fetchFromGitHub("notice.json");
-            noticeSha = data.sha;
-            if(data.content) {
-                document.getElementById('mainNotice').value = data.content.mainNotice || "";
-                document.getElementById('scrollNotice').value = data.content.scrollNotice || "";
-                document.getElementById('showNotice').checked = data.content.showNotice || false;
-            }
-            hideToast();
+            try {
+                const currentRes = await fetch(fileUrl, { headers: { 'Authorization': `token ${GITHUB_CONFIG.token}` } });
+                if(currentRes.ok) { const cData = await currentRes.json(); sha = cData.sha; }
+
+                const base64Content = btoa(unescape(encodeURIComponent(JSON.stringify(dataObj, null, 2))));
+                const res = await fetch(fileUrl, {
+                    method: 'PUT',
+                    headers: { 'Authorization': `token ${GITHUB_CONFIG.token}`, 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: `Update ${path}`, content: base64Content, sha: sha })
+                });
+
+                if (res.ok) {
+                    const resData = await res.json();
+                    if(path === GITHUB_CONFIG.path) playlistSha = resData.content.sha;
+                    else settingsSha = resData.content.sha;
+
+                    if (!isBackground) {
+                        status.className = "mt-4 text-center text-sm font-bold text-emerald-400";
+                        status.innerHTML = "✅ সফলভাবে ক্লাউডে লাইভ হয়েছে!";
+                        setTimeout(() => { closeFormModal(); renderChannels(channels); }, 1000);
+                    } else {
+                        showGlobalStatus("✅ সফলভাবে ক্লাউড সেটিংস সেভ হয়েছে!", "text-emerald-400");
+                    }
+                }
+            } catch (err) { showGlobalStatus("❌ ক্লাউড সেভ ত্রুটি!", "text-red-400"); }
         }
 
-        async function saveNotice(e) {
-            e.preventDefault();
-            showToast("⏳ Push Notice Update...", "text-yellow-400");
-            const payload = {
-                mainNotice: document.getElementById('mainNotice').value,
-                scrollNotice: document.getElementById('scrollNotice').value,
-                showNotice: document.getElementById('showNotice').checked
-            };
-            if(await saveToGitHubDirect("notice.json", payload, noticeSha)) {
-                showToast("✅ Notice Board Updated Live!", "text-emerald-400");
-            }
+        function showGlobalStatus(msg, color) {
+            const el = document.getElementById('globalStatus');
+            el.className = `fixed bottom-4 right-4 bg-slate-900 border border-slate-800 p-4 rounded-xl shadow-2xl text-xs font-bold z-50 ${color}`;
+            el.innerText = msg; el.classList.remove('hidden');
+            setTimeout(() => el.classList.add('hidden'), 2000);
         }
-
-
-        // ==================== TAB 3 CORE: GLOBAL SETTINGS ====================
-        let settingsSha = "";
-        async function loadSettingsData() {
-            showToast("⏳ Loading Settings Config...", "text-yellow-400");
-            const data = await fetchFromGitHub("settings.json");
-            settingsSha = data.sha;
-            if(data.content) {
-                document.getElementById('siteName').value = data.content.siteName || "IPTV Pro";
-                document.getElementById('siteLogo').value = data.content.siteLogo || "";
-                document.getElementById('themeColor').value = data.content.themeColor || "#10b981";
-                document.getElementById('supportLink').value = data.content.supportLink || "";
-                document.getElementById('maintenanceMode').checked = data.content.maintenanceMode || false;
-            }
-            hideToast();
-        }
-
-        async function saveSettings(e) {
-            e.preventDefault();
-            showToast("⏳ Syncing Website Profiles...", "text-yellow-400");
-            const payload = {
-                siteName: document.getElementById('siteName').value,
-                siteLogo: document.getElementById('siteLogo').value,
-                themeColor: document.getElementById('themeColor').value,
-                supportLink: document.getElementById('supportLink').value,
-                maintenanceMode: document.getElementById('maintenanceMode').checked
-            };
-            if(await saveToGitHubDirect("settings.json", payload, settingsSha)) {
-                showToast("✅ Website Meta System Updated!", "text-emerald-400");
-            }
-        }
-
-
-        // UTILITIES UI CONTEXTS
-        function showToast(msg, color) {
-            const toast = document.getElementById('globalStatus');
-            toast.className = `fixed bottom-4 right-4 bg-slate-900 border border-slate-800 p-4 rounded-xl shadow-2xl text-xs font-bold z-[110] ${color}`;
-            toast.innerText = msg; toast.classList.remove('hidden');
-        }
-        function hideToast() { document.getElementById('globalStatus').classList.add('hidden'); }
     </script>
 </body>
-                              </html>
+</html>
