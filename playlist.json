@@ -25,6 +25,31 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://streams2.sofast.tv/ptnr-yupptv/title-cricketgold/v1/manifest/611d79b11b77e2f571934fd80ca1413453772ac7/b2048bb8-1686-4432-aa50-647245383e0c/bfc6a36e-c250-4afe-b6c9-2bc57855bb7d/4.m3u8"
   },
   {
+    "name": "Star Jalsha",
+    "image": "https://i.postimg.cc/V6t2fM4G/starjalsha.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen3.aynaott.com/n64PH4YL/index.m3u8"
+  },
+  {
+    "name": "ZEE Bangla",
+    "image": "https://i.postimg.cc/ZRjjSzFd/20250403-190441.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen3.aynaott.com/n64PH4YL/index.m3u8"
+  },
+  {
+    "name": "Sananda Tv",
+    "image": "https://i.postimg.cc/xT1s9pyz/20241029-135129.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://live.sanandatelevision.in/sananda/index.m3u8"
+  },
+  {
+    "name": "Enterr10",
+    "image": "https://i.postimg.cc/fypczz3J/enter10bangla.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://live-bangla.akamaized.net/liveabr/playlist.m3u8"
+  },
+  {
+    "name": "Bangla Plus",
+    "image": "https://i.postimg.cc/4y7TM4dJ/Bangla-Plus.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://live-stream.utkalbongo.com/hls/livebanglatvstream.m3u8"
+  },
+  {
     "name": "Channel 24",
     "image": "https://i.postimg.cc/q7VdrWLP/channel24.jpg",
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1703/output/index.m3u8"
@@ -78,6 +103,11 @@
     "name": "BanglaVision",
     "image": "https://raw.githubusercontent.com/saif99php/BDsaif07/main/logo/banglavision.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1715/output/index.m3u8"
+  },
+  {
+    "name": "MY TV",
+    "image": "https://i.postimg.cc/0y7ppp9f/20241118-164338.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/mytv-up-off.stream/tracks-v1a1/mono.m3u8"
   },
   {
     "name": "NTV",
