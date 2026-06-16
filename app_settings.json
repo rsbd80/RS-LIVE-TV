@@ -3,6 +3,6 @@
   "telegram": "https://t.me/",
   "version": "1.0",
   "updateLink": "",
-  "maintenance": "OFF",
+  "maintenance": "ON",
   "adCode": ""
 }
