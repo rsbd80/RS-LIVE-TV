@@ -1,5 +1,10 @@
 [
   {
+    "name": "Somy Tv FIFA WORLD CUP",
+    "image": "https://i.postimg.cc/gjyd5LgC/20260616-210333.jpg",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://live.thebosstv.com:30443/dwlive/Somoy-TV/chunks.m3u8"
+  },
+  {
     "name": "Argentina vs Algeria",
     "image": "https://i.postimg.cc/5yTDN46M/20260616-205108.jpg",
     "url": "https://rs-player.netlify.app/jw-player?url=https://1nyaler.streamhostingcdn.top/stream/106/index.m3u8"
