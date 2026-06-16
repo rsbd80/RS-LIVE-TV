@@ -13,6 +13,7 @@
     "name": "FIFA WORLD CUP",
     "image": "https://i.postimg.cc/3J6D7P1B/20260616-205748.jpg",
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8"
+    "visible": false
   },
   {
     "name": "Somoy Tv FIFA WORLD CUP",
