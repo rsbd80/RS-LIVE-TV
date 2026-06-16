@@ -5,6 +5,11 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://1nyaler.streamhostingcdn.top/stream/106/index.m3u8"
   },
   {
+    "name": "FIFA 2026 বাংলা ধারাভাষ্য",
+    "image": "https://i.postimg.cc/1X0GD0GR/20260616-161922.jpg",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://d1g8wgjurz8via.cloudfront.net/bpk-tv/ColorsHD/default/ColorsHD.m3u8"
+  },
+  {
     "name": "FIFA WORLD CUP",
     "image": "https://i.postimg.cc/3J6D7P1B/20260616-205748.jpg",
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8"
@@ -13,11 +18,6 @@
     "name": "Somoy Tv FIFA WORLD CUP",
     "image": "https://i.postimg.cc/gjyd5LgC/20260616-210333.jpg",
     "url": "https://shakplayer.vercel.app/index.html?url=https://live.thebosstv.com:30443/dwlive/Somoy-TV/chunks.m3u8"
-  },
-  {
-    "name": "FIFA 2026 বাংলা ধারাভাষ্য",
-    "image": "https://i.postimg.cc/1X0GD0GR/20260616-161922.jpg",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://d1g8wgjurz8via.cloudfront.net/bpk-tv/ColorsHD/default/ColorsHD.m3u8"
   },
   {
     "name": "Win Sports World Cup ",
