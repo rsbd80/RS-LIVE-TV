@@ -1,10 +1,5 @@
 [
   {
-    "name": "Atn Bangla",
-    "image": "https://i.postimg.cc/xTLMhyJB/atn-bangla1.jpg",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://app.ncare.live/live-orgin/atnbanglauk-off.stream/live-orgin/atnbanglauk-off.stream/chunks.m3u8?nimblesessionid=1073698381"
-  },
-  {
     "name": "India vs Afghanistan",
     "image": "https://d34080pnh6e62j.cloudfront.net/images/channels/mobile_large/17816822451020x576.jpg",
     "url": "https://rs-player.netlify.app/jw-player?url=https://serieAleague.akamaized.net/hls/live/2107107/vertical-backup312/master.m3u8"
@@ -68,6 +63,11 @@
     "name": "Flash Guys HD",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1770378074527.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://nomawnoijl.gpcdn.net/akash/flashguys/playlist.m3u8"
+  },
+  {
+    "name": "Atn Bangla",
+    "image": "https://i.postimg.cc/xTLMhyJB/atn-bangla1.jpg",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://app.ncare.live/live-orgin/atnbanglauk-off.stream/live-orgin/atnbanglauk-off.stream/chunks.m3u8?nimblesessionid=1073698381"
   },
   {
     "name": "Thunder Er",
