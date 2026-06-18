@@ -70,6 +70,11 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1703/output/index.m3u8"
   },
   {
+    "name": "Movie Bangla",
+    "image": "https://moviebangla.tv/wp-content/uploads/2024/06/moviebanglatv-logo-2.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://bestiptv.bestiptv-pro.workers.dev/?url=http://alvetv.com/moviebanglatv/8080/index.m3u8"
+  },
+  {
     "name": "Flash Guys HD",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1770378074527.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://nomawnoijl.gpcdn.net/akash/flashguys/playlist.m3u8"
