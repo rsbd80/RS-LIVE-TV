@@ -80,6 +80,11 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1701/output/index.m3u8"
   },
   {
+    "name": "DBC News HD",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1770186306600.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1728/output/index.m3u8"
+  },
+  {
     "name": "Thunder Er",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1770380791303.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://nomawnoijl.gpcdn.net/akash/thunder/playlist.m3u8"
@@ -103,11 +108,6 @@
     "name": "Sports Range",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1779610478709.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://nomawnoijl.gpcdn.net/akash/sportrange/playlist.m3u8"
-  },
-  {
-    "name": "DBC News HD",
-    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1770186306600.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1728/output/index.m3u8"
   },
   {
     "name": "Maasranga TV",
