@@ -135,6 +135,11 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1705/output/index.m3u8"
   },
   {
+    "name": "Channel I HD",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1740567626692.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1723/output/index.m3u8"
+  },
+  {
     "name": "Thunder Er",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1770380791303.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://nomawnoijl.gpcdn.net/akash/thunder/playlist.m3u8"
@@ -203,11 +208,6 @@
     "name": "Party Universe",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1778083145889.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://nomawnoijl.gpcdn.net/akash/partyuniverse/playlist.m3u8"
-  },
-  {
-    "name": "Channel I HD",
-    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1740567626692.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1723/output/index.m3u8"
   },
   {
     "name": "Cineedge HD",
