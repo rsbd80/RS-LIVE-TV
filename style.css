@@ -9,50 +9,45 @@ body {
 }
 
 .tv-area { 
-    margin-top: 50px; 
+    margin-top: 20px; 
 }
 
 /* সাইডবার চ্যানেল কন্টেইনার */
 .channel-list { 
-    padding-left: 0; 
+    padding: 0;
     height: 540px; 
     overflow-y: auto; 
     overflow-x: hidden; 
     -webkit-overflow-scrolling: touch; 
-    scroll-behavior: smooth;
-    display: block;
 }
 
 .thumbnail-slider { 
     margin: 0; 
     padding: 0 5px;  
     list-style: none;
-    display: block; 
-    width: 100%;
+    display: block;
 }
 
 /* প্রতিটি চ্যানেল কার্ড বক্স */
 .thumbnail-slider li { 
-    list-style: none; 
     background: #1b1c21; 
     border: 2px solid #2d2e35; 
     border-radius: 8px;
-    padding: 0; 
-    display: inline-block; 
-    width: 100%;
     margin-bottom: 12px;
-    box-sizing: border-box;
     cursor: pointer;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
     transition: all 0.2s ease;
+    position: relative;
+    z-index: 10;
 }
 
 .thumbnail-slider li:hover, 
-.thumbnail-slider li:focus,
 .thumbnail-slider li.active {
     border-color: #3b82f6;
     background: #252836;
-    outline: none;
-    transform: scale(1.02);
+    transform: scale(1.01);
 }
 
 .channel-card {
@@ -74,70 +69,52 @@ body {
     color: #fff;
     font-size: 15px;
     font-weight: bold;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
-/* স্ক্রোলবার কাস্টমাইজেশন */
-.channel-list::-webkit-scrollbar {
-    width: 6px;
-}
-.channel-list::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-color: #252731; 
-}
-
-/* 📱 মোবাইল ও ট্যাবলেটের রেসপনসিভ ভিউ কনফিগারেশন */
-@media (max-width: 1199px) {
-    .channel-list { height: 450px; }
-}
-
+/* 📱 মোবাইল এবং রেসপনসিভ ভিউতে ক্লিক ফিক্স */
 @media (max-width: 990px) {
-    .tv-area { 
-        margin-top: 35px !important; 
-        padding-top: 5px !important;
-    }
-    
     .channel-list { 
-        padding: 5px 8px; 
         height: auto !important; 
-        overflow-y: hidden; 
-        overflow-x: auto; 
-        display: block;
+        overflow-x: auto !important; 
+        overflow-y: hidden !important;
+        white-space: nowrap;
+        padding: 10px 5px;
     }
     
     .thumbnail-slider {
         display: flex !important;
         flex-direction: row !important;
-        gap: 6px; 
         padding: 0;
-        width: auto;
+        margin: 0;
     }
     
     .thumbnail-slider li { 
-        width: 80px !important; 
+        width: 90px !important; 
+        display: inline-block !important;
         flex-shrink: 0;
         margin-bottom: 0;
-        border-radius: 5px; 
+        margin-right: 8px;
     }
     
     .channel-card {
         flex-direction: column;
         align-items: center;
-        padding: 6px;
+        padding: 8px;
         text-align: center;
     }
     
     .channel-card img {
-        width: 45px;
-        height: 45px;
+        width: 40px;
+        height: 40px;
         margin-right: 0;
-        margin-bottom: 4px;
+        margin-bottom: 6px;
     }
     
     .channel-title {
         font-size: 11px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         width: 100%;
     }
 }
