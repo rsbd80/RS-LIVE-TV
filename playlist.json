@@ -1,13 +1,18 @@
 [
   {
-    "name": "World Cup Live",
-    "image": "https://i.postimg.cc/BZynvYFt/1782085578472.jpg",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://customer-rqx2ncfj15h2he6q.cloudflarestream.com/92f6cbdfdbed488c94405d1c605bc403/manifest/video.m3u8"
+    "name": "Willow Sports",
+    "image": "https://halifax.citynews.ca/wp-content/blogs.dir/sites/5/2024/10/2226b3c639dfb92b47253f8ae6ef3aea6885adefc6b09ef022b974698a174a6c.jpg",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://warm-caverns-48629-92fab798385f.herokuapp.com/https://d36r8jifhgsk5j.cloudfront.net/Willow_TV540p.m3u8"
   },
   {
     "name": "FIFA WORLD CUP LIVE",
     "image": "https://www.the-sun.com/wp-content/uploads/sites/6/2024/02/SC-World-Cup-Off-Plat-copy.jpg?quality=80&strip=all&w=1620&h=1080&crop=1",
     "url": "https://rs-player.netlify.app/jw-player?url=https://live.wxinxi.com/live/25816724_sb2maw7iluj1ghr92sk5siud28tpimx0.m3u8"
+  },
+  {
+    "name": "World Cup Live",
+    "image": "https://i.postimg.cc/BZynvYFt/1782085578472.jpg",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://customer-rqx2ncfj15h2he6q.cloudflarestream.com/92f6cbdfdbed488c94405d1c605bc403/manifest/video.m3u8"
   },
   {
     "name": "FIFA WORLD CUP LIVE",
