@@ -7,7 +7,7 @@
   {
     "name": "World Cup Live",
     "image": "https://www.the-sun.com/wp-content/uploads/sites/6/2024/02/SC-World-Cup-Off-Plat-copy.jpg?quality=80&strip=all&w=1620&h=1080&crop=1",
-    "url": "https://shakplayer.vercel.app/index.html?url=https://d1211whpimeups.cloudfront.net/smil:rtbgo/chunklist.m3u8"
+    "url": "https://rs-player.netlify.app/jw-player?url=https://d1211whpimeups.cloudfront.net/smil:rtbgo/chunklist.m3u8"
   },
   {
     "name": "Bein Sports 2",
