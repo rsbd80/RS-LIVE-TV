@@ -30,6 +30,11 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://streams2.sofast.tv/ptnr-yupptv/title-cricketgold/v1/manifest/611d79b11b77e2f571934fd80ca1413453772ac7/b2048bb8-1686-4432-aa50-647245383e0c/bfc6a36e-c250-4afe-b6c9-2bc57855bb7d/4.m3u8"
   },
   {
+    "name": "Willow Sports",
+    "image": "https://halifax.citynews.ca/wp-content/blogs.dir/sites/5/2024/10/2226b3c639dfb92b47253f8ae6ef3aea6885adefc6b09ef022b974698a174a6c.jpg",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://warm-caverns-48629-92fab798385f.herokuapp.com/https://d36r8jifhgsk5j.cloudfront.net/Willow_TV540p.m3u8"
+  },
+  {
     "name": "Star Jalsha",
     "image": "https://i.postimg.cc/V6t2fM4G/starjalsha.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://cinechannels.pages.dev/fox-1"
@@ -78,11 +83,6 @@
     "name": "Jamuna TV",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1735560213832.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1701/output/index.m3u8"
-  },
-  {
-    "name": "Willow Sports",
-    "image": "https://halifax.citynews.ca/wp-content/blogs.dir/sites/5/2024/10/2226b3c639dfb92b47253f8ae6ef3aea6885adefc6b09ef022b974698a174a6c.jpg",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://warm-caverns-48629-92fab798385f.herokuapp.com/https://d36r8jifhgsk5j.cloudfront.net/Willow_TV540p.m3u8"
   },
   {
     "name": "DBC News HD",
