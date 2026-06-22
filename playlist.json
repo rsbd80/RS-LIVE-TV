@@ -1,5 +1,10 @@
 [
   {
+    "name": "Thikana Tv",
+    "image": "https://imglink.cc/cdn/rw8iAU9ZcB.jpg",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://5dd3981940faa.streamlock.net/thikanatv/thikanatv/playlist.m3u8"
+  },
+  {
     "name": "FIFA WORLD CUP LIVE",
     "image": "https://i.postimg.cc/BZynvYFt/1782085578472.jpg",
     "url": "https://rs-player.netlify.app/jw-player?url=https://tv.beyondtaxconsultants.com/api/btv/btv.m3u8"
