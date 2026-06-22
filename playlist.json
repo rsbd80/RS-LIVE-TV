@@ -180,6 +180,11 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1710/output/index.m3u8"
   },
   {
+    "name": "Thunder Er",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1770380791303.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://nomawnoijl.gpcdn.net/akash/thunder/playlist.m3u8"
+  },
+  {
     "name": "Fighters",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1770380942670.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://nomawnoijl.gpcdn.net/akash/fighter/playlist.m3u8"
@@ -298,11 +303,6 @@
     "name": "Originals",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1778085327477.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://nomawnoijl.gpcdn.net/akash/originals/playlist.m3u8"
-  },
-  {
-    "name": "Delicious",
-    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1778086478755.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://nomawnoijl.gpcdn.net/akash/delicious/playlist.m3u8"
   },
   {
     "name": "Rongeen Tv",
