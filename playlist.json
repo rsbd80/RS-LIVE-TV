@@ -1,5 +1,10 @@
 [
   {
+    "name": "Yrf Music",
+    "image": "https://yt3.googleusercontent.com/nf15u1K12VXgBLh5HTf0asDF5Fc36RsUICRi8xY1Cs0QhAL_jmtW07wAUdRzrYDBKwv_KIa09Q=s900-c-k-c0x00ffffff-no-rj",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://amg01412-xiaomiasia-yrfmusic-xiaomi-1rmk2.amagi.tv/playlist/amg01412-xiaomiasia-yrfmusic-xiaomi/playlist.m3u8"
+  },
+  {
     "name": "FIFA WORLD CUP LIVE",
     "image": "https://i.postimg.cc/BZynvYFt/1782085578472.jpg",
     "url": "https://rs-player.netlify.app/jw-player?url=https://customer-rqx2ncfj15h2he6q.cloudflarestream.com/92f6cbdfdbed488c94405d1c605bc403/manifest/video.m3u8"
