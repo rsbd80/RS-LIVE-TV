@@ -1,5 +1,10 @@
 [
   {
+    "name": "Toffee Live World Cup",
+    "image": "https://raw.githubusercontent.com/BINOD-XD/Toffee-Auto-Update-Playlist/refs/heads/main/toffee_logo.jpeg",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://prod-cdn01-live.toffeelive.com/live/FIFA-2026-4/0/master_2000.m3u8"
+  },
+  {
     "name": "FIFA WORLD CUP LIVE",
     "image": "https://i.postimg.cc/BZynvYFt/1782085578472.jpg",
     "url": "https://rs-player.netlify.app/jw-player?url=https://tv.beyondtaxconsultants.com/api/btv/btv.m3u8"
