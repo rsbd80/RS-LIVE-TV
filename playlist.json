@@ -20,14 +20,14 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://dfr80qz435crc.cloudfront.net/MNOP/Amagi/Caze/Caze_TV_BR/1080p-vtt/index.m3u8"
   },
   {
-    "name": "Bein Sports 2",
-    "image": "https://i.postimg.cc/qMXJcZFW/Bein-Sports-2.jpg",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://live.wxinxi.com/live/25816724_sb2maw7iluj1ghr92sk5siud28tpimx0.m3u8"
-  },
-  {
     "name": "World Cup Somoy Tv",
     "image": "https://ecdn.dhakatribune.net/contents/cache/images/640x359x1/uploads/media/2024/08/19/somoy-tv-jobs-20210609154523-434abddc411e7dee19542842ac3124b2.jpg",
     "url": "https://rs-player.netlify.app/jw-player?url=https://live.thebosstv.com:30443/dwlive/Somoy-TV/chunks.m3u8"
+  },
+  {
+    "name": "Bein Sports 2",
+    "image": "https://i.postimg.cc/qMXJcZFW/Bein-Sports-2.jpg",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://live.wxinxi.com/live/25816724_sb2maw7iluj1ghr92sk5siud28tpimx0.m3u8"
   },
   {
     "name": "Cricket Gold",
