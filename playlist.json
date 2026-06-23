@@ -10,6 +10,41 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://edge22.776740.ir.cdn.ir/hls2/sport.m3u8"
   },
   {
+    "name": "Star Jalsha",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Star_Jalsha_logo_2023.png/250px-Star_Jalsha_logo_2023.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://tvsen3.aynaott.com/n64PH4YL/tracks-v1a1/mono.ts.m3u8"
+  },
+  {
+    "name": "ZEE Bangla",
+    "image": "https://static.wikia.nocookie.net/etv-gspn-bangla/images/b/b1/Zee_Bangla_English_Int%27l_%282017%29.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://stream.ottplus.bd/live/zee_bangla_abr/index.m3u8"
+  },
+  {
+    "name": "Sananda Tv",
+    "image": "https://static.wikia.nocookie.net/etv-gspn-bangla/images/4/48/Sananda_TV_logo_%282011%29.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://live.sanandatelevision.in/sananda/index.m3u8"
+  },
+  {
+    "name": "Enterr10",
+    "image": "https://yt3.googleusercontent.com/ytc/AIdro_kUVgsElgaFpQZNYILWQ0HLa-MAmbEjWNRBRqKms5qML2Q=s900-c-k-c0x00ffffff-no-rj",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://live-bangla.akamaized.net/liveabr/playlist.m3u8"
+  },
+  {
+    "name": "Zee Bangla Sonar",
+    "image": "https://i.ytimg.com/vi/uJJaKXtOqsw/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAZZk6nxkDN1SXg6HkPRsgqbF8QlQ",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://d1g8wgjurz8via.cloudfront.net/bpk-tv/ColorsHD/default/ColorsHD.m3u8"
+  },
+  {
+    "name": "Bangla Plus",
+    "image": "https://static.wikia.nocookie.net/etv-gspn-bangla/images/9/9a/Bangla%2B_HD.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://live-stream.utkalbongo.com/hls/livebanglatvstream.m3u8"
+  },
+  {
+    "name": "Sangeet Bangla",
+    "image": "https://imglink.cc/cdn/LmVOSdl3ku.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://cdn-4.pishow.tv/live/1143/master.m3u8"
+  },
+  {
     "name": "Euro Sport HD",
     "image": "https://images.toffeelive.com/images/program/4388/logo/240x240/mobile_logo_422191001674119624.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://sm-monirul.top/toffee/play/euro_sports_hd.m3u8"
