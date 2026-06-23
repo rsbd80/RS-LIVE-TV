@@ -1,10 +1,5 @@
 [
   {
-    "name": "FIFA WORLD CUP LIVE",
-    "image": "https://library.sportingnews.com/styles/twitter_card_120x120/s3/2025-11/World-Cup-2026-umbrella-FTR-%281%29.jpg",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://tfwt1gradgmttgy41hqbifaaugcjppbasa4mscwz81am1p3tse5tqptwzc3e.100ycdn.com/hqlive.yarncdn.live/live/hqtv_blv_phanma/playlist.m3u8?wsSession=c5c795fb75ceb7aa733c8514-178171694128257&wsIPSercert=f337de0b42b9149f68f912fbf696e03f&wsBindIP=2&wsserid=1168240832904154750"
-  },
-  {
     "name": "FIFA WORLD CUP No Buffer",
     "image": "https://i.postimg.cc/BZynvYFt/1782085578472.jpg",
     "url": "https://rs-player.netlify.app/jw-player?url=https://bioscope.sm-monirulislam-exp.workers.dev/bioscope.m3u8"
@@ -13,6 +8,11 @@
     "name": "FIFA WORLD CUP No Buffer",
     "image": "https://www.the-sun.com/wp-content/uploads/sites/6/2024/02/SC-World-Cup-Off-Plat-copy.jpg?quality=80&strip=all&w=1620&h=1080&crop=1",
     "url": "https://rs-player.netlify.app/jw-player?url=https://ed.omener.xyz/qoozn2_720/index.m3u8"
+  },
+  {
+    "name": "FIFA WORLD CUP LIVE",
+    "image": "https://library.sportingnews.com/styles/twitter_card_120x120/s3/2025-11/World-Cup-2026-umbrella-FTR-%281%29.jpg",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://tfwt1gradgmttgy41hqbifaaugcjppbasa4mscwz81am1p3tse5tqptwzc3e.100ycdn.com/hqlive.yarncdn.live/live/hqtv_blv_phanma/playlist.m3u8?wsSession=c5c795fb75ceb7aa733c8514-178171694128257&wsIPSercert=f337de0b42b9149f68f912fbf696e03f&wsBindIP=2&wsserid=1168240832904154750"
   },
   {
     "name": "FIFA WORLD CUP LIVE",
