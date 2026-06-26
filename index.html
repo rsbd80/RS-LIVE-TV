@@ -18,7 +18,7 @@
 
     <style>
         /* =========================
-           BASE
+           BASE (আগের মতোই, সংক্ষেপে দেওয়া হলো)
         ========================= */
         body {
             -webkit-user-select: none;
@@ -168,7 +168,7 @@
         }
 
         /* =========================
-           HEADER
+           HEADER (আগের মতোই)
         ========================= */
         .top-bar-wrapper {
             position: relative;
@@ -860,47 +860,17 @@
     </footer>
 
     <!-- =========================================================
-    JSON PLAYLIST LOADER (শুধু JSON, Firebase নেই)
+    JSON PLAYLIST LOADER – শুধু JSON ফাইল, ডিফল্ট নেই
     ========================================================= -->
     <script>
         // ================================================================
-        // JSON প্লেলিস্টের পাথ (আপনি এখানে আপনার JSON ফাইলের URL বা লোকাল পাথ দিন)
+        // আপনার JSON ফাইলের পাথ
         // ================================================================
-        const PLAYLIST_URL = 'playlist.json'; // আপনার JSON ফাইলের পাথ
+        const PLAYLIST_URL = 'playlist.json'; // এখানে আপনার JSON ফাইলের পাথ দিন
 
-        // অথবা আপনি চাইলে ডিফল্ট অ্যারে ব্যবহার করতে পারেন (যদি JSON ফাইল না থাকে)
-        const DEFAULT_CHANNELS = [{
-            name: "Star Sports 1",
-            url: "https://www.example.com/star1",
-            image: "https://i.postimg.cc/mD1VCt2C/RS-Live.png",
-            order: 1
-        }, {
-            name: "Sony TV",
-            url: "https://www.example.com/sony",
-            image: "https://i.postimg.cc/mD1VCt2C/RS-Live.png",
-            order: 2
-        }, {
-            name: "Zee Cinema",
-            url: "https://www.example.com/zee",
-            image: "https://i.postimg.cc/mD1VCt2C/RS-Live.png",
-            order: 3
-        }, {
-            name: "BBC World",
-            url: "https://www.example.com/bbc",
-            image: "https://i.postimg.cc/mD1VCt2C/RS-Live.png",
-            order: 4
-        }, {
-            name: "CNN",
-            url: "https://www.example.com/cnn",
-            image: "https://i.postimg.cc/mD1VCt2C/RS-Live.png",
-            order: 5
-        }];
-
-        // DOM REFS
+        // DOM রেফারেন্স
         const container = document.getElementById('channel-container');
         const searchInput = document.getElementById('channelSearch');
-        const noticeBar = document.getElementById('noticeBar');
-        const telegramBtn = document.getElementById('telegramBtn');
 
         // ================================================================
         // রেন্ডার ফাংশন
@@ -909,14 +879,21 @@
             container.innerHTML = '';
 
             if (!channels || channels.length === 0) {
-                container.innerHTML = '<p style="color:#aaa; text-align:center; padding:20px;">No channels found!</p>';
+                container.innerHTML = '<p style="color:#aaa; text-align:center; padding:20px;">⚠️ কোনো চ্যানেল পাওয়া যায়নি। JSON ফাইল চেক করুন।</p>';
                 return;
             }
 
+            // order অনুযায়ী সাজান
             const sorted = channels.sort((a, b) => (a.order || 0) - (b.order || 0) || (a.name || '').localeCompare(b.name ||
                 ''));
 
             sorted.forEach(channel => {
+                // name এবং url আবশ্যক – না থাকলে স্কিপ করুন
+                if (!channel.name || !channel.url) {
+                    console.warn('⚠️ একটি চ্যানেল স্কিপ করা হয়েছে (name বা url নেই):', channel);
+                    return;
+                }
+
                 const li = document.createElement('li');
                 li.setAttribute('tabindex', '0');
 
@@ -944,60 +921,66 @@
                 container.appendChild(li);
             });
 
-            // সার্চ ফিল্টার
-            if (searchInput) {
-                // আগের ইভেন্ট লিসেনার রিমুভ করে নতুন যোগ করুন (ডুপ্লিকেট এড়াতে)
-                const newSearchInput = searchInput.cloneNode(true);
-                searchInput.parentNode.replaceChild(newSearchInput, searchInput);
-                // রেফারেন্স আপডেট করুন
-                const newSearch = document.getElementById('channelSearch');
-                newSearch.addEventListener('input', function() {
-                    const filter = this.value.toLowerCase().trim();
-                    const items = container.querySelectorAll('li');
-
-                    items.forEach(item => {
-                        const title = item.querySelector('.channel-title').textContent.toLowerCase();
-                        item.style.display = title.includes(filter) ? '' : 'none';
-                    });
-                });
-                // গ্লোবাল রেফারেন্স আপডেট
-                window.searchInput = newSearch;
-            }
+            // সার্চ ফিল্টার সেটআপ
+            setupSearchFilter();
         }
 
         // ================================================================
-        // JSON প্লেলিস্ট থেকে চ্যানেল লোড
+        // সার্চ ফিল্টার (আগের ইভেন্ট রিমুভ করে নতুন যোগ)
+        // ================================================================
+        function setupSearchFilter() {
+            const searchField = document.getElementById('channelSearch');
+            if (!searchField) return;
+
+            // ক্লোন করে ইভেন্ট রিমুভ
+            const newSearch = searchField.cloneNode(true);
+            searchField.parentNode.replaceChild(newSearch, searchField);
+
+            const freshSearch = document.getElementById('channelSearch');
+            freshSearch.addEventListener('input', function() {
+                const filter = this.value.toLowerCase().trim();
+                const items = container.querySelectorAll('li');
+
+                items.forEach(item => {
+                    const title = item.querySelector('.channel-title');
+                    if (title) {
+                        const text = title.textContent.toLowerCase();
+                        item.style.display = text.includes(filter) ? '' : 'none';
+                    }
+                });
+            });
+        }
+
+        // ================================================================
+        // JSON ফাইল লোড (শুধু JSON, ডিফল্ট নেই)
         // ================================================================
         function loadChannelsFromJSON() {
             fetch(PLAYLIST_URL)
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error('JSON ফাইল পাওয়া যায়নি');
+                        throw new Error(`HTTP ${response.status} - ${response.statusText}`);
                     }
                     return response.json();
                 })
                 .then(data => {
-                    // যদি JSON অ্যারেতে চ্যানেল থাকে
-                    if (Array.isArray(data) && data.length > 0) {
-                        renderChannels(data);
-                        console.log('✅ চ্যানেল লোড হয়েছে JSON ফাইল থেকে:', PLAYLIST_URL);
-                    } else {
-                        // JSON ফাইল খালি বা ভুল ফরম্যাট – ডিফল্ট ব্যবহার করুন
-                        console.warn('⚠️ JSON ফাইল খালি বা ভুল ফরম্যাট, ডিফল্ট ব্যবহার করা হচ্ছে');
-                        renderChannels(DEFAULT_CHANNELS);
+                    // চেক করুন ডেটা অ্যারে কিনা
+                    if (!Array.isArray(data)) {
+                        throw new Error('JSON ডেটা অ্যারে নয়');
                     }
+
+                    console.log(`✅ JSON ফাইল থেকে ${data.length} টি চ্যানেল পাওয়া গেছে।`);
+                    renderChannels(data);
                 })
                 .catch(error => {
-                    console.warn('⚠️ JSON লোডে সমস্যা:', error.message);
-                    console.warn('ডিফল্ট চ্যানেল ব্যবহার করা হচ্ছে');
-                    renderChannels(DEFAULT_CHANNELS);
+                    console.error('❌ JSON লোডে সমস্যা:', error.message);
+                    container.innerHTML = `
+                        <p style="color:#ff6b6b; text-align:center; padding:20px;">
+                            ⚠️ JSON ফাইল লোড করা যায়নি।<br>
+                            <span style="font-size:12px; color:#888;">${error.message}</span>
+                        </p>
+                    `;
                 });
         }
-
-        // ================================================================
-        // নোটিশ ও টেলিগ্রাম লিংক (JSON থেকেও লোড করা যায়, কিন্তু এখন স্ট্যাটিক)
-        // ================================================================
-        // আপনি চাইলে এখানে JSON থেকে নোটিশ ও টেলিগ্রাম লিংক লোড করতে পারেন
 
         // ================================================================
         // ইন্ট্রো লোডার হাইড
@@ -1014,19 +997,17 @@
         });
 
         // ================================================================
-        // ইনিশিয়ালাইজ – JSON প্লেলিস্ট লোড
+        // শুরু করুন
         // ================================================================
         loadChannelsFromJSON();
-
-        console.log('🔥 RS Live TV with JSON Playlist (Firebase removed)');
+        console.log('🔥 RS Live TV – শুধু JSON প্লেলিস্ট (ডিফল্ট নেই)');
     </script>
 
     <!-- =========================================================
-    SECURITY + KEYBOARD CONTROLS
+    SECURITY + KEYBOARD CONTROLS (আগের মতোই)
     ========================================================= -->
     <script>
-        // 🔐 সিকিউরিটি প্রোটেকশন
-
+        // সিকিউরিটি প্রোটেকশন (সংক্ষেপে)
         document.addEventListener('contextmenu', event => event.preventDefault());
 
         document.onkeydown = function(e) {
@@ -1172,4 +1153,4 @@
     <div id="container-cdeccdd75d3e2e6916a42ce9653cfb08"></div>
 
 </body>
-    </html>
+</html>
