@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DRBZH98TKH"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-DRBZH98TKH');
-    </script>
+        window.dataLayer = window.dataLayer || [];
 
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-DRBZH98TKH');
+    </script>
     <title>RS Live TV</title>
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/mD1VCt2C/RS-Live.png">
     <link href="bootstrap.min.css" rel="stylesheet">
@@ -20,612 +20,729 @@
         /* =========================
            BASE
         ========================= */
-        body{
-            -webkit-user-select:none;
-            -moz-user-select:none;
-            -ms-user-select:none;
-            user-select:none;
-            background-color:#06060c;
-            overflow-x:hidden;
-            scroll-behavior:auto !important;
-            overscroll-behavior-y:contain;
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-color: #06060c;
+            overflow-x: hidden;
+            scroll-behavior: auto !important;
+            overscroll-behavior-y: contain;
         }
 
-        img, iframe, video, .embed-responsive-item{
-            -webkit-user-drag:none;
-            user-drag:none;
-            pointer-events:auto;
+        img,
+        iframe,
+        video,
+        .embed-responsive-item {
+            -webkit-user-drag: none;
+            user-drag: none;
+            pointer-events: auto;
         }
 
-        .tv-area{
-            margin-top:0 !important;
-            padding-top:0 !important;
+        .tv-area {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
         }
 
-        .tv-view{
-            margin-bottom:5px !important;
+        .tv-view {
+            margin-bottom: 5px !important;
         }
 
-        .tv-view .embed-responsive{
-            border:1px solid #1f2029;
-            border-radius:12px;
-            background:#000;
-            overflow:hidden;
-            box-shadow:0 10px 30px rgba(0,0,0,.7);
+        .tv-view .embed-responsive {
+            border: 1px solid #1f2029;
+            border-radius: 12px;
+            background: #000;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .7);
         }
 
-        iframe{
-            border:0 !important;
-            display:block;
-            width:100%;
-            height:100%;
+        iframe {
+            border: 0 !important;
+            display: block;
+            width: 100%;
+            height: 100%;
         }
 
         /* =========================
            INTRO LOADER
         ========================= */
-        #intro-loader{
-            position:fixed;
-            inset:0;
-            width:100%;
-            height:100%;
-            background:radial-gradient(circle at center, #0f0f16 0%, #040406 100%);
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            z-index:9999999;
-            transition:opacity .5s ease, visibility .5s;
+        #intro-loader {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #0f0f16 0%, #040406 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999999;
+            transition: opacity .5s ease, visibility .5s;
         }
 
-        .loader-content{
-            text-align:center;
-            display:flex;
-            flex-direction:column;
-            align-items:center;
-            justify-content:center;
+        .loader-content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
-        .welcome-text{
-            font-size:14px;
-            color:#888899;
-            text-transform:uppercase;
-            letter-spacing:4px;
-            margin-bottom:5px;
-            font-weight:600;
-            animation:fadeInText 1s ease-out;
+        .welcome-text {
+            font-size: 14px;
+            color: #888899;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 5px;
+            font-weight: 600;
+            animation: fadeInText 1s ease-out;
         }
 
-        .brand-text{
-            font-size:32px;
-            font-weight:900;
-            color:#fff;
-            letter-spacing:1px;
-            margin:0;
-            text-shadow:0 0 15px rgba(255,255,255,.1);
+        .brand-text {
+            font-size: 32px;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 1px;
+            margin: 0;
+            text-shadow: 0 0 15px rgba(255, 255, 255, .1);
         }
 
-        .brand-text span{
-            color:#00f0ff;
-            text-shadow:0 0 20px rgba(0,240,255,.6);
+        .brand-text span {
+            color: #00f0ff;
+            text-shadow: 0 0 20px rgba(0, 240, 255, .6);
         }
 
-        .loading-dots{
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            gap:6px;
-            margin-top:15px;
+        .loading-dots {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            margin-top: 15px;
         }
 
-        .loading-dots span{
-            width:6px;
-            height:6px;
-            background-color:#ff0055;
-            border-radius:50%;
-            display:inline-block;
-            box-shadow:0 0 8px #ff0055;
-            animation:dotPulse 1.4s infinite ease-in-out both;
+        .loading-dots span {
+            width: 6px;
+            height: 6px;
+            background-color: #ff0055;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 8px #ff0055;
+            animation: dotPulse 1.4s infinite ease-in-out both;
         }
 
-        .loading-dots span:nth-child(1){
-            animation-delay:-0.32s;
-            background-color:#00f0ff;
-            box-shadow:0 0 8px #00f0ff;
+        .loading-dots span:nth-child(1) {
+            animation-delay: -0.32s;
+            background-color: #00f0ff;
+            box-shadow: 0 0 8px #00f0ff;
         }
 
-        .loading-dots span:nth-child(2){
-            animation-delay:-0.16s;
+        .loading-dots span:nth-child(2) {
+            animation-delay: -0.16s;
         }
 
-        .loading-dots span:nth-child(3){
-            background-color:#00f0ff;
-            box-shadow:0 0 8px #00f0ff;
+        .loading-dots span:nth-child(3) {
+            background-color: #00f0ff;
+            box-shadow: 0 0 8px #00f0ff;
         }
 
-        @keyframes fadeInText{
-            from{opacity:0;transform:translateY(5px);}
-            to{opacity:1;transform:translateY(0);}
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        @keyframes dotPulse{
-            0%,80%,100%{transform:scale(0);}
-            40%{transform:scale(1);}
+        @keyframes dotPulse {
+            0%,
+            80%,
+            100% {
+                transform: scale(0);
+            }
+            40% {
+                transform: scale(1);
+            }
         }
 
         /* =========================
-           UPDATED HEADER
-           - single box
-           - no border
-           - mobile safe
+           HEADER
         ========================= */
-        .top-bar-wrapper{
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-            gap:12px;
-            width:100%;
-            padding:14px;
-            margin:10px 0 12px;
+        .top-bar-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            width: 100%;
+            margin: 10px 0 12px;
+            padding: 14px 14px;
+            border-radius: 18px;
             background:
-                radial-gradient(circle at left top, rgba(0,240,255,.16), transparent 34%),
-                radial-gradient(circle at right center, rgba(255,0,85,.14), transparent 34%),
-                linear-gradient(90deg,#07101d 0%, #090b18 55%, #160914 100%);
-            border:none !important;
-            outline:none !important;
+                linear-gradient(135deg, rgba(15, 16, 28, 0.96) 0%, rgba(8, 10, 20, 0.96) 55%, rgba(14, 18, 30, 0.96) 100%);
+            border: 1px solid rgba(0, 240, 255, 0.14);
             box-shadow:
-                inset 0 0 0 1px rgba(255,255,255,.03),
-                0 8px 24px rgba(0,0,0,.35);
-            border-radius:20px;
-            overflow:hidden;
-            box-sizing:border-box;
+                0 12px 35px rgba(0, 0, 0, 0.38),
+                inset 0 1px 0 rgba(255, 255, 255, 0.04),
+                0 0 30px rgba(0, 240, 255, 0.04);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-sizing: border-box;
         }
 
-        .logo-link{
-            text-decoration:none !important;
-            flex:1 1 auto;
-            min-width:0;
-            display:flex;
-            align-items:center;
+        .top-bar-wrapper::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at left top, rgba(0, 240, 255, 0.14), transparent 32%),
+                radial-gradient(circle at right bottom, rgba(255, 0, 85, 0.10), transparent 30%);
+            pointer-events: none;
         }
 
-        .brand-title-neon{
-            display:flex;
-            flex-direction:column;
-            align-items:flex-start;
-            gap:6px;
-            min-width:0;
-            width:100%;
+        .top-bar-wrapper::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -140%;
+            width: 70%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.06) 45%,
+                    rgba(255, 255, 255, 0.12) 50%,
+                    rgba(255, 255, 255, 0.05) 55%,
+                    rgba(255, 255, 255, 0) 100%);
+            transform: skewX(-24deg);
+            animation: headerShine 7s linear infinite;
+            pointer-events: none;
         }
 
-        .brand-main-line{
-            display:flex;
-            align-items:center;
-            gap:10px;
-            min-width:0;
-            flex-wrap:wrap;
+        @keyframes headerShine {
+            0% {
+                left: -140%;
+            }
+            100% {
+                left: 160%;
+            }
         }
 
-        .brand-title-neon .rs-glow{
-            color:#f3f6ff;
-            font-size:26px;
-            line-height:1;
-            font-weight:900;
-            letter-spacing:.4px;
-            text-shadow:0 0 10px rgba(255,255,255,.08);
-            font-family:'Georgia','Times New Roman',serif;
+        .logo-link {
+            position: relative;
+            z-index: 2;
+            text-decoration: none !important;
+            display: flex;
+            align-items: center;
+            flex: 1 1 auto;
+            min-width: 0;
         }
 
-        .brand-title-neon .live-glow{
-            font-size:26px;
-            line-height:1;
-            font-weight:900;
-            letter-spacing:.5px;
-            background:linear-gradient(90deg,#ff355e 0%, #ff7a18 55%, #ffcc33 100%);
-            -webkit-background-clip:text;
-            -webkit-text-fill-color:transparent;
-            text-shadow:none;
-            font-family:'Georgia','Times New Roman',serif;
+        .brand-title-neon {
+            display: flex;
+            align-items: center;
+            min-width: 0;
+            width: 100%;
         }
 
-        .brand-subline{
-            width:100%;
-            min-width:0;
-            font-family:'Poppins',sans-serif;
-            font-size:12px;
-            line-height:1.2;
-            font-weight:800;
-            letter-spacing:2px;
-            color:#b7c0d8;
-            text-transform:uppercase;
-            white-space:nowrap;
-            overflow:hidden;
-            text-overflow:ellipsis;
-            position:relative;
-            padding-bottom:8px;
+        .brand-stack {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+            min-width: 0;
+            flex: 1 1 auto;
         }
 
-        .brand-subline::after{
-            content:"";
-            position:absolute;
-            left:0;
-            bottom:0;
-            width:120px;
-            max-width:70%;
-            height:4px;
-            border-radius:999px;
-            background:linear-gradient(90deg,#00eaff 0%, #00d5ff 35%, #ffb300 100%);
-            box-shadow:0 0 12px rgba(0,234,255,.35);
+        .brand-line-main {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
-        /* search box */
-        .channel-search-box-premium{
-            position:relative;
-            width:min(42vw,250px);
-            min-width:150px;
-            flex:0 0 auto;
-            display:flex;
-            align-items:center;
+        .brand-rs {
+            font-size: 26px;
+            font-weight: 1000;
+            letter-spacing: 0.5px;
+            background: linear-gradient(135deg, #ffffff 10%, #d5e4ff 45%, #8ad7ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 14px rgba(255, 255, 255, 0.08);
+            position: relative;
         }
 
-        .channel-search-box-premium input{
-            width:100%;
-            height:58px;
-            padding:0 58px 0 20px;
-            background:linear-gradient(180deg, rgba(18,23,39,.95) 0%, rgba(10,14,26,.96) 100%);
-            border:none !important;
-            outline:none !important;
-            border-radius:18px;
-            color:#fff;
-            font-size:15px;
-            font-weight:700;
+        .brand-live {
+            font-size: 26px;
+            font-weight: 1000;
+            letter-spacing: 0.8px;
+            background: linear-gradient(90deg, #ff296d 0%, #ff5e00 45%, #ffd000 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow:
+                0 0 16px rgba(255, 41, 109, 0.22),
+                0 0 28px rgba(255, 94, 0, 0.12);
+            position: relative;
+        }
+
+        .brand-live::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 100%;
+            height: 2px;
+            border-radius: 20px;
+            background: linear-gradient(90deg, #00f0ff, #ff2f76, #ffd000);
+            box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+            opacity: .9;
+        }
+
+        .brand-line-sub {
+            margin-top: 8px;
+            font-size: 10px;
+            color: #8ea1b7;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            font-weight: 800;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+            flex-shrink: 1;
+        }
+
+        /* =========================
+           SEARCH BAR
+        ========================= */
+        .channel-search-box-premium {
+            position: relative;
+            z-index: 2;
+            width: 180px;
+            flex-shrink: 0;
+        }
+
+        .channel-search-box-premium::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 15px;
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.10), rgba(255, 0, 85, 0.08));
+            pointer-events: none;
+        }
+
+        .channel-search-box-premium input {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 44px;
+            padding: 0 44px 0 14px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 240, 255, 0.18);
+            background: linear-gradient(180deg, rgba(18, 20, 32, 0.95), rgba(10, 12, 22, 0.95));
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 700;
+            outline: none;
+            transition: .25s ease;
             box-shadow:
-                inset 0 0 0 1px rgba(0,240,255,.18),
-                0 0 0 1px rgba(255,0,85,.08);
-            box-sizing:border-box;
+                inset 0 1px 0 rgba(255, 255, 255, 0.03),
+                0 6px 20px rgba(0, 0, 0, 0.22);
+            box-sizing: border-box;
         }
 
-        .channel-search-box-premium input::placeholder{
-            color:#b7becf;
-            opacity:1;
-            font-weight:700;
+        .channel-search-box-premium input::placeholder {
+            color: #8da0b3;
+            font-weight: 600;
+            letter-spacing: .2px;
         }
 
-        .channel-search-box-premium input:focus{
-            background:linear-gradient(180deg, rgba(20,26,44,.98) 0%, rgba(11,16,29,.98) 100%);
+        .channel-search-box-premium input:hover {
+            border-color: rgba(0, 240, 255, 0.35);
+        }
+
+        .channel-search-box-premium input:focus {
+            border-color: #00f0ff;
+            background: linear-gradient(180deg, rgba(20, 22, 36, 1), rgba(12, 14, 26, 1));
             box-shadow:
-                inset 0 0 0 1px rgba(0,240,255,.35),
-                0 0 16px rgba(0,240,255,.14);
+                0 0 0 3px rgba(0, 240, 255, 0.10),
+                0 0 20px rgba(0, 240, 255, 0.18),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
-        .search-icon-inside{
-            position:absolute;
-            right:16px;
-            top:50%;
-            transform:translateY(-50%);
-            width:28px;
-            height:28px;
-            display:block;
-            pointer-events:none;
-            filter:drop-shadow(0 0 8px rgba(0,240,255,.28));
+        .search-icon-inside {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            display: block;
+            pointer-events: none;
+            z-index: 3;
+            opacity: .95;
+            filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.35));
         }
 
         /* =========================
            CHANNEL LIST
         ========================= */
-        .channel-list{
-            max-height:360px !important;
-            overflow-y:auto !important;
-            box-sizing:border-box;
-            margin-bottom:0 !important;
+        .channel-list {
+            max-height: 360px !important;
+            overflow-y: auto !important;
+            box-sizing: border-box;
+            margin-bottom: 0 !important;
         }
 
-        @media (min-width:768px){
-            .channel-list{
-                max-height:480px !important;
+        @media (min-width:768px) {
+            .channel-list {
+                max-height: 480px !important;
             }
         }
 
-        .channel-list::-webkit-scrollbar{
-            width:8px !important;
+        .channel-list::-webkit-scrollbar {
+            width: 8px !important;
         }
 
-        .channel-list::-webkit-scrollbar-track{
-            background:rgba(255,255,255,.03) !important;
-            border-radius:10px;
+        .channel-list::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, .03) !important;
+            border-radius: 10px;
         }
 
-        .channel-list::-webkit-scrollbar-thumb{
-            background:linear-gradient(180deg,#00f0ff 0%,#0072ff 100%) !important;
-            border-radius:10px;
-            box-shadow:0 0 10px rgba(0,240,255,.8) !important;
-            border:1px solid rgba(0,4,6,.5);
+        .channel-list::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #00f0ff 0%, #0072ff 100%) !important;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 240, 255, .8) !important;
+            border: 1px solid rgba(0, 4, 6, .5);
         }
 
-        .channel-list::-webkit-scrollbar-thumb:hover{
-            background:#ff0055 !important;
-            box-shadow:0 0 12px rgba(255,0,85,1) !important;
+        .channel-list::-webkit-scrollbar-thumb:hover {
+            background: #ff0055 !important;
+            box-shadow: 0 0 12px rgba(255, 0, 85, 1) !important;
         }
 
         /* =========================
            NOTICE BAR
         ========================= */
-        .marquee-container{
-            background:#0d0d13;
-            color:#fff;
-            padding:10px 0;
-            display:flex;
-            align-items:center;
-            border-top:1px solid #1a1b26;
-            border-bottom:1px solid #1a1b26;
-            margin-top:10px;
-            margin-bottom:15px;
-            clear:both;
+        .marquee-container {
+            background: #0d0d13;
+            color: #fff;
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            border-top: 1px solid #1a1b26;
+            border-bottom: 1px solid #1a1b26;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            clear: both;
         }
 
-        .notice-label{
-            background:linear-gradient(135deg,#ff0055,#ff5500);
-            color:#fff;
-            padding:3px 12px;
-            margin-left:15px;
-            border-radius:20px;
-            font-weight:bold;
-            font-size:11px;
-            flex-shrink:0;
-            box-shadow:0 0 10px rgba(255,0,85,.4);
+        .notice-label {
+            background: linear-gradient(135deg, #ff0055, #ff5500);
+            color: #fff;
+            padding: 3px 12px;
+            margin-left: 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 11px;
+            flex-shrink: 0;
+            box-shadow: 0 0 10px rgba(255, 0, 85, .4);
+        }
+
+        .marquee-container marquee {
+            flex: 1;
+            padding: 0 10px;
+            font-size: 13px;
+            color: #ddd;
         }
 
         /* =========================
            FOOTER
         ========================= */
-        .footer-premium{
-            background:#040408;
-            padding:5px 0 25px 0;
-            text-align:center;
+        .footer-premium {
+            background: #040408;
+            padding: 5px 0 25px 0;
+            text-align: center;
         }
 
-        .tio-style-banner-fixed{
-            width:320px;
-            height:50px;
-            background:url('https://png.pngtree.com/background/20250208/original/pngtree-smooth-gradient-chaotic-texture-in-abstract-dark-background-with-black-shade-picture-image_15219959.jpg') center/cover;
-            position:relative;
-            overflow:hidden;
-            border-radius:6px;
-            border:1px solid #333;
-            font-family:'Segoe UI',Roboto,sans-serif;
-            display:flex;
-            align-items:center;
-            margin:0 auto 15px auto;
+        .tio-style-banner-fixed {
+            width: 320px;
+            height: 50px;
+            background: url('https://png.pngtree.com/background/20250208/original/pngtree-smooth-gradient-chaotic-texture-in-abstract-dark-background-with-black-shade-picture-image_15219959.jpg') center/cover;
+            position: relative;
+            overflow: hidden;
+            border-radius: 6px;
+            border: 1px solid #333;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            display: flex;
+            align-items: center;
+            margin: 0 auto 15px auto;
         }
 
-        .tio-style-banner-fixed::after{
-            content:'';
-            position:absolute;
-            top:0;
-            left:-150%;
-            width:60%;
-            height:100%;
-            background:linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.2) 50%, rgba(255,255,255,0) 100%);
-            transform:skewX(-25deg);
-            animation:smoke-smoke 4s infinite;
-            z-index:3;
+        .tio-style-banner-fixed::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, 0) 100%);
+            transform: skewX(-25deg);
+            animation: smoke-smoke 4s infinite;
+            z-index: 3;
         }
 
-        @keyframes smoke-smoke{
-            0%{left:-150%;}
-            40%{left:150%;}
-            100%{left:150%;}
+        @keyframes smoke-smoke {
+            0% {
+                left: -150%;
+            }
+            40% {
+                left: 150%;
+            }
+            100% {
+                left: 150%;
+            }
         }
 
-        .banner-overlay{
-            position:absolute;
-            inset:0;
-            width:100%;
-            height:100%;
-            background:linear-gradient(90deg, rgba(0,0,0,.85) 0%, rgba(0,210,255,.1) 100%);
-            z-index:1;
+        .banner-overlay {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(0, 0, 0, .85) 0%, rgba(0, 210, 255, .1) 100%);
+            z-index: 1;
         }
 
-        .content-wrapper{
-            position:relative;
-            z-index:2;
-            display:flex;
-            align-items:center;
-            width:100%;
-            padding:0 10px;
-            justify-content:space-between;
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 0 10px;
+            justify-content: space-between;
         }
 
-        .brand-logo-fixed{
-            font-weight:900;
-            font-size:13px;
-            font-style:italic;
-            white-space:nowrap;
-            flex-shrink:0;
+        .brand-logo-fixed {
+            font-weight: 900;
+            font-size: 13px;
+            font-style: italic;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
-        .rs-live{color:#fff;}
-        .tv-text{color:#ff9100;text-shadow:0 0 5px #ff9100;}
-
-        .text-section-fixed{
-            flex-grow:1;
-            text-align:center;
-            display:flex;
-            flex-direction:column;
-            gap:2px;
+        .rs-live {
+            color: #fff;
+        }
+        .tv-text {
+            color: #ff9100;
+            text-shadow: 0 0 5px #ff9100;
         }
 
-        .main-tags{
-            display:flex;
-            justify-content:center;
-            gap:4px;
-            font-size:7.5px;
-            font-weight:800;
-            text-transform:uppercase;
+        .text-section-fixed {
+            flex-grow: 1;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
         }
 
-        .tag-cricket{color:#FFD700;}
-        .tag-football{color:#00FF00;}
-        .tag-tv{color:#00D2FF;}
-
-        .sub-text{
-            font-size:9px;
-            color:#fff;
-            margin:0;
-            font-weight:bold;
-            text-shadow:1px 1px 2px #000;
+        .main-tags {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            font-size: 7.5px;
+            font-weight: 800;
+            text-transform: uppercase;
         }
 
-        .live-circle{
-            background:#ff0000;
-            color:#fff;
-            font-size:8px;
-            font-weight:bold;
-            padding:2px 6px;
-            border-radius:12px;
-            display:flex;
-            align-items:center;
-            gap:4px;
-            flex-shrink:0;
+        .tag-cricket {
+            color: #FFD700;
+        }
+        .tag-football {
+            color: #00FF00;
+        }
+        .tag-tv {
+            color: #00D2FF;
         }
 
-        .pulse{
-            width:5px;
-            height:5px;
-            background:#fff;
-            border-radius:50%;
-            animation:pulse-animation 1s infinite;
+        .sub-text {
+            font-size: 9px;
+            color: #fff;
+            margin: 0;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px #000;
         }
 
-        @keyframes pulse-animation{
-            0%{transform:scale(.95);opacity:1;}
-            100%{transform:scale(1.5);opacity:0;}
+        .live-circle {
+            background: #ff0000;
+            color: #fff;
+            font-size: 8px;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-shrink: 0;
         }
 
-        .tg-card{
-            background:#111116;
-            padding:15px;
-            border-radius:12px;
-            border:1px solid #1a1b26;
-            display:block;
-            width:320px;
-            margin:0 auto 15px auto;
+        .pulse {
+            width: 5px;
+            height: 5px;
+            background: #fff;
+            border-radius: 50%;
+            animation: pulse-animation 1s infinite;
         }
 
-        .telegram-btn{
-            display:inline-block;
-            background:#0088cc;
-            color:#fff !important;
-            padding:8px 25px;
-            border-radius:6px;
-            font-weight:bold;
-            text-decoration:none !important;
-            margin-top:10px;
-            font-size:13px;
-            font-family:'Courier New',Courier,monospace;
-            font-style:italic;
+        @keyframes pulse-animation {
+            0% {
+                transform: scale(.95);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
         }
 
-        .ad-box{
-            margin:15px auto;
-            width:320px;
-            height:50px;
-            display:flex;
-            justify-content:center;
-            overflow:hidden;
+        .tg-card {
+            background: #111116;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #1a1b26;
+            display: block;
+            width: 320px;
+            margin: 0 auto 15px auto;
         }
 
-        .copyright{
-            color:#444;
-            font-size:11px;
-            margin-top:15px;
+        .telegram-btn {
+            display: inline-block;
+            background: #0088cc;
+            color: #fff !important;
+            padding: 8px 25px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none !important;
+            margin-top: 10px;
+            font-size: 13px;
+            font-family: 'Courier New', Courier, monospace;
+            font-style: italic;
+        }
+
+        .ad-box {
+            margin: 15px auto;
+            width: 320px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .copyright {
+            color: #444;
+            font-size: 11px;
+            margin-top: 15px;
         }
 
         /* =========================
-           MOBILE / TABLET FIX
+           MOBILE
         ========================= */
-        @media (max-width:767px){
-            .top-bar-wrapper{
-                gap:10px;
-                padding:12px;
-                border-radius:18px;
+        @media (max-width:767px) {
+            .top-bar-wrapper {
+                padding: 12px 10px;
+                border-radius: 15px;
+                gap: 10px;
             }
 
-            .logo-link{
-                flex:1 1 0;
-                min-width:0;
+            .brand-rs,
+            .brand-live {
+                font-size: 20px;
             }
 
-            .brand-title-neon .rs-glow,
-            .brand-title-neon .live-glow{
-                font-size:22px;
+            .brand-line-sub {
+                font-size: 8.8px;
+                letter-spacing: 1px;
+                margin-top: 6px;
             }
 
-            .brand-subline{
-                font-size:10px;
-                letter-spacing:1.6px;
-                padding-bottom:7px;
+            .channel-search-box-premium {
+                width: 145px;
+                flex-shrink: 0;
             }
 
-            .brand-subline::after{
-                width:95px;
-                height:3px;
+            .channel-search-box-premium input {
+                height: 40px;
+                font-size: 12px;
+                padding: 0 40px 0 12px;
+                border-radius: 12px;
             }
 
-            .channel-search-box-premium{
-                width:46%;
-                min-width:138px;
-            }
-
-            .channel-search-box-premium input{
-                height:54px;
-                padding:0 52px 0 16px;
-                font-size:14px;
-                border-radius:16px;
-            }
-
-            .search-icon-inside{
-                width:26px;
-                height:26px;
-                right:14px;
+            .search-icon-inside {
+                width: 16px;
+                height: 16px;
+                right: 12px;
             }
         }
 
-        @media (max-width:420px){
-            .top-bar-wrapper{
-                gap:8px;
-                padding:10px;
+        @media (min-width:768px) {
+            .top-bar-wrapper {
+                padding: 15px 16px;
             }
 
-            .brand-title-neon .rs-glow,
-            .brand-title-neon .live-glow{
-                font-size:19px;
+            .brand-rs,
+            .brand-live {
+                font-size: 28px;
             }
 
-            .brand-subline{
-                font-size:9px;
-                letter-spacing:1.2px;
+            .brand-line-sub {
+                font-size: 11px;
             }
 
-            .channel-search-box-premium{
-                width:44%;
-                min-width:128px;
+            .channel-search-box-premium {
+                width: 230px;
+            }
+        }
+
+        @media (max-width:420px) {
+            .top-bar-wrapper {
+                gap: 8px;
+                padding: 10px 8px;
             }
 
-            .channel-search-box-premium input{
-                height:50px;
-                font-size:13px;
-                padding:0 46px 0 14px;
+            .brand-rs,
+            .brand-live {
+                font-size: 17px;
             }
 
-            .search-icon-inside{
-                width:24px;
-                height:24px;
-                right:12px;
+            .brand-line-sub {
+                font-size: 7.5px;
+                letter-spacing: 0.8px;
+                margin-top: 5px;
+            }
+
+            .channel-search-box-premium {
+                width: 120px;
+                min-width: 100px;
+                flex-shrink: 0;
+            }
+
+            .channel-search-box-premium input {
+                height: 36px;
+                font-size: 11px;
+                padding: 0 34px 0 10px;
+                border-radius: 10px;
+            }
+
+            .search-icon-inside {
+                width: 14px;
+                height: 14px;
+                right: 10px;
             }
         }
     </style>
 </head>
-
 <body>
 
     <!-- Intro Loader -->
@@ -644,32 +761,32 @@
     <div class="container tv-area">
         <div class="row">
             <div class="col-xs-12 col-md-12">
-                <!-- UPDATED HEADER -->
+                <!-- HEADER -->
                 <div class="top-bar-wrapper">
-                    <a href="https://rslivetv.vercel.app" class="logo-link">
+                    <a href="https://rslivetv.vercel.app/" class="logo-link">
                         <div class="brand-title-neon">
-                            <div class="brand-main-line">
-                                <span class="rs-glow">RS</span>
-                                <span class="live-glow">LIVE TV</span>
+                            <div class="brand-stack">
+                                <div class="brand-line-main">
+                                    <span class="brand-rs">RS</span>
+                                    <span class="brand-live">LIVE TV</span>
+                                </div>
+                                <div class="brand-line-sub">Watch Live Sports • Movies • Entertainment</div>
                             </div>
-                            <div class="brand-subline">WATCH LIVE SPORTS • MOVIES • TV SHOWS</div>
                         </div>
                     </a>
 
                     <div class="channel-search-box-premium">
-                        <input type="text" id="channelSearch" placeholder="Search channels" autocomplete="off">
+                        <input type="text" id="channelSearch" placeholder="Search channels..." autocomplete="off">
                         <svg class="search-icon-inside" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z" stroke="#00eaff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M22 22L20 20" stroke="#00eaff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z" stroke="#00f0ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M22 22L20 20" stroke="#00f0ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- DESKTOP LAYOUT SAME:
-             left = player (col-md-10)
-             right = channel list (col-md-2) -->
+        <!-- Player + Channel List -->
         <div class="row">
             <div class="col-xs-12 col-md-10 tv-view">
                 <div class="embed-responsive embed-responsive-16by9">
@@ -683,10 +800,10 @@
         </div>
     </div>
 
-    <!-- Notice -->
-    <div class="marquee-container">
+    <!-- NOTICE BAR -->
+    <div class="marquee-container" id="noticeBarWrap">
         <div class="notice-label">NOTICE</div>
-        <marquee scrollamount="6" onmouseover="this.stop()" onmouseout="this.start()">
+        <marquee scrollamount="6" onmouseover="this.stop()" onmouseout="this.start()" id="noticeBar">
             ⚠️ প্রিয় দর্শক, আপনাদের বিনোদনের সেরা সঙ্গী RS Live TV। এখানে উপভোগ করুন লাইভ টিভি, স্পোর্টস, মুভি ও আরও অনেক কিছু।
             <span style="color:aqua; font-weight:bold;"> টিভি চ্যানেল প্লে হতে ৫ থেকে ১০ সেকেন্ড টাইম নিতে পারে। </span>
             💡 কোনো চ্যানেল সাময়িকভাবে কাজ না করলে একটু পর আবার চেষ্টা করুন।
@@ -719,20 +836,21 @@
             <div class="tg-card">
                 <h5 style="color:#fff; margin-bottom:5px; font-size:16px;">সাপোর্ট প্রয়োজন?</h5>
                 <p style="color:#777; font-size:11px; margin-bottom:5px;">আপডেট ও চ্যানেল রিকোয়েস্টের জন্য আমাদের টেলিগ্রাম গ্রুপে যোগ দিন।</p>
-                <a href="https://t.me/rslivetv" target="_blank" class="telegram-btn">JOIN TELEGRAM</a>
+                <a href="https://t.me/rslivetv" target="_blank" class="telegram-btn" id="telegramBtn">JOIN TELEGRAM</a>
             </div>
 
             <div class="ad-box">
                 <script type="text/javascript">
                     atOptions = {
-                        'key' : '774c0e371455f6476668178b5faae5ab',
-                        'format' : 'iframe',
-                        'height' : 50,
-                        'width' : 320,
-                        'params' : {}
+                        'key': '774c0e371455f6476668178b5faae5ab',
+                        'format': 'iframe',
+                        'height': 50,
+                        'width': 320,
+                        'params': {}
                     };
                 </script>
-                <script type="text/javascript" src="//www.highperformanceformat.com/774c0e371455f6476668178b5faae5ab/invoke.js"></script>
+                <script type="text/javascript" src="//www.highperformanceformat.com/774c0e371455f6476668178b5faae5ab/invoke.js">
+                </script>
             </div>
 
             <div class="copyright">
@@ -741,43 +859,208 @@
         </div>
     </footer>
 
-    <script src="script.js?v=12.0"></script>
-
+    <!-- =========================================================
+    JSON PLAYLIST LOADER (শুধু JSON, Firebase নেই)
+    ========================================================= -->
     <script>
-        // 🔐 সর্বোচ্চ সিকিউরিটি প্রোটেকশন (উন্নত সংস্করণ)
+        // ================================================================
+        // JSON প্লেলিস্টের পাথ (আপনি এখানে আপনার JSON ফাইলের URL বা লোকাল পাথ দিন)
+        // ================================================================
+        const PLAYLIST_URL = 'playlist.json'; // আপনার JSON ফাইলের পাথ
 
-        // 1. কনটেক্সট মেনু (ডান ক্লিক) বন্ধ
+        // অথবা আপনি চাইলে ডিফল্ট অ্যারে ব্যবহার করতে পারেন (যদি JSON ফাইল না থাকে)
+        const DEFAULT_CHANNELS = [{
+            name: "Star Sports 1",
+            url: "https://www.example.com/star1",
+            image: "https://i.postimg.cc/mD1VCt2C/RS-Live.png",
+            order: 1
+        }, {
+            name: "Sony TV",
+            url: "https://www.example.com/sony",
+            image: "https://i.postimg.cc/mD1VCt2C/RS-Live.png",
+            order: 2
+        }, {
+            name: "Zee Cinema",
+            url: "https://www.example.com/zee",
+            image: "https://i.postimg.cc/mD1VCt2C/RS-Live.png",
+            order: 3
+        }, {
+            name: "BBC World",
+            url: "https://www.example.com/bbc",
+            image: "https://i.postimg.cc/mD1VCt2C/RS-Live.png",
+            order: 4
+        }, {
+            name: "CNN",
+            url: "https://www.example.com/cnn",
+            image: "https://i.postimg.cc/mD1VCt2C/RS-Live.png",
+            order: 5
+        }];
+
+        // DOM REFS
+        const container = document.getElementById('channel-container');
+        const searchInput = document.getElementById('channelSearch');
+        const noticeBar = document.getElementById('noticeBar');
+        const telegramBtn = document.getElementById('telegramBtn');
+
+        // ================================================================
+        // রেন্ডার ফাংশন
+        // ================================================================
+        function renderChannels(channels) {
+            container.innerHTML = '';
+
+            if (!channels || channels.length === 0) {
+                container.innerHTML = '<p style="color:#aaa; text-align:center; padding:20px;">No channels found!</p>';
+                return;
+            }
+
+            const sorted = channels.sort((a, b) => (a.order || 0) - (b.order || 0) || (a.name || '').localeCompare(b.name ||
+                ''));
+
+            sorted.forEach(channel => {
+                const li = document.createElement('li');
+                li.setAttribute('tabindex', '0');
+
+                li.innerHTML = `
+                  <div style="display:block;text-decoration:none;pointer-events:none;width:100%;">
+                    <img src="${channel.image || 'https://i.postimg.cc/mD1VCt2C/RS-Live.png'}" alt="${channel.name}" loading="lazy" onerror="this.src='https://i.postimg.cc/mD1VCt2C/RS-Live.png';">
+                    <div class="channel-info-box">
+                      <p class="channel-title">${channel.name}</p>
+                    </div>
+                  </div>
+                `;
+
+                li.addEventListener('click', function() {
+                    if (window.frames['player']) {
+                        window.frames['player'].location.href = channel.url;
+                    }
+
+                    if (searchInput) {
+                        searchInput.value = '';
+                        const items = container.querySelectorAll('li');
+                        items.forEach(item => item.style.display = '');
+                    }
+                });
+
+                container.appendChild(li);
+            });
+
+            // সার্চ ফিল্টার
+            if (searchInput) {
+                // আগের ইভেন্ট লিসেনার রিমুভ করে নতুন যোগ করুন (ডুপ্লিকেট এড়াতে)
+                const newSearchInput = searchInput.cloneNode(true);
+                searchInput.parentNode.replaceChild(newSearchInput, searchInput);
+                // রেফারেন্স আপডেট করুন
+                const newSearch = document.getElementById('channelSearch');
+                newSearch.addEventListener('input', function() {
+                    const filter = this.value.toLowerCase().trim();
+                    const items = container.querySelectorAll('li');
+
+                    items.forEach(item => {
+                        const title = item.querySelector('.channel-title').textContent.toLowerCase();
+                        item.style.display = title.includes(filter) ? '' : 'none';
+                    });
+                });
+                // গ্লোবাল রেফারেন্স আপডেট
+                window.searchInput = newSearch;
+            }
+        }
+
+        // ================================================================
+        // JSON প্লেলিস্ট থেকে চ্যানেল লোড
+        // ================================================================
+        function loadChannelsFromJSON() {
+            fetch(PLAYLIST_URL)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('JSON ফাইল পাওয়া যায়নি');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // যদি JSON অ্যারেতে চ্যানেল থাকে
+                    if (Array.isArray(data) && data.length > 0) {
+                        renderChannels(data);
+                        console.log('✅ চ্যানেল লোড হয়েছে JSON ফাইল থেকে:', PLAYLIST_URL);
+                    } else {
+                        // JSON ফাইল খালি বা ভুল ফরম্যাট – ডিফল্ট ব্যবহার করুন
+                        console.warn('⚠️ JSON ফাইল খালি বা ভুল ফরম্যাট, ডিফল্ট ব্যবহার করা হচ্ছে');
+                        renderChannels(DEFAULT_CHANNELS);
+                    }
+                })
+                .catch(error => {
+                    console.warn('⚠️ JSON লোডে সমস্যা:', error.message);
+                    console.warn('ডিফল্ট চ্যানেল ব্যবহার করা হচ্ছে');
+                    renderChannels(DEFAULT_CHANNELS);
+                });
+        }
+
+        // ================================================================
+        // নোটিশ ও টেলিগ্রাম লিংক (JSON থেকেও লোড করা যায়, কিন্তু এখন স্ট্যাটিক)
+        // ================================================================
+        // আপনি চাইলে এখানে JSON থেকে নোটিশ ও টেলিগ্রাম লিংক লোড করতে পারেন
+
+        // ================================================================
+        // ইন্ট্রো লোডার হাইড
+        // ================================================================
+        window.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                const loader = document.getElementById('intro-loader');
+                if (loader) {
+                    loader.style.opacity = '0';
+                    loader.style.visibility = 'hidden';
+                    setTimeout(() => loader.remove(), 500);
+                }
+            }, 1200);
+        });
+
+        // ================================================================
+        // ইনিশিয়ালাইজ – JSON প্লেলিস্ট লোড
+        // ================================================================
+        loadChannelsFromJSON();
+
+        console.log('🔥 RS Live TV with JSON Playlist (Firebase removed)');
+    </script>
+
+    <!-- =========================================================
+    SECURITY + KEYBOARD CONTROLS
+    ========================================================= -->
+    <script>
+        // 🔐 সিকিউরিটি প্রোটেকশন
+
         document.addEventListener('contextmenu', event => event.preventDefault());
 
-        // 2. কিবোর্ড শর্টকাট বন্ধ
         document.onkeydown = function(e) {
-            if (e.keyCode == 123) { e.preventDefault(); return false; } // F12
-            if (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) { e.preventDefault(); return false; } // Ctrl+Shift+I/J
-            if (e.ctrlKey && e.keyCode == 85) { e.preventDefault(); return false; } // Ctrl+U
-            if (e.ctrlKey && e.keyCode == 83) { e.preventDefault(); return false; } // Ctrl+S
-            if (e.ctrlKey && e.keyCode == 80) { e.preventDefault(); return false; } // Ctrl+P
+            if (e.keyCode == 123) { e.preventDefault();
+                return false; }
+            if (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) { e.preventDefault();
+                return false; }
+            if (e.ctrlKey && e.keyCode == 85) { e.preventDefault();
+                return false; }
+            if (e.ctrlKey && e.keyCode == 83) { e.preventDefault();
+                return false; }
+            if (e.ctrlKey && e.keyCode == 80) { e.preventDefault();
+                return false; }
         };
 
-        // 3. কাট, কপি, পেস্ট ব্লক
-        document.addEventListener('copy', (e) => { e.preventDefault(); return false; });
-        document.addEventListener('cut', (e) => { e.preventDefault(); return false; });
-        document.addEventListener('paste', (e) => { e.preventDefault(); return false; });
+        document.addEventListener('copy', (e) => { e.preventDefault();
+            return false; });
+        document.addEventListener('cut', (e) => { e.preventDefault();
+            return false; });
+        document.addEventListener('paste', (e) => { e.preventDefault();
+            return false; });
 
-        // 4. প্রিন্ট ব্লক
         window.onbeforeprint = function() { return false; };
         window.onafterprint = function() { return false; };
 
-        // 5. ডিবাগার ডিটেকশন
-        setInterval(function(){
+        setInterval(function() {
             const startTime = +new Date();
             debugger;
             const endTime = +new Date();
-            if(endTime - startTime > 100){
+            if (endTime - startTime > 100) {
                 window.location.href = "about:blank";
             }
         }, 100);
 
-        // 6. ডেভ টুলস ডিটেক্ট
         (function detectDevTools() {
             const element = new Image();
             Object.defineProperty(element, 'id', {
@@ -788,24 +1071,25 @@
             console.log(element);
         })();
 
-        // 7. ইমেজ/আইফ্রেম/ভিডিও ড্র্যাগ বন্ধ
         document.querySelectorAll('img, iframe, video').forEach(el => {
             el.setAttribute('draggable', 'false');
-            el.addEventListener('dragstart', (e) => { e.preventDefault(); return false; });
+            el.addEventListener('dragstart', (e) => { e.preventDefault();
+                return false; });
         });
 
-        // 8. টেক্সট সিলেক্ট বন্ধ
-        document.body.addEventListener('selectstart', (e) => { e.preventDefault(); return false; });
+        document.body.addEventListener('selectstart', (e) => { e.preventDefault();
+            return false; });
         document.body.addEventListener('mousedown', (e) => { if (e.button === 2) e.preventDefault(); });
 
-        // 9. F12 রিপ্রোটেকশন
         window.addEventListener('keydown', function(e) {
-            if (e.key === 'F12') { e.preventDefault(); return false; }
-            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) { e.preventDefault(); return false; }
-            if (e.ctrlKey && e.key === 'U') { e.preventDefault(); return false; }
+            if (e.key === 'F12') { e.preventDefault();
+                return false; }
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) { e.preventDefault();
+                return false; }
+            if (e.ctrlKey && e.key === 'U') { e.preventDefault();
+                return false; }
         });
 
-        // 10. PrintScreen সতর্কতা
         window.addEventListener('keyup', function(e) {
             if (e.key === 'PrintScreen') {
                 alert('Screenshot disabled!');
@@ -813,53 +1097,10 @@
             }
         });
 
-        // 🎬 Intro loader hide
-        window.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                const loader = document.getElementById('intro-loader');
-                if (loader) {
-                    loader.style.opacity = '0';
-                    loader.style.visibility = 'hidden';
-                    setTimeout(() => { loader.remove(); }, 500);
-                }
-            }, 1200);
-        });
-
-        // 🔍 Search filter
-        function applyInstantChannelFilter() {
-            const searchInput = document.getElementById('channelSearch');
-            if (!searchInput) return;
-
-            const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
-            const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-
-            let filter = searchInput.value.toUpperCase();
-            let ul = document.getElementById("channel-container");
-            if (!ul) return;
-
-            let li = ul.getElementsByTagName('li');
-
-            for (let i = 0; i < li.length; i++) {
-                let textValue = li[i].textContent || li[i].innerText;
-                if (textValue.toUpperCase().indexOf(filter) > -1) {
-                    li[i].style.display = '';
-                } else {
-                    li[i].style.display = 'none';
-                }
-            }
-
-            window.scrollTo(scrollX, scrollY);
-        }
-
-        const searchInputEl = document.getElementById('channelSearch');
-        if (searchInputEl) {
-            searchInputEl.addEventListener('input', applyInstantChannelFilter);
-            searchInputEl.addEventListener('keyup', applyInstantChannelFilter);
-        }
-
-        // 🎮 Smart TV remote / keyboard control
+        // কীবোর্ড নেভিগেশন
         document.addEventListener('keydown', function(event) {
-            const items = Array.from(document.querySelectorAll('#channel-container li')).filter(el => el.style.display !== 'none');
+            const items = Array.from(document.querySelectorAll('#channel-container li')).filter(el => el.style
+                .display !== 'none');
             const active = document.activeElement;
             const searchInput = document.getElementById('channelSearch');
 
@@ -904,7 +1145,6 @@
             }
         });
 
-        // 🚫 Scroll jump fix
         window.addEventListener('focus', function(event) {
             if (document.activeElement && document.activeElement.id === 'channelSearch') {
                 event.preventDefault();
@@ -927,8 +1167,9 @@
         }
     </script>
 
-    <script async="async" data-cfasync="false" src="https://pl26377079.effectivecpmnetwork.com/cdeccdd75d3e2e6916a42ce9653cfb08/invoke.js"></script>
+    <script async="async" data-cfasync="false" src="https://pl26377079.effectivecpmnetwork.com/cdeccdd75d3e2e6916a42ce9653cfb08/invoke.js">
+    </script>
     <div id="container-cdeccdd75d3e2e6916a42ce9653cfb08"></div>
 
 </body>
-</html>
+    </html>
