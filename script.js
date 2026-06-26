@@ -2,39 +2,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('channel-container');
     const searchInput = document.getElementById('channelSearch');
 
-    // ক্যাশে বাস্ট করার জন্য টাইমস্ট্যাম্প
-    const ts = Date.now();
-
-    // প্লেলিস্ট ও সেটিংস লোড
+    // একই সাথে প্লেলিস্ট এবং সেটিংস লোড করার ট্রিক
     Promise.all([
-        fetch('playlist.json?t=' + ts)
-            .then(res => {
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                return res.json();
-            })
-            .then(data => {
-                // কনসোলে ডেটার ক্রম দেখান (প্রথম ৫টি)
-                console.log('📦 JSON ফাইলের প্রথম ৫টি চ্যানেল (যে ক্রমে আছে):');
-                if (Array.isArray(data)) {
-                    data.slice(0, 5).forEach((ch, i) => console.log(`  ${i+1}. ${ch.name}`));
-                } else if (data && typeof data === 'object') {
-                    const vals = Object.values(data);
-                    vals.slice(0, 5).forEach((ch, i) => console.log(`  ${i+1}. ${ch.name}`));
-                }
-                return data;
-            })
-            .catch(err => {
-                console.error('❌ playlist.json লোড ব্যর্থ:', err);
-                return [];
-            }),
-        fetch('app_settings.json?t=' + ts).then(res => res.ok ? res.json() : {}).catch(() => ({})),
-        fetch('notice.json?t=' + ts).then(res => res.ok ? res.json() : {}).catch(() => ({}))
+        fetch('playlist.json?t=' + Date.now()).then(res => res.json()).catch(() => []),
+        fetch('app_settings.json?t=' + Date.now()).then(res => res.json()).catch(() => ({})),
+        fetch('notice.json?t=' + Date.now()).then(res => res.json()).catch(() => ({})) // আপনার পুরনো নোটিশ ফাইল ব্যাকআপ হিসেবে
     ])
     .then(([playlistData, settingsData, oldNoticeData]) => {
         container.innerHTML = ''; 
 
-        // মেইনটেইন্যান্স চেক
-        if (settingsData.maintenance === "ON") {
+        // 🛠️ ১. মেইনটেইন্যান্স মোড চেক (যদি অ্যাডমিন প্যানেল থেকে ON করা হয়)
+        const isMaintenance = settingsData.maintenance === "ON";
+        
+        if (isMaintenance) {
             document.body.innerHTML = `
                 <div style="text-align:center; padding:100px 20px; color:white; background:#020617; min-height:100vh; font-family:sans-serif; display:flex; flex-direction:column; justify-content:center; align-items:center;">
                     <h1 style="font-size:32px; margin-bottom:15px; color:#f87171;">🛠️ সিস্টেম আপডেট চলছে...</h1>
@@ -42,100 +22,92 @@ document.addEventListener('DOMContentLoaded', function() {
                     ${settingsData.telegram ? `<a href="${settingsData.telegram}" target="_blank" style="background:#10b981; color:#020617; text-decoration:none; font-weight:bold; padding:12px 24px; border-radius:10px; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);">আমাদের টেলিগ্রাম গ্রুপে জয়েন করুন</a>` : ''}
                 </div>
             `;
-            return;
+            return; // মেইনটেইন্যান্স অন থাকলে কোড এখানেই স্টপ হয়ে যাবে
         }
 
-        // নোটিশ ও টেলিগ্রাম আপডেট
-        const liveNotice = document.getElementById('noticeBar') || document.getElementById('notice');
+        // 📢 ২. লাইভ স্ক্রোল নোটিশ বার আপডেট
+        const liveNotice = document.getElementById('noticeBar') || document.getElementById('notice'); 
+        // নতুন সেটিংস ফাইলে নোটিশ না থাকলে পুরনো notice.json ফাইল থেকে নোটিশ দেখাবে
         const currentNotice = settingsData.notice || oldNoticeData.notice || "";
-        if (liveNotice && currentNotice) liveNotice.innerText = currentNotice;
-
-        const telegramBtn = document.getElementById('telegramBtn') || document.getElementById('telegramLink');
-        if (telegramBtn && settingsData.telegram) telegramBtn.href = settingsData.telegram;
-
-        // চ্যানেল লিস্ট তৈরি – কোনো সাজানো ছাড়াই
-        let channelList = [];
-        if (Array.isArray(playlistData)) {
-            channelList = playlistData;
-        } else if (playlistData && typeof playlistData === 'object') {
-            // যদি অবজেক্ট হয় (যেমন {"1":{...}})
-            channelList = Object.values(playlistData);
-            if (playlistData.channels && Array.isArray(playlistData.channels)) {
-                channelList = playlistData.channels;
-            }
+        
+        if (liveNotice && currentNotice) {
+            liveNotice.innerText = currentNotice;
         }
 
-        console.log(`📊 মোট চ্যানেল পাওয়া গেছে: ${channelList.length}`);
+        // 📢 ৩. টেলিগ্রাম বাটনের লিংক আপডেট (যদি আপনার সাইটে টেলিগ্রাম বাটন থাকে)
+        const telegramBtn = document.getElementById('telegramBtn') || document.getElementById('telegramLink');
+        if (telegramBtn && settingsData.telegram) {
+            telegramBtn.href = settingsData.telegram;
+        }
+
+        // 📺 ৪. চ্যানেল লিস্ট প্রসেসিং
+        // যদি ডাটা ভুলে অবজেক্ট আকারেও আসে, তবে সেটিকে চ্যানেলের অ্যারেতে কনভার্ট করবে
+        const channelList = Array.isArray(playlistData) ? playlistData : (playlistData.channels || []);
 
         if (channelList.length === 0) {
             container.innerHTML = '<p style="color:#aaa; text-align:center; padding:20px;">কোনো চ্যানেল পাওয়া যায়নি!</p>';
             return;
         }
 
-        // ⭐ গুরুত্বপূর্ণ: এখানে কোনো sort() নেই – JSON ফাইলের ক্রম অক্ষুণ্ণ থাকবে
-
-        // রেন্ডার শুরু – প্রতিটি চ্যানেল JSON-এ যেই ক্রমে আছে, সেই ক্রমেই যোগ হবে
-        let renderedCount = 0;
+        // চ্যানেলগুলো স্ক্রিনে রেন্ডার করা
         channelList.forEach((channel, index) => {
-            const name = channel.name || `চ্যানেল ${index+1}`;
-            const url = channel.url || '#';
-            const image = channel.image || 'https://i.postimg.cc/mD1VCt2C/RS-Live.png';
-
             const li = document.createElement('li');
             li.setAttribute('tabindex', '0');
-
+            
             li.innerHTML = `
                 <div style="display: block; text-decoration: none; pointer-events: none; width: 100%;">
-                    <img src="${image}" alt="${name}" loading="lazy" onerror="this.src='https://i.postimg.cc/mD1VCt2C/RS-Live.png';">
+                    <img src="${channel.image}" alt="${channel.name}" loading="lazy" onerror="this.src='https://i.postimg.cc/mD1VCt2C/RS-Live.png';">
                     <div class="channel-info-box">
-                        <p class="channel-title">${name}</p>
+                        <p class="channel-title">${channel.name}</p>
                     </div>
                 </div>
             `;
 
+            // চ্যানেলে ক্লিক করলে প্লে হওয়ার লজিক
             li.addEventListener('click', function() {
                 if (window.frames['player']) {
-                    window.frames['player'].location.href = url;
+                    window.frames['player'].location.href = channel.url;
                 } else if (window.player) {
-                    player.location.href = url;
+                    player.location.href = channel.url;
                 }
+
+                // চ্যানেল প্লে হলে সার্চবক্স ক্লিয়ার হবে
                 if (searchInput) {
                     searchInput.value = '';
-                    const items = container.querySelectorAll('li');
-                    items.forEach(item => item.style.display = "");
+                    const channelItems = container.querySelectorAll('li');
+                    channelItems.forEach(item => item.style.display = "");
                 }
             });
-
+            
             container.appendChild(li);
-            renderedCount++;
         });
 
-        console.log(`✅ রেন্ডার সম্পন্ন: ${renderedCount} টি চ্যানেল (JSON ফাইলের ক্রমেই)`);
-
-        // সার্চ ফিল্টার (ডুপ্লিকেট এড়াতে ক্লোন)
+        // 🔍 ৫. লাইভ সার্চ ফিল্টার লজিক
         if (searchInput) {
-            const newSearch = searchInput.cloneNode(true);
-            searchInput.parentNode.replaceChild(newSearch, searchInput);
-            const freshSearch = document.getElementById('channelSearch');
-            freshSearch.addEventListener('input', function() {
-                const filter = this.value.toLowerCase().trim();
-                const items = container.querySelectorAll('li');
-                items.forEach(item => {
-                    const title = item.querySelector('.channel-title');
-                    if (title) {
-                        const text = title.textContent.toLowerCase();
-                        item.style.display = text.includes(filter) ? "" : "none";
+            searchInput.addEventListener('input', function() {
+                const filterValue = this.value.toLowerCase().trim();
+                const channelItems = container.querySelectorAll('li');
+
+                channelItems.forEach(item => {
+                    const channelTitle = item.querySelector('.channel-title').textContent.toLowerCase();
+                    if (channelTitle.includes(filterValue)) {
+                        item.style.display = ""; 
+                    } else {
+                        item.style.display = "none"; 
                     }
                 });
             });
         }
 
-        if (typeof initTVFocus === 'function') initTVFocus();
+        // প্রজেক্টের অ্যান্ড্রয়েড টিভি রিমোট কন্ট্রোল ফোকাস সচল করা
+        if (typeof initTVFocus === 'function') {
+            initTVFocus();
+        }
     })
     .catch(error => {
-        console.error('❌ লোডিং ত্রুটি:', error);
+        console.error('Error loading assets:', error);
         if (container) {
-            container.innerHTML = `<p style="color:#ff6b6b; text-align:center; padding:20px;">⚠️ সিস্টেম লোড হতে সমস্যা হয়েছে!<br><span style="font-size:12px; color:#888;">${error.message}</span></p>`;
+            container.innerHTML = '<p style="color:red; text-align:center; padding:20px;">সিস্টেম লোড হতে সমস্যা হয়েছে!</p>';
         }
     });
 });
