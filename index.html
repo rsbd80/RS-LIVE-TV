@@ -168,150 +168,221 @@
         }
 
         /* =========================
-           HEADER – আপনার আপডেট করা সংস্করণ
+           HEADER – আগের সংস্করণ (যা আপনার কাছে ঠিক ছিল)
         ========================= */
         .top-bar-wrapper {
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 12px;
             width: 100%;
-            padding: 14px;
             margin: 10px 0 12px;
+            padding: 14px 14px;
+            border-radius: 18px;
             background:
-                radial-gradient(circle at left top, rgba(0, 240, 255, .16), transparent 34%),
-                radial-gradient(circle at right center, rgba(255, 0, 85, .14), transparent 34%),
-                linear-gradient(90deg, #07101d 0%, #090b18 55%, #160914 100%);
-            border: none !important;
-            outline: none !important;
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .03), 0 8px 24px rgba(0, 0, 0, .35);
-            border-radius: 20px;
+                linear-gradient(135deg, rgba(15, 16, 28, 0.96) 0%, rgba(8, 10, 20, 0.96) 55%, rgba(14, 18, 30, 0.96) 100%);
+            border: 1px solid rgba(0, 240, 255, 0.14);
+            box-shadow:
+                0 12px 35px rgba(0, 0, 0, 0.38),
+                inset 0 1px 0 rgba(255, 255, 255, 0.04),
+                0 0 30px rgba(0, 240, 255, 0.04);
             overflow: hidden;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             box-sizing: border-box;
         }
 
+        .top-bar-wrapper::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at left top, rgba(0, 240, 255, 0.14), transparent 32%),
+                radial-gradient(circle at right bottom, rgba(255, 0, 85, 0.10), transparent 30%);
+            pointer-events: none;
+        }
+
+        .top-bar-wrapper::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -140%;
+            width: 70%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.06) 45%,
+                    rgba(255, 255, 255, 0.12) 50%,
+                    rgba(255, 255, 255, 0.05) 55%,
+                    rgba(255, 255, 255, 0) 100%);
+            transform: skewX(-24deg);
+            animation: headerShine 7s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes headerShine {
+            0% {
+                left: -140%;
+            }
+            100% {
+                left: 160%;
+            }
+        }
+
         .logo-link {
+            position: relative;
+            z-index: 2;
             text-decoration: none !important;
-            flex: 1 1 auto;
-            min-width: 0;
             display: flex;
             align-items: center;
+            flex: 1 1 auto;
+            min-width: 0;
         }
 
         .brand-title-neon {
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 6px;
+            align-items: center;
             min-width: 0;
             width: 100%;
         }
 
-        .brand-main-line {
+        .brand-stack {
             display: flex;
-            align-items: center;
-            gap: 10px;
+            flex-direction: column;
+            line-height: 1;
             min-width: 0;
+            flex: 1 1 auto;
+        }
+
+        .brand-line-main {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
             flex-wrap: wrap;
         }
 
-        .brand-title-neon .rs-glow {
-            color: #f3f6ff;
+        .brand-rs {
             font-size: 26px;
-            line-height: 1;
-            font-weight: 900;
-            letter-spacing: .4px;
-            text-shadow: 0 0 10px rgba(255, 255, 255, .08);
-            font-family: 'Georgia', 'Times New Roman', serif;
-        }
-
-        .brand-title-neon .live-glow {
-            font-size: 26px;
-            line-height: 1;
-            font-weight: 900;
-            letter-spacing: .5px;
-            background: linear-gradient(90deg, #ff355e 0%, #ff7a18 55%, #ffcc33 100%);
+            font-weight: 1000;
+            letter-spacing: 0.5px;
+            background: linear-gradient(135deg, #ffffff 10%, #d5e4ff 45%, #8ad7ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: none;
-            font-family: 'Georgia', 'Times New Roman', serif;
-        }
-
-        .brand-subline {
-            width: 100%;
-            min-width: 0;
-            font-family: 'Poppins', sans-serif;
-            font-size: 12px;
-            line-height: 1.2;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: #b7c0d8;
-            text-transform: uppercase;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            text-shadow: 0 0 14px rgba(255, 255, 255, 0.08);
             position: relative;
-            padding-bottom: 8px;
         }
 
-        .brand-subline::after {
+        .brand-live {
+            font-size: 26px;
+            font-weight: 1000;
+            letter-spacing: 0.8px;
+            background: linear-gradient(90deg, #ff296d 0%, #ff5e00 45%, #ffd000 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow:
+                0 0 16px rgba(255, 41, 109, 0.22),
+                0 0 28px rgba(255, 94, 0, 0.12);
+            position: relative;
+        }
+
+        .brand-live::after {
             content: "";
             position: absolute;
             left: 0;
-            bottom: 0;
-            width: 120px;
-            max-width: 70%;
-            height: 4px;
-            border-radius: 999px;
-            background: linear-gradient(90deg, #00eaff 0%, #00d5ff 35%, #ffb300 100%);
-            box-shadow: 0 0 12px rgba(0, 234, 255, .35);
+            bottom: -4px;
+            width: 100%;
+            height: 2px;
+            border-radius: 20px;
+            background: linear-gradient(90deg, #00f0ff, #ff2f76, #ffd000);
+            box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+            opacity: .9;
         }
 
+        .brand-line-sub {
+            margin-top: 8px;
+            font-size: 10px;
+            color: #8ea1b7;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            font-weight: 800;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+            flex-shrink: 1;
+        }
+
+        /* =========================
+           SEARCH BAR
+        ========================= */
         .channel-search-box-premium {
             position: relative;
-            width: min(42vw, 250px);
-            min-width: 150px;
-            flex: 0 0 auto;
-            display: flex;
-            align-items: center;
+            z-index: 2;
+            width: 180px;
+            flex-shrink: 0;
+        }
+
+        .channel-search-box-premium::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 15px;
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.10), rgba(255, 0, 85, 0.08));
+            pointer-events: none;
         }
 
         .channel-search-box-premium input {
+            position: relative;
+            z-index: 2;
             width: 100%;
-            height: 58px;
-            padding: 0 58px 0 20px;
-            background: linear-gradient(180deg, rgba(18, 23, 39, .95) 0%, rgba(10, 14, 26, .96) 100%);
-            border: none !important;
-            outline: none !important;
-            border-radius: 18px;
-            color: #fff;
-            font-size: 15px;
+            height: 44px;
+            padding: 0 44px 0 14px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 240, 255, 0.18);
+            background: linear-gradient(180deg, rgba(18, 20, 32, 0.95), rgba(10, 12, 22, 0.95));
+            color: #ffffff;
+            font-size: 13px;
             font-weight: 700;
-            box-shadow: inset 0 0 0 1px rgba(0, 240, 255, .18), 0 0 0 1px rgba(255, 0, 85, .08);
+            outline: none;
+            transition: .25s ease;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.03),
+                0 6px 20px rgba(0, 0, 0, 0.22);
             box-sizing: border-box;
         }
 
         .channel-search-box-premium input::placeholder {
-            color: #b7becf;
-            opacity: 1;
-            font-weight: 700;
+            color: #8da0b3;
+            font-weight: 600;
+            letter-spacing: .2px;
+        }
+
+        .channel-search-box-premium input:hover {
+            border-color: rgba(0, 240, 255, 0.35);
         }
 
         .channel-search-box-premium input:focus {
-            background: linear-gradient(180deg, rgba(20, 26, 44, .98) 0%, rgba(11, 16, 29, .98) 100%);
-            box-shadow: inset 0 0 0 1px rgba(0, 240, 255, .35), 0 0 16px rgba(0, 240, 255, .14);
+            border-color: #00f0ff;
+            background: linear-gradient(180deg, rgba(20, 22, 36, 1), rgba(12, 14, 26, 1));
+            box-shadow:
+                0 0 0 3px rgba(0, 240, 255, 0.10),
+                0 0 20px rgba(0, 240, 255, 0.18),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
         .search-icon-inside {
             position: absolute;
-            right: 16px;
+            right: 14px;
             top: 50%;
             transform: translateY(-50%);
-            width: 28px;
-            height: 28px;
+            width: 18px;
+            height: 18px;
             display: block;
             pointer-events: none;
-            filter: drop-shadow(0 0 8px rgba(0, 240, 255, .28));
+            z-index: 3;
+            opacity: .95;
+            filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.35));
         }
 
         /* =========================
@@ -575,72 +646,99 @@
             margin-top: 15px;
         }
 
+        /* =========================
+           MOBILE
+        ========================= */
         @media (max-width:767px) {
             .top-bar-wrapper {
+                padding: 12px 10px;
+                border-radius: 15px;
                 gap: 10px;
-                padding: 12px;
-                border-radius: 18px;
             }
-            .logo-link {
-                flex: 1 1 0;
-                min-width: 0;
+
+            .brand-rs,
+            .brand-live {
+                font-size: 20px;
             }
-            .brand-title-neon .rs-glow,
-            .brand-title-neon .live-glow {
-                font-size: 22px;
+
+            .brand-line-sub {
+                font-size: 8.8px;
+                letter-spacing: 1px;
+                margin-top: 6px;
             }
-            .brand-subline {
-                font-size: 10px;
-                letter-spacing: 1.6px;
-                padding-bottom: 7px;
-            }
-            .brand-subline::after {
-                width: 95px;
-                height: 3px;
-            }
+
             .channel-search-box-premium {
-                width: 46%;
-                min-width: 138px;
+                width: 145px;
+                flex-shrink: 0;
             }
+
             .channel-search-box-premium input {
-                height: 54px;
-                padding: 0 52px 0 16px;
-                font-size: 14px;
-                border-radius: 16px;
+                height: 40px;
+                font-size: 12px;
+                padding: 0 40px 0 12px;
+                border-radius: 12px;
             }
+
             .search-icon-inside {
-                width: 26px;
-                height: 26px;
-                right: 14px;
+                width: 16px;
+                height: 16px;
+                right: 12px;
+            }
+        }
+
+        @media (min-width:768px) {
+            .top-bar-wrapper {
+                padding: 15px 16px;
+            }
+
+            .brand-rs,
+            .brand-live {
+                font-size: 28px;
+            }
+
+            .brand-line-sub {
+                font-size: 11px;
+            }
+
+            .channel-search-box-premium {
+                width: 230px;
             }
         }
 
         @media (max-width:420px) {
             .top-bar-wrapper {
                 gap: 8px;
-                padding: 10px;
+                padding: 10px 8px;
             }
-            .brand-title-neon .rs-glow,
-            .brand-title-neon .live-glow {
-                font-size: 19px;
+
+            .brand-rs,
+            .brand-live {
+                font-size: 17px;
             }
-            .brand-subline {
-                font-size: 9px;
-                letter-spacing: 1.2px;
+
+            .brand-line-sub {
+                font-size: 7.5px;
+                letter-spacing: 0.8px;
+                margin-top: 5px;
             }
+
             .channel-search-box-premium {
-                width: 44%;
-                min-width: 128px;
+                width: 120px;
+                min-width: 100px;
+                flex-shrink: 0;
             }
+
             .channel-search-box-premium input {
-                height: 50px;
-                font-size: 13px;
-                padding: 0 46px 0 14px;
+                height: 36px;
+                font-size: 11px;
+                padding: 0 34px 0 10px;
+                border-radius: 10px;
             }
+
             .search-icon-inside {
-                width: 24px;
-                height: 24px;
-                right: 12px;
+                width: 14px;
+                height: 14px;
+                right: 10px;
             }
         }
     </style>
@@ -663,23 +761,25 @@
     <div class="container tv-area">
         <div class="row">
             <div class="col-xs-12 col-md-12">
-                <!-- HEADER – আপডেট করা সংস্করণ -->
+                <!-- HEADER – আগের সংস্করণ (ঠিক ছিল) -->
                 <div class="top-bar-wrapper">
-                    <a href="https://rslivetv.vercel.app" class="logo-link">
+                    <a href="https://rslivetv.vercel.app/" class="logo-link">
                         <div class="brand-title-neon">
-                            <div class="brand-main-line">
-                                <span class="rs-glow">RS</span>
-                                <span class="live-glow">LIVE TV</span>
+                            <div class="brand-stack">
+                                <div class="brand-line-main">
+                                    <span class="brand-rs">RS</span>
+                                    <span class="brand-live">LIVE TV</span>
+                                </div>
+                                <div class="brand-line-sub">Watch Live Sports • Movies • Entertainment</div>
                             </div>
-                            <div class="brand-subline">WATCH LIVE SPORTS • MOVIES • TV SHOWS</div>
                         </div>
                     </a>
 
                     <div class="channel-search-box-premium">
-                        <input type="text" id="channelSearch" placeholder="Search channels" autocomplete="off">
+                        <input type="text" id="channelSearch" placeholder="Search channels..." autocomplete="off">
                         <svg class="search-icon-inside" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z" stroke="#00eaff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M22 22L20 20" stroke="#00eaff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z" stroke="#00f0ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M22 22L20 20" stroke="#00f0ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
                 </div>
@@ -760,20 +860,19 @@
     </footer>
 
     <!-- =========================================================
-    মূল স্ক্রিপ্ট – JSON প্লেলিস্ট লোড (HTML-এর ভেতরেই)
+    প্লেলিস্ট লোডার – JSON ফাইলের ক্রমেই
     ========================================================= -->
     <script>
         // ================================================================
-        // প্লেলিস্ট JSON ফাইলের পাথ (আপনার ফাইল যেখানে আছে)
+        // JSON ফাইলের পাথ
         // ================================================================
         const PLAYLIST_URL = 'playlist.json';
 
-        // DOM রেফারেন্স
         const container = document.getElementById('channel-container');
         const searchInput = document.getElementById('channelSearch');
 
         // ================================================================
-        // চ্যানেল রেন্ডার – কোনো সাজানো নেই, JSON ফাইলের ক্রমেই
+        // রেন্ডার – কোনো সাজানো নেই
         // ================================================================
         function renderChannels(channels) {
             container.innerHTML = '';
@@ -783,9 +882,8 @@
                 return;
             }
 
-            console.log(`🔄 রেন্ডার শুরু: JSON ফাইলের ক্রম অনুযায়ী ${channels.length} টি চ্যানেল`);
+            console.log(`🔄 রেন্ডার শুরু: ${channels.length} টি চ্যানেল (JSON ক্রম)`);
 
-            let renderedCount = 0;
             channels.forEach((channel, index) => {
                 const name = channel.name || `চ্যানেল ${index+1}`;
                 const url = channel.url || '#';
@@ -815,17 +913,16 @@
                 });
 
                 container.appendChild(li);
-                renderedCount++;
             });
 
-            console.log(`✅ রেন্ডার সম্পন্ন: ${renderedCount} টি চ্যানেল (JSON ফাইলের ক্রমেই)`);
+            console.log(`✅ রেন্ডার সম্পন্ন: ${channels.length} টি চ্যানেল`);
 
             // সার্চ ফিল্টার সেটআপ (একবার)
             setupSearchFilter();
         }
 
         // ================================================================
-        // সার্চ ফিল্টার – ডুপ্লিকেট এড়াতে ক্লোন করে
+        // সার্চ ফিল্টার
         // ================================================================
         let searchListenerAdded = false;
 
@@ -855,35 +952,27 @@
         }
 
         // ================================================================
-        // JSON ফাইল লোড
+        // JSON লোড
         // ================================================================
-        function loadChannelsFromJSON() {
-            console.log('📡 JSON ফাইল লোড হচ্ছে:', PLAYLIST_URL);
+        function loadChannels() {
+            console.log('📡 JSON লোড হচ্ছে:', PLAYLIST_URL);
 
             fetch(PLAYLIST_URL + '?t=' + Date.now())
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP ${response.status} - ${response.statusText}`);
-                    }
-                    return response.json();
+                .then(res => {
+                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                    return res.json();
                 })
                 .then(data => {
-                    console.log(`📦 JSON রেসপন্সে মোট আইটেম: ${data.length}`);
-
-                    if (!Array.isArray(data)) {
-                        throw new Error('JSON ডেটা অ্যারে নয়');
-                    }
-
-                    // ⭐ কোনো সাজানো নেই – সরাসরি রেন্ডার
+                    if (!Array.isArray(data)) throw new Error('JSON অ্যারে নয়');
+                    console.log(`📦 মোট চ্যানেল: ${data.length}`);
                     renderChannels(data);
                 })
-                .catch(error => {
-                    console.error('❌ JSON লোড ব্যর্থ:', error.message);
+                .catch(err => {
+                    console.error('❌ লোড ব্যর্থ:', err);
                     container.innerHTML = `
                         <p style="color:#ff6b6b; text-align:center; padding:20px;">
-                            ⚠️ JSON ফাইল লোড করা যায়নি।<br>
-                            <span style="font-size:12px; color:#888;">${error.message}</span><br>
-                            <span style="font-size:12px; color:#888;">পাথ: ${PLAYLIST_URL}</span>
+                            ⚠️ JSON লোড করা যায়নি<br>
+                            <span style="font-size:12px;color:#888;">${err.message}</span>
                         </p>
                     `;
                 });
@@ -904,17 +993,17 @@
         });
 
         // ================================================================
-        // শুরু করুন
+        // শুরু
         // ================================================================
-        loadChannelsFromJSON();
-        console.log('🔥 RS Live TV – JSON ফাইলের ক্রমেই চ্যানেল লোড হবে');
+        loadChannels();
+        console.log('🔥 RS Live TV – হেডার আগের মতো + JSON ক্রম ঠিক');
     </script>
 
     <!-- =========================================================
-    সিকিউরিটি + কীবোর্ড কন্ট্রোল (আগের মতোই)
+    সিকিউরিটি + কীবোর্ড কন্ট্রোল
     ========================================================= -->
     <script>
-        // 🔐 সিকিউরিটি প্রোটেকশন
+        // (আগের মতোই – সংক্ষেপে দেওয়া হলো)
         document.addEventListener('contextmenu', event => event.preventDefault());
 
         document.onkeydown = function(e) {
@@ -985,7 +1074,6 @@
             }
         });
 
-        // কীবোর্ড নেভিগেশন
         document.addEventListener('keydown', function(event) {
             const items = Array.from(document.querySelectorAll('#channel-container li')).filter(el => el.style
                 .display !== 'none');
@@ -1002,7 +1090,6 @@
                     searchInput.blur();
                     return false;
                 }
-
                 if (event.keyCode === 40 || event.key === "ArrowDown") {
                     event.preventDefault();
                     if (items.length > 0) items[0].focus();
@@ -1061,4 +1148,4 @@
     <div id="container-cdeccdd75d3e2e6916a42ce9653cfb08"></div>
 
 </body>
-    </html>
+</html>
