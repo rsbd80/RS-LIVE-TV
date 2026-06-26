@@ -2,9 +2,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('channel-container');
     const searchInput = document.getElementById('channelSearch');
 
-    // লোডিং টাইমস্ট্যাম্প (ক্যাশে বাস্ট)
+    // ক্যাশে বাস্ট করার জন্য টাইমস্ট্যাম্প
     const ts = Date.now();
 
+    // প্লেলিস্ট ও সেটিংস লোড
     Promise.all([
         fetch('playlist.json?t=' + ts)
             .then(res => {
@@ -12,8 +13,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 return res.json();
             })
             .then(data => {
-                console.log('📦 playlist.json রেসপন্স সাইজ:', JSON.stringify(data).length, 'অক্ষর');
-                console.log('📦 রেসপন্স টাইপ:', Array.isArray(data) ? 'অ্যারে' : typeof data);
+                // কনসোলে ডেটার ক্রম দেখান (প্রথম ৫টি)
+                console.log('📦 JSON ফাইলের প্রথম ৫টি চ্যানেল (যে ক্রমে আছে):');
+                if (Array.isArray(data)) {
+                    data.slice(0, 5).forEach((ch, i) => console.log(`  ${i+1}. ${ch.name}`));
+                } else if (data && typeof data === 'object') {
+                    const vals = Object.values(data);
+                    vals.slice(0, 5).forEach((ch, i) => console.log(`  ${i+1}. ${ch.name}`));
+                }
                 return data;
             })
             .catch(err => {
@@ -46,31 +53,28 @@ document.addEventListener('DOMContentLoaded', function() {
         const telegramBtn = document.getElementById('telegramBtn') || document.getElementById('telegramLink');
         if (telegramBtn && settingsData.telegram) telegramBtn.href = settingsData.telegram;
 
-        // চ্যানেল লিস্ট কনভার্ট – সব ফরম্যাট হ্যান্ডেল
+        // চ্যানেল লিস্ট তৈরি – কোনো সাজানো ছাড়াই
         let channelList = [];
         if (Array.isArray(playlistData)) {
             channelList = playlistData;
         } else if (playlistData && typeof playlistData === 'object') {
+            // যদি অবজেক্ট হয় (যেমন {"1":{...}})
             channelList = Object.values(playlistData);
             if (playlistData.channels && Array.isArray(playlistData.channels)) {
                 channelList = playlistData.channels;
             }
         }
 
-        console.log(`📊 মোট চ্যানেল অবজেক্টের সংখ্যা: ${channelList.length}`);
+        console.log(`📊 মোট চ্যানেল পাওয়া গেছে: ${channelList.length}`);
 
         if (channelList.length === 0) {
             container.innerHTML = '<p style="color:#aaa; text-align:center; padding:20px;">কোনো চ্যানেল পাওয়া যায়নি!</p>';
             return;
         }
 
-        // =============================================================
-        // ⭐ গুরুত্বপূর্ণ: সাজানো বাদ দেওয়া হয়েছে – JSON ফাইলের ক্রমেই থাকবে
-        // =============================================================
-        // যদি আপনি order ফিল্ড অনুযায়ী সাজাতে চান, তাহলে নিচের লাইনটি আনকমেন্ট করুন:
-        // channelList.sort((a, b) => (a.order || 0) - (b.order || 0));
+        // ⭐ গুরুত্বপূর্ণ: এখানে কোনো sort() নেই – JSON ফাইলের ক্রম অক্ষুণ্ণ থাকবে
 
-        // এখন রেন্ডার করুন – কোনো সাজানো ছাড়াই
+        // রেন্ডার শুরু – প্রতিটি চ্যানেল JSON-এ যেই ক্রমে আছে, সেই ক্রমেই যোগ হবে
         let renderedCount = 0;
         channelList.forEach((channel, index) => {
             const name = channel.name || `চ্যানেল ${index+1}`;
@@ -106,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
             renderedCount++;
         });
 
-        console.log(`✅ রেন্ডার সম্পন্ন: ${renderedCount} টি চ্যানেল (JSON ফাইলের ক্রমানুসারে)`);
+        console.log(`✅ রেন্ডার সম্পন্ন: ${renderedCount} টি চ্যানেল (JSON ফাইলের ক্রমেই)`);
 
         // সার্চ ফিল্টার (ডুপ্লিকেট এড়াতে ক্লোন)
         if (searchInput) {
