@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // একই সাথে প্লেলিস্ট এবং সেটিংস লোড করার ট্রিক
     Promise.all([
-        fetch('a7f9k2m4.json?t=' + Date.now()).then(res => res.json()).catch(() => []),
+        fetch('playlist.json?t=' + Date.now()).then(res => res.json()).catch(() => []),
         fetch('app_settings.json?t=' + Date.now()).then(res => res.json()).catch(() => ({})),
         fetch('notice.json?t=' + Date.now()).then(res => res.json()).catch(() => ({})) // আপনার পুরনো নোটিশ ফাইল ব্যাকআপ হিসেবে
     ])
