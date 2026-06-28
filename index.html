@@ -6,7 +6,6 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DRBZH98TKH"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-DRBZH98TKH');
@@ -17,9 +16,7 @@
     <link href="style.css?v=12.0" rel="stylesheet">
 
     <style>
-        /* =========================
-           BASE
-        ========================= */
+        /* ========================= BASE ========================= */
         body {
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -30,33 +27,20 @@
             scroll-behavior: auto !important;
             overscroll-behavior-y: contain;
         }
-
-        img,
-        iframe,
-        video,
-        .embed-responsive-item {
+        img, iframe, video, .embed-responsive-item {
             -webkit-user-drag: none;
             user-drag: none;
             pointer-events: auto;
         }
-
-        .tv-area {
-            margin-top: 0 !important;
-            padding-top: 0 !important;
-        }
-
-        .tv-view {
-            margin-bottom: 5px !important;
-        }
-
+        .tv-area { margin-top: 0 !important; padding-top: 0 !important; }
+        .tv-view { margin-bottom: 5px !important; }
         .tv-view .embed-responsive {
             border: 1px solid #1f2029;
             border-radius: 12px;
             background: #000;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .7);
+            box-shadow: 0 10px 30px rgba(0,0,0,.7);
         }
-
         iframe {
             border: 0 !important;
             display: block;
@@ -64,9 +48,7 @@
             height: 100%;
         }
 
-        /* =========================
-           INTRO LOADER
-        ========================= */
+        /* ========================= INTRO LOADER ========================= */
         #intro-loader {
             position: fixed;
             inset: 0;
@@ -79,689 +61,250 @@
             z-index: 9999999;
             transition: opacity .5s ease, visibility .5s;
         }
-
-        .loader-content {
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
+        .loader-content { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .welcome-text {
-            font-size: 14px;
-            color: #888899;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 5px;
-            font-weight: 600;
+            font-size: 14px; color: #888899; text-transform: uppercase;
+            letter-spacing: 4px; margin-bottom: 5px; font-weight: 600;
             animation: fadeInText 1s ease-out;
         }
-
         .brand-text {
-            font-size: 32px;
-            font-weight: 900;
-            color: #fff;
-            letter-spacing: 1px;
-            margin: 0;
-            text-shadow: 0 0 15px rgba(255, 255, 255, .1);
+            font-size: 32px; font-weight: 900; color: #fff;
+            letter-spacing: 1px; margin: 0; text-shadow: 0 0 15px rgba(255,255,255,.1);
         }
-
-        .brand-text span {
-            color: #00f0ff;
-            text-shadow: 0 0 20px rgba(0, 240, 255, .6);
-        }
-
+        .brand-text span { color: #00f0ff; text-shadow: 0 0 20px rgba(0,240,255,.6); }
         .loading-dots {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 6px;
-            margin-top: 15px;
+            display: flex; justify-content: center; align-items: center;
+            gap: 6px; margin-top: 15px;
         }
-
         .loading-dots span {
-            width: 6px;
-            height: 6px;
-            background-color: #ff0055;
-            border-radius: 50%;
-            display: inline-block;
+            width: 6px; height: 6px; background-color: #ff0055;
+            border-radius: 50%; display: inline-block;
             box-shadow: 0 0 8px #ff0055;
             animation: dotPulse 1.4s infinite ease-in-out both;
         }
-
-        .loading-dots span:nth-child(1) {
-            animation-delay: -0.32s;
-            background-color: #00f0ff;
-            box-shadow: 0 0 8px #00f0ff;
-        }
-
-        .loading-dots span:nth-child(2) {
-            animation-delay: -0.16s;
-        }
-
-        .loading-dots span:nth-child(3) {
-            background-color: #00f0ff;
-            box-shadow: 0 0 8px #00f0ff;
-        }
-
+        .loading-dots span:nth-child(1) { animation-delay: -0.32s; background-color: #00f0ff; box-shadow: 0 0 8px #00f0ff; }
+        .loading-dots span:nth-child(2) { animation-delay: -0.16s; }
+        .loading-dots span:nth-child(3) { background-color: #00f0ff; box-shadow: 0 0 8px #00f0ff; }
         @keyframes fadeInText {
-            from {
-                opacity: 0;
-                transform: translateY(5px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes dotPulse {
-            0%,
-            80%,
-            100% {
-                transform: scale(0);
-            }
-            40% {
-                transform: scale(1);
-            }
+            0%,80%,100% { transform: scale(0); }
+            40% { transform: scale(1); }
         }
 
-        /* =========================
-           HEADER – আগের সংস্করণ (যা আপনার কাছে ঠিক ছিল)
-        ========================= */
+        /* ========================= HEADER ========================= */
         .top-bar-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            width: 100%;
-            margin: 10px 0 12px;
-            padding: 14px 14px;
-            border-radius: 18px;
-            background:
-                linear-gradient(135deg, rgba(15, 16, 28, 0.96) 0%, rgba(8, 10, 20, 0.96) 55%, rgba(14, 18, 30, 0.96) 100%);
-            border: 1px solid rgba(0, 240, 255, 0.14);
-            box-shadow:
-                0 12px 35px rgba(0, 0, 0, 0.38),
-                inset 0 1px 0 rgba(255, 255, 255, 0.04),
-                0 0 30px rgba(0, 240, 255, 0.04);
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            position: relative; display: flex; align-items: center;
+            justify-content: space-between; gap: 12px; width: 100%;
+            margin: 10px 0 12px; padding: 14px 14px; border-radius: 18px;
+            background: linear-gradient(135deg, rgba(15,16,28,0.96) 0%, rgba(8,10,20,0.96) 55%, rgba(14,18,30,0.96) 100%);
+            border: 1px solid rgba(0,240,255,0.14);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.38), inset 0 1px 0 rgba(255,255,255,0.04), 0 0 30px rgba(0,240,255,0.04);
+            overflow: hidden; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
             box-sizing: border-box;
         }
-
         .top-bar-wrapper::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(circle at left top, rgba(0, 240, 255, 0.14), transparent 32%),
-                radial-gradient(circle at right bottom, rgba(255, 0, 85, 0.10), transparent 30%);
+            content: ""; position: absolute; inset: 0;
+            background: radial-gradient(circle at left top, rgba(0,240,255,0.14), transparent 32%),
+                        radial-gradient(circle at right bottom, rgba(255,0,85,0.10), transparent 30%);
             pointer-events: none;
         }
-
         .top-bar-wrapper::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -140%;
-            width: 70%;
-            height: 100%;
-            background: linear-gradient(90deg,
-                    rgba(255, 255, 255, 0) 0%,
-                    rgba(255, 255, 255, 0.06) 45%,
-                    rgba(255, 255, 255, 0.12) 50%,
-                    rgba(255, 255, 255, 0.05) 55%,
-                    rgba(255, 255, 255, 0) 100%);
-            transform: skewX(-24deg);
-            animation: headerShine 7s linear infinite;
-            pointer-events: none;
+            content: ""; position: absolute; top: 0; left: -140%; width: 70%; height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.06) 45%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.05) 55%, rgba(255,255,255,0) 100%);
+            transform: skewX(-24deg); animation: headerShine 7s linear infinite; pointer-events: none;
         }
-
         @keyframes headerShine {
-            0% {
-                left: -140%;
-            }
-            100% {
-                left: 160%;
-            }
+            0% { left: -140%; }
+            100% { left: 160%; }
         }
-
-        .logo-link {
-            position: relative;
-            z-index: 2;
-            text-decoration: none !important;
-            display: flex;
-            align-items: center;
-            flex: 1 1 auto;
-            min-width: 0;
-        }
-
-        .brand-title-neon {
-            display: flex;
-            align-items: center;
-            min-width: 0;
-            width: 100%;
-        }
-
-        .brand-stack {
-            display: flex;
-            flex-direction: column;
-            line-height: 1;
-            min-width: 0;
-            flex: 1 1 auto;
-        }
-
-        .brand-line-main {
-            display: flex;
-            align-items: flex-end;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
+        .logo-link { position: relative; z-index: 2; text-decoration: none !important; display: flex; align-items: center; flex: 1 1 auto; min-width: 0; }
+        .brand-title-neon { display: flex; align-items: center; min-width: 0; width: 100%; }
+        .brand-stack { display: flex; flex-direction: column; line-height: 1; min-width: 0; flex: 1 1 auto; }
+        .brand-line-main { display: flex; align-items: flex-end; gap: 8px; flex-wrap: wrap; }
         .brand-rs {
-            font-size: 26px;
-            font-weight: 1000;
-            letter-spacing: 0.5px;
+            font-size: 26px; font-weight: 1000; letter-spacing: 0.5px;
             background: linear-gradient(135deg, #ffffff 10%, #d5e4ff 45%, #8ad7ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 14px rgba(255, 255, 255, 0.08);
-            position: relative;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 14px rgba(255,255,255,0.08); position: relative;
         }
-
         .brand-live {
-            font-size: 26px;
-            font-weight: 1000;
-            letter-spacing: 0.8px;
+            font-size: 26px; font-weight: 1000; letter-spacing: 0.8px;
             background: linear-gradient(90deg, #ff296d 0%, #ff5e00 45%, #ffd000 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow:
-                0 0 16px rgba(255, 41, 109, 0.22),
-                0 0 28px rgba(255, 94, 0, 0.12);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 16px rgba(255,41,109,0.22), 0 0 28px rgba(255,94,0,0.12);
             position: relative;
         }
-
         .brand-live::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -4px;
-            width: 100%;
-            height: 2px;
-            border-radius: 20px;
-            background: linear-gradient(90deg, #00f0ff, #ff2f76, #ffd000);
-            box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
-            opacity: .9;
+            content: ""; position: absolute; left: 0; bottom: -4px; width: 100%; height: 2px;
+            border-radius: 20px; background: linear-gradient(90deg, #00f0ff, #ff2f76, #ffd000);
+            box-shadow: 0 0 12px rgba(0,240,255,0.4); opacity: .9;
         }
-
         .brand-line-sub {
-            margin-top: 8px;
-            font-size: 10px;
-            color: #8ea1b7;
-            letter-spacing: 1.4px;
-            text-transform: uppercase;
-            font-weight: 800;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 100%;
-            flex-shrink: 1;
+            margin-top: 8px; font-size: 10px; color: #8ea1b7;
+            letter-spacing: 1.4px; text-transform: uppercase; font-weight: 800;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; flex-shrink: 1;
         }
 
-        /* =========================
-           SEARCH BAR
-        ========================= */
+        /* ========================= SEARCH BAR ========================= */
         .channel-search-box-premium {
-            position: relative;
-            z-index: 2;
-            width: 180px;
-            flex-shrink: 0;
+            position: relative; z-index: 2; width: 180px; flex-shrink: 0;
         }
-
         .channel-search-box-premium::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border-radius: 15px;
-            background: linear-gradient(135deg, rgba(0, 240, 255, 0.10), rgba(255, 0, 85, 0.08));
+            content: ""; position: absolute; inset: 0; border-radius: 15px;
+            background: linear-gradient(135deg, rgba(0,240,255,0.10), rgba(255,0,85,0.08));
             pointer-events: none;
         }
-
         .channel-search-box-premium input {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            height: 44px;
-            padding: 0 44px 0 14px;
-            border-radius: 15px;
-            border: 1px solid rgba(0, 240, 255, 0.18);
-            background: linear-gradient(180deg, rgba(18, 20, 32, 0.95), rgba(10, 12, 22, 0.95));
-            color: #ffffff;
-            font-size: 13px;
-            font-weight: 700;
-            outline: none;
+            position: relative; z-index: 2; width: 100%; height: 44px;
+            padding: 0 44px 0 14px; border-radius: 15px;
+            border: 1px solid rgba(0,240,255,0.18);
+            background: linear-gradient(180deg, rgba(18,20,32,0.95), rgba(10,12,22,0.95));
+            color: #ffffff; font-size: 13px; font-weight: 700; outline: none;
             transition: .25s ease;
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.03),
-                0 6px 20px rgba(0, 0, 0, 0.22);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.03), 0 6px 20px rgba(0,0,0,0.22);
             box-sizing: border-box;
         }
-
-        .channel-search-box-premium input::placeholder {
-            color: #8da0b3;
-            font-weight: 600;
-            letter-spacing: .2px;
-        }
-
-        .channel-search-box-premium input:hover {
-            border-color: rgba(0, 240, 255, 0.35);
-        }
-
+        .channel-search-box-premium input::placeholder { color: #8da0b3; font-weight: 600; letter-spacing: .2px; }
+        .channel-search-box-premium input:hover { border-color: rgba(0,240,255,0.35); }
         .channel-search-box-premium input:focus {
             border-color: #00f0ff;
-            background: linear-gradient(180deg, rgba(20, 22, 36, 1), rgba(12, 14, 26, 1));
-            box-shadow:
-                0 0 0 3px rgba(0, 240, 255, 0.10),
-                0 0 20px rgba(0, 240, 255, 0.18),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            background: linear-gradient(180deg, rgba(20,22,36,1), rgba(12,14,26,1));
+            box-shadow: 0 0 0 3px rgba(0,240,255,0.10), 0 0 20px rgba(0,240,255,0.18), inset 0 1px 0 rgba(255,255,255,0.05);
         }
-
         .search-icon-inside {
-            position: absolute;
-            right: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 18px;
-            height: 18px;
-            display: block;
-            pointer-events: none;
-            z-index: 3;
-            opacity: .95;
-            filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.35));
+            position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+            width: 18px; height: 18px; display: block; pointer-events: none; z-index: 3;
+            opacity: .95; filter: drop-shadow(0 0 8px rgba(0,240,255,0.35));
         }
 
-        /* =========================
-           CHANNEL LIST
-        ========================= */
-        .channel-list {
-            max-height: 360px !important;
-            overflow-y: auto !important;
-            box-sizing: border-box;
-            margin-bottom: 0 !important;
-        }
-
-        @media (min-width:768px) {
-            .channel-list {
-                max-height: 480px !important;
-            }
-        }
-
-        .channel-list::-webkit-scrollbar {
-            width: 8px !important;
-        }
-
-        .channel-list::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, .03) !important;
-            border-radius: 10px;
-        }
-
+        /* ========================= CHANNEL LIST ========================= */
+        .channel-list { max-height: 360px !important; overflow-y: auto !important; box-sizing: border-box; margin-bottom: 0 !important; }
+        @media (min-width:768px) { .channel-list { max-height: 480px !important; } }
+        .channel-list::-webkit-scrollbar { width: 8px !important; }
+        .channel-list::-webkit-scrollbar-track { background: rgba(255,255,255,.03) !important; border-radius: 10px; }
         .channel-list::-webkit-scrollbar-thumb {
             background: linear-gradient(180deg, #00f0ff 0%, #0072ff 100%) !important;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 240, 255, .8) !important;
-            border: 1px solid rgba(0, 4, 6, .5);
+            border-radius: 10px; box-shadow: 0 0 10px rgba(0,240,255,.8) !important;
+            border: 1px solid rgba(0,4,6,.5);
         }
+        .channel-list::-webkit-scrollbar-thumb:hover { background: #ff0055 !important; box-shadow: 0 0 12px rgba(255,0,85,1) !important; }
 
-        .channel-list::-webkit-scrollbar-thumb:hover {
-            background: #ff0055 !important;
-            box-shadow: 0 0 12px rgba(255, 0, 85, 1) !important;
-        }
-
-        /* =========================
-           NOTICE BAR
-        ========================= */
+        /* ========================= NOTICE BAR ========================= */
         .marquee-container {
-            background: #0d0d13;
-            color: #fff;
-            padding: 10px 0;
-            display: flex;
-            align-items: center;
-            border-top: 1px solid #1a1b26;
-            border-bottom: 1px solid #1a1b26;
-            margin-top: 10px;
-            margin-bottom: 15px;
-            clear: both;
+            background: #0d0d13; color: #fff; padding: 10px 0;
+            display: flex; align-items: center;
+            border-top: 1px solid #1a1b26; border-bottom: 1px solid #1a1b26;
+            margin-top: 10px; margin-bottom: 15px; clear: both;
         }
-
         .notice-label {
-            background: linear-gradient(135deg, #ff0055, #ff5500);
-            color: #fff;
-            padding: 3px 12px;
-            margin-left: 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 11px;
-            flex-shrink: 0;
-            box-shadow: 0 0 10px rgba(255, 0, 85, .4);
+            background: linear-gradient(135deg, #ff0055, #ff5500); color: #fff;
+            padding: 3px 12px; margin-left: 15px; border-radius: 20px;
+            font-weight: bold; font-size: 11px; flex-shrink: 0;
+            box-shadow: 0 0 10px rgba(255,0,85,.4);
         }
+        .marquee-container marquee { flex: 1; padding: 0 10px; font-size: 13px; color: #ddd; }
 
-        .marquee-container marquee {
-            flex: 1;
-            padding: 0 10px;
-            font-size: 13px;
-            color: #ddd;
-        }
-
-        /* =========================
-           FOOTER
-        ========================= */
-        .footer-premium {
-            background: #040408;
-            padding: 5px 0 25px 0;
-            text-align: center;
-        }
-
+        /* ========================= FOOTER ========================= */
+        .footer-premium { background: #040408; padding: 5px 0 25px 0; text-align: center; }
         .tio-style-banner-fixed {
-            width: 320px;
-            height: 50px;
+            width: 320px; height: 50px;
             background: url('https://png.pngtree.com/background/20250208/original/pngtree-smooth-gradient-chaotic-texture-in-abstract-dark-background-with-black-shade-picture-image_15219959.jpg') center/cover;
-            position: relative;
-            overflow: hidden;
-            border-radius: 6px;
-            border: 1px solid #333;
-            font-family: 'Segoe UI', Roboto, sans-serif;
-            display: flex;
-            align-items: center;
+            position: relative; overflow: hidden; border-radius: 6px; border: 1px solid #333;
+            font-family: 'Segoe UI', Roboto, sans-serif; display: flex; align-items: center;
             margin: 0 auto 15px auto;
         }
-
         .tio-style-banner-fixed::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -150%;
-            width: 60%;
-            height: 100%;
-            background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, 0) 100%);
-            transform: skewX(-25deg);
-            animation: smoke-smoke 4s infinite;
-            z-index: 3;
+            content: ''; position: absolute; top: 0; left: -150%; width: 60%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.2) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg); animation: smoke-smoke 4s infinite; z-index: 3;
         }
-
         @keyframes smoke-smoke {
-            0% {
-                left: -150%;
-            }
-            40% {
-                left: 150%;
-            }
-            100% {
-                left: 150%;
-            }
+            0% { left: -150%; }
+            40% { left: 150%; }
+            100% { left: 150%; }
         }
-
         .banner-overlay {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, rgba(0, 0, 0, .85) 0%, rgba(0, 210, 255, .1) 100%);
+            position: absolute; inset: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, rgba(0,0,0,.85) 0%, rgba(0,210,255,.1) 100%);
             z-index: 1;
         }
-
         .content-wrapper {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            width: 100%;
-            padding: 0 10px;
-            justify-content: space-between;
+            position: relative; z-index: 2; display: flex; align-items: center;
+            width: 100%; padding: 0 10px; justify-content: space-between;
         }
-
-        .brand-logo-fixed {
-            font-weight: 900;
-            font-size: 13px;
-            font-style: italic;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-
-        .rs-live {
-            color: #fff;
-        }
-        .tv-text {
-            color: #ff9100;
-            text-shadow: 0 0 5px #ff9100;
-        }
-
-        .text-section-fixed {
-            flex-grow: 1;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .main-tags {
-            display: flex;
-            justify-content: center;
-            gap: 4px;
-            font-size: 7.5px;
-            font-weight: 800;
-            text-transform: uppercase;
-        }
-
-        .tag-cricket {
-            color: #FFD700;
-        }
-        .tag-football {
-            color: #00FF00;
-        }
-        .tag-tv {
-            color: #00D2FF;
-        }
-
-        .sub-text {
-            font-size: 9px;
-            color: #fff;
-            margin: 0;
-            font-weight: bold;
-            text-shadow: 1px 1px 2px #000;
-        }
-
+        .brand-logo-fixed { font-weight: 900; font-size: 13px; font-style: italic; white-space: nowrap; flex-shrink: 0; }
+        .rs-live { color: #fff; }
+        .tv-text { color: #ff9100; text-shadow: 0 0 5px #ff9100; }
+        .text-section-fixed { flex-grow: 1; text-align: center; display: flex; flex-direction: column; gap: 2px; }
+        .main-tags { display: flex; justify-content: center; gap: 4px; font-size: 7.5px; font-weight: 800; text-transform: uppercase; }
+        .tag-cricket { color: #FFD700; }
+        .tag-football { color: #00FF00; }
+        .tag-tv { color: #00D2FF; }
+        .sub-text { font-size: 9px; color: #fff; margin: 0; font-weight: bold; text-shadow: 1px 1px 2px #000; }
         .live-circle {
-            background: #ff0000;
-            color: #fff;
-            font-size: 8px;
-            font-weight: bold;
-            padding: 2px 6px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            flex-shrink: 0;
+            background: #ff0000; color: #fff; font-size: 8px; font-weight: bold;
+            padding: 2px 6px; border-radius: 12px; display: flex; align-items: center; gap: 4px; flex-shrink: 0;
         }
-
-        .pulse {
-            width: 5px;
-            height: 5px;
-            background: #fff;
-            border-radius: 50%;
-            animation: pulse-animation 1s infinite;
-        }
-
+        .pulse { width: 5px; height: 5px; background: #fff; border-radius: 50%; animation: pulse-animation 1s infinite; }
         @keyframes pulse-animation {
-            0% {
-                transform: scale(.95);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(1.5);
-                opacity: 0;
-            }
+            0% { transform: scale(.95); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
         }
-
         .tg-card {
-            background: #111116;
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid #1a1b26;
-            display: block;
-            width: 320px;
-            margin: 0 auto 15px auto;
+            background: #111116; padding: 15px; border-radius: 12px;
+            border: 1px solid #1a1b26; display: block; width: 320px; margin: 0 auto 15px auto;
         }
-
         .telegram-btn {
-            display: inline-block;
-            background: #0088cc;
-            color: #fff !important;
-            padding: 8px 25px;
-            border-radius: 6px;
-            font-weight: bold;
-            text-decoration: none !important;
-            margin-top: 10px;
-            font-size: 13px;
-            font-family: 'Courier New', Courier, monospace;
-            font-style: italic;
+            display: inline-block; background: #0088cc; color: #fff !important;
+            padding: 8px 25px; border-radius: 6px; font-weight: bold;
+            text-decoration: none !important; margin-top: 10px;
+            font-size: 13px; font-family: 'Courier New', Courier, monospace; font-style: italic;
         }
+        .ad-box { margin: 15px auto; width: 320px; height: 50px; display: flex; justify-content: center; overflow: hidden; }
+        .copyright { color: #444; font-size: 11px; margin-top: 15px; }
 
-        .ad-box {
-            margin: 15px auto;
-            width: 320px;
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .copyright {
-            color: #444;
-            font-size: 11px;
-            margin-top: 15px;
-        }
-
-        /* =========================
-           MOBILE
-        ========================= */
+        /* ========================= MOBILE ========================= */
         @media (max-width:767px) {
-            .top-bar-wrapper {
-                padding: 12px 10px;
-                border-radius: 15px;
-                gap: 10px;
-            }
-
-            .brand-rs,
-            .brand-live {
-                font-size: 20px;
-            }
-
-            .brand-line-sub {
-                font-size: 8.8px;
-                letter-spacing: 1px;
-                margin-top: 6px;
-            }
-
-            .channel-search-box-premium {
-                width: 145px;
-                flex-shrink: 0;
-            }
-
-            .channel-search-box-premium input {
-                height: 40px;
-                font-size: 12px;
-                padding: 0 40px 0 12px;
-                border-radius: 12px;
-            }
-
-            .search-icon-inside {
-                width: 16px;
-                height: 16px;
-                right: 12px;
-            }
+            .top-bar-wrapper { padding: 12px 10px; border-radius: 15px; gap: 10px; }
+            .brand-rs, .brand-live { font-size: 20px; }
+            .brand-line-sub { font-size: 8.8px; letter-spacing: 1px; margin-top: 6px; }
+            .channel-search-box-premium { width: 145px; flex-shrink: 0; }
+            .channel-search-box-premium input { height: 40px; font-size: 12px; padding: 0 40px 0 12px; border-radius: 12px; }
+            .search-icon-inside { width: 16px; height: 16px; right: 12px; }
         }
-
         @media (min-width:768px) {
-            .top-bar-wrapper {
-                padding: 15px 16px;
-            }
-
-            .brand-rs,
-            .brand-live {
-                font-size: 28px;
-            }
-
-            .brand-line-sub {
-                font-size: 11px;
-            }
-
-            .channel-search-box-premium {
-                width: 230px;
-            }
+            .top-bar-wrapper { padding: 15px 16px; }
+            .brand-rs, .brand-live { font-size: 28px; }
+            .brand-line-sub { font-size: 11px; }
+            .channel-search-box-premium { width: 230px; }
         }
-
         @media (max-width:420px) {
-            .top-bar-wrapper {
-                gap: 8px;
-                padding: 10px 8px;
-            }
-
-            .brand-rs,
-            .brand-live {
-                font-size: 17px;
-            }
-
-            .brand-line-sub {
-                font-size: 7.5px;
-                letter-spacing: 0.8px;
-                margin-top: 5px;
-            }
-
-            .channel-search-box-premium {
-                width: 120px;
-                min-width: 100px;
-                flex-shrink: 0;
-            }
-
-            .channel-search-box-premium input {
-                height: 36px;
-                font-size: 11px;
-                padding: 0 34px 0 10px;
-                border-radius: 10px;
-            }
-
-            .search-icon-inside {
-                width: 14px;
-                height: 14px;
-                right: 10px;
-            }
+            .top-bar-wrapper { gap: 8px; padding: 10px 8px; }
+            .brand-rs, .brand-live { font-size: 17px; }
+            .brand-line-sub { font-size: 7.5px; letter-spacing: 0.8px; margin-top: 5px; }
+            .channel-search-box-premium { width: 120px; min-width: 100px; flex-shrink: 0; }
+            .channel-search-box-premium input { height: 36px; font-size: 11px; padding: 0 34px 0 10px; border-radius: 10px; }
+            .search-icon-inside { width: 14px; height: 14px; right: 10px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Intro Loader -->
+    <!-- INTRO LOADER -->
     <div id="intro-loader">
         <div class="loader-content">
             <div class="welcome-text">Welcome To</div>
             <h1 class="brand-text">RS Live <span>TV</span></h1>
-            <div class="loading-dots">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <div class="loading-dots"><span></span><span></span><span></span></div>
         </div>
     </div>
 
     <div class="container tv-area">
         <div class="row">
             <div class="col-xs-12 col-md-12">
-                <!-- HEADER – আগের সংস্করণ -->
                 <div class="top-bar-wrapper">
                     <a href="https://rslivetv.vercel.app/" class="logo-link">
                         <div class="brand-title-neon">
@@ -774,7 +317,6 @@
                             </div>
                         </div>
                     </a>
-
                     <div class="channel-search-box-premium">
                         <input type="text" id="channelSearch" placeholder="Search channels..." autocomplete="off">
                         <svg class="search-icon-inside" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -786,14 +328,19 @@
             </div>
         </div>
 
-        <!-- Player + Channel List -->
+        <!-- PLAYER + CHANNEL LIST -->
         <div class="row">
             <div class="col-xs-12 col-md-10 tv-view">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe id="tv-player-iframe" name="player" class="embed-responsive-item" allowfullscreen src="channel.html"></iframe>
+                    <!-- ✅ ফুলস্ক্রিন বাগ ফিক্স - sandbox ও allowfullscreen যোগ করা হয়েছে -->
+                    <iframe id="tv-player-iframe" name="player" 
+                        class="embed-responsive-item" 
+                        allowfullscreen
+                        sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-presentation"
+                        src="channel.html">
+                    </iframe>
                 </div>
             </div>
-
             <div class="col-xs-12 col-md-2 channel-list" id="scroll-wrapper">
                 <ul class="thumbnail-slider" id="channel-container"></ul>
             </div>
@@ -811,16 +358,13 @@
         </marquee>
     </div>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer class="footer-premium">
         <div class="container">
             <div class="tio-style-banner-fixed">
                 <div class="banner-overlay"></div>
                 <div class="content-wrapper">
-                    <div class="brand-logo-fixed">
-                        <span class="rs-live">RS Live</span>
-                        <span class="tv-text">TV</span>
-                    </div>
+                    <div class="brand-logo-fixed"><span class="rs-live">RS Live</span><span class="tv-text">TV</span></div>
                     <div class="text-section-fixed">
                         <div class="main-tags">
                             <span class="tag-cricket">CRICKET 🏏</span>
@@ -849,40 +393,49 @@
                         'params': {}
                     };
                 </script>
-                <script type="text/javascript" src="//www.highperformanceformat.com/774c0e371455f6476668178b5faae5ab/invoke.js">
-                </script>
+                <script type="text/javascript" src="//www.highperformanceformat.com/774c0e371455f6476668178b5faae5ab/invoke.js"></script>
             </div>
 
-            <div class="copyright">
-                © 2026 RS LIVE TV | All Rights Reserved
-            </div>
+            <div class="copyright">© 2026 RS LIVE TV | All Rights Reserved</div>
         </div>
     </footer>
 
     <!-- =========================================================
-    উন্নত সিকিউরিটি (মিনিফাইড + অবফাস্কেটেড)
+    সিকিউরিটি + ফুলস্ক্রিন ফিক্স
     ========================================================= -->
     <script>
-        // এই অংশটি মিনিফাই করে দেওয়া হয়েছে – মূল ফাংশনগুলোর কাজ:
-        // 1) view-source: ইউআরএল ব্লক
-        // 2) ডিভটুলস ডিটেক্ট (উইন্ডো সাইজ + ডিবাগার চেক)
-        // 3) সব কী-শর্টকাট ব্লক
-        // 4) কনসোল ক্লিয়ার
-        // 5) কপি/কাট/পেস্ট/ড্র্যাগ/কনটেক্সট মেনু বন্ধ
-        // 6) টাচ ইভেন্টে লং-প্রেস বন্ধ
-        !function() {
-            "use strict";
+        // ----- ১. ফুলস্ক্রিন টগল করলে ব্ল্যাঙ্ক পেজ ঠেকানো -----
+        function fixFullscreenBlanking() {
+            const iframe = document.getElementById('tv-player-iframe');
+            if (!iframe) return;
+
+            // ফুলস্ক্রিন থেকে বের হলে iframe-এর src পুনরায় সেট করুন (রিলোড না করে)
+            const resetIframeSrc = () => {
+                if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                    const currentSrc = iframe.src;
+                    // যদি src খালি বা শুধু 'channel.html' হয়, তাহলে কিছু করবেন না
+                    if (currentSrc && !currentSrc.includes('channel.html')) {
+                        // সেটা আবার সেট করুন (রিলোড করবে না)
+                        iframe.src = currentSrc;
+                    }
+                }
+            };
+
+            document.addEventListener('fullscreenchange', resetIframeSrc);
+            document.addEventListener('webkitfullscreenchange', resetIframeSrc);
+        }
+
+        // ----- ২. বাকি সব সুরক্ষা (কপি, ডান-ক্লিক, কী ব্লক) -----
+        (function security() {
             // view-source ব্লক
             if (window.location.protocol === "view-source:") {
                 window.location.href = "https://rslivetv.vercel.app/";
             }
             // কনসোল ক্লিয়ার
             console.clear();
-            console.log = function() {};
-            console.warn = function() {};
-            console.error = function() {};
-            console.info = function() {};
-            // ডিভটুলস ডিটেক্ট – উইন্ডো সাইজ
+            console.log = console.warn = console.error = console.info = function() {};
+
+            // ডিভটুলস ডিটেক্ট
             function detectDevTools() {
                 var threshold = 160;
                 var widthDiff = window.outerWidth - window.innerWidth;
@@ -893,7 +446,8 @@
                 }
             }
             setInterval(detectDevTools, 500);
-            // ডিবাগার চেক (একাধিক)
+
+            // ডিবাগার চেক
             function debuggerCheck() {
                 var start = performance.now();
                 debugger;
@@ -903,94 +457,60 @@
                 }
             }
             setInterval(debuggerCheck, 300);
-            // আরও ডিবাগার ডিটেক্ট – ইভেন্ট লিসেনার
-            window.addEventListener('load', function() {
-                var element = new Image();
-                Object.defineProperty(element, 'id', {
-                    get: function() {
-                        window.location.href = "about:blank";
-                    }
-                });
-                console.log(element);
-            });
+
             // সব কী ব্লক
             document.addEventListener('keydown', function(e) {
                 var key = e.keyCode || e.which;
-                // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+S, Ctrl+P, Ctrl+C, Ctrl+V, Ctrl+X, PrintScreen
                 if (key === 123 ||
                     (e.ctrlKey && e.shiftKey && (key === 73 || key === 74)) ||
-                    (e.ctrlKey && key === 85) ||
-                    (e.ctrlKey && key === 83) ||
-                    (e.ctrlKey && key === 80) ||
-                    (e.ctrlKey && key === 67) ||
-                    (e.ctrlKey && key === 86) ||
-                    (e.ctrlKey && key === 88) ||
+                    (e.ctrlKey && key === 85) || (e.ctrlKey && key === 83) ||
+                    (e.ctrlKey && key === 80) || (e.ctrlKey && key === 67) ||
+                    (e.ctrlKey && key === 86) || (e.ctrlKey && key === 88) ||
                     key === 44) {
                     e.preventDefault();
                     e.stopPropagation();
                     return false;
                 }
             });
-            // কনটেক্সট মেনু (ডান-ক্লিক)
-            document.addEventListener('contextmenu', function(e) {
-                e.preventDefault();
-                return false;
-            });
-            // কপি, কাট, পেস্ট
-            document.addEventListener('copy', function(e) { e.preventDefault();
-                return false; });
-            document.addEventListener('cut', function(e) { e.preventDefault();
-                return false; });
-            document.addEventListener('paste', function(e) { e.preventDefault();
-                return false; });
-            // ড্র্যাগ
-            document.addEventListener('dragstart', function(e) { e.preventDefault();
-                return false; });
-            // সিলেকশন
-            document.addEventListener('selectstart', function(e) { e.preventDefault();
-                return false; });
-            // মোবাইলে টাচ মেনু (লং প্রেস)
+
+            // কনটেক্সট মেনু, কপি, কাট, পেস্ট, ড্র্যাগ, সিলেকশন
+            document.addEventListener('contextmenu', function(e) { e.preventDefault(); return false; });
+            document.addEventListener('copy', function(e) { e.preventDefault(); return false; });
+            document.addEventListener('cut', function(e) { e.preventDefault(); return false; });
+            document.addEventListener('paste', function(e) { e.preventDefault(); return false; });
+            document.addEventListener('dragstart', function(e) { e.preventDefault(); return false; });
+            document.addEventListener('selectstart', function(e) { e.preventDefault(); return false; });
+
+            // মোবাইলে টাচ মেনু
             document.addEventListener('touchstart', function(e) {
-                if (e.touches.length > 1) {
-                    e.preventDefault();
-                    return false;
-                }
+                if (e.touches.length > 1) { e.preventDefault(); return false; }
             }, { passive: false });
             document.addEventListener('touchmove', function(e) {
-                if (e.touches.length > 1) {
-                    e.preventDefault();
-                    return false;
-                }
+                if (e.touches.length > 1) { e.preventDefault(); return false; }
             }, { passive: false });
-            // সব ইমেজ/ভিডিও/আইফ্রেমে ড্র্যাগ বন্ধ
+
+            // ইমেজ/ভিডিও/আইফ্রেম ড্র্যাগ বন্ধ
             document.querySelectorAll('img, iframe, video').forEach(function(el) {
                 el.setAttribute('draggable', 'false');
-                el.addEventListener('dragstart', function(e) { e.preventDefault();
-                    return false; });
-                el.addEventListener('contextmenu', function(e) { e.preventDefault();
-                    return false; });
+                el.addEventListener('dragstart', function(e) { e.preventDefault(); return false; });
+                el.addEventListener('contextmenu', function(e) { e.preventDefault(); return false; });
             });
+
             // প্রিন্ট ব্লক
             window.onbeforeprint = function() { return false; };
             window.onafterprint = function() { return false; };
-            // স্ক্রিনশট কী (অতিরিক্ত)
+
+            // স্ক্রিনশট কী
             window.addEventListener('keyup', function(e) {
                 if (e.key === 'PrintScreen') {
                     alert('Screenshot disabled!');
                     window.location.href = "about:blank";
                 }
             });
-        }();
-    </script>
+        })();
 
-    <!-- =========================================================
-    প্লেলিস্ট লোডার – API এন্ডপয়েন্ট থেকে ডেটা আনা হবে
-    ========================================================= -->
-    <script>
-        // ====== শুধু এই লাইনটি পরিবর্তন করা হয়েছে ======
-        const PLAYLIST_URL = '/api/channels';   // আগে ছিল 'xxxbd.json'
-        // ============================================
-
+        // ----- ৩. চ্যানেল লোডার (API থেকে) -----
+        const PLAYLIST_URL = '/api/channels';
         const container = document.getElementById('channel-container');
         const searchInput = document.getElementById('channelSearch');
 
@@ -1015,8 +535,9 @@
                     </div>
                 `;
                 li.addEventListener('click', function() {
-                    if (window.frames['player']) {
-                        window.frames['player'].location.href = url;
+                    const iframe = document.getElementById('tv-player-iframe');
+                    if (iframe) {
+                        iframe.src = url;
                     }
                     if (searchInput) {
                         searchInput.value = '';
@@ -1068,6 +589,7 @@
                 });
         }
 
+        // ----- ৪. ইন্ট্রো লোডার হাইড -----
         window.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 const loader = document.getElementById('intro-loader');
@@ -1077,18 +599,15 @@
                     setTimeout(() => loader.remove(), 500);
                 }
             }, 1200);
+            // ফুলস্ক্রিন ফিক্স অ্যাকটিভেট
+            fixFullscreenBlanking();
         });
 
         loadChannels();
-    </script>
 
-    <!-- =========================================================
-    কীবোর্ড নেভিগেশন (আগের মতো)
-    ========================================================= -->
-    <script>
+        // ----- ৫. কীবোর্ড নেভিগেশন -----
         document.addEventListener('keydown', function(event) {
-            const items = Array.from(document.querySelectorAll('#channel-container li')).filter(el => el.style
-                .display !== 'none');
+            const items = Array.from(document.querySelectorAll('#channel-container li')).filter(el => el.style.display !== 'none');
             const active = document.activeElement;
             const searchInput = document.getElementById('channelSearch');
 
@@ -1144,8 +663,8 @@
         initTVFocus();
     </script>
 
-    <script async="async" data-cfasync="false" src="https://pl26377079.effectivecpmnetwork.com/cdeccdd75d3e2e6916a42ce9653cfb08/invoke.js">
-    </script>
+    <!-- AD Script -->
+    <script async="async" data-cfasync="false" src="https://pl26377079.effectivecpmnetwork.com/cdeccdd75d3e2e6916a42ce9653cfb08/invoke.js"></script>
     <div id="container-cdeccdd75d3e2e6916a42ce9653cfb08"></div>
 
 </body>
