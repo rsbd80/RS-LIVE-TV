@@ -1,10 +1,5 @@
 [
   {
-    "name": "England vs New Zealand",
-    "image": "https://d34080pnh6e62j.cloudfront.net/images/channels/mobile_large/17816020821020x576.jpg",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://bpl24middleeast.akamaized.net/hls/live/2109311/tapmad-258tjui/master.m3u8"
-  },
-  {
     "name": "Racing",
     "image": "https://d34080pnh6e62j.cloudfront.net/images/channels/mobile_large/17825131381020x576.jpg",
     "url": "https://rs-player.netlify.app/jw-player?url=https://bpl24middleeast.akamaized.net/hls/live/2109311/P2s6L-FiN@L-World_Feed/master.m3u8"
