@@ -65,6 +65,17 @@
         }
 
         /* =========================
+           ফুলস্ক্রিন ল্যাগ ফিক্স – CSS
+        ========================= */
+        #tv-player-iframe {
+            will-change: transform, opacity;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            transition: opacity 0.15s ease;
+        }
+
+        /* =========================
            INTRO LOADER
         ========================= */
         #intro-loader {
@@ -168,7 +179,7 @@
         }
 
         /* =========================
-           HEADER – আগের সংস্করণ (যা আপনার কাছে ঠিক ছিল)
+           HEADER
         ========================= */
         .top-bar-wrapper {
             position: relative;
@@ -420,6 +431,55 @@
         .channel-list::-webkit-scrollbar-thumb:hover {
             background: #ff0055 !important;
             box-shadow: 0 0 12px rgba(255, 0, 85, 1) !important;
+        }
+
+        .thumbnail-slider li {
+            background: rgba(12, 14, 26, 0.85);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(0, 240, 255, 0.08);
+            border-radius: 12px;
+            margin-bottom: 8px;
+            padding: 6px 10px;
+            transition: 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .thumbnail-slider li:hover {
+            border-color: rgba(0, 240, 255, 0.35);
+            background: rgba(18, 20, 34, 0.95);
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.08);
+        }
+
+        .thumbnail-slider li img {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            flex-shrink: 0;
+        }
+
+        .channel-info-box {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .channel-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #d5e4ff;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            letter-spacing: 0.2px;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
         }
 
         /* =========================
@@ -761,7 +821,7 @@
     <div class="container tv-area">
         <div class="row">
             <div class="col-xs-12 col-md-12">
-                <!-- HEADER – আগের সংস্করণ (ঠিক ছিল) -->
+                <!-- HEADER -->
                 <div class="top-bar-wrapper">
                     <a href="https://rslivetv.vercel.app/" class="logo-link">
                         <div class="brand-title-neon">
@@ -860,11 +920,11 @@
     </footer>
 
     <!-- =========================================================
-    প্লেলিস্ট লোডার – JSON ফাইলের ক্রমেই
+    প্লেলিস্ট লোডার – JSON
     ========================================================= -->
     <script>
         // ================================================================
-        // JSON ফাইলের পাথ
+        // JSON ফাইলের পাথ (নিরাপদ নাম)
         // ================================================================
         const PLAYLIST_URL = 'xxxbd.json';
 
@@ -872,7 +932,7 @@
         const searchInput = document.getElementById('channelSearch');
 
         // ================================================================
-        // রেন্ডার – কোনো সাজানো নেই
+        // রেন্ডার
         // ================================================================
         function renderChannels(channels) {
             container.innerHTML = '';
@@ -893,11 +953,9 @@
                 li.setAttribute('tabindex', '0');
 
                 li.innerHTML = `
-                    <div style="display:block;text-decoration:none;pointer-events:none;width:100%;">
-                        <img src="${image}" alt="${name}" loading="lazy" onerror="this.src='https://i.postimg.cc/mD1VCt2C/RS-Live.png';">
-                        <div class="channel-info-box">
-                            <p class="channel-title">${name}</p>
-                        </div>
+                    <img src="${image}" alt="${name}" loading="lazy" onerror="this.src='https://i.postimg.cc/mD1VCt2C/RS-Live.png';">
+                    <div class="channel-info-box">
+                        <p class="channel-title">${name}</p>
                     </div>
                 `;
 
@@ -916,8 +974,6 @@
             });
 
             console.log(`✅ রেন্ডার সম্পন্ন: ${channels.length} টি চ্যানেল`);
-
-            // সার্চ ফিল্টার সেটআপ (একবার)
             setupSearchFilter();
         }
 
@@ -1000,10 +1056,48 @@
     </script>
 
     <!-- =========================================================
+    ফুলস্ক্রিন ল্যাগ ফিক্স – JavaScript
+    ========================================================= -->
+    <script>
+        (function() {
+            const iframe = document.getElementById('tv-player-iframe');
+            if (!iframe) return;
+
+            function reflowFix() {
+                // সামান্য opacity পরিবর্তন করে রি-পেইন্ট ফোর্স করা
+                iframe.style.transition = 'opacity 0.05s ease';
+                iframe.style.opacity = '0.98';
+                requestAnimationFrame(() => {
+                    iframe.style.opacity = '1';
+                    setTimeout(() => {
+                        iframe.style.transition = '';
+                    }, 80);
+                });
+            }
+
+            // সব Fullscreen API ইভেন্টে কল করা
+            const events = ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'MSFullscreenChange'];
+            events.forEach(evt => {
+                document.addEventListener(evt, reflowFix);
+            });
+
+            // ম্যানুয়ালি Esc চাপলে (ফুলস্ক্রিন থেকে বের হলে)
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    // একটু দেরি করে কল করি যাতে fullscreenchange আগে ট্রিগার হয়
+                    setTimeout(reflowFix, 100);
+                }
+            });
+
+            console.log('✅ ফুলস্ক্রিন ল্যাগ ফিক্স ইনস্টল করা হয়েছে');
+        })();
+    </script>
+
+    <!-- =========================================================
     সিকিউরিটি + কীবোর্ড কন্ট্রোল
     ========================================================= -->
     <script>
-        // (আগের মতোই – সংক্ষেপে দেওয়া হলো)
+        // সিকিউরিটি কোড (আগের মতো)
         document.addEventListener('contextmenu', event => event.preventDefault());
 
         document.onkeydown = function(e) {
