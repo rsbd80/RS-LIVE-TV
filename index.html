@@ -860,40 +860,23 @@
     </footer>
 
     <!-- =========================================================
-    উন্নত সিকিউরিটি (মিনিফাইড + অবফাস্কেটেড)
+    উন্নত সিকিউরিটি (অপটিমাইজড ভার্সন)
     ========================================================= -->
     <script>
-        // এই অংশটি মিনিফাই করে দেওয়া হয়েছে – মূল ফাংশনগুলোর কাজ:
-        // 1) view-source: ইউআরএল ব্লক
-        // 2) ডিভটুলস ডিটেক্ট (উইন্ডো সাইজ + ডিবাগার চেক)
-        // 3) সব কী-শর্টকাট ব্লক
-        // 4) কনসোল ক্লিয়ার
-        // 5) কপি/কাট/পেস্ট/ড্র্যাগ/কনটেক্সট মেনু বন্ধ
-        // 6) টাচ ইভেন্টে লং-প্রেস বন্ধ
         !function() {
             "use strict";
             // view-source ব্লক
             if (window.location.protocol === "view-source:") {
                 window.location.href = "https://rslivetv.vercel.app/";
             }
-            // কনসোল ক্লিয়ার
+            // কনসোল ক্লিয়ার ও নীরব করা
             console.clear();
             console.log = function() {};
             console.warn = function() {};
             console.error = function() {};
             console.info = function() {};
-            // ডিভটুলস ডিটেক্ট – উইন্ডো সাইজ
-            function detectDevTools() {
-                var threshold = 160;
-                var widthDiff = window.outerWidth - window.innerWidth;
-                var heightDiff = window.outerHeight - window.innerHeight;
-                if (widthDiff > threshold || heightDiff > threshold) {
-                    document.body.innerHTML = '';
-                    window.location.href = "about:blank";
-                }
-            }
-            setInterval(detectDevTools, 500);
-            // ডিবাগার চেক (একাধিক)
+
+            // ডিবাগার চেক (১ সেকেন্ডে ১ বার)
             function debuggerCheck() {
                 var start = performance.now();
                 debugger;
@@ -902,21 +885,11 @@
                     window.location.href = "about:blank";
                 }
             }
-            setInterval(debuggerCheck, 300);
-            // আরও ডিবাগার ডিটেক্ট – ইভেন্ট লিসেনার
-            window.addEventListener('load', function() {
-                var element = new Image();
-                Object.defineProperty(element, 'id', {
-                    get: function() {
-                        window.location.href = "about:blank";
-                    }
-                });
-                console.log(element);
-            });
-            // সব কী ব্লক
+            setInterval(debuggerCheck, 1000);
+
+            // সব কী-শর্টকাট ব্লক (F12, Ctrl+Shift+I/J, Ctrl+U, Ctrl+S, Ctrl+P, Ctrl+C/V/X, PrintScreen)
             document.addEventListener('keydown', function(e) {
                 var key = e.keyCode || e.which;
-                // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+S, Ctrl+P, Ctrl+C, Ctrl+V, Ctrl+X, PrintScreen
                 if (key === 123 ||
                     (e.ctrlKey && e.shiftKey && (key === 73 || key === 74)) ||
                     (e.ctrlKey && key === 85) ||
@@ -931,25 +904,22 @@
                     return false;
                 }
             });
-            // কনটেক্সট মেনু (ডান-ক্লিক)
-            document.addEventListener('contextmenu', function(e) {
-                e.preventDefault();
-                return false;
-            });
-            // কপি, কাট, পেস্ট
+
+            // ডান-ক্লিক, কপি, কাট, পেস্ট, ড্র্যাগ, সিলেক্ট বন্ধ
+            document.addEventListener('contextmenu', function(e) { e.preventDefault();
+                return false; });
             document.addEventListener('copy', function(e) { e.preventDefault();
                 return false; });
             document.addEventListener('cut', function(e) { e.preventDefault();
                 return false; });
             document.addEventListener('paste', function(e) { e.preventDefault();
                 return false; });
-            // ড্র্যাগ
             document.addEventListener('dragstart', function(e) { e.preventDefault();
                 return false; });
-            // সিলেকশন
             document.addEventListener('selectstart', function(e) { e.preventDefault();
                 return false; });
-            // মোবাইলে টাচ মেনু (লং প্রেস)
+
+            // মোবাইলে টাচ মেনু (লং প্রেস) বন্ধ
             document.addEventListener('touchstart', function(e) {
                 if (e.touches.length > 1) {
                     e.preventDefault();
@@ -962,23 +932,14 @@
                     return false;
                 }
             }, { passive: false });
-            // সব ইমেজ/ভিডিও/আইফ্রেমে ড্র্যাগ বন্ধ
+
+            // ইমেজ/আইফ্রেম/ভিডিওতে ড্র্যাগ ও কনটেক্সট মেনু বন্ধ
             document.querySelectorAll('img, iframe, video').forEach(function(el) {
                 el.setAttribute('draggable', 'false');
                 el.addEventListener('dragstart', function(e) { e.preventDefault();
                     return false; });
                 el.addEventListener('contextmenu', function(e) { e.preventDefault();
                     return false; });
-            });
-            // প্রিন্ট ব্লক
-            window.onbeforeprint = function() { return false; };
-            window.onafterprint = function() { return false; };
-            // স্ক্রিনশট কী (অতিরিক্ত)
-            window.addEventListener('keyup', function(e) {
-                if (e.key === 'PrintScreen') {
-                    alert('Screenshot disabled!');
-                    window.location.href = "about:blank";
-                }
             });
         }();
     </script>
@@ -988,7 +949,7 @@
     ========================================================= -->
     <script>
         // ====== শুধু এই লাইনটি পরিবর্তন করা হয়েছে ======
-        const PLAYLIST_URL = '/api/channels';   // আগে ছিল 'xxxbd.json'
+        const PLAYLIST_URL = '/api/channels'; // আগে ছিল 'xxxbd.json'
         // ============================================
 
         const container = document.getElementById('channel-container');
