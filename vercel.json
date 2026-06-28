@@ -1,8 +1,12 @@
 {
-  "rewrites": [
-    {
-      "source": "/playlist.json",
-      "destination": "/api/protect-playlist"
-    }
-  ]
+  "name": "rs-live-tv",
+  "version": "1.0.0",
+  "description": "RS Live TV with server-side protection",
+  "main": "api/channels.js",
+  "scripts": {
+    "start": "node api/channels.js"
+  },
+  "dependencies": {
+    // এখানে কোনো অতিরিক্ত প্যাকেজ দরকার নেই, কারণ fs এবং path built-in
+  }
 }
