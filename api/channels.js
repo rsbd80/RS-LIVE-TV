@@ -6,7 +6,7 @@ const rateLimit = new Map();
 function isRateLimited(ip) {
     const now = Date.now();
     const windowMs = 60 * 1000;
-    const maxRequests = 100; // ১০০ পর্যন্ত বাড়ানো হলো
+    const maxRequests = 100; // ১০০/মিনিট
 
     if (!rateLimit.has(ip)) rateLimit.set(ip, []);
     let timestamps = rateLimit.get(ip).filter(t => now - t < windowMs);
@@ -32,7 +32,6 @@ export default async function handler(req, res) {
         const data = await fs.readFile(filePath, 'utf8');
         const channels = JSON.parse(data);
         
-        // নিশ্চিত করুন যে ডেটা অ্যারে
         if (!Array.isArray(channels)) {
             throw new Error('JSON অ্যারে নয়');
         }
@@ -40,7 +39,6 @@ export default async function handler(req, res) {
         res.status(200).json(channels);
     } catch (error) {
         console.error('API Error:', error);
-        // খালি অ্যারে রিটার্ন করুন, যাতে ফ্রন্টএন্ড ক্র্যাশ না হয়
-        res.status(200).json([]);
+        res.status(200).json([]); // খালি অ্যারে, ফ্রন্টএন্ড ক্র্যাশ করবে না
     }
 }
