@@ -332,11 +332,11 @@
         <div class="row">
             <div class="col-xs-12 col-md-10 tv-view">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <!-- ✅ ফুলস্ক্রিন বাগ ফিক্স - sandbox ও allowfullscreen যোগ করা হয়েছে -->
+                    <!-- ✅ ফুলস্ক্রিন রুটেড (পূর্ণাঙ্গ) হওয়ার জন্য sandbox সরানো হয়েছে -->
                     <iframe id="tv-player-iframe" name="player" 
                         class="embed-responsive-item" 
                         allowfullscreen
-                        sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-presentation"
+                        allow="fullscreen; autoplay"
                         src="channel.html">
                     </iframe>
                 </div>
