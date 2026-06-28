@@ -65,7 +65,18 @@
         }
 
         /* =========================
-           INTRO LOADER
+           ফুলস্ক্রিন ল্যাগ ফিক্স – শুধু GPU অ্যাক্সিলারেশন, কোনো DOM অপারেশন নয়
+        ========================= */
+        #tv-player-iframe {
+            will-change: transform, opacity;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            transition: opacity 0.05s ease;
+        }
+
+        /* =========================
+           INTRO LOADER – আপনার আগের ডিজাইন
         ========================= */
         #intro-loader {
             position: fixed;
@@ -168,7 +179,7 @@
         }
 
         /* =========================
-           HEADER – আগের সংস্করণ (যা আপনার কাছে ঠিক ছিল)
+           HEADER – আপনার পুরোনো ডিজাইন (যেটা আপনার কাছে ঠিক ছিল)
         ========================= */
         .top-bar-wrapper {
             position: relative;
@@ -314,7 +325,7 @@
         }
 
         /* =========================
-           SEARCH BAR
+           SEARCH BAR – আপনার আগের ডিজাইন
         ========================= */
         .channel-search-box-premium {
             position: relative;
@@ -386,7 +397,7 @@
         }
 
         /* =========================
-           CHANNEL LIST
+           CHANNEL LIST – আপনার আগের ডিজাইন (কার্ড + নাম)
         ========================= */
         .channel-list {
             max-height: 360px !important;
@@ -422,8 +433,57 @@
             box-shadow: 0 0 12px rgba(255, 0, 85, 1) !important;
         }
 
+        .thumbnail-slider li {
+            background: rgba(12, 14, 26, 0.85);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(0, 240, 255, 0.08);
+            border-radius: 12px;
+            margin-bottom: 8px;
+            padding: 6px 10px;
+            transition: 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .thumbnail-slider li:hover {
+            border-color: rgba(0, 240, 255, 0.35);
+            background: rgba(18, 20, 34, 0.95);
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.08);
+        }
+
+        .thumbnail-slider li img {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            flex-shrink: 0;
+        }
+
+        .channel-info-box {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .channel-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #d5e4ff;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            letter-spacing: 0.2px;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+        }
+
         /* =========================
-           NOTICE BAR
+           NOTICE BAR – আপনার আগের ডিজাইন
         ========================= */
         .marquee-container {
             background: #0d0d13;
@@ -458,7 +518,7 @@
         }
 
         /* =========================
-           FOOTER
+           FOOTER – আপনার আগের ডিজাইন
         ========================= */
         .footer-premium {
             background: #040408;
@@ -647,7 +707,7 @@
         }
 
         /* =========================
-           MOBILE
+           MOBILE (আপনার আগের ডিজাইন)
         ========================= */
         @media (max-width:767px) {
             .top-bar-wrapper {
@@ -761,7 +821,7 @@
     <div class="container tv-area">
         <div class="row">
             <div class="col-xs-12 col-md-12">
-                <!-- HEADER – আগের সংস্করণ (ঠিক ছিল) -->
+                <!-- HEADER – আপনার পুরোনো ডিজাইন -->
                 <div class="top-bar-wrapper">
                     <a href="https://rslivetv.vercel.app/" class="logo-link">
                         <div class="brand-title-neon">
@@ -860,183 +920,142 @@
     </footer>
 
     <!-- =========================================================
-    প্লেলিস্ট লোডার – JSON ফাইলের ক্রমেই
+    প্লেলিস্ট লোডার – ফাইলের নাম গোপন (শুধু এখানে, UI/কনসোলে প্রকাশ পাবে না)
     ========================================================= -->
     <script>
-        // ================================================================
-        // JSON ফাইলের পাথ
-        // ================================================================
-        const PLAYLIST_URL = 'xxxbd.json';
+        (function() {
+            const container = document.getElementById('channel-container');
+            const searchInput = document.getElementById('channelSearch');
 
-        const container = document.getElementById('channel-container');
-        // searchInput-টি পরে DOM থেকে রেফারেন্স নেওয়া হবে
+            // ফাইলের নাম – শুধু এখানে, UI বা কনসোলে প্রকাশ পাবে না
+            const PLAYLIST_FILE = 'xxxbd.json';
 
-        // ================================================================
-        // রেন্ডার – কোনো সাজানো নেই
-        // ================================================================
-        function renderChannels(channels) {
-            container.innerHTML = '';
+            function renderChannels(channels) {
+                container.innerHTML = '';
 
-            if (!channels || channels.length === 0) {
-                container.innerHTML = '<p style="color:#aaa; text-align:center; padding:20px;">⚠️ কোনো চ্যানেল পাওয়া যায়নি।</p>';
-                return;
-            }
+                if (!channels || channels.length === 0) {
+                    container.innerHTML = '<p style="color:#aaa; text-align:center; padding:20px;">⚠️ কোনো চ্যানেল পাওয়া যায়নি।</p>';
+                    return;
+                }
 
-            console.log(`🔄 রেন্ডার শুরু: ${channels.length} টি চ্যানেল (JSON ক্রম)`);
+                channels.forEach((channel) => {
+                    const name = channel.name || 'চ্যানেল';
+                    const url = channel.url || '#';
+                    const image = channel.image || 'https://i.postimg.cc/mD1VCt2C/RS-Live.png';
 
-            channels.forEach((channel, index) => {
-                const name = channel.name || `চ্যানেল ${index+1}`;
-                const url = channel.url || '#';
-                const image = channel.image || 'https://i.postimg.cc/mD1VCt2C/RS-Live.png';
+                    const li = document.createElement('li');
+                    li.setAttribute('tabindex', '0');
 
-                const li = document.createElement('li');
-                li.setAttribute('tabindex', '0');
-
-                li.innerHTML = `
-                    <div style="display:block;text-decoration:none;pointer-events:none;width:100%;">
+                    li.innerHTML = `
                         <img src="${image}" alt="${name}" loading="lazy" onerror="this.src='https://i.postimg.cc/mD1VCt2C/RS-Live.png';">
                         <div class="channel-info-box">
                             <p class="channel-title">${name}</p>
                         </div>
-                    </div>
-                `;
+                    `;
 
-                // ---------- চ্যানেল ক্লিক ----------
-                li.addEventListener('click', function() {
-                    // প্লেয়ারে ইউআরএল লোড
-                    if (window.frames['player']) {
-                        window.frames['player'].location.href = url;
-                    }
-
-                    // 🔍 সার্চ বক্স ক্লিয়ার করো + সব চ্যানেল দেখাও
-                    const searchField = document.getElementById('channelSearch');
-                    if (searchField) {
-                        searchField.value = '';
-                        const items = container.querySelectorAll('li');
-                        items.forEach(item => item.style.display = '');
-                        // প্রথম চ্যানেলে ফোকাস
-                        if (items.length > 0) {
-                            items[0].focus();
+                    li.addEventListener('click', function() {
+                        if (window.frames['player']) {
+                            window.frames['player'].location.href = url;
                         }
-                    }
-                });
-
-                container.appendChild(li);
-            });
-
-            console.log(`✅ রেন্ডার সম্পন্ন: ${channels.length} টি চ্যানেল`);
-
-            // সার্চ ফিল্টার সেটআপ (একবার)
-            setupSearchFilter();
-        }
-
-        // ================================================================
-        // সার্চ ফিল্টার – টাইপ করলেই ম্যাচিং চ্যানেল সামনে চলে আসে
-        // ================================================================
-        let searchListenerAdded = false;
-
-        function setupSearchFilter() {
-            const searchField = document.getElementById('channelSearch');
-            if (!searchField) return;
-
-            if (!searchListenerAdded) {
-                // ক্লোন করি (যাতে আগের লিসেনার না থাকে)
-                const newSearch = searchField.cloneNode(true);
-                searchField.parentNode.replaceChild(newSearch, searchField);
-                const freshSearch = document.getElementById('channelSearch');
-
-                freshSearch.addEventListener('input', function() {
-                    const filter = this.value.toLowerCase().trim();
-                    const items = container.querySelectorAll('li');
-                    let firstVisible = null;
-                    let visibleCount = 0;
-
-                    items.forEach(item => {
-                        const title = item.querySelector('.channel-title');
-                        if (title) {
-                            const text = title.textContent.toLowerCase();
-                            const match = text.includes(filter);
-                            item.style.display = match ? '' : 'none';
-                            if (match) {
-                                visibleCount++;
-                                if (!firstVisible) {
-                                    firstVisible = item;
-                                }
-                            }
+                        if (searchInput) {
+                            searchInput.value = '';
+                            document.querySelectorAll('#channel-container li').forEach(item => item.style.display = '');
                         }
                     });
 
-                    // ✅ ম্যাচিং চ্যানেল থাকলে সেটি স্ক্রলে নিয়ে আসো
-                    if (firstVisible) {
-                        firstVisible.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-                        // ফোকাসও দিয়ে দিই
-                        firstVisible.focus();
-                    }
-
-                    // যদি কোনো ম্যাচ না থাকে, কন্টেইনারের শীর্ষে স্ক্রল
-                    if (visibleCount === 0 && filter.length > 0) {
-                        container.scrollTop = 0;
-                    }
+                    container.appendChild(li);
                 });
 
-                searchListenerAdded = true;
-                console.log('🔍 সার্চ ফিল্টার সেটআপ হয়েছে (স্ক্রল + ক্লিয়ার)');
+                setupSearchFilter();
             }
-        }
 
-        // ================================================================
-        // JSON লোড
-        // ================================================================
-        function loadChannels() {
-            console.log('📡 JSON লোড হচ্ছে:', PLAYLIST_URL);
-
-            fetch(PLAYLIST_URL + '?t=' + Date.now())
-                .then(res => {
-                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                    return res.json();
-                })
-                .then(data => {
-                    if (!Array.isArray(data)) throw new Error('JSON অ্যারে নয়');
-                    console.log(`📦 মোট চ্যানেল: ${data.length}`);
-                    renderChannels(data);
-                })
-                .catch(err => {
-                    console.error('❌ লোড ব্যর্থ:', err);
-                    container.innerHTML = `
-                        <p style="color:#ff6b6b; text-align:center; padding:20px;">
-                            ⚠️ JSON লোড করা যায়নি<br>
-                            <span style="font-size:12px;color:#888;">${err.message}</span>
-                        </p>
-                    `;
+            function setupSearchFilter() {
+                const searchField = document.getElementById('channelSearch');
+                if (!searchField || searchField.dataset.listener) return;
+                searchField.dataset.listener = 'true';
+                searchField.addEventListener('input', function() {
+                    const filter = this.value.toLowerCase().trim();
+                    document.querySelectorAll('#channel-container li').forEach(item => {
+                        const title = item.querySelector('.channel-title');
+                        if (title) {
+                            item.style.display = title.textContent.toLowerCase().includes(filter) ? '' : 'none';
+                        }
+                    });
                 });
-        }
+            }
 
-        // ================================================================
-        // ইন্ট্রো লোডার হাইড
-        // ================================================================
-        window.addEventListener('DOMContentLoaded', function() {
-            setTimeout(() => {
-                const loader = document.getElementById('intro-loader');
-                if (loader) {
-                    loader.style.opacity = '0';
-                    loader.style.visibility = 'hidden';
-                    setTimeout(() => loader.remove(), 500);
-                }
-            }, 1200);
-        });
+            function loadChannels() {
+                fetch(PLAYLIST_FILE + '?t=' + Date.now())
+                    .then(res => {
+                        if (!res.ok) throw new Error();
+                        return res.json();
+                    })
+                    .then(data => {
+                        if (!Array.isArray(data)) throw new Error();
+                        renderChannels(data);
+                    })
+                    .catch(() => {
+                        // ❌ UI-তে কোনো ফাইলের নাম নেই – শুধু জেনেরিক মেসেজ
+                        container.innerHTML = `
+                            <div style="text-align:center; padding:20px; color:#fbbf24;">
+                                <p style="font-size:16px; font-weight:bold;">⏳ সিস্টেম আপডেট চলছে</p>
+                                <p style="font-size:13px; color:#94a3b8; margin-top:6px;">একটু পর আবার চেষ্টা করুন।</p>
+                            </div>
+                        `;
+                        // কনসোলে কোনো ফাইলের নাম নেই
+                        console.log('প্লেলিস্ট লোড ব্যর্থ');
+                    });
+            }
 
-        // ================================================================
-        // শুরু
-        // ================================================================
-        loadChannels();
-        console.log('🔥 RS Live TV – হেডার আগের মতো + JSON ক্রম + সার্চে স্ক্রল + ক্লিকেই ক্লিয়ার');
+            window.addEventListener('DOMContentLoaded', function() {
+                setTimeout(() => {
+                    const loader = document.getElementById('intro-loader');
+                    if (loader) {
+                        loader.style.opacity = '0';
+                        loader.style.visibility = 'hidden';
+                        setTimeout(() => loader.remove(), 500);
+                    }
+                }, 1200);
+
+                loadChannels();
+            });
+
+        })();
     </script>
 
     <!-- =========================================================
-    সিকিউরিটি + কীবোর্ড কন্ট্রোল
+    ফুলস্ক্রিন ল্যাগ ফিক্স – DOM অপারেশন ছাড়া (শুধু CSS রি-পেইন্ট)
     ========================================================= -->
     <script>
-        // (আগের মতোই – সংক্ষেপে দেওয়া হলো)
+        (function() {
+            const iframe = document.getElementById('tv-player-iframe');
+            if (!iframe) return;
+
+            function reflowFix() {
+                iframe.style.opacity = '0.99';
+                void iframe.offsetHeight;
+                iframe.style.opacity = '1';
+            }
+
+            const events = ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'MSFullscreenChange'];
+            events.forEach(evt => {
+                document.addEventListener(evt, function() {
+                    setTimeout(reflowFix, 50);
+                });
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    setTimeout(reflowFix, 100);
+                }
+            });
+        })();
+    </script>
+
+    <!-- =========================================================
+    সিকিউরিটি + কীবোর্ড কন্ট্রোল (আগের মতো)
+    ========================================================= -->
+    <script>
         document.addEventListener('contextmenu', event => event.preventDefault());
 
         document.onkeydown = function(e) {
