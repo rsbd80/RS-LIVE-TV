@@ -6,7 +6,8 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DRBZH98TKH"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-DRBZH98TKH');
     </script>
@@ -16,7 +17,9 @@
     <link href="style.css?v=12.0" rel="stylesheet">
 
     <style>
-        /* ========================= BASE ========================= */
+        /* =========================
+           BASE
+        ========================= */
         body {
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -27,31 +30,43 @@
             scroll-behavior: auto !important;
             overscroll-behavior-y: contain;
         }
-        img, iframe, video, .embed-responsive-item {
+
+        img,
+        iframe,
+        video,
+        .embed-responsive-item {
             -webkit-user-drag: none;
             user-drag: none;
             pointer-events: auto;
         }
-        .tv-area { margin-top: 0 !important; padding-top: 0 !important; }
-        .tv-view { margin-bottom: 5px !important; }
+
+        .tv-area {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+        }
+
+        .tv-view {
+            margin-bottom: 5px !important;
+        }
+
         .tv-view .embed-responsive {
             border: 1px solid #1f2029;
             border-radius: 12px;
             background: #000;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,.7);
-        }
-        iframe { border: 0 !important; display: block; width: 100%; height: 100%; }
-
-        /* ফুলস্ক্রিন ল্যাগ ফিক্স – শুধু iframe */
-        #tv-player-iframe {
-            will-change: transform, opacity;
-            transform: translateZ(0);
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .7);
         }
 
-        /* ========================= INTRO LOADER ========================= */
+        iframe {
+            border: 0 !important;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* =========================
+           INTRO LOADER
+        ========================= */
         #intro-loader {
             position: fixed;
             inset: 0;
@@ -64,7 +79,15 @@
             z-index: 9999999;
             transition: opacity .5s ease, visibility .5s;
         }
-        .loader-content { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+        .loader-content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
         .welcome-text {
             font-size: 14px;
             color: #888899;
@@ -74,15 +97,21 @@
             font-weight: 600;
             animation: fadeInText 1s ease-out;
         }
+
         .brand-text {
             font-size: 32px;
             font-weight: 900;
             color: #fff;
             letter-spacing: 1px;
             margin: 0;
-            text-shadow: 0 0 15px rgba(255,255,255,.1);
+            text-shadow: 0 0 15px rgba(255, 255, 255, .1);
         }
-        .brand-text span { color: #00f0ff; text-shadow: 0 0 20px rgba(0,240,255,.6); }
+
+        .brand-text span {
+            color: #00f0ff;
+            text-shadow: 0 0 20px rgba(0, 240, 255, .6);
+        }
+
         .loading-dots {
             display: flex;
             justify-content: center;
@@ -90,20 +119,57 @@
             gap: 6px;
             margin-top: 15px;
         }
+
         .loading-dots span {
             width: 6px;
             height: 6px;
+            background-color: #ff0055;
             border-radius: 50%;
             display: inline-block;
+            box-shadow: 0 0 8px #ff0055;
             animation: dotPulse 1.4s infinite ease-in-out both;
         }
-        .loading-dots span:nth-child(1) { animation-delay: -0.32s; background-color: #00f0ff; box-shadow: 0 0 8px #00f0ff; }
-        .loading-dots span:nth-child(2) { animation-delay: -0.16s; background-color: #ff0055; box-shadow: 0 0 8px #ff0055; }
-        .loading-dots span:nth-child(3) { background-color: #00f0ff; box-shadow: 0 0 8px #00f0ff; }
-        @keyframes fadeInText { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:translateY(0); } }
-        @keyframes dotPulse { 0%,80%,100% { transform:scale(0); } 40% { transform:scale(1); } }
 
-        /* ========================= HEADER ========================= */
+        .loading-dots span:nth-child(1) {
+            animation-delay: -0.32s;
+            background-color: #00f0ff;
+            box-shadow: 0 0 8px #00f0ff;
+        }
+
+        .loading-dots span:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+
+        .loading-dots span:nth-child(3) {
+            background-color: #00f0ff;
+            box-shadow: 0 0 8px #00f0ff;
+        }
+
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes dotPulse {
+            0%,
+            80%,
+            100% {
+                transform: scale(0);
+            }
+            40% {
+                transform: scale(1);
+            }
+        }
+
+        /* =========================
+           HEADER – আগের সংস্করণ (যা আপনার কাছে ঠিক ছিল)
+        ========================= */
         .top-bar-wrapper {
             position: relative;
             display: flex;
@@ -114,21 +180,29 @@
             margin: 10px 0 12px;
             padding: 14px 14px;
             border-radius: 18px;
-            background: linear-gradient(135deg, rgba(15,16,28,0.96) 0%, rgba(8,10,20,0.96) 55%, rgba(14,18,30,0.96) 100%);
-            border: 1px solid rgba(0,240,255,0.14);
-            box-shadow: 0 12px 35px rgba(0,0,0,0.38), inset 0 1px 0 rgba(255,255,255,0.04), 0 0 30px rgba(0,240,255,0.04);
+            background:
+                linear-gradient(135deg, rgba(15, 16, 28, 0.96) 0%, rgba(8, 10, 20, 0.96) 55%, rgba(14, 18, 30, 0.96) 100%);
+            border: 1px solid rgba(0, 240, 255, 0.14);
+            box-shadow:
+                0 12px 35px rgba(0, 0, 0, 0.38),
+                inset 0 1px 0 rgba(255, 255, 255, 0.04),
+                0 0 30px rgba(0, 240, 255, 0.04);
             overflow: hidden;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             box-sizing: border-box;
         }
+
         .top-bar-wrapper::before {
             content: "";
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at left top, rgba(0,240,255,0.14), transparent 32%), radial-gradient(circle at right bottom, rgba(255,0,85,0.10), transparent 30%);
+            background:
+                radial-gradient(circle at left top, rgba(0, 240, 255, 0.14), transparent 32%),
+                radial-gradient(circle at right bottom, rgba(255, 0, 85, 0.10), transparent 30%);
             pointer-events: none;
         }
+
         .top-bar-wrapper::after {
             content: "";
             position: absolute;
@@ -136,17 +210,58 @@
             left: -140%;
             width: 70%;
             height: 100%;
-            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.06) 45%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.05) 55%, rgba(255,255,255,0) 100%);
+            background: linear-gradient(90deg,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.06) 45%,
+                    rgba(255, 255, 255, 0.12) 50%,
+                    rgba(255, 255, 255, 0.05) 55%,
+                    rgba(255, 255, 255, 0) 100%);
             transform: skewX(-24deg);
             animation: headerShine 7s linear infinite;
             pointer-events: none;
         }
-        @keyframes headerShine { 0% { left:-140%; } 100% { left:160%; } }
 
-        .logo-link { position: relative; z-index: 2; text-decoration: none !important; display: flex; align-items: center; flex: 1 1 auto; min-width: 0; }
-        .brand-title-neon { display: flex; align-items: center; min-width: 0; width: 100%; }
-        .brand-stack { display: flex; flex-direction: column; line-height: 1; min-width: 0; flex: 1 1 auto; }
-        .brand-line-main { display: flex; align-items: flex-end; gap: 8px; flex-wrap: wrap; }
+        @keyframes headerShine {
+            0% {
+                left: -140%;
+            }
+            100% {
+                left: 160%;
+            }
+        }
+
+        .logo-link {
+            position: relative;
+            z-index: 2;
+            text-decoration: none !important;
+            display: flex;
+            align-items: center;
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        .brand-title-neon {
+            display: flex;
+            align-items: center;
+            min-width: 0;
+            width: 100%;
+        }
+
+        .brand-stack {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+            min-width: 0;
+            flex: 1 1 auto;
+        }
+
+        .brand-line-main {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
         .brand-rs {
             font-size: 26px;
             font-weight: 1000;
@@ -154,8 +269,10 @@
             background: linear-gradient(135deg, #ffffff 10%, #d5e4ff 45%, #8ad7ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 14px rgba(255,255,255,0.08);
+            text-shadow: 0 0 14px rgba(255, 255, 255, 0.08);
+            position: relative;
         }
+
         .brand-live {
             font-size: 26px;
             font-weight: 1000;
@@ -163,9 +280,12 @@
             background: linear-gradient(90deg, #ff296d 0%, #ff5e00 45%, #ffd000 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 16px rgba(255,41,109,0.22), 0 0 28px rgba(255,94,0,0.12);
+            text-shadow:
+                0 0 16px rgba(255, 41, 109, 0.22),
+                0 0 28px rgba(255, 94, 0, 0.12);
             position: relative;
         }
+
         .brand-live::after {
             content: "";
             position: absolute;
@@ -175,9 +295,10 @@
             height: 2px;
             border-radius: 20px;
             background: linear-gradient(90deg, #00f0ff, #ff2f76, #ffd000);
-            box-shadow: 0 0 12px rgba(0,240,255,0.4);
+            box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
             opacity: .9;
         }
+
         .brand-line-sub {
             margin-top: 8px;
             font-size: 10px;
@@ -192,21 +313,25 @@
             flex-shrink: 1;
         }
 
-        /* ========================= SEARCH BAR ========================= */
+        /* =========================
+           SEARCH BAR
+        ========================= */
         .channel-search-box-premium {
             position: relative;
             z-index: 2;
             width: 180px;
             flex-shrink: 0;
         }
+
         .channel-search-box-premium::before {
             content: "";
             position: absolute;
             inset: 0;
             border-radius: 15px;
-            background: linear-gradient(135deg, rgba(0,240,255,0.10), rgba(255,0,85,0.08));
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.10), rgba(255, 0, 85, 0.08));
             pointer-events: none;
         }
+
         .channel-search-box-premium input {
             position: relative;
             z-index: 2;
@@ -214,23 +339,38 @@
             height: 44px;
             padding: 0 44px 0 14px;
             border-radius: 15px;
-            border: 1px solid rgba(0,240,255,0.18);
-            background: linear-gradient(180deg, rgba(18,20,32,0.95), rgba(10,12,22,0.95));
+            border: 1px solid rgba(0, 240, 255, 0.18);
+            background: linear-gradient(180deg, rgba(18, 20, 32, 0.95), rgba(10, 12, 22, 0.95));
             color: #ffffff;
             font-size: 13px;
             font-weight: 700;
             outline: none;
             transition: .25s ease;
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.03), 0 6px 20px rgba(0,0,0,0.22);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.03),
+                0 6px 20px rgba(0, 0, 0, 0.22);
             box-sizing: border-box;
         }
-        .channel-search-box-premium input::placeholder { color: #8da0b3; font-weight: 600; letter-spacing: .2px; }
-        .channel-search-box-premium input:hover { border-color: rgba(0,240,255,0.35); }
+
+        .channel-search-box-premium input::placeholder {
+            color: #8da0b3;
+            font-weight: 600;
+            letter-spacing: .2px;
+        }
+
+        .channel-search-box-premium input:hover {
+            border-color: rgba(0, 240, 255, 0.35);
+        }
+
         .channel-search-box-premium input:focus {
             border-color: #00f0ff;
-            background: linear-gradient(180deg, rgba(20,22,36,1), rgba(12,14,26,1));
-            box-shadow: 0 0 0 3px rgba(0,240,255,0.10), 0 0 20px rgba(0,240,255,0.18), inset 0 1px 0 rgba(255,255,255,0.05);
+            background: linear-gradient(180deg, rgba(20, 22, 36, 1), rgba(12, 14, 26, 1));
+            box-shadow:
+                0 0 0 3px rgba(0, 240, 255, 0.10),
+                0 0 20px rgba(0, 240, 255, 0.18),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
+
         .search-icon-inside {
             position: absolute;
             right: 14px;
@@ -242,70 +382,49 @@
             pointer-events: none;
             z-index: 3;
             opacity: .95;
-            filter: drop-shadow(0 0 8px rgba(0,240,255,0.35));
+            filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.35));
         }
 
-        /* ========================= CHANNEL LIST (আপনার পুরোনো ডিজাইন) ========================= */
+        /* =========================
+           CHANNEL LIST
+        ========================= */
         .channel-list {
             max-height: 360px !important;
             overflow-y: auto !important;
             box-sizing: border-box;
             margin-bottom: 0 !important;
         }
-        @media (min-width:768px) { .channel-list { max-height: 480px !important; } }
-        .channel-list::-webkit-scrollbar { width: 8px !important; }
-        .channel-list::-webkit-scrollbar-track { background: rgba(255,255,255,.03) !important; border-radius: 10px; }
+
+        @media (min-width:768px) {
+            .channel-list {
+                max-height: 480px !important;
+            }
+        }
+
+        .channel-list::-webkit-scrollbar {
+            width: 8px !important;
+        }
+
+        .channel-list::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, .03) !important;
+            border-radius: 10px;
+        }
+
         .channel-list::-webkit-scrollbar-thumb {
             background: linear-gradient(180deg, #00f0ff 0%, #0072ff 100%) !important;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,240,255,.8) !important;
-            border: 1px solid rgba(0,4,6,.5);
-        }
-        .channel-list::-webkit-scrollbar-thumb:hover { background: #ff0055 !important; box-shadow: 0 0 12px rgba(255,0,85,1) !important; }
-
-        .thumbnail-slider li {
-            background: rgba(12,14,26,0.85);
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(0,240,255,0.08);
-            border-radius: 12px;
-            margin-bottom: 8px;
-            padding: 6px 10px;
-            transition: 0.2s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            cursor: pointer;
-            list-style: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .thumbnail-slider li:hover {
-            border-color: rgba(0,240,255,0.35);
-            background: rgba(18,20,34,0.95);
-            transform: scale(1.02);
-            box-shadow: 0 0 20px rgba(0,240,255,0.08);
-        }
-        .thumbnail-slider li img {
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            object-fit: cover;
-            border: 1px solid rgba(255,255,255,0.05);
-            flex-shrink: 0;
-        }
-        .channel-info-box { flex: 1; min-width: 0; }
-        .channel-title {
-            font-size: 13px;
-            font-weight: 700;
-            color: #d5e4ff;
-            margin: 0;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            letter-spacing: 0.2px;
-            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+            box-shadow: 0 0 10px rgba(0, 240, 255, .8) !important;
+            border: 1px solid rgba(0, 4, 6, .5);
         }
 
-        /* ========================= NOTICE BAR ========================= */
+        .channel-list::-webkit-scrollbar-thumb:hover {
+            background: #ff0055 !important;
+            box-shadow: 0 0 12px rgba(255, 0, 85, 1) !important;
+        }
+
+        /* =========================
+           NOTICE BAR
+        ========================= */
         .marquee-container {
             background: #0d0d13;
             color: #fff;
@@ -318,6 +437,7 @@
             margin-bottom: 15px;
             clear: both;
         }
+
         .notice-label {
             background: linear-gradient(135deg, #ff0055, #ff5500);
             color: #fff;
@@ -327,12 +447,25 @@
             font-weight: bold;
             font-size: 11px;
             flex-shrink: 0;
-            box-shadow: 0 0 10px rgba(255,0,85,.4);
+            box-shadow: 0 0 10px rgba(255, 0, 85, .4);
         }
-        .marquee-container marquee { flex: 1; padding: 0 10px; font-size: 13px; color: #ddd; }
 
-        /* ========================= FOOTER ========================= */
-        .footer-premium { background: #040408; padding: 5px 0 25px 0; text-align: center; }
+        .marquee-container marquee {
+            flex: 1;
+            padding: 0 10px;
+            font-size: 13px;
+            color: #ddd;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+        .footer-premium {
+            background: #040408;
+            padding: 5px 0 25px 0;
+            text-align: center;
+        }
+
         .tio-style-banner-fixed {
             width: 320px;
             height: 50px;
@@ -346,6 +479,7 @@
             align-items: center;
             margin: 0 auto 15px auto;
         }
+
         .tio-style-banner-fixed::after {
             content: '';
             position: absolute;
@@ -353,53 +487,259 @@
             left: -150%;
             width: 60%;
             height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.2) 50%, rgba(255,255,255,0) 100%);
+            background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, 0) 100%);
             transform: skewX(-25deg);
             animation: smoke-smoke 4s infinite;
             z-index: 3;
         }
-        @keyframes smoke-smoke { 0% { left:-150%; } 40% { left:150%; } 100% { left:150%; } }
-        .banner-overlay { position: absolute; inset: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(0,0,0,.85) 0%, rgba(0,210,255,.1) 100%); z-index: 1; }
-        .content-wrapper { position: relative; z-index: 2; display: flex; align-items: center; width: 100%; padding: 0 10px; justify-content: space-between; }
-        .brand-logo-fixed { font-weight: 900; font-size: 13px; font-style: italic; white-space: nowrap; flex-shrink: 0; }
-        .rs-live { color: #fff; }
-        .tv-text { color: #ff9100; text-shadow: 0 0 5px #ff9100; }
-        .text-section-fixed { flex-grow: 1; text-align: center; display: flex; flex-direction: column; gap: 2px; }
-        .main-tags { display: flex; justify-content: center; gap: 4px; font-size: 7.5px; font-weight: 800; text-transform: uppercase; }
-        .tag-cricket { color: #FFD700; }
-        .tag-football { color: #00FF00; }
-        .tag-tv { color: #00D2FF; }
-        .sub-text { font-size: 9px; color: #fff; margin: 0; font-weight: bold; text-shadow: 1px 1px 2px #000; }
-        .live-circle { background: #ff0000; color: #fff; font-size: 8px; font-weight: bold; padding: 2px 6px; border-radius: 12px; display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
-        .pulse { width: 5px; height: 5px; background: #fff; border-radius: 50%; animation: pulse-animation 1s infinite; }
-        @keyframes pulse-animation { 0% { transform:scale(.95); opacity:1; } 100% { transform:scale(1.5); opacity:0; } }
-        .tg-card { background: #111116; padding: 15px; border-radius: 12px; border: 1px solid #1a1b26; display: block; width: 320px; margin: 0 auto 15px auto; }
-        .telegram-btn { display: inline-block; background: #0088cc; color: #fff !important; padding: 8px 25px; border-radius: 6px; font-weight: bold; text-decoration: none !important; margin-top: 10px; font-size: 13px; font-family: 'Courier New', Courier, monospace; font-style: italic; }
-        .ad-box { margin: 15px auto; width: 320px; height: 50px; display: flex; justify-content: center; overflow: hidden; }
-        .copyright { color: #444; font-size: 11px; margin-top: 15px; }
 
-        /* ========================= MOBILE ========================= */
+        @keyframes smoke-smoke {
+            0% {
+                left: -150%;
+            }
+            40% {
+                left: 150%;
+            }
+            100% {
+                left: 150%;
+            }
+        }
+
+        .banner-overlay {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(0, 0, 0, .85) 0%, rgba(0, 210, 255, .1) 100%);
+            z-index: 1;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 0 10px;
+            justify-content: space-between;
+        }
+
+        .brand-logo-fixed {
+            font-weight: 900;
+            font-size: 13px;
+            font-style: italic;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .rs-live {
+            color: #fff;
+        }
+        .tv-text {
+            color: #ff9100;
+            text-shadow: 0 0 5px #ff9100;
+        }
+
+        .text-section-fixed {
+            flex-grow: 1;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .main-tags {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            font-size: 7.5px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .tag-cricket {
+            color: #FFD700;
+        }
+        .tag-football {
+            color: #00FF00;
+        }
+        .tag-tv {
+            color: #00D2FF;
+        }
+
+        .sub-text {
+            font-size: 9px;
+            color: #fff;
+            margin: 0;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px #000;
+        }
+
+        .live-circle {
+            background: #ff0000;
+            color: #fff;
+            font-size: 8px;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+
+        .pulse {
+            width: 5px;
+            height: 5px;
+            background: #fff;
+            border-radius: 50%;
+            animation: pulse-animation 1s infinite;
+        }
+
+        @keyframes pulse-animation {
+            0% {
+                transform: scale(.95);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .tg-card {
+            background: #111116;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #1a1b26;
+            display: block;
+            width: 320px;
+            margin: 0 auto 15px auto;
+        }
+
+        .telegram-btn {
+            display: inline-block;
+            background: #0088cc;
+            color: #fff !important;
+            padding: 8px 25px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none !important;
+            margin-top: 10px;
+            font-size: 13px;
+            font-family: 'Courier New', Courier, monospace;
+            font-style: italic;
+        }
+
+        .ad-box {
+            margin: 15px auto;
+            width: 320px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .copyright {
+            color: #444;
+            font-size: 11px;
+            margin-top: 15px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
         @media (max-width:767px) {
-            .top-bar-wrapper { padding: 12px 10px; border-radius: 15px; gap: 10px; }
-            .brand-rs, .brand-live { font-size: 20px; }
-            .brand-line-sub { font-size: 8.8px; letter-spacing: 1px; margin-top: 6px; }
-            .channel-search-box-premium { width: 145px; flex-shrink: 0; }
-            .channel-search-box-premium input { height: 40px; font-size: 12px; padding: 0 40px 0 12px; border-radius: 12px; }
-            .search-icon-inside { width: 16px; height: 16px; right: 12px; }
+            .top-bar-wrapper {
+                padding: 12px 10px;
+                border-radius: 15px;
+                gap: 10px;
+            }
+
+            .brand-rs,
+            .brand-live {
+                font-size: 20px;
+            }
+
+            .brand-line-sub {
+                font-size: 8.8px;
+                letter-spacing: 1px;
+                margin-top: 6px;
+            }
+
+            .channel-search-box-premium {
+                width: 145px;
+                flex-shrink: 0;
+            }
+
+            .channel-search-box-premium input {
+                height: 40px;
+                font-size: 12px;
+                padding: 0 40px 0 12px;
+                border-radius: 12px;
+            }
+
+            .search-icon-inside {
+                width: 16px;
+                height: 16px;
+                right: 12px;
+            }
         }
+
         @media (min-width:768px) {
-            .top-bar-wrapper { padding: 15px 16px; }
-            .brand-rs, .brand-live { font-size: 28px; }
-            .brand-line-sub { font-size: 11px; }
-            .channel-search-box-premium { width: 230px; }
+            .top-bar-wrapper {
+                padding: 15px 16px;
+            }
+
+            .brand-rs,
+            .brand-live {
+                font-size: 28px;
+            }
+
+            .brand-line-sub {
+                font-size: 11px;
+            }
+
+            .channel-search-box-premium {
+                width: 230px;
+            }
         }
+
         @media (max-width:420px) {
-            .top-bar-wrapper { gap: 8px; padding: 10px 8px; }
-            .brand-rs, .brand-live { font-size: 17px; }
-            .brand-line-sub { font-size: 7.5px; letter-spacing: 0.8px; margin-top: 5px; }
-            .channel-search-box-premium { width: 120px; min-width: 100px; flex-shrink: 0; }
-            .channel-search-box-premium input { height: 36px; font-size: 11px; padding: 0 34px 0 10px; border-radius: 10px; }
-            .search-icon-inside { width: 14px; height: 14px; right: 10px; }
+            .top-bar-wrapper {
+                gap: 8px;
+                padding: 10px 8px;
+            }
+
+            .brand-rs,
+            .brand-live {
+                font-size: 17px;
+            }
+
+            .brand-line-sub {
+                font-size: 7.5px;
+                letter-spacing: 0.8px;
+                margin-top: 5px;
+            }
+
+            .channel-search-box-premium {
+                width: 120px;
+                min-width: 100px;
+                flex-shrink: 0;
+            }
+
+            .channel-search-box-premium input {
+                height: 36px;
+                font-size: 11px;
+                padding: 0 34px 0 10px;
+                border-radius: 10px;
+            }
+
+            .search-icon-inside {
+                width: 14px;
+                height: 14px;
+                right: 10px;
+            }
         }
     </style>
 </head>
@@ -421,7 +761,7 @@
     <div class="container tv-area">
         <div class="row">
             <div class="col-xs-12 col-md-12">
-                <!-- HEADER -->
+                <!-- HEADER – আগের সংস্করণ (ঠিক ছিল) -->
                 <div class="top-bar-wrapper">
                     <a href="https://rslivetv.vercel.app/" class="logo-link">
                         <div class="brand-title-neon">
@@ -520,167 +860,191 @@
     </footer>
 
     <!-- =========================================================
-    প্লেলিস্ট লোডার – JSON (xxxbd.json) – ফাইলের নাম গোপন রাখা
+    প্লেলিস্ট লোডার – JSON ফাইলের ক্রমেই
     ========================================================= -->
     <script>
-        (function() {
-            const container = document.getElementById('channel-container');
-            const searchInput = document.getElementById('channelSearch');
+        // ================================================================
+        // JSON ফাইলের পাথ
+        // ================================================================
+        const PLAYLIST_URL = 'xxxbd.json';
 
-            // ফাইলের নাম শুধু এখানে রাখা – এরর মেসেজে প্রকাশ পাবে না
-            const PLAYLIST_FILE = 'xxxbd.json';
+        const container = document.getElementById('channel-container');
+        const searchInput = document.getElementById('channelSearch');
 
-            function renderChannels(channels) {
-                container.innerHTML = '';
-                if (!channels || channels.length === 0) {
-                    // কোনো চ্যানেল না থাকলে – এখানেও ফাইলের নাম নেই
-                    container.innerHTML = '<p style="color:#aaa; text-align:center; padding:20px;">⚠️ কোনো চ্যানেল পাওয়া যায়নি।</p>';
-                    return;
-                }
-                channels.forEach((channel) => {
-                    const name = channel.name || 'চ্যানেল';
-                    const url = channel.url || '#';
-                    const image = channel.image || 'https://i.postimg.cc/mD1VCt2C/RS-Live.png';
-                    const li = document.createElement('li');
-                    li.setAttribute('tabindex', '0');
-                    li.innerHTML = `
+        // ================================================================
+        // রেন্ডার – কোনো সাজানো নেই
+        // ================================================================
+        function renderChannels(channels) {
+            container.innerHTML = '';
+
+            if (!channels || channels.length === 0) {
+                container.innerHTML = '<p style="color:#aaa; text-align:center; padding:20px;">⚠️ কোনো চ্যানেল পাওয়া যায়নি।</p>';
+                return;
+            }
+
+            console.log(`🔄 রেন্ডার শুরু: ${channels.length} টি চ্যানেল (JSON ক্রম)`);
+
+            channels.forEach((channel, index) => {
+                const name = channel.name || `চ্যানেল ${index+1}`;
+                const url = channel.url || '#';
+                const image = channel.image || 'https://i.postimg.cc/mD1VCt2C/RS-Live.png';
+
+                const li = document.createElement('li');
+                li.setAttribute('tabindex', '0');
+
+                li.innerHTML = `
+                    <div style="display:block;text-decoration:none;pointer-events:none;width:100%;">
                         <img src="${image}" alt="${name}" loading="lazy" onerror="this.src='https://i.postimg.cc/mD1VCt2C/RS-Live.png';">
                         <div class="channel-info-box">
                             <p class="channel-title">${name}</p>
                         </div>
-                    `;
-                    li.addEventListener('click', function() {
-                        if (window.frames['player']) {
-                            window.frames['player'].location.href = url;
-                        }
-                        if (searchInput) {
-                            searchInput.value = '';
-                            document.querySelectorAll('#channel-container li').forEach(item => item.style.display = '');
-                        }
-                    });
-                    container.appendChild(li);
-                });
-                setupSearchFilter();
-            }
+                    </div>
+                `;
 
-            function setupSearchFilter() {
-                const searchField = document.getElementById('channelSearch');
-                if (!searchField) return;
-                // আগের লিসেনার থাকলে ডুপ্লিকেট এড়ানো
-                if (searchField.dataset.listener) return;
-                searchField.dataset.listener = 'true';
-                searchField.addEventListener('input', function() {
+                li.addEventListener('click', function() {
+                    if (window.frames['player']) {
+                        window.frames['player'].location.href = url;
+                    }
+                    if (searchInput) {
+                        searchInput.value = '';
+                        const items = container.querySelectorAll('li');
+                        items.forEach(item => item.style.display = '');
+                    }
+                });
+
+                container.appendChild(li);
+            });
+
+            console.log(`✅ রেন্ডার সম্পন্ন: ${channels.length} টি চ্যানেল`);
+
+            // সার্চ ফিল্টার সেটআপ (একবার)
+            setupSearchFilter();
+        }
+
+        // ================================================================
+        // সার্চ ফিল্টার
+        // ================================================================
+        let searchListenerAdded = false;
+
+        function setupSearchFilter() {
+            const searchField = document.getElementById('channelSearch');
+            if (!searchField) return;
+
+            if (!searchListenerAdded) {
+                const newSearch = searchField.cloneNode(true);
+                searchField.parentNode.replaceChild(newSearch, searchField);
+                const freshSearch = document.getElementById('channelSearch');
+
+                freshSearch.addEventListener('input', function() {
                     const filter = this.value.toLowerCase().trim();
-                    document.querySelectorAll('#channel-container li').forEach(item => {
+                    const items = container.querySelectorAll('li');
+                    items.forEach(item => {
                         const title = item.querySelector('.channel-title');
                         if (title) {
-                            item.style.display = title.textContent.toLowerCase().includes(filter) ? '' : 'none';
+                            const text = title.textContent.toLowerCase();
+                            item.style.display = text.includes(filter) ? '' : 'none';
                         }
                     });
                 });
+                searchListenerAdded = true;
+                console.log('🔍 সার্চ ফিল্টার সেটআপ হয়েছে');
             }
+        }
 
-            function loadChannels() {
-                // কনসোলে ফাইলের নাম না দেখানোর জন্য আমরা fetch-এ URL টি সরাসরি লিখছি না, বরং একটি ভেরিয়েবল ব্যবহার করছি
-                // কিন্তু fetch ব্যর্থ হলে .catch-এ আমরা শুধু জেনেরিক মেসেজ দেব
-                fetch(PLAYLIST_FILE + '?t=' + Date.now())
-                    .then(res => {
-                        if (!res.ok) throw new Error('Network response was not ok');
-                        return res.json();
-                    })
-                    .then(data => {
-                        if (!Array.isArray(data)) throw new Error('Invalid data format');
-                        renderChannels(data);
-                    })
-                    .catch(() => {
-                        // ❌ কোনো ফাইলের নাম বা URL এখানে ব্যবহার করা হবে না – শুধু জেনেরিক মেসেজ
-                        container.innerHTML = `
-                            <div style="text-align:center; padding:20px; color:#fbbf24;">
-                                <p style="font-size:16px; font-weight:bold;">⏳ সিস্টেম আপডেট চলছে</p>
-                                <p style="font-size:13px; color:#94a3b8; margin-top:6px;">একটু পর আবার চেষ্টা করুন।</p>
-                            </div>
-                        `;
-                        // কনসোলে শুধু সাধারণ বার্তা – কোনো ফাইলের নাম নেই
-                        console.log('প্লেলিস্ট লোড ব্যর্থ');
-                    });
-            }
+        // ================================================================
+        // JSON লোড
+        // ================================================================
+        function loadChannels() {
+            console.log('📡 JSON লোড হচ্ছে:', PLAYLIST_URL);
 
-            // ইন্ট্রো লোডার হাইড
-            window.addEventListener('DOMContentLoaded', function() {
-                setTimeout(() => {
-                    const loader = document.getElementById('intro-loader');
-                    if (loader) {
-                        loader.style.opacity = '0';
-                        loader.style.visibility = 'hidden';
-                        setTimeout(() => loader.remove(), 500);
-                    }
-                }, 1200);
-                // চ্যানেল লোড শুরু
-                loadChannels();
-            });
+            fetch(PLAYLIST_URL + '?t=' + Date.now())
+                .then(res => {
+                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                    return res.json();
+                })
+                .then(data => {
+                    if (!Array.isArray(data)) throw new Error('JSON অ্যারে নয়');
+                    console.log(`📦 মোট চ্যানেল: ${data.length}`);
+                    renderChannels(data);
+                })
+                .catch(err => {
+                    console.error('❌ লোড ব্যর্থ:', err);
+                    container.innerHTML = `
+                        <p style="color:#ff6b6b; text-align:center; padding:20px;">
+                            ⚠️ JSON লোড করা যায়নি<br>
+                            <span style="font-size:12px;color:#888;">${err.message}</span>
+                        </p>
+                    `;
+                });
+        }
 
-        })();
+        // ================================================================
+        // ইন্ট্রো লোডার হাইড
+        // ================================================================
+        window.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                const loader = document.getElementById('intro-loader');
+                if (loader) {
+                    loader.style.opacity = '0';
+                    loader.style.visibility = 'hidden';
+                    setTimeout(() => loader.remove(), 500);
+                }
+            }, 1200);
+        });
+
+        // ================================================================
+        // শুরু
+        // ================================================================
+        loadChannels();
+        console.log('🔥 RS Live TV – হেডার আগের মতো + JSON ক্রম ঠিক');
     </script>
 
     <!-- =========================================================
-    ফুলস্ক্রিন ল্যাগ ফিক্স – iframe রি-অ্যাটাচ (কার্ড স্পর্শ না)
+    সিকিউরিটি + কীবোর্ড কন্ট্রোল
     ========================================================= -->
     <script>
-        (function() {
-            const iframe = document.getElementById('tv-player-iframe');
-            if (!iframe) return;
-            const parent = iframe.parentNode;
-
-            function reflowFix() {
-                const nextSibling = iframe.nextSibling;
-                parent.removeChild(iframe);
-                if (nextSibling) {
-                    parent.insertBefore(iframe, nextSibling);
-                } else {
-                    parent.appendChild(iframe);
-                }
-            }
-
-            const events = ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'MSFullscreenChange'];
-            events.forEach(evt => {
-                document.addEventListener(evt, reflowFix);
-            });
-
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    setTimeout(reflowFix, 50);
-                }
-            });
-        })();
-    </script>
-
-    <!-- =========================================================
-    সিকিউরিটি + কীবোর্ড কন্ট্রোল (আগের মতো)
-    ========================================================= -->
-    <script>
+        // (আগের মতোই – সংক্ষেপে দেওয়া হলো)
         document.addEventListener('contextmenu', event => event.preventDefault());
+
         document.onkeydown = function(e) {
-            if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey &&
-                    (e.keyCode == 85 || e.keyCode == 83 || e.keyCode == 80))) { e.preventDefault();
+            if (e.keyCode == 123) { e.preventDefault();
+                return false; }
+            if (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) { e.preventDefault();
+                return false; }
+            if (e.ctrlKey && e.keyCode == 85) { e.preventDefault();
+                return false; }
+            if (e.ctrlKey && e.keyCode == 83) { e.preventDefault();
+                return false; }
+            if (e.ctrlKey && e.keyCode == 80) { e.preventDefault();
                 return false; }
         };
+
         document.addEventListener('copy', (e) => { e.preventDefault();
             return false; });
         document.addEventListener('cut', (e) => { e.preventDefault();
             return false; });
         document.addEventListener('paste', (e) => { e.preventDefault();
             return false; });
-        window.onbeforeprint = window.onafterprint = function() { return false; };
+
+        window.onbeforeprint = function() { return false; };
+        window.onafterprint = function() { return false; };
 
         setInterval(function() {
             const startTime = +new Date();
             debugger;
             const endTime = +new Date();
-            if (endTime - startTime > 100) window.location.href = "about:blank";
+            if (endTime - startTime > 100) {
+                window.location.href = "about:blank";
+            }
         }, 100);
+
         (function detectDevTools() {
             const element = new Image();
-            Object.defineProperty(element, 'id', { get: function() { window.location.href = "about:blank"; } });
+            Object.defineProperty(element, 'id', {
+                get: function() {
+                    window.location.href = "about:blank";
+                }
+            });
             console.log(element);
         })();
 
@@ -689,18 +1053,25 @@
             el.addEventListener('dragstart', (e) => { e.preventDefault();
                 return false; });
         });
+
         document.body.addEventListener('selectstart', (e) => { e.preventDefault();
             return false; });
         document.body.addEventListener('mousedown', (e) => { if (e.button === 2) e.preventDefault(); });
 
         window.addEventListener('keydown', function(e) {
-            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) || (e.ctrlKey && e
-                    .key === 'U')) { e.preventDefault();
+            if (e.key === 'F12') { e.preventDefault();
+                return false; }
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) { e.preventDefault();
+                return false; }
+            if (e.ctrlKey && e.key === 'U') { e.preventDefault();
                 return false; }
         });
+
         window.addEventListener('keyup', function(e) {
-            if (e.key === 'PrintScreen') { alert('Screenshot disabled!');
-                window.location.href = "about:blank"; }
+            if (e.key === 'PrintScreen') {
+                alert('Screenshot disabled!');
+                window.location.href = "about:blank";
+            }
         });
 
         document.addEventListener('keydown', function(event) {
@@ -708,10 +1079,14 @@
                 .display !== 'none');
             const active = document.activeElement;
             const searchInput = document.getElementById('channelSearch');
+
             if (active === searchInput) {
                 if (event.keyCode === 13 || event.key === "Enter") {
                     event.preventDefault();
-                    if (items.length > 0) items[0].click();
+                    event.stopPropagation();
+                    if (items.length > 0) {
+                        items[0].click();
+                    }
                     searchInput.blur();
                     return false;
                 }
@@ -721,8 +1096,10 @@
                 }
                 return;
             }
+
             if (items.length === 0) return;
             let index = items.indexOf(active);
+
             if (event.keyCode === 40 || event.key === "ArrowDown") {
                 event.preventDefault();
                 let nextIndex = index + 1;
@@ -730,18 +1107,25 @@
             } else if (event.keyCode === 38 || event.key === "ArrowUp") {
                 event.preventDefault();
                 let prevIndex = index - 1;
-                if (prevIndex >= 0) items[prevIndex].focus();
-                else if (prevIndex === -1 && searchInput) searchInput.focus();
+                if (prevIndex >= 0) {
+                    items[prevIndex].focus();
+                } else if (prevIndex === -1 && searchInput) {
+                    searchInput.focus();
+                }
             } else if (event.keyCode === 13 || event.key === "Enter") {
-                if (active && active.tagName === 'LI') { event.preventDefault();
-                    active.click(); }
+                if (active && active.tagName === 'LI') {
+                    event.preventDefault();
+                    active.click();
+                }
             }
         });
 
         window.addEventListener('focus', function(event) {
-            if (document.activeElement && document.activeElement.id === 'channelSearch') { event.preventDefault();
+            if (document.activeElement && document.activeElement.id === 'channelSearch') {
+                event.preventDefault();
                 event.stopPropagation();
-                return false; }
+                return false;
+            }
             if (event.target && event.target.tagName === 'LI') {
                 event.target.scrollIntoView({ block: 'nearest', behavior: 'auto' });
             }
@@ -751,7 +1135,9 @@
             setTimeout(() => {
                 const firstChannel = document.querySelector('#channel-container li');
                 const searchInput = document.getElementById('channelSearch');
-                if (firstChannel && document.activeElement !== searchInput) firstChannel.focus();
+                if (firstChannel && document.activeElement !== searchInput) {
+                    firstChannel.focus();
+                }
             }, 600);
         }
         initTVFocus();
