@@ -6,8 +6,8 @@ export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
 
     try {
-        // ফাইলটি এখন 'data' ফোল্ডারে
-        const filePath = path.join(process.cwd(), 'data', 'xxxbd.json');
+        // __dirname = api/ ফোল্ডারের পাথ
+        const filePath = path.join(__dirname, 'xxxbd.json');
         const data = await fs.readFile(filePath, 'utf8');
         const channels = JSON.parse(data);
         
