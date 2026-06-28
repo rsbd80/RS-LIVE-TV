@@ -401,28 +401,61 @@
     </footer>
 
     <!-- =========================================================
-    সিকিউরিটি + ফুলস্ক্রিন ফিক্স
+    সিকিউরিটি + ফুলস্ক্রিন ফিক্স + ভিডিও স্টেট রিস্টোর
     ========================================================= -->
     <script>
-        // ----- ১. ফুলস্ক্রিন টগল করলে ব্ল্যাঙ্ক পেজ ঠেকানো -----
+        // ----- ১. ফুলস্ক্রিন টগলে ভিডিও স্টেট ঠিক রাখা -----
         function fixFullscreenBlanking() {
             const iframe = document.getElementById('tv-player-iframe');
             if (!iframe) return;
 
-            // ফুলস্ক্রিন থেকে বের হলে iframe-এর src পুনরায় সেট করুন (রিলোড না করে)
-            const resetIframeSrc = () => {
-                if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-                    const currentSrc = iframe.src;
-                    // যদি src খালি বা শুধু 'channel.html' হয়, তাহলে কিছু করবেন না
-                    if (currentSrc && !currentSrc.includes('channel.html')) {
-                        // সেটা আবার সেট করুন (রিলোড করবে না)
-                        iframe.src = currentSrc;
+            let videoState = { currentTime: 0, paused: true };
+
+            // ফুলস্ক্রিনে যাওয়ার আগে ভিডিওর স্টেট সেভ করুন
+            const saveVideoState = () => {
+                try {
+                    const video = iframe.contentWindow.document.getElementById('myVideo');
+                    if (video) {
+                        videoState.currentTime = video.currentTime;
+                        videoState.paused = video.paused;
                     }
+                } catch (e) {
+                    // ক্রস-অরিজিন বা ভিডিও না থাকলে কিছু করবেন না
                 }
             };
 
-            document.addEventListener('fullscreenchange', resetIframeSrc);
-            document.addEventListener('webkitfullscreenchange', resetIframeSrc);
+            // ছোট স্কিনে ফিরে এলে সেভ করা স্টেট রিস্টোর করুন
+            const restoreVideoState = () => {
+                try {
+                    const video = iframe.contentWindow.document.getElementById('myVideo');
+                    if (video) {
+                        video.currentTime = videoState.currentTime;
+                        if (!videoState.paused) {
+                            video.play().catch(() => {});
+                        }
+                    }
+                } catch (e) {
+                    // ক্রস-অরিজিন বা ভিডিও না থাকলে কিছু করবেন না
+                }
+            };
+
+            // ফুলস্ক্রিন ইভেন্ট লিসেনার
+            document.addEventListener('fullscreenchange', () => {
+                if (document.fullscreenElement) {
+                    saveVideoState();
+                } else {
+                    setTimeout(restoreVideoState, 200);
+                }
+            });
+
+            // WebKit (Safari) এর জন্য
+            document.addEventListener('webkitfullscreenchange', () => {
+                if (document.webkitFullscreenElement) {
+                    saveVideoState();
+                } else {
+                    setTimeout(restoreVideoState, 200);
+                }
+            });
         }
 
         // ----- ২. বাকি সব সুরক্ষা (কপি, ডান-ক্লিক, কী ব্লক) -----
