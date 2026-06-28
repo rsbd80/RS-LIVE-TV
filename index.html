@@ -13,7 +13,7 @@
     <title>RS Live TV</title>
     <link rel="shortcut icon" type="x-icon" href="https://i.postimg.cc/mD1VCt2C/RS-Live.png">
     <link href="bootstrap.min.css" rel="stylesheet">
-    <link href="style.css?v=12.1" rel="stylesheet">
+    <link href="style.css?v=12.2" rel="stylesheet">
 
     <style>
         /* ========================= BASE ========================= */
@@ -43,7 +43,7 @@
         }
         iframe { border: 0 !important; display: block; width: 100%; height: 100%; }
 
-        /* ========================= ফুলস্ক্রিন ল্যাগ ফিক্স – GPU অ্যাক্সিলারেশন ========================= */
+        /* ========================= ফুলস্ক্রিন ল্যাগ ফিক্স ========================= */
         #tv-player-iframe {
             will-change: transform, opacity;
             transform: translateZ(0);
@@ -104,7 +104,7 @@
         @keyframes fadeInText { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:translateY(0); } }
         @keyframes dotPulse { 0%,80%,100% { transform:scale(0); } 40% { transform:scale(1); } }
 
-        /* ========================= HEADER – হালকা করা ========================= */
+        /* ========================= HEADER ========================= */
         .top-bar-wrapper {
             position: relative;
             display: flex;
@@ -245,7 +245,7 @@
             filter: drop-shadow(0 0 6px rgba(0,240,255,0.2));
         }
 
-        /* ========================= CHANNEL LIST ========================= */
+        /* ========================= CHANNEL LIST – পুরোনো ডিজাইন ========================= */
         .channel-list {
             max-height: 360px !important;
             overflow-y: auto !important;
@@ -263,7 +263,7 @@
         }
         .channel-list::-webkit-scrollbar-thumb:hover { background: #ff0055 !important; box-shadow: 0 0 12px rgba(255,0,85,1) !important; }
 
-        /* চ্যানেল কার্ড – আপনার আগের ডিজাইন (কোনো পরিবর্তন নেই) */
+        /* কার্ড – আপনার আগের ডিজাইন (নাম সহ) */
         .thumbnail-slider li {
             background: rgba(12,14,26,0.85);
             backdrop-filter: blur(4px);
