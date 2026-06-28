@@ -401,45 +401,49 @@
     </footer>
 
     <!-- =========================================================
-    সিকিউরিটি + ফুলস্ক্রিন ফিক্স + ভিডিও স্টেট রিস্টোর
+    সিকিউরিটি + ফুলস্ক্রিন ফিক্স (JW Player-এর জন্য)
     ========================================================= -->
     <script>
-        // ----- ১. ফুলস্ক্রিন টগলে ভিডিও স্টেট ঠিক রাখা -----
+        // ----- ১. ফুলস্ক্রিন টগলে ভিডিও স্টেট ঠিক রাখা (JW Player Support) -----
         function fixFullscreenBlanking() {
             const iframe = document.getElementById('tv-player-iframe');
             if (!iframe) return;
 
             let videoState = { currentTime: 0, paused: true };
 
-            // ফুলস্ক্রিনে যাওয়ার আগে ভিডিওর স্টেট সেভ করুন
+            // JW Player-এর ভিডিও এলিমেন্ট খুঁজে বের করা
+            const getVideoElement = () => {
+                try {
+                    // JW Player ডায়নামিক ক্লাস .jw-video দেয়
+                    const video = iframe.contentWindow.document.querySelector('.jw-video');
+                    if (video && video.tagName === 'VIDEO') {
+                        return video;
+                    }
+                    // ব্যাকআপ: যেকোনো video ট্যাগ
+                    return iframe.contentWindow.document.querySelector('video');
+                } catch (e) {
+                    return null;
+                }
+            };
+
             const saveVideoState = () => {
-                try {
-                    const video = iframe.contentWindow.document.getElementById('myVideo');
-                    if (video) {
-                        videoState.currentTime = video.currentTime;
-                        videoState.paused = video.paused;
-                    }
-                } catch (e) {
-                    // ক্রস-অরিজিন বা ভিডিও না থাকলে কিছু করবেন না
+                const video = getVideoElement();
+                if (video) {
+                    videoState.currentTime = video.currentTime;
+                    videoState.paused = video.paused;
                 }
             };
 
-            // ছোট স্কিনে ফিরে এলে সেভ করা স্টেট রিস্টোর করুন
             const restoreVideoState = () => {
-                try {
-                    const video = iframe.contentWindow.document.getElementById('myVideo');
-                    if (video) {
-                        video.currentTime = videoState.currentTime;
-                        if (!videoState.paused) {
-                            video.play().catch(() => {});
-                        }
+                const video = getVideoElement();
+                if (video) {
+                    video.currentTime = videoState.currentTime;
+                    if (!videoState.paused) {
+                        video.play().catch(() => {});
                     }
-                } catch (e) {
-                    // ক্রস-অরিজিন বা ভিডিও না থাকলে কিছু করবেন না
                 }
             };
 
-            // ফুলস্ক্রিন ইভেন্ট লিসেনার
             document.addEventListener('fullscreenchange', () => {
                 if (document.fullscreenElement) {
                     saveVideoState();
@@ -448,7 +452,6 @@
                 }
             });
 
-            // WebKit (Safari) এর জন্য
             document.addEventListener('webkitfullscreenchange', () => {
                 if (document.webkitFullscreenElement) {
                     saveVideoState();
@@ -570,7 +573,8 @@
                 li.addEventListener('click', function() {
                     const iframe = document.getElementById('tv-player-iframe');
                     if (iframe) {
-                        iframe.src = url;
+                        // JW Player-কে নতুন URL পাঠান
+                        iframe.src = 'channel.html?url=' + encodeURIComponent(url);
                     }
                     if (searchInput) {
                         searchInput.value = '';
