@@ -18,7 +18,7 @@
 
     <style>
         /* =========================
-           BASE (আগের মতোই)
+           BASE
         ========================= */
         body {
             -webkit-user-select: none;
@@ -135,9 +135,11 @@
             background-color: #00f0ff;
             box-shadow: 0 0 8px #00f0ff;
         }
+
         .loading-dots span:nth-child(2) {
             animation-delay: -0.16s;
         }
+
         .loading-dots span:nth-child(3) {
             background-color: #00f0ff;
             box-shadow: 0 0 8px #00f0ff;
@@ -653,25 +655,30 @@
                 border-radius: 15px;
                 gap: 10px;
             }
+
             .brand-rs,
             .brand-live {
                 font-size: 20px;
             }
+
             .brand-line-sub {
                 font-size: 8.8px;
                 letter-spacing: 1px;
                 margin-top: 6px;
             }
+
             .channel-search-box-premium {
                 width: 145px;
                 flex-shrink: 0;
             }
+
             .channel-search-box-premium input {
                 height: 40px;
                 font-size: 12px;
                 padding: 0 40px 0 12px;
                 border-radius: 12px;
             }
+
             .search-icon-inside {
                 width: 16px;
                 height: 16px;
@@ -683,13 +690,16 @@
             .top-bar-wrapper {
                 padding: 15px 16px;
             }
+
             .brand-rs,
             .brand-live {
                 font-size: 28px;
             }
+
             .brand-line-sub {
                 font-size: 11px;
             }
+
             .channel-search-box-premium {
                 width: 230px;
             }
@@ -700,26 +710,31 @@
                 gap: 8px;
                 padding: 10px 8px;
             }
+
             .brand-rs,
             .brand-live {
                 font-size: 17px;
             }
+
             .brand-line-sub {
                 font-size: 7.5px;
                 letter-spacing: 0.8px;
                 margin-top: 5px;
             }
+
             .channel-search-box-premium {
                 width: 120px;
                 min-width: 100px;
                 flex-shrink: 0;
             }
+
             .channel-search-box-premium input {
                 height: 36px;
                 font-size: 11px;
                 padding: 0 34px 0 10px;
                 border-radius: 10px;
             }
+
             .search-icon-inside {
                 width: 14px;
                 height: 14px;
@@ -969,10 +984,13 @@
     </script>
 
     <!-- =========================================================
-    প্লেলিস্ট লোডার (আগের মতোই)
+    প্লেলিস্ট লোডার – API এন্ডপয়েন্ট থেকে ডেটা আনা হবে
     ========================================================= -->
     <script>
-        const PLAYLIST_URL = 'xxxbd.json';
+        // ====== শুধু এই লাইনটি পরিবর্তন করা হয়েছে ======
+        const PLAYLIST_URL = '/api/channels';   // আগে ছিল 'xxxbd.json'
+        // ============================================
+
         const container = document.getElementById('channel-container');
         const searchInput = document.getElementById('channelSearch');
 
@@ -1015,7 +1033,6 @@
         function setupSearchFilter() {
             const searchField = document.getElementById('channelSearch');
             if (!searchField) return;
-            // ইভেন্ট ডুপ্লিকেট রোধ
             if (searchField._listenerAdded) return;
             searchField._listenerAdded = true;
             searchField.addEventListener('input', function() {
