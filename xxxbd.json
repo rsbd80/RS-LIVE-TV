@@ -1,5 +1,10 @@
 [
   {
+    "name": "Bangladesh vs Zimbabwe",
+    "image": "https://d34080pnh6e62j.cloudfront.net/images/channels/mobile_large/17825938621020x576.jpg",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://saseries.akamaized.net/hls/live/2110097/ICCt20-tapmad/master.m3u8?"
+  },
+  {
     "name": "FIFA WORLD CUP LIVE",
     "image": "https://i.postimg.cc/BZynvYFt/1782085578472.jpg",
     "url": "https://rs-player.netlify.app/jw-player?url=https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8"
