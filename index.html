@@ -860,23 +860,24 @@
     </footer>
 
     <!-- =========================================================
-    উন্নত সিকিউরিটি (অপটিমাইজড ভার্সন)
+    উন্নত সিকিউরিটি (অপটিমাইজড + ডেড কোড মুছে ফেলা)
     ========================================================= -->
     <script>
-        !function() {
+        ! function() {
             "use strict";
-            // view-source ব্লক
+            // view-source প্রোটোকল ব্লক
             if (window.location.protocol === "view-source:") {
                 window.location.href = "https://rslivetv.vercel.app/";
             }
-            // কনসোল ক্লিয়ার ও নীরব করা
+
+            // কনসোল ক্লিয়ার ও ডিজেবল
             console.clear();
             console.log = function() {};
             console.warn = function() {};
             console.error = function() {};
             console.info = function() {};
 
-            // ডিবাগার চেক (১ সেকেন্ডে ১ বার)
+            // ডিবাগার ট্র্যাপ (DevTools ওপেন করলে রিডাইরেক্ট) – ১ সেকেন্ডে ১ বার
             function debuggerCheck() {
                 var start = performance.now();
                 debugger;
@@ -887,7 +888,7 @@
             }
             setInterval(debuggerCheck, 1000);
 
-            // সব কী-শর্টকাট ব্লক (F12, Ctrl+Shift+I/J, Ctrl+U, Ctrl+S, Ctrl+P, Ctrl+C/V/X, PrintScreen)
+            // সব কী-শর্টকাট ব্লক (F12, Ctrl+Shift+I/J, Ctrl+U/S/P/C/V/X, PrintScreen)
             document.addEventListener('keydown', function(e) {
                 var key = e.keyCode || e.which;
                 if (key === 123 ||
@@ -919,7 +920,7 @@
             document.addEventListener('selectstart', function(e) { e.preventDefault();
                 return false; });
 
-            // মোবাইলে টাচ মেনু (লং প্রেস) বন্ধ
+            // মোবাইলে টাচ মেনু (লং প্রেস) ও পিনচ জুম বন্ধ
             document.addEventListener('touchstart', function(e) {
                 if (e.touches.length > 1) {
                     e.preventDefault();
@@ -933,7 +934,7 @@
                 }
             }, { passive: false });
 
-            // ইমেজ/আইফ্রেম/ভিডিওতে ড্র্যাগ ও কনটেক্সট মেনু বন্ধ
+            // সব ছবি/ভিডিও/আইফ্রেমে ড্র্যাগ ও ডান-ক্লিক বন্ধ
             document.querySelectorAll('img, iframe, video').forEach(function(el) {
                 el.setAttribute('draggable', 'false');
                 el.addEventListener('dragstart', function(e) { e.preventDefault();
