@@ -332,7 +332,6 @@
         <div class="row">
             <div class="col-xs-12 col-md-10 tv-view">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <!-- ✅ ফুলস্ক্রিন রুটেড (পূর্ণাঙ্গ) হওয়ার জন্য sandbox সরানো হয়েছে -->
                     <iframe id="tv-player-iframe" name="player" 
                         class="embed-responsive-item" 
                         allowfullscreen
@@ -404,22 +403,17 @@
     সিকিউরিটি + ফুলস্ক্রিন ফিক্স (JW Player-এর জন্য)
     ========================================================= -->
     <script>
-        // ----- ১. ফুলস্ক্রিন টগলে ভিডিও স্টেট ঠিক রাখা (JW Player Support) -----
+        // ----- ১. ফুলস্ক্রিন টগলে ভিডিও স্টেট ঠিক রাখা (JW Player) -----
         function fixFullscreenBlanking() {
             const iframe = document.getElementById('tv-player-iframe');
             if (!iframe) return;
 
             let videoState = { currentTime: 0, paused: true };
 
-            // JW Player-এর ভিডিও এলিমেন্ট খুঁজে বের করা
             const getVideoElement = () => {
                 try {
-                    // JW Player ডায়নামিক ক্লাস .jw-video দেয়
                     const video = iframe.contentWindow.document.querySelector('.jw-video');
-                    if (video && video.tagName === 'VIDEO') {
-                        return video;
-                    }
-                    // ব্যাকআপ: যেকোনো video ট্যাগ
+                    if (video && video.tagName === 'VIDEO') return video;
                     return iframe.contentWindow.document.querySelector('video');
                 } catch (e) {
                     return null;
@@ -463,15 +457,12 @@
 
         // ----- ২. বাকি সব সুরক্ষা (কপি, ডান-ক্লিক, কী ব্লক) -----
         (function security() {
-            // view-source ব্লক
             if (window.location.protocol === "view-source:") {
                 window.location.href = "https://rslivetv.vercel.app/";
             }
-            // কনসোল ক্লিয়ার
             console.clear();
             console.log = console.warn = console.error = console.info = function() {};
 
-            // ডিভটুলস ডিটেক্ট
             function detectDevTools() {
                 var threshold = 160;
                 var widthDiff = window.outerWidth - window.innerWidth;
@@ -483,7 +474,6 @@
             }
             setInterval(detectDevTools, 500);
 
-            // ডিবাগার চেক
             function debuggerCheck() {
                 var start = performance.now();
                 debugger;
@@ -494,7 +484,6 @@
             }
             setInterval(debuggerCheck, 300);
 
-            // সব কী ব্লক
             document.addEventListener('keydown', function(e) {
                 var key = e.keyCode || e.which;
                 if (key === 123 ||
@@ -509,7 +498,6 @@
                 }
             });
 
-            // কনটেক্সট মেনু, কপি, কাট, পেস্ট, ড্র্যাগ, সিলেকশন
             document.addEventListener('contextmenu', function(e) { e.preventDefault(); return false; });
             document.addEventListener('copy', function(e) { e.preventDefault(); return false; });
             document.addEventListener('cut', function(e) { e.preventDefault(); return false; });
@@ -517,7 +505,6 @@
             document.addEventListener('dragstart', function(e) { e.preventDefault(); return false; });
             document.addEventListener('selectstart', function(e) { e.preventDefault(); return false; });
 
-            // মোবাইলে টাচ মেনু
             document.addEventListener('touchstart', function(e) {
                 if (e.touches.length > 1) { e.preventDefault(); return false; }
             }, { passive: false });
@@ -525,18 +512,15 @@
                 if (e.touches.length > 1) { e.preventDefault(); return false; }
             }, { passive: false });
 
-            // ইমেজ/ভিডিও/আইফ্রেম ড্র্যাগ বন্ধ
             document.querySelectorAll('img, iframe, video').forEach(function(el) {
                 el.setAttribute('draggable', 'false');
                 el.addEventListener('dragstart', function(e) { e.preventDefault(); return false; });
                 el.addEventListener('contextmenu', function(e) { e.preventDefault(); return false; });
             });
 
-            // প্রিন্ট ব্লক
             window.onbeforeprint = function() { return false; };
             window.onafterprint = function() { return false; };
 
-            // স্ক্রিনশট কী
             window.addEventListener('keyup', function(e) {
                 if (e.key === 'PrintScreen') {
                     alert('Screenshot disabled!');
@@ -556,8 +540,8 @@
                 container.innerHTML = '<p style="color:#aaa; text-align:center; padding:20px;">⚠️ কোনো চ্যানেল পাওয়া যায়নি।</p>';
                 return;
             }
-            channels.forEach((channel, index) => {
-                const name = channel.name || `চ্যানেল ${index+1}`;
+            channels.forEach((channel) => {
+                const name = channel.name || 'চ্যানেল';
                 const url = channel.url || '#';
                 const image = channel.image || 'https://i.postimg.cc/mD1VCt2C/RS-Live.png';
                 const li = document.createElement('li');
@@ -572,9 +556,10 @@
                 `;
                 li.addEventListener('click', function() {
                     const iframe = document.getElementById('tv-player-iframe');
-                    if (iframe) {
-                        // JW Player-কে নতুন URL পাঠান
+                    if (iframe && url !== '#') {
+                        // ✅ আগের পদ্ধতি: সরাসরি src সেট করুন
                         iframe.src = 'channel.html?url=' + encodeURIComponent(url);
+                        console.log('Loading URL:', url); // ডিবাগ
                     }
                     if (searchInput) {
                         searchInput.value = '';
@@ -636,7 +621,6 @@
                     setTimeout(() => loader.remove(), 500);
                 }
             }, 1200);
-            // ফুলস্ক্রিন ফিক্স অ্যাকটিভেট
             fixFullscreenBlanking();
         });
 
@@ -700,7 +684,6 @@
         initTVFocus();
     </script>
 
-    <!-- AD Script -->
     <script async="async" data-cfasync="false" src="https://pl26377079.effectivecpmnetwork.com/cdeccdd75d3e2e6916a42ce9653cfb08/invoke.js"></script>
     <div id="container-cdeccdd75d3e2e6916a42ce9653cfb08"></div>
 
