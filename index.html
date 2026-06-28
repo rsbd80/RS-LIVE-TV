@@ -869,7 +869,7 @@
         const PLAYLIST_URL = 'xxxbd.json';
 
         const container = document.getElementById('channel-container');
-        const searchInput = document.getElementById('channelSearch');
+        // searchInput-টি পরে DOM থেকে রেফারেন্স নেওয়া হবে
 
         // ================================================================
         // রেন্ডার – কোনো সাজানো নেই
@@ -901,14 +901,23 @@
                     </div>
                 `;
 
+                // ---------- চ্যানেল ক্লিক ----------
                 li.addEventListener('click', function() {
+                    // প্লেয়ারে ইউআরএল লোড
                     if (window.frames['player']) {
                         window.frames['player'].location.href = url;
                     }
-                    if (searchInput) {
-                        searchInput.value = '';
+
+                    // 🔍 সার্চ বক্স ক্লিয়ার করো + সব চ্যানেল দেখাও
+                    const searchField = document.getElementById('channelSearch');
+                    if (searchField) {
+                        searchField.value = '';
                         const items = container.querySelectorAll('li');
                         items.forEach(item => item.style.display = '');
+                        // প্রথম চ্যানেলে ফোকাস
+                        if (items.length > 0) {
+                            items[0].focus();
+                        }
                     }
                 });
 
@@ -922,7 +931,7 @@
         }
 
         // ================================================================
-        // সার্চ ফিল্টার
+        // সার্চ ফিল্টার – টাইপ করলেই ম্যাচিং চ্যানেল সামনে চলে আসে
         // ================================================================
         let searchListenerAdded = false;
 
@@ -931,6 +940,7 @@
             if (!searchField) return;
 
             if (!searchListenerAdded) {
+                // ক্লোন করি (যাতে আগের লিসেনার না থাকে)
                 const newSearch = searchField.cloneNode(true);
                 searchField.parentNode.replaceChild(newSearch, searchField);
                 const freshSearch = document.getElementById('channelSearch');
@@ -938,16 +948,39 @@
                 freshSearch.addEventListener('input', function() {
                     const filter = this.value.toLowerCase().trim();
                     const items = container.querySelectorAll('li');
+                    let firstVisible = null;
+                    let visibleCount = 0;
+
                     items.forEach(item => {
                         const title = item.querySelector('.channel-title');
                         if (title) {
                             const text = title.textContent.toLowerCase();
-                            item.style.display = text.includes(filter) ? '' : 'none';
+                            const match = text.includes(filter);
+                            item.style.display = match ? '' : 'none';
+                            if (match) {
+                                visibleCount++;
+                                if (!firstVisible) {
+                                    firstVisible = item;
+                                }
+                            }
                         }
                     });
+
+                    // ✅ ম্যাচিং চ্যানেল থাকলে সেটি স্ক্রলে নিয়ে আসো
+                    if (firstVisible) {
+                        firstVisible.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                        // ফোকাসও দিয়ে দিই
+                        firstVisible.focus();
+                    }
+
+                    // যদি কোনো ম্যাচ না থাকে, কন্টেইনারের শীর্ষে স্ক্রল
+                    if (visibleCount === 0 && filter.length > 0) {
+                        container.scrollTop = 0;
+                    }
                 });
+
                 searchListenerAdded = true;
-                console.log('🔍 সার্চ ফিল্টার সেটআপ হয়েছে');
+                console.log('🔍 সার্চ ফিল্টার সেটআপ হয়েছে (স্ক্রল + ক্লিয়ার)');
             }
         }
 
@@ -996,7 +1029,7 @@
         // শুরু
         // ================================================================
         loadChannels();
-        console.log('🔥 RS Live TV – হেডার আগের মতো + JSON ক্রম ঠিক');
+        console.log('🔥 RS Live TV – হেডার আগের মতো + JSON ক্রম + সার্চে স্ক্রল + ক্লিকেই ক্লিয়ার');
     </script>
 
     <!-- =========================================================
