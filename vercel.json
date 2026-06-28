@@ -1,12 +1,13 @@
 {
-  "name": "rs-live-tv",
-  "version": "1.0.0",
-  "description": "RS Live TV with server-side protection",
-  "main": "api/channels.js",
-  "scripts": {
-    "start": "node api/channels.js"
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "functions": {
+    "api/channels.js": {
+      "includeFiles": "api/xxxbd.json"
+    }
   },
-  "dependencies": {
-    // এখানে কোনো অতিরিক্ত প্যাকেজ দরকার নেই, কারণ fs এবং path built-in
-  }
+  "rewrites": [
+    { "source": "/xxxbd.json", "destination": "/404" },
+    { "source": "/api/(.*)", "destination": "/api/channels" }
+  ]
 }
