@@ -1,10 +1,5 @@
 [
   {
-    "name": "T Sports HD",
-    "image": "https://play-lh.googleusercontent.com/77jsYzxVfJ8A5mVyzIpUluaBBCrc4Z7r5nDEu_IvJtY6NYcHMbrubiRyuXQC-UaiP0xn",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://tv.emnetbd.com/flussonic/Tsports1/tracks-v1a1/mono.m3u8"
-  },
-  {
     "name": "Bangladesh vs Zimbabwe",
     "image": "https://d34080pnh6e62j.cloudfront.net/images/channels/mobile_large/17825938621020x576.jpg",
     "url": "https://rs-player.netlify.app/jw-player?url=https://saseries.akamaized.net/hls/live/2110097/ICCt20-tapmad/master.m3u8?"
@@ -18,6 +13,11 @@
     "name": "FIFA WORLD CUP LIVE",
     "image": "https://www.the-sun.com/wp-content/uploads/sites/6/2024/02/SC-World-Cup-Off-Plat-copy.jpg?quality=80&strip=all&w=1620&h=1080&crop=1",
     "url": "https://rs-player.netlify.app/jw-player?url=https://1nyaler.streamhostingcdn.top/stream/106/index.m3u8"
+  },
+  {
+    "name": "T Sports HD",
+    "image": "https://play-lh.googleusercontent.com/77jsYzxVfJ8A5mVyzIpUluaBBCrc4Z7r5nDEu_IvJtY6NYcHMbrubiRyuXQC-UaiP0xn",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://tv.emnetbd.com/flussonic/Tsports1/tracks-v1a1/mono.m3u8"
   },
   {
     "name": "Star Jalsha",
