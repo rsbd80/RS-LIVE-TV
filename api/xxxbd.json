@@ -1,5 +1,10 @@
 [
   {
+    "name": "Colors Bangla HD",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNUwKVsI91Lw-9YludH9BkzS0IXV_GDXP7tyOHiSOnBQ&s=10",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://iptvcable.netlify.app/Altogether-007/Kolkata/ColorsBanglaHD.m3u8"
+  },
+  {
     "name": "FIFA WORLD CUP LIVE",
     "image": "https://i.postimg.cc/BZynvYFt/1782085578472.jpg",
     "url": "https://rs-player.netlify.app/jw-player?url=https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8"
