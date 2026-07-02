@@ -20,6 +20,11 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1728/output/index.m3u8"
   },
   {
+    "name": "Ekattor HD",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1739963327549.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1705/output/index.m3u8"
+  },
+  {
     "name": "Maasranga TV",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1773680325498.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1722/output/index.m3u8"
@@ -83,11 +88,6 @@
     "name": "Party Universe",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1778083145889.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://nomawnoijl.gpcdn.net/akash/partyuniverse/playlist.m3u8"
-  },
-  {
-    "name": "Ekattor HD",
-    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1739963327549.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1705/output/index.m3u8"
   },
   {
     "name": "Channel 24 HD",
