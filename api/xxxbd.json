@@ -85,6 +85,11 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://nomawnoijl.gpcdn.net/akash/buddystar/playlist.m3u8"
   },
   {
+    "name": "Channel 1",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1781163068414.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1702/output/index.m3u8"
+  },
+  {
     "name": "Kids Stars",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1770381398090.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://nomawnoijl.gpcdn.net/akash/kidsstars/playlist.m3u8"
@@ -213,10 +218,5 @@
     "name": "Delicious",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1778086478755.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://nomawnoijl.gpcdn.net/akash/delicious/playlist.m3u8"
-  },
-  {
-    "name": "Channel 1",
-    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1781163068414.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1702/output/index.m3u8"
   }
 ]
