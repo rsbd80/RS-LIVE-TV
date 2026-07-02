@@ -195,6 +195,11 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1713/output/index.m3u8"
   },
   {
+    "name": "Al Jazeera",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1777454219313.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1721/output/index.m3u8"
+  },
+  {
     "name": "BuddyStar HD",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1770379038530.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://nomawnoijl.gpcdn.net/akash/buddystar/playlist.m3u8"
@@ -203,11 +208,6 @@
     "name": "Kids Stars",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1770381398090.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://nomawnoijl.gpcdn.net/akash/kidsstars/playlist.m3u8"
-  },
-  {
-    "name": "Al Jazeera",
-    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1777454219313.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1721/output/index.m3u8"
   },
   {
     "name": "Party Universe",
