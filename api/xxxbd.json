@@ -55,11 +55,6 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://cdn-4.pishow.tv/live/1143/master.m3u8"
   },
   {
-    "name": "Euro Sport HD",
-    "image": "https://images.toffeelive.com/images/program/4388/logo/240x240/mobile_logo_422191001674119624.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://sm-monirul.top/toffee/play/euro_sports_hd.m3u8"
-  },
-  {
     "name": "Akash Go",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1778087459461.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1720/output/index.m3u8"
