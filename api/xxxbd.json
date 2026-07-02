@@ -1,5 +1,65 @@
 [
   {
+    "name": "FIFA WORLD CUP LIVE",
+    "image": "https://i.postimg.cc/BZynvYFt/1782085578472.jpg",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://1nyaler.streamhostingcdn.top/stream/106/index.m3u8"
+  },
+  {
+    "name": "FIFA WORLD CUP LIVE",
+    "image": "https://www.the-sun.com/wp-content/uploads/sites/6/2024/02/SC-World-Cup-Off-Plat-copy.jpg?quality=80&strip=all&w=1620&h=1080&crop=1",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8"
+  },
+  {
+    "name": "T Sports HD",
+    "image": "https://play-lh.googleusercontent.com/77jsYzxVfJ8A5mVyzIpUluaBBCrc4Z7r5nDEu_IvJtY6NYcHMbrubiRyuXQC-UaiP0xn",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://tv.emnetbd.com/flussonic/Tsports1/tracks-v1a1/mono.m3u8"
+  },
+  {
+    "name": "Star Jalsha",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Star_Jalsha_logo_2023.png/250px-Star_Jalsha_logo_2023.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://yupptvcatchupire.yuppcdn.net/preview/starjalsha/1800.m3u8?hdnts"
+  },
+  {
+    "name": "Colors Bangla HD",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNUwKVsI91Lw-9YludH9BkzS0IXV_GDXP7tyOHiSOnBQ&s=10",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://tntvs.vercel.app/api/iptv/proxy?url=https%3A%2F%2Fiptvcable.netlify.app%2FAltogether-007%2FKolkata%2FColorsBanglaHD.m3u8"
+  },
+  {
+    "name": "ZEE Bangla",
+    "image": "https://static.wikia.nocookie.net/etv-gspn-bangla/images/b/b1/Zee_Bangla_English_Int%27l_%282017%29.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://stream.ottplus.bd/live/zee_bangla_abr/index.m3u8"
+  },
+  {
+    "name": "Sananda Tv",
+    "image": "https://static.wikia.nocookie.net/etv-gspn-bangla/images/4/48/Sananda_TV_logo_%282011%29.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://live.sanandatelevision.in/sananda/index.m3u8"
+  },
+  {
+    "name": "Enterr10",
+    "image": "https://yt3.googleusercontent.com/ytc/AIdro_kUVgsElgaFpQZNYILWQ0HLa-MAmbEjWNRBRqKms5qML2Q=s900-c-k-c0x00ffffff-no-rj",
+    "url": "https://shakplayer.vercel.app/index.html?url=https://live-bangla.akamaized.net/liveabr/playlist.m3u8"
+  },
+  {
+    "name": "Zee Bangla Sonar",
+    "image": "https://i.ytimg.com/vi/uJJaKXtOqsw/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAZZk6nxkDN1SXg6HkPRsgqbF8QlQ",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://d1g8wgjurz8via.cloudfront.net/bpk-tv/ColorsHD/default/ColorsHD.m3u8"
+  },
+  {
+    "name": "Bangla Plus",
+    "image": "https://static.wikia.nocookie.net/etv-gspn-bangla/images/9/9a/Bangla%2B_HD.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://live-stream.utkalbongo.com/hls/livebanglatvstream.m3u8"
+  },
+  {
+    "name": "Sangeet Bangla",
+    "image": "https://imglink.cc/cdn/LmVOSdl3ku.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://cdn-4.pishow.tv/live/1143/master.m3u8"
+  },
+  {
+    "name": "Euro Sport HD",
+    "image": "https://images.toffeelive.com/images/program/4388/logo/240x240/mobile_logo_422191001674119624.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://sm-monirul.top/toffee/play/euro_sports_hd.m3u8"
+  },
+  {
     "name": "Program Promo",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1778087459461.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1720/output/index.m3u8"
