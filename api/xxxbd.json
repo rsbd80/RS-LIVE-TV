@@ -5,11 +5,6 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1706/output/index.m3u8"
   },
   {
-    "name": "Crazy Ex",
-    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1778085745609.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://nomawnoijl.gpcdn.net/akash/crazy_ex/playlist.m3u8"
-  },
-  {
     "name": "Sports Range",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1779610478709.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://nomawnoijl.gpcdn.net/akash/sportrange/playlist.m3u8"
@@ -123,6 +118,11 @@
     "name": "Cineedge HD",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1770347851305.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://nomawnoijl.gpcdn.net/akash/cineedge/playlist.m3u8"
+  },
+  {
+    "name": "Crazy Ex",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1778085745609.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://nomawnoijl.gpcdn.net/akash/crazy_ex/playlist.m3u8"
   },
   {
     "name": "Fighters",
