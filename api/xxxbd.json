@@ -1,10 +1,5 @@
 [
   {
-    "name": "Me Tv",
-    "image": "https://www.metvbd.com/media/common/logo-fb.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://iptvbd.live/metv1080/1080.m3u8"
-  },
-  {
     "name": "FIFA WORLD CUP LIVE",
     "image": "https://i.postimg.cc/BZynvYFt/1782085578472.jpg",
     "url": "https://rs-player.netlify.app/jw-player?url=https://pullsgp.yyzb456.top/live/stream-698168_lhd.m3u8"
@@ -63,6 +58,11 @@
     "name": "Akash Go",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1778087459461.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1720/output/index.m3u8"
+  },
+  {
+    "name": "Me Tv",
+    "image": "https://www.metvbd.com/media/common/logo-fb.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://iptvbd.live/metv1080/1080.m3u8"
   },
   {
     "name": "G-Series",
