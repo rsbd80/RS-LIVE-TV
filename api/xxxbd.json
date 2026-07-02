@@ -1,5 +1,10 @@
 [
   {
+    "name": "Mohona Tv",
+    "image": "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/Mohona_tv_Logo.svg/1280px-Mohona_tv_Logo.svg.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/mohonatv.stream/tracks-v1a1/mono.m3u8"
+  },
+  {
     "name": "FIFA WORLD CUP LIVE",
     "image": "https://i.postimg.cc/BZynvYFt/1782085578472.jpg",
     "url": "https://rs-player.netlify.app/jw-player?url=https://pullsgp.yyzb456.top/live/stream-698168_lhd.m3u8"
