@@ -10,6 +10,11 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1701/output/index.m3u8"
   },
   {
+    "name": "Channel I HD",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1740567626692.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1723/output/index.m3u8"
+  },
+  {
     "name": "DBC News HD",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1770186306600.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1728/output/index.m3u8"
@@ -98,11 +103,6 @@
     "name": "Flash Guys HD",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1770378074527.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://nomawnoijl.gpcdn.net/akash/flashguys/playlist.m3u8"
-  },
-  {
-    "name": "Channel I HD",
-    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1740567626692.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1723/output/index.m3u8"
   },
   {
     "name": "Sports Range",
