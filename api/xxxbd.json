@@ -80,6 +80,11 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1703/output/index.m3u8"
   },
   {
+    "name": "Channel 1",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1781163068414.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1702/output/index.m3u8"
+  },
+  {
     "name": "Star News",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1770189826301.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1710/output/index.m3u8"
@@ -88,11 +93,6 @@
     "name": "BuddyStar HD",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1770379038530.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://nomawnoijl.gpcdn.net/akash/buddystar/playlist.m3u8"
-  },
-  {
-    "name": "Channel 1",
-    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1781163068414.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1702/output/index.m3u8"
   },
   {
     "name": "Kids Stars",
