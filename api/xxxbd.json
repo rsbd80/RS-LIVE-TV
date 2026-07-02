@@ -15,6 +15,11 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://nomawnoijl.gpcdn.net/akash/fighter/playlist.m3u8"
   },
   {
+    "name": "ATN News",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1739962961772.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1706/output/index.m3u8"
+  },
+  {
     "name": "Sports Legends",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1779609962271.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://nomawnoijl.gpcdn.net/akash/sportslegends/playlist.m3u8"
@@ -43,11 +48,6 @@
     "name": "Maasranga TV",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1773680325498.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1722/output/index.m3u8"
-  },
-  {
-    "name": "ATN News",
-    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1739962961772.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1706/output/index.m3u8"
   },
   {
     "name": "News 24 HD",
