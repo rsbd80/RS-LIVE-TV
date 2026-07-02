@@ -5,11 +5,6 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1706/output/index.m3u8"
   },
   {
-    "name": "Sports Legends",
-    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1779609962271.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://nomawnoijl.gpcdn.net/akash/sportslegends/playlist.m3u8"
-  },
-  {
     "name": "Crazy Ex",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1778085745609.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://nomawnoijl.gpcdn.net/akash/crazy_ex/playlist.m3u8"
@@ -138,6 +133,11 @@
     "name": "Uniques HD",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1770347327658.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://nomawnoijl.gpcdn.net/akash/uniques/playlist.m3u8"
+  },
+  {
+    "name": "Sports Legends",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1779609962271.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://nomawnoijl.gpcdn.net/akash/sportslegends/playlist.m3u8"
   },
   {
     "name": "Superrix HD",
