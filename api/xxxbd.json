@@ -1,5 +1,10 @@
 [
   {
+    "name": "Akhon Tv",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeN76tHPJpc-HkXgr4YsWm9e0yWIAar2FJ1B4Q3ox5FKP-zbfP8rCOxkEe&s=10",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://stream.ottplus.live/live/ekhon_tv_abr/live/ekhon_tv_hd_720/chunks.m3u8"
+  },
+  {
     "name": "FIFA WORLD CUP LIVE",
     "image": "https://i.postimg.cc/BZynvYFt/1782085578472.jpg",
     "url": "https://rs-player.netlify.app/jw-player?url=https://pullsgp.yyzb456.top/live/stream-698168_lhd.m3u8"
