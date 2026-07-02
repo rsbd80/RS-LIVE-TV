@@ -1,10 +1,5 @@
 [
   {
-    "name": "My Tv",
-    "image": "https://upload.wikimedia.org/wikipedia/en/thumb/8/8b/Logo_of_My_TV_%28Bangladesh%29.svg/330px-Logo_of_My_TV_%28Bangladesh%29.svg.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/mytv-up-off.stream/tracks-v1a1/mono.m3u8"
-  },
-  {
     "name": "FIFA WORLD CUP LIVE",
     "image": "https://i.postimg.cc/BZynvYFt/1782085578472.jpg",
     "url": "https://rs-player.netlify.app/jw-player?url=https://pullsgp.yyzb456.top/live/stream-698168_lhd.m3u8"
@@ -73,6 +68,11 @@
     "name": "Asian Tv",
     "image": "https://yt3.googleusercontent.com/eMcIPmI9hKQIHua9lU7l7AnELALHsP_1EwIkZ8tJa-FV-epwPdiX0zxb5gnUuH2-R0t8hpxHxA=s900-c-k-c0x00ffffff-no-rj",
     "url": "https://rs-player.netlify.app/jw-player?url=https://mtlivestream.com/hls/asian/ytlive/index.m3u8"
+  },
+  {
+    "name": "My Tv",
+    "image": "https://upload.wikimedia.org/wikipedia/en/thumb/8/8b/Logo_of_My_TV_%28Bangladesh%29.svg/330px-Logo_of_My_TV_%28Bangladesh%29.svg.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://app24.jagobd.com.bd/c3VydmVyX8RpbEU9Mi8xNy8yMFDEEHGcfRgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcEdsEfeDeKiNkVN3PTOmdFseWRtaW51aiPhnPTI2/mytv-up-off.stream/tracks-v1a1/mono.m3u8"
   },
   {
     "name": "ATN News",
