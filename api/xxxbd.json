@@ -1,5 +1,10 @@
 [
   {
+    "name": "Green Tv",
+    "image": "https://upload.wikimedia.org/wikipedia/en/2/20/Green_TV_Logo.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI2/greentv.stream/live-orgin/greentv.stream/chunks.m3u8"
+  },
+  {
     "name": "FIFA WORLD CUP LIVE",
     "image": "https://i.postimg.cc/BZynvYFt/1782085578472.jpg",
     "url": "https://rs-player.netlify.app/jw-player?url=https://pullsgp.yyzb456.top/live/stream-698168_lhd.m3u8"
