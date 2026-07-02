@@ -5,6 +5,11 @@
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1706/output/index.m3u8"
   },
   {
+    "name": "Independent TV",
+    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1778087037971.png",
+    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1704/output/index.m3u8"
+  },
+  {
     "name": "Jamuna TV",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1735560213832.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1701/output/index.m3u8"
@@ -58,11 +63,6 @@
     "name": "BTV Shangshad",
     "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1781166550297.png",
     "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8"
-  },
-  {
-    "name": "Independent TV",
-    "image": "https://tstatic.akash-go.com/cms-ui/images/custom-content/1778087037971.png",
-    "url": "https://rs-player.netlify.app/jw-player?url=https://owrcovcrpy.gpcdn.net/bpk-tv/1704/output/index.m3u8"
   },
   {
     "name": "Star News",
